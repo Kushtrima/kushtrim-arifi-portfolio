@@ -1,0 +1,8 @@
+---
+deployment:
+  tasks:
+    # Set your target folder (document root)
+    - export DEPLOYPATH=/home/meingzls/public_html/
+
+    # Deploy everything from the repo to the site (safe, fast)
+    - /bin/rsync -a --delete ./ $DEPLOYPATH
