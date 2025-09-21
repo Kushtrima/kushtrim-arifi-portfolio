@@ -6,7 +6,7 @@
     <title>Kushtrim Arifi - UX UI Designer & Front End Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -19,8 +19,31 @@
                 <ul class="nav-list">
                     <li><a href="work.html" class="nav-link">Work</a></li>
                     <li><a href="about.html" class="nav-link">About</a></li>
-                    <li><a href="blog.html" class="nav-link">Blog</a></li>
                 </ul>
+                
+                <!-- Overlay content (hidden by default) -->
+                <div class="nav-overlay">
+                    <div class="nav-header">
+                        <a href="index.html" class="nav-logo">KA</a>
+                        <button class="nav-close">×</button>
+                    </div>
+                    
+                    <div class="nav-content">
+                        <ul class="nav-list-overlay">
+                            <li><a href="work.html" class="nav-link-overlay">Work</a></li>
+                            <li><a href="about.html" class="nav-link-overlay">About</a></li>
+                        </ul>
+                        
+                        <div class="nav-right">
+                            <div class="nav-social">
+                                <a href="#" class="social-icon"></a>
+                                <a href="#" class="social-icon"></a>
+                                <a href="#" class="social-icon"></a>
+                            </div>
+                            <a href="mailto:info@kushrimarifi.com" class="nav-email">info@kushrimarifi.com</a>
+                        </div>
+                    </div>
+                </div>
             </nav>
             <div class="burger-menu">
                 <span class="burger-line"></span>
@@ -31,29 +54,40 @@
     </header>
 
     <main class="hero">
-        <div class="hero-background">
-            <img src="img/hero-banner.jpg" alt="Mountain landscape" class="hero-image">
-            <div class="hero-overlay"></div>
-        </div>
+        <div class="hero-background"></div>
         
         <div class="hero-content">
             <div class="container">
-                <div class="hero-text">
-                    <div class="name-wrapper">
-                        <h1 class="name">
-                            <img src="img/letters.png" alt="KUSHTRIM" class="name-image">
-                        </h1>
+                <div class="hero-grid">
+                    <!-- Left Column -->
+                    <div class="hero-left">
+                        <div class="hero-title-section">
+                            <div class="hero-title-line-1-wrapper">
+                                <h1 class="hero-title-line-1">UX/UI Designer &</h1>
+                            </div>
+                            <div class="hero-title-line-2-wrapper">
+                                <h1 class="hero-title-line-2">Front-End</h1>
+                            </div>
+                            <div class="hero-title-line-3-wrapper">
+                                <h1 class="hero-title-line-3">Engineer</h1>
+                            </div>
+                        </div>
+                        <div class="hero-image-section">
+                            <img src="img/kaimage.jpg" alt="Kushtrim Arifi" class="hero-portrait">
+                        </div>
+                        <div class="hero-name-section">
+                            <h2 class="hero-name">Kushtrim Arifi</h2>
+                        </div>
                     </div>
-                </div>
-                <div class="hero-year-wrapper">
-                    <div class="hero-year">2025</div>
-                </div>
-                <div class="hero-info">
-                    <div class="experience-wrapper">
-                        <p class="experience">Creating <br>from 2012</p>
-                    </div>
-                    <div class="profession-wrapper">
-                        <p class="profession">UX UI Designer &<br>Front End Engineer</p>
+                    
+                    <!-- Right Column -->
+                    <div class="hero-right">
+                        <div class="hero-year-section">
+                            <div class="hero-year">2025</div>
+                        </div>
+                        <div class="hero-experience-section">
+                            <p class="hero-experience">Creating since 2012</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -85,6 +119,139 @@
             </div>
         </div>
     </section>
+
+    <!-- Experience Section -->
+    <section class="experience-section">
+        <div class="container">
+            <div class="experience-title">
+                <h2>
+                    <span class="title-line left title-word">MY</span>
+                    <span class="title-line center title-word">EXPERIENCE</span>
+                    <span class="title-line left title-word">THROUGH</span>
+                    <span class="title-line center title-word">TIME</span>
+                </h2>
+            </div>
+            <div class="experience-content">
+                <div class="experience-item">
+                    <div class="job-title">UX/UI & Full-Stack Engineer</div>
+                    <div class="job-details">
+                        <div class="company">MONUN AG</div>
+                        <div class="dates">Switzerland | 2024 – Present</div>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-title">UX/UI & Web Developer</div>
+                    <div class="job-details">
+                        <div class="company">Business Leaders AG</div>
+                        <div class="dates">Switzerland | 2020 – 2024</div>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-title">UX/UI DESIGNER & WP Dev</div>
+                    <div class="job-details">
+                        <div class="company">MARDAL</div>
+                        <div class="dates">Kosovo | 2018 – 2020</div>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-title">UX/UI DESIGNER & WordPress</div>
+                    <div class="job-details">
+                        <div class="company">Prior Marketing GmbH</div>
+                        <div class="dates">Switzerland | 2015 – 2018</div>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-title">UX UI & GRAPHIC DESIGNER</div>
+                    <div class="job-details">
+                        <div class="company">FREELANCE</div>
+                        <div class="dates">Kosovo | 2011 – 2015</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section class="work-section">
+        <div class="container">
+            <div class="work-title">
+                <h2>my Work</h2>
+                <div class="work-line"></div>
+            </div>
+            <div class="work-content">
+                <div class="work-grid">
+                    <a href="doratec.html" class="work-item work-link">
+                        <div class="work-image">
+                            <img src="work/doratec/dora-cover.jpg" alt="Dora Project">
+                        </div>
+                        <div class="work-info">
+                            <h3 class="work-name">Doratec</h3>
+                            <p class="work-description">From research to Figma UX/UI to build, I delivered a lightweight, responsive Doratec site with interactive PVC product showcases, technical specs, and a streamlined contact flow.</p>
+                            <span class="work-year">©2025</span>
+                        </div>
+                    </a>
+                    
+                    <a href="spitex.html" class="work-item work-link">
+                        <div class="work-image">
+                            <img src="work/spitex/spitex-cover.jpg" alt="Spitex Project">
+                        </div>
+                        <div class="work-info">
+                            <h3 class="work-name">Spitex</h3>
+                            <p class="work-description">Research, UX/UI in Figma, then I delivered a responsive Spitex platform—lightweight and modern—featuring service showcases, patient details, and a simple contact experience.</p>
+                            <span class="work-year">©2025</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="work-view-more">
+                <a href="work.html" class="view-more-button">View more <span class="arrow">↗</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-title-spacer"></div>
+                
+                <div class="footer-divider"></div>
+                
+                <div class="footer-upper">
+                    <div class="footer-left">
+                        <p class="footer-credit">Kushtrim Arifi</p>
+                    </div>
+                    <div class="footer-right">
+                        <div class="footer-social">
+                            <a href="#" class="social-link">LinkedIn</a>
+                            <a href="#" class="social-link">Medium</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-divider"></div>
+                
+                <div class="footer-lower">
+                    <div class="footer-left">
+                        <div class="footer-nav">
+                            <a href="work.html" class="footer-nav-link">Work</a>
+                            <a href="about.html" class="footer-nav-link">About</a>
+                        </div>
+                    </div>
+                    <div class="footer-right">
+                        <div class="footer-utility">
+                            <span class="utility-text">2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>

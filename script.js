@@ -3,65 +3,88 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.nav-link');
     const burgerMenu = document.querySelector('.burger-menu');
     const navigation = document.querySelector('.navigation');
+    const navClose = document.querySelector('.nav-close');
     
     // Burger menu toggle
     burgerMenu.addEventListener('click', function() {
         burgerMenu.classList.toggle('active');
         navigation.classList.toggle('active');
+        
+        // For desktop, also show/hide the navigation overlay
+        if (window.innerWidth > 768) {
+            if (navigation.classList.contains('active')) {
+                navigation.style.display = 'flex';
+            } else {
+                navigation.style.display = 'none';
+            }
+        }
     });
     
-    // Close mobile menu when clicking on links
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            // Close mobile menu
+    // Close button functionality
+    if (navClose) {
+        navClose.addEventListener('click', function() {
             burgerMenu.classList.remove('active');
             navigation.classList.remove('active');
+            if (window.innerWidth > 768) {
+                navigation.style.display = 'none';
+            }
+        });
+    }
+    
+    // Close menu when clicking on links
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Close menu
+            burgerMenu.classList.remove('active');
+            navigation.classList.remove('active');
+            if (window.innerWidth > 768) {
+                navigation.style.display = 'none';
+            }
             
             // Let the browser handle navigation to other pages
             // No preventDefault needed for page navigation
         });
     });
     
-    // Header background on scroll (original code)
-    const header = document.querySelector('.header');
-    const heroOverlay = document.querySelector('.hero-overlay');
-    const navList = document.querySelector('.nav-list');
-    const logoText = document.querySelector('.logo-text');
+    // SIMPLE APPROACH:
+    // 1. Hero section: Always gray (no transition)
+    // 2. About section: White by default, smooth transition to gray at the end
     
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            heroOverlay.style.background = 'rgba(0, 0, 0, 0.3)';
+        const aboutSection = document.querySelector('.about-section');
+        const scrollPosition = window.scrollY;
+        
+        if (aboutSection) {
+            const aboutBottom = aboutSection.offsetTop + (aboutSection.offsetHeight / 8); // Start transition from 1/8 of about section
             
-            if (window.innerWidth > 768) {
-                // Fade out nav links
-                navList.style.opacity = '0';
-                
-                // Show and style burger menu after nav fades
-                setTimeout(() => {
-                    navList.style.visibility = 'hidden';
-                    burgerMenu.style.display = 'flex';
-                    burgerMenu.style.opacity = '1';
-                }, 400);
-                
-                logoText.classList.add('scrolled');
-                burgerMenu.classList.add('scrolled');
-            }
-        } else {
-            heroOverlay.style.background = 'rgba(0, 0, 0, 0)';
-            
-            if (window.innerWidth > 768) {
-                // Fade out burger menu
-                burgerMenu.style.opacity = '0';
-                
-                // Show and style nav links after burger fades
-                setTimeout(() => {
-                    burgerMenu.style.display = 'none';
-                    navList.style.visibility = 'visible';
-                    navList.style.opacity = '1';
-                }, 400);
-                
-                logoText.classList.remove('scrolled');
-                burgerMenu.classList.remove('scrolled');
+            if (scrollPosition < aboutBottom) {
+                // BEFORE END OF ABOUT SECTION - WHITE
+                document.body.style.setProperty('background-color', '#ffffff', 'important');
+                // Update text colors for white background
+                document.querySelectorAll('.about-text').forEach(el => {
+                    el.style.setProperty('color', '#333333', 'important');
+                });
+                const label = document.querySelector('.about-label');
+                if (label) label.style.setProperty('color', '#333333', 'important');
+                const ctaLink = document.querySelector('.cta-link');
+                if (ctaLink) {
+                    ctaLink.style.setProperty('color', '#333333', 'important');
+                    ctaLink.style.setProperty('border-color', '#333333', 'important');
+                }
+            } else {
+                // AFTER END OF ABOUT SECTION - GRAY
+                document.body.style.setProperty('background-color', '#212121', 'important');
+                // Update text colors for gray background
+                document.querySelectorAll('.about-text').forEach(el => {
+                    el.style.setProperty('color', '#ffffff', 'important');
+                });
+                const label = document.querySelector('.about-label');
+                if (label) label.style.setProperty('color', '#ffffff', 'important');
+                const ctaLink = document.querySelector('.cta-link');
+                if (ctaLink) {
+                    ctaLink.style.setProperty('color', '#ffffff', 'important');
+                    ctaLink.style.setProperty('border-color', '#ffffff', 'important');
+                }
             }
         }
     });
@@ -70,37 +93,67 @@ document.addEventListener('DOMContentLoaded', function() {
     // Page load animations - hero elements only
     function animateOnLoad() {
         // Reset all animations first
-        const nameImage = document.querySelector('.name-image');
+        const titleLine1 = document.querySelector('.hero-title-line-1');
+        const titleLine2 = document.querySelector('.hero-title-line-2');
+        const titleLine3 = document.querySelector('.hero-title-line-3');
+        const heroPortrait = document.querySelector('.hero-portrait');
+        const heroName = document.querySelector('.hero-name');
         const heroYear = document.querySelector('.hero-year');
-        const experience = document.querySelector('.experience');
-        const profession = document.querySelector('.profession');
+        const heroExperience = document.querySelector('.hero-experience');
         
         // Remove animate classes
-        nameImage.classList.remove('animate');
-        heroYear.classList.remove('animate');
-        experience.classList.remove('animate');
-        profession.classList.remove('animate');
+        if (titleLine1) titleLine1.classList.remove('animate');
+        if (titleLine2) titleLine2.classList.remove('animate');
+        if (titleLine3) titleLine3.classList.remove('animate');
+        if (heroPortrait) heroPortrait.classList.remove('animate');
+        if (heroName) heroName.classList.remove('animate');
+        if (heroYear) heroYear.classList.remove('animate');
+        if (heroExperience) heroExperience.classList.remove('animate');
         
         // Force reflow
-        nameImage.offsetHeight;
+        if (titleLine1) titleLine1.offsetHeight;
         
-        // Animate main KUSHTRIM name first
+        // Animate title lines with staggered timing
         setTimeout(() => {
-            nameImage.classList.add('animate');
+            if (titleLine1) {
+                titleLine1.classList.add('animate');
+                console.log('Title line 1 animated');
+            }
         }, 200);
         
-        // Masked slide-up reveal sequence with stagger
         setTimeout(() => {
-            heroYear.classList.add('animate');
+            if (titleLine2) {
+                titleLine2.classList.add('animate');
+                console.log('Title line 2 animated');
+            }
+        }, 400);
+        
+        setTimeout(() => {
+            if (titleLine3) {
+                titleLine3.classList.add('animate');
+                console.log('Title line 3 animated');
+            }
         }, 600);
         
+        // Animate portrait
         setTimeout(() => {
-            experience.classList.add('animate');
+            if (heroPortrait) heroPortrait.classList.add('animate');
         }, 800);
         
+        // Animate name
         setTimeout(() => {
-            profession.classList.add('animate');
+            if (heroName) heroName.classList.add('animate');
         }, 1000);
+        
+        // Animate year
+        setTimeout(() => {
+            if (heroYear) heroYear.classList.add('animate');
+        }, 1200);
+        
+        // Animate experience
+        setTimeout(() => {
+            if (heroExperience) heroExperience.classList.add('animate');
+        }, 1400);
     }
     
     // About section scroll animation - paragraph-based staggered text
@@ -133,6 +186,200 @@ document.addEventListener('DOMContentLoaded', function() {
         aboutTextObserver.observe(paragraph);
     });
     
+    // Experience section animations
+    const experienceTitle = document.querySelector('.experience-title h2');
+    const experienceItems = document.querySelectorAll('.experience-item');
+    
+    const experienceObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (entry.target.matches('.experience-title h2')) {
+                    // Animate title first
+                    entry.target.classList.add('animate');
+                    
+                    // Add word-by-word reveal effect
+                    const words = entry.target.querySelectorAll('.title-word');
+                    words.forEach((word, index) => {
+                        setTimeout(() => {
+                            word.classList.add('revealed');
+                        }, index * 200); // 200ms delay between each word
+                    });
+                } else if (entry.target.matches('.experience-item')) {
+                    // Stagger experience items
+                    const items = Array.from(experienceItems);
+                    const index = items.indexOf(entry.target);
+                    setTimeout(() => {
+                        entry.target.classList.add('animate');
+                    }, index * 200); // 200ms delay between each item
+                }
+            }
+        });
+    }, {
+        threshold: 0.3
+    });
+    
+    // Observe title and items
+    if (experienceTitle) {
+        experienceObserver.observe(experienceTitle);
+    }
+    
+    experienceItems.forEach(item => {
+        experienceObserver.observe(item);
+    });
+    
+    // Work page text reveal animation
+    const workPageWrappers = document.querySelectorAll('.work-page-section .text-reveal-wrapper');
+    const workGallery = document.querySelector('.work-gallery');
+    
+    const workPageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Staggered animation for text wrappers
+                workPageWrappers.forEach((wrapper, index) => {
+                    setTimeout(() => {
+                        wrapper.classList.add('revealed');
+                    }, index * 200); // 200ms delay between each element
+                });
+                
+                // Animate gallery elements
+                if (workGallery) {
+                    const galleryItems = workGallery.querySelectorAll('.gallery-item');
+                    
+                    // Animate gallery items
+                    galleryItems.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 600 + (index * 200));
+                    });
+                }
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+    
+    // Observe work page section
+    const workPageSection = document.querySelector('.work-page-section');
+    if (workPageSection) {
+        workPageObserver.observe(workPageSection);
+    }
+
+    // Gallery item click functionality - Direct navigation
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    galleryItems.forEach((item) => {
+        item.addEventListener('click', () => {
+            const projectName = item.getAttribute('data-project');
+            
+            // Add visual feedback
+            item.style.transform = 'translateY(-8px)';
+            setTimeout(() => {
+                item.style.transform = 'translateY(-5px)';
+            }, 200);
+            
+            // Navigate to project page
+            setTimeout(() => {
+                if (projectName === 'doratec') {
+                    window.location.href = 'doratec.html';
+                } else if (projectName === 'spitex') {
+                    window.location.href = 'spitex.html';
+                } else if (projectName === 'jetonikeramika') {
+                    window.location.href = 'jetonikeramika.html';
+                } else if (projectName === 'mardal') {
+                    window.location.href = 'mardal.html';
+                } else if (projectName === 'baren') {
+                    window.location.href = 'baren.html';
+                } else if (projectName === 'alba') {
+                    window.location.href = 'alba.html';
+                }
+            }, 300);
+        });
+    });
+
+
+    // Project page image reveal animation
+    const projectMainImage = document.querySelector('.project-main-image');
+    const projectGalleryContainers = document.querySelectorAll('.project-gallery-section .work-image');
+    
+    // Reveal main project image immediately on page load
+    if (projectMainImage) {
+        setTimeout(() => {
+            projectMainImage.classList.add('revealed');
+        }, 500); // Small delay after page load
+    }
+    
+    // Gallery images reveal only when scrolling to them
+    const galleryObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Animate gallery images with stagger
+                const containers = Array.from(projectGalleryContainers);
+                containers.forEach((container, index) => {
+                    setTimeout(() => {
+                        container.classList.add('revealed');
+                    }, index * 300); // 300ms stagger between images
+                });
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px 0px 0px'
+    });
+    
+    // Observe only the gallery section
+    const projectGallerySection = document.querySelector('.project-gallery-section');
+    if (projectGallerySection) {
+        galleryObserver.observe(projectGallerySection);
+    }
+    
+    
+    // Education section - simple reveal
+    const educationSection = document.querySelector('.about-education');
+    if (educationSection) {
+        let hasAppeared = false;
+        
+        const educationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasAppeared) {
+                    educationSection.classList.add('revealed');
+                    hasAppeared = true;
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        educationObserver.observe(educationSection);
+    }
+    
+    // Project page text reveal animation
+    const projectPageWrappers = document.querySelectorAll('.project-main .text-reveal-wrapper');
+    
+    if (projectPageWrappers.length > 0) {
+        const projectPageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Staggered animation for text wrappers
+                    projectPageWrappers.forEach((wrapper, index) => {
+                        setTimeout(() => {
+                            wrapper.classList.add('revealed');
+                        }, index * 200); // 200ms delay between each element
+                    });
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        // Observe project page section
+        const projectMain = document.querySelector('.project-main');
+        if (projectMain) {
+            projectPageObserver.observe(projectMain);
+        }
+    }
+
     // Start animations when page loads
     animateOnLoad();
     

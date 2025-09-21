@@ -6,9 +6,8 @@
     <title>Work - Kushtrim Arifi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="pages.css">
 </head>
 <body>
     <header class="header">
@@ -18,10 +17,33 @@
             </div>
             <nav class="navigation">
                 <ul class="nav-list">
-                    <li><a href="work.html" class="nav-link active">Work</a></li>
+                    <li><a href="work.html" class="nav-link">Work</a></li>
                     <li><a href="about.html" class="nav-link">About</a></li>
-                    <li><a href="blog.html" class="nav-link">Blog</a></li>
                 </ul>
+                
+                <!-- Overlay content (hidden by default) -->
+                <div class="nav-overlay">
+                    <div class="nav-header">
+                        <a href="index.html" class="nav-logo">KA</a>
+                        <button class="nav-close">×</button>
+                    </div>
+                    
+                    <div class="nav-content">
+                        <ul class="nav-list-overlay">
+                            <li><a href="work.html" class="nav-link-overlay">Work</a></li>
+                            <li><a href="about.html" class="nav-link-overlay">About</a></li>
+                        </ul>
+                        
+                        <div class="nav-right">
+                            <div class="nav-social">
+                                <a href="#" class="social-icon"></a>
+                                <a href="#" class="social-icon"></a>
+                                <a href="#" class="social-icon"></a>
+                            </div>
+                            <a href="mailto:info@kushrimarifi.com" class="nav-email">info@kushrimarifi.com</a>
+                        </div>
+                    </div>
+                </div>
             </nav>
             <div class="burger-menu">
                 <span class="burger-line"></span>
@@ -31,76 +53,153 @@
         </div>
     </header>
 
-    <main class="page-content">
-        <div class="container">
-            <section class="page-hero">
-                <h1 class="page-title">Work</h1>
-                <p class="page-subtitle">Selected projects and experiences</p>
-            </section>
-
-            <section class="work-grid">
-                <div class="work-item">
-                    <div class="work-image">
-                        <div class="work-placeholder">Project Image</div>
+    <main>
+        <!-- Work Page Section -->
+        <section class="work-page-section">
+            <div class="work-page-container">
+                <div class="work-page-title">
+                    <div class="text-reveal-wrapper">
+                        <h1>work</h1>
                     </div>
-                    <div class="work-content">
-                        <h3 class="work-title">E-Commerce Platform</h3>
-                        <p class="work-description">Complete redesign of a modern e-commerce platform with focus on user experience and conversion optimization.</p>
-                        <div class="work-tags">
-                            <span class="tag">UI/UX Design</span>
-                            <span class="tag">React</span>
-                            <span class="tag">E-commerce</span>
+                    <div class="text-reveal-wrapper">
+                        <div class="work-page-line"></div>
+                    </div>
+                </div>
+                
+                <div class="work-page-description">
+                    <div class="text-reveal-wrapper">
+                        <p>My portfolio showcases a diverse array of projects across different industries, each demonstrating my ability to adapt and deliver high-quality design solutions.</p>
+                    </div>
+                </div>
+                
+                <!-- Work Gallery Section -->
+                <div class="work-gallery">
+                    <div class="gallery-title">
+                        <h2>websites</h2>
+                        <div class="gallery-line"></div>
+                    </div>
+                    
+                    <div class="gallery-grid">
+                        <div class="gallery-item" data-project="doratec">
+                            <div class="gallery-image">
+                                <div class="project-number">01</div>
+                                <img src="work/doratec/dora-cover.jpg" alt="Doratec">
+                            </div>
+                            <div class="gallery-info">
+                                <h3 class="project-title">DORATEC GMBH</h3>
+                                <p class="project-category">WINDOW & DOORS</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" data-project="spitex">
+                            <div class="gallery-image">
+                                <div class="project-number">02</div>
+                                <img src="work/spitex/spitex-cover.jpg" alt="Spitex">
+                            </div>
+                            <div class="gallery-info">
+                                <h3 class="project-title">SPITEX SCHWAB AG</h3>
+                                <p class="project-category">HEALTHCARE PLATFORM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" data-project="jetonikeramika">
+                            <div class="gallery-image">
+                                <div class="project-number">03</div>
+                                <img src="work/jetonikeramika/jetoni-cover.jpg" alt="Jetonikeramika">
+                            </div>
+                            <div class="gallery-info">
+                                <h3 class="project-title">JETONIKERAMIKA</h3>
+                                <p class="project-category">TILES INDUSTRY</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" data-project="mardal">
+                            <div class="gallery-image">
+                                <div class="project-number">04</div>
+                                <img src="work/mardal/mardal-cover.jpg" alt="MARDAL">
+                            </div>
+                            <div class="gallery-info">
+                                <h3 class="project-title">MARDAL</h3>
+                                <p class="project-category">MARKETING AGENCY</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" data-project="alba">
+                            <div class="gallery-image">
+                                <div class="project-number">05</div>
+                                <img src="work/alba/alba-cover.jpg" alt="ALBASOLAR">
+                            </div>
+                            <div class="gallery-info">
+                                <h3 class="project-title">ALBASOLAR</h3>
+                                <p class="project-category">ENERGY SOLAR</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="work-item">
-                    <div class="work-image">
-                        <div class="work-placeholder">Project Image</div>
-                    </div>
-                    <div class="work-content">
-                        <h3 class="work-title">Mobile Banking App</h3>
-                        <p class="work-description">Intuitive mobile banking application with advanced security features and seamless user experience.</p>
-                        <div class="work-tags">
-                            <span class="tag">Mobile Design</span>
-                            <span class="tag">Fintech</span>
-                            <span class="tag">React Native</span>
+            </div>
+        </section>
+        
+        <!-- Logo Section -->
+        <section class="logo-section">
+            <div class="container">
+                <div class="logo-title">
+                    <h2>logo</h2>
+                </div>
+                
+                <div class="logo-gallery">
+                    <div class="gallery-item" data-project="baren">
+                        <div class="gallery-image">
+                            <div class="project-number">01</div>
+                            <img src="work/baren/baren-cover.jpg" alt="Bären Gruppe AG">
+                        </div>
+                        <div class="gallery-info">
+                            <h3 class="project-title">BÄREN GRUPPE AG</h3>
+                            <p class="project-category">CONSTRUCTION</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="work-item">
-                    <div class="work-image">
-                        <div class="work-placeholder">Project Image</div>
-                    </div>
-                    <div class="work-content">
-                        <h3 class="work-title">SaaS Dashboard</h3>
-                        <p class="work-description">Comprehensive dashboard design for a SaaS platform with complex data visualization and analytics.</p>
-                        <div class="work-tags">
-                            <span class="tag">Dashboard</span>
-                            <span class="tag">Data Viz</span>
-                            <span class="tag">Vue.js</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="work-item">
-                    <div class="work-image">
-                        <div class="work-placeholder">Project Image</div>
-                    </div>
-                    <div class="work-content">
-                        <h3 class="work-title">Brand Identity System</h3>
-                        <p class="work-description">Complete brand identity and design system for a tech startup, including logo, guidelines, and web presence.</p>
-                        <div class="work-tags">
-                            <span class="tag">Branding</span>
-                            <span class="tag">Design System</span>
-                            <span class="tag">Identity</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
+            </div>
+        </section>
     </main>
+
+    <!-- Footer Section -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-title-spacer"></div>
+                
+                <div class="footer-divider"></div>
+                
+                <div class="footer-upper">
+                    <div class="footer-left">
+                        <p class="footer-credit">Kushtrim Arifi</p>
+                    </div>
+                    <div class="footer-right">
+                        <div class="footer-social">
+                            <a href="#" class="social-link">LinkedIn</a>
+                            <a href="#" class="social-link">Medium</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-divider"></div>
+                
+                <div class="footer-lower">
+                    <div class="footer-left">
+                        <div class="footer-nav">
+                            <a href="work.html" class="footer-nav-link">Work</a>
+                            <a href="about.html" class="footer-nav-link">About</a>
+                        </div>
+                    </div>
+                    <div class="footer-right">
+                        <div class="footer-utility">
+                            <span class="utility-text">2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>

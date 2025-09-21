@@ -6,11 +6,11 @@
     <title>About - Kushtrim Arifi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="pages.css">
 </head>
-<body>
+<body class="about-main">
     <header class="header">
         <div class="container">
             <div class="logo">
@@ -19,9 +19,32 @@
             <nav class="navigation">
                 <ul class="nav-list">
                     <li><a href="work.html" class="nav-link">Work</a></li>
-                    <li><a href="about.html" class="nav-link active">About</a></li>
-                    <li><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
                 </ul>
+                
+                <!-- Overlay content (hidden by default) -->
+                <div class="nav-overlay">
+                    <div class="nav-header">
+                        <a href="index.html" class="nav-logo">KA</a>
+                        <button class="nav-close">×</button>
+                    </div>
+                    
+                    <div class="nav-content">
+                        <ul class="nav-list-overlay">
+                            <li><a href="work.html" class="nav-link-overlay">Work</a></li>
+                            <li><a href="about.html" class="nav-link-overlay">About</a></li>
+                        </ul>
+                        
+                        <div class="nav-right">
+                            <div class="nav-social">
+                                <a href="#" class="social-icon"></a>
+                                <a href="#" class="social-icon"></a>
+                                <a href="#" class="social-icon"></a>
+                            </div>
+                            <a href="mailto:info@kushrimarifi.com" class="nav-email">info@kushrimarifi.com</a>
+                        </div>
+                    </div>
+                </div>
             </nav>
             <div class="burger-menu">
                 <span class="burger-line"></span>
@@ -31,66 +54,126 @@
         </div>
     </header>
 
-    <main class="page-content">
-        <div class="container">
-            <section class="page-hero">
-                <h1 class="page-title">About</h1>
-                <p class="page-subtitle">UX UI Designer & Front End Engineer</p>
-            </section>
+    <main>
+        <section class="about-hero">
+            <div class="container">
+                <div class="about-description">
+                    <p class="about-text-large">OVER 15 YEARS CREATING BRANDS, CAMPAIGNS, AND DESIGN SYSTEMS FOR A GLOBAL AUDIENCE. HIS WORK SITS AT THE INTERSECTION OF CULTURE AND COMMERCE, BALANCING AESTHETICS WITH FUNCTION. HE PARTNERS WITH TEAMS AND FOUNDERS TO BUILD DESIGN THAT RESONATES AND DRIVES CONNECTION. EVERY PROJECT IS GROUNDED IN STRATEGY, ENSURING THE CREATIVE IS BOTH PURPOSEFUL AND LASTING. FROM STARTUPS TO ESTABLISHED COMPANIES, HIS APPROACH ADAPTS WITH CLARITY, IMPACT AND INTENTION.</p>
+                </div>
+            </div>
+        </section>
 
-            <section class="about-content">
-                <div class="about-grid">
-                    <div class="about-text">
-                        <h2>Hello, I'm Kushtrim</h2>
-                        <p>I'm a passionate UX UI Designer and Front End Engineer with over 13 years of experience creating digital experiences that matter. I believe in the power of good design to solve real problems and create meaningful connections between people and technology.</p>
-                        
-                        <p>My approach combines strategic thinking with creative execution, always keeping the user at the center of every decision. I enjoy working on complex challenges that require both technical expertise and design sensibility.</p>
-                        
-                        <h3>What I Do</h3>
-                        <ul class="skills-list">
-                            <li>User Experience Design</li>
-                            <li>User Interface Design</li>
-                            <li>Front End Development</li>
-                            <li>Design Systems</li>
-                            <li>Prototyping & Testing</li>
+        <!-- Four Column Section -->
+        <section class="four-column-section">
+            <div class="container">
+                <div class="columns-grid">
+                    <div class="column">
+                        <h3 class="column-title">WORKED:</h3>
+                        <ul class="column-list">
+                            <li>UX UI Designer</li>
                             <li>Brand Identity</li>
+                            <li>Graphic designer</li>
+                            <li>Art director</li>
+                            <li>web development</li>
+                            <li>Software engineer</li>
                         </ul>
                     </div>
                     
-                    <div class="about-image">
-                        <img src="img/portrait.jpg" alt="Kushtrim Arifi" class="portrait">
+                    <div class="column">
+                        <h3 class="column-title">COMPANIES:</h3>
+                        <ul class="column-list">
+                            <li>MONUN AG</li>
+                            <li>BUSINESS LEADERS AG</li>
+                            <li>MARDAL</li>
+                            <li>PRIOR MARKETING</li>
+                            <li>INFINIT</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="column">
+                        <h3 class="column-title">EDUCATION:</h3>
+                        <ul class="column-list">
+                            <li>Full Stack Bootcamp - MK</li>
+                            <li>UX Design / Google -USA</li>
+                            <li>Full-Stack Engineer -USA</li>
+                            <li>WordPress & Elemntor - KS</li>
+                            <li>WordPress development - KS</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="column">
+                        <h3 class="column-title">DEGREE'S:</h3>
+                        <ul class="column-list">
+                            <li>BSc. General Psychology - KS</li>
+                            <li>MSc. Clinical Psychology - KS</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Collaborations Section -->
+        <section class="collaborations-section">
+            <div class="container">
+                <div class="collaborations-content">
+                    <h2 class="collaborations-title">Collaborations through<br>Agencies & Teams</h2>
+                    <p class="collaborations-companies">DORATEC AG • SPITEXSCHWAB AG • BÄREN GRUPPE AG • KERABAU AG • BUZIBACH AG • ARCHIGET AG • WINKLER AG • Wohntip AG • HSB Heizungssysteme AG • Egger + Co. AG • Groupe E - AG • Blumenstricker AG • Buzag haushaltgerate • Vendomat AG • Hörberatung Buchsi GmbH • Gabriele mirarchi AG • Laqueria AG • schreinerei-waelchli.ch GmbH • Sanare Heizung & Kalte • ELKO werkzeuge GmbH • DE MEURON TRANSPORT AG • PerformPlus • Mösching Küchenbau AG • Doke GmbH • Holzbauwerk AG • Jenni Financials GmbH • Outsite GmbH • SunMan-Tec AG • Kaiser Gartenbau GmbH • Leuenberger Gartenbau GmbH • Q ELECTIX GMBH • Bergluft bike lenk AG • DAMA Clean GmbH • Galler AG • Ghmassageacademy AG • Kaminfeger Hirschi AG • Oberli Schlosserei AG • Jetonikeramika • LILIGLASS • Braincompany GmbH • nobs gmbh • Talus Informatik AG • Reichenbach gstaad AG • A3 architekten ag • schneiderSchmid AG • Rösti Bedachungen AG • Schreinerei forster AG • Blitz entsorgung Gmbh • Moratti mettlen AG • Pelgrim malerei AG • Kino thun REX AG • Passion Flowers GmbH • Arnold Reuteler Holzbau AG • Carrosserie Sarina AG • Carrosserie leuenberger AG • Elektro Zuercher AG • Mäusli Bau AG • Lobsiger gartenbau AG • Hansen ag • LG Gips Innovation GmbH • Ostfinanz AG • Morina giardini gmbh • Cityhotel AG • BRS GROUP AG • stplaner AG • Fenster Muller AG • Aare-Fenster GmbH • Iseli & Eng GmbH • Gfeller Holzbau GmbH • Lean Group AG • IMMO-SERVICE R. ISELI AG • RS Entsorgung GmbH - Balsthal • Peter Blatter Architektur AG • Riesen Holzbau AG • Climeco AG • Burkhard Elektro AG • Fischer AG • ISP Electro Solutions AG • Kosmetik SaRi • Oppliger Söhne AG • SISA Isolierungen GmbH • Storenservice GmbH • Thal Garage Frey AG</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional Projects Note Section -->
+        <section class="projects-note-section">
+            <div class="container">
+                <div class="projects-note-content">
+                    <p class="projects-note">Besides the companies shown here, I've worked with more then 130 companies between 2019 and 2025. My work covered UX/UI design, web development, branding, social media design, and print materials. For every company listed above, I have completed and archived projects that are available to review on request.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Right Image -->
+        <div class="bottom-right-image">
+            <img src="img/kaimage.jpg" alt="Kai Image" />
+        </div>
+
+    <!-- Footer Section -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-title-spacer"></div>
+                
+                <div class="footer-divider"></div>
+                
+                <div class="footer-upper">
+                    <div class="footer-left">
+                        <p class="footer-credit">Kushtrim Arifi</p>
+                    </div>
+                    <div class="footer-right">
+                        <div class="footer-social">
+                            <a href="#" class="social-link">LinkedIn</a>
+                            <a href="#" class="social-link">Medium</a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="experience-section">
-                    <h3>Experience</h3>
-                    <div class="experience-item">
-                        <div class="experience-year">2020 - Present</div>
-                        <div class="experience-content">
-                            <h4>Senior UX/UI Designer</h4>
-                            <p>Leading design initiatives for multiple digital products, focusing on user-centered design and technical implementation.</p>
+                <div class="footer-divider"></div>
+                
+                <div class="footer-lower">
+                    <div class="footer-left">
+                        <div class="footer-nav">
+                            <a href="work.html" class="footer-nav-link">Work</a>
+                            <a href="about.html" class="footer-nav-link">About</a>
                         </div>
                     </div>
-                    
-                    <div class="experience-item">
-                        <div class="experience-year">2017 - 2020</div>
-                        <div class="experience-content">
-                            <h4>Front End Engineer</h4>
-                            <p>Developed responsive web applications using modern frameworks and technologies, bridging the gap between design and development.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="experience-item">
-                        <div class="experience-year">2012 - 2017</div>
-                        <div class="experience-content">
-                            <h4>UI Designer</h4>
-                            <p>Started my journey in digital design, working on various projects from web interfaces to mobile applications.</p>
+                    <div class="footer-right">
+                        <div class="footer-utility">
+                            <span class="utility-text">2025</span>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
-    </main>
+    </footer>
 
     <script src="script.js"></script>
 </body>
