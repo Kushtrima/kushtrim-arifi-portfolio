@@ -480,9 +480,9 @@ body {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
         width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
+        max-width: none; /* Remove max-width constraint */
+        margin: 0; /* Remove auto margin */
+        padding: 0; /* Remove padding to stretch full width */
     }
     
     .column {
@@ -491,14 +491,30 @@ body {
     }
     
     .column-title {
-        font-size: 12px;
+        font-size: 16px; /* Increased from 12px for better mobile readability */
         margin-bottom: 10px;
     }
     
     .column-list li {
-        font-size: 10px;
+        font-size: 14px; /* Increased from 10px for better mobile readability */
         line-height: 1.4;
         margin-bottom: 3px;
+    }
+    
+    /* Move left columns to the start */
+    .column:nth-child(1),
+    .column:nth-child(3) {
+        text-align: left;
+        align-items: flex-start;
+        transform: translateX(-15px); /* Move 15px more to the left */
+    }
+    
+    /* Move right columns to the end */
+    .column:nth-child(2),
+    .column:nth-child(4) {
+        text-align: right;
+        align-items: flex-end;
+        transform: translateX(15px); /* Move 15px more to the right */
     }
 }
 
@@ -885,7 +901,7 @@ body {
     }
     
     .about-text-large {
-        font-size: 28px;
+        font-size: 32px; /* Increased from 28px for better mobile readability */
         line-height: 1.1;
         letter-spacing: 0.3px;
     }
@@ -919,7 +935,7 @@ body {
 
 @media (max-width: 480px) {
     .about-text-large {
-        font-size: 14px;
+        font-size: 18px; /* Increased from 14px for better mobile readability */
         line-height: 1.4;
         letter-spacing: 0.2px;
     }
@@ -988,6 +1004,12 @@ body {
 @media (max-width: 768px) {
     .collaborations-section {
         padding: 60px 0;
+    }
+    
+    .collaborations-content {
+        max-width: none; /* Remove max-width constraint */
+        margin: 0; /* Remove auto margin */
+        padding: 0; /* Remove padding to stretch full width */
     }
     
     .collaborations-title {

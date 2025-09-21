@@ -464,7 +464,42 @@
     
     .project-details-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 40px;
+        gap: 60px 80px; /* Increased vertical and horizontal spacing */
+        align-items: start;
+    }
+    
+    .project-detail-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-self: start;
+        text-align: left;
+    }
+    
+    /* Move INDUSTRY and LOCATION to the left edge */
+    .project-detail-item:nth-child(1),
+    .project-detail-item:nth-child(3) {
+        transform: translateX(-49px);
+        justify-self: start;
+        text-align: left;
+        align-items: flex-start;
+    }
+    
+    /* Move SERVICE up by 2px from current position and align to the right edge */
+    .project-detail-item:nth-child(2) {
+        transform: translateY(-46px) translateX(48px) !important; /* Move SERVICE up by 46px and right by 48px (46px + 2px) */
+        position: relative;
+        top: -46px;
+        text-align: right;
+        align-items: flex-end;
+        justify-self: end;
+    }
+    
+    .project-detail-item:nth-child(4) {
+        transform: translateY(-90px); /* YEAR stays at current position */
+        text-align: right;
+        align-items: flex-end;
+        justify-self: end;
     }
     
     .project-details-section {
@@ -485,11 +520,12 @@
     
     .project-image-section {
         margin-bottom: 60px;
-        transform: translateY(-60px);
+        transform: translateY(-140px); /* Moved down by 5px more (was -145px, now -140px) */
     }
     
     .project-description-section {
         margin-bottom: 60px;
+        margin-top: -110px; /* Move text closer to image by reducing top margin (was -70px, now -110px) */
     }
     
     .project-gallery-section {
