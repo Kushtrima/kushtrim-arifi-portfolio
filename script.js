@@ -280,7 +280,11 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Navigate to project page
             setTimeout(() => {
-                if (projectName === 'doratec') {
+                if (projectName === 'stplaner') {
+                    window.location.href = 'stplaner.html';
+                } else if (projectName === 'monun') {
+                    window.location.href = 'monun.html';
+                } else if (projectName === 'doratec') {
                     window.location.href = 'doratec.html';
                 } else if (projectName === 'spitex') {
                     window.location.href = 'spitex.html';
