@@ -292,8 +292,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     window.location.href = 'jetonikeramika.html';
                 } else if (projectName === 'mardal') {
                     window.location.href = 'mardal.html';
+                } else if (projectName === 'archiget') {
+                    window.location.href = 'archiget.html';
                 } else if (projectName === 'baren') {
                     window.location.href = 'baren.html';
+                } else if (projectName === 'riesen') {
+                    window.location.href = 'riesen.html';
                 } else if (projectName === 'alba') {
                     window.location.href = 'alba.html';
                 }
@@ -303,13 +307,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // Project page image reveal animation
-    const projectMainImage = document.querySelector('.project-main-image');
+    const projectMainImages = document.querySelectorAll('.project-main-image');
     const projectGalleryContainers = document.querySelectorAll('.project-gallery-section .work-image');
     
-    // Reveal main project image immediately on page load
-    if (projectMainImage) {
+    // Reveal main project images immediately on page load
+    if (projectMainImages.length > 0) {
         setTimeout(() => {
-            projectMainImage.classList.add('revealed');
+            projectMainImages.forEach(image => {
+                image.classList.add('revealed');
+            });
         }, 500); // Small delay after page load
     }
     
