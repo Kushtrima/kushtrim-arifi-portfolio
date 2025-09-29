@@ -298,6 +298,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     window.location.href = 'baren.html';
                 } else if (projectName === 'riesen') {
                     window.location.href = 'riesen.html';
+                } else if (projectName === 'ennur') {
+                    window.location.href = 'ennur.html';
                 } else if (projectName === 'alba') {
                     window.location.href = 'alba.html';
                 }
