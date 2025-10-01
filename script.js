@@ -300,6 +300,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     window.location.href = 'riesen.html';
                 } else if (projectName === 'ennur') {
                     window.location.href = 'ennur.html';
+                } else if (projectName === 'socialmedia') {
+                    window.location.href = 'socialmedia.html';
                 } else if (projectName === 'alba') {
                     window.location.href = 'alba.html';
                 }
