@@ -1496,6 +1496,16 @@ body {
         margin-bottom: 20px;
     }
     
+    /* Social Media & Printing Mobile Layout */
+    .social-printing-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+    
+    .social-printing-grid > div:nth-child(2) {
+        margin-top: 110px;
+    }
+    
     .work-info {
         flex-direction: column;
         gap: 10px;
