@@ -302,6 +302,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     window.location.href = 'ennur.html';
                 } else if (projectName === 'socialmedia') {
                     window.location.href = 'socialmedia.html';
+                } else if (projectName === 'printing') {
+                    window.location.href = 'printing.html';
                 } else if (projectName === 'alba') {
                     window.location.href = 'alba.html';
                 }

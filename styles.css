@@ -1497,12 +1497,12 @@ body {
     }
     
     /* Social Media & Printing Mobile Layout */
-    .social-printing-grid {
+    .social-printing-wrapper {
         grid-template-columns: 1fr !important;
         gap: 40px !important;
     }
     
-    .social-printing-grid > div:nth-child(2) {
+    .social-printing-item:nth-child(2) {
         margin-top: 110px;
     }
     
@@ -1751,6 +1751,18 @@ body {
 .logo-gallery .gallery-item {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Social Media & Printing Wrapper */
+.social-printing-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    margin-top: 70px;
+}
+
+.logo-gallery.single-item {
+    grid-template-columns: 1fr;
 }
 
 /* Project Gallery Section */
