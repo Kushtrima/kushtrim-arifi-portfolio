@@ -1365,6 +1365,82 @@ body {
     }
 }
 
+/* Resume Section */
+.resume-section {
+    padding: 80px 0 100px 0;
+    background: var(--color-secondary);
+}
+
+.resume-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 30px;
+}
+
+.resume-text {
+    font-family: var(--font-primary);
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--color-primary);
+    line-height: 1.6;
+    text-align: right;
+}
+
+.resume-text p {
+    margin: 0;
+}
+
+.resume-cta {
+    display: flex;
+}
+
+.resume-button {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--color-primary);
+    text-decoration: none;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    transition: all 0.3s ease;
+    text-transform: none;
+    letter-spacing: 0;
+    position: relative;
+}
+
+.resume-button:hover {
+    background-color: transparent;
+    color: var(--color-primary);
+    transform: none;
+}
+
+.resume-button:hover .resume-arrow {
+    transform: translate(3px, -3px);
+}
+
+.resume-button .resume-arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.resume-button::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.resume-button:hover::after {
+    width: 100%;
+}
+
 /* Work Section */
 .work-section {
     padding: 120px 0 80px 0;
@@ -1468,6 +1544,21 @@ body {
     opacity: 0.6;
     white-space: nowrap;
     flex-shrink: 0;
+}
+
+/* Resume Section Mobile */
+@media (max-width: 768px) {
+    .resume-section {
+        padding: 60px 0 80px 0;
+    }
+    
+    .resume-text {
+        font-size: 16px;
+    }
+    
+    .resume-button {
+        font-size: 14px;
+    }
 }
 
 /* Work Section Mobile */
