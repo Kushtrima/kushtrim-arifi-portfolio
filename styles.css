@@ -1844,6 +1844,11 @@ body {
     transform: translateY(0);
 }
 
+/* Offline Section - Hidden but easy to reactivate */
+.offline {
+    display: none !important;
+}
+
 /* Social Media & Printing Wrapper */
 .social-printing-wrapper {
     display: grid;
