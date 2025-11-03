@@ -96,8 +96,8 @@ After making the Google Analytics ID change:
 
 **Verify everything works:**
 
-1. **Sitemap**: Visit `https://kushrimarifi.com/sitemap.xml`
-2. **Robots**: Visit `https://kushrimarifi.com/robots.txt`
+1. **Sitemap**: Visit `https://kushrimarifi.com/sitemap.xml` (or `https://kushtrima.github.io/kushtrim-arifi-portfolio/sitemap.xml` if domain not configured)
+2. **Robots**: Visit `https://kushrimarifi.com/robots.txt` (or `https://kushtrima.github.io/kushtrim-arifi-portfolio/robots.txt` if domain not configured)
 3. **Google Analytics**: Check real-time visitors in GA dashboard
 4. **Schema**: Test with [Google's Rich Results Test](https://search.google.com/test/rich-results)
 5. **Mobile**: Test on actual devices
