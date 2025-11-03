@@ -523,9 +523,29 @@
         transform: translateY(-140px); /* Moved down by 5px more (was -145px, now -140px) */
     }
     
-    .project-description-section {
-        margin-bottom: 60px;
-        margin-top: -110px; /* Move text closer to image by reducing top margin (was -70px, now -110px) */
+    /* First description section - keep negative margin to move close to image */
+    .project-description-section:first-of-type {
+        margin-bottom: 80px !important; /* Increased spacing between sections on mobile */
+        margin-top: -110px; /* Move text closer to image by reducing top margin */
+    }
+    
+    /* Subsequent description sections - no negative margin */
+    .project-description-section ~ .project-description-section {
+        margin-bottom: 80px !important; /* Increased spacing between sections on mobile */
+        margin-top: 0 !important; /* Subsequent sections don't need negative margin */
+    }
+    
+    .project-description-text p {
+        margin-bottom: 24px !important; /* Increased spacing between paragraphs on mobile */
+        line-height: 1.8 !important; /* Better line height for readability */
+    }
+    
+    .project-description-text p:last-child {
+        margin-bottom: 0 !important;
+    }
+    
+    .project-description-grid {
+        gap: 15px !important; /* Closer gap between title and text on mobile */
     }
     
     .project-gallery-section {
