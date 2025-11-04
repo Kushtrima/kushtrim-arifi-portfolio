@@ -319,6 +319,16 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (slides.length === 0) return;
         
+        // Prevent image dragging - disable default drag behavior on all images
+        const images = frame.querySelectorAll('img');
+        images.forEach(img => {
+            img.draggable = false;
+            img.addEventListener('dragstart', (e) => {
+                e.preventDefault();
+                return false;
+            });
+        });
+        
         // State
         let index = 0;
         let slideW = 1180; // each slide is 1180px (desktop)
@@ -333,6 +343,10 @@ document.addEventListener('DOMContentLoaded', function() {
             return 1180; // Desktop: fixed 1180px
         }
         
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+        
         // Build dots
         const dots = dotsEl.querySelectorAll('.dot');
         dots.forEach((dot, i) => {
@@ -341,7 +355,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         function updateSizes() {
             slideW = getSlideWidth();
-            peekWidth = window.innerWidth * 0.2; // 20% of viewport
+            peekWidth = isMobile() ? 0 : window.innerWidth * 0.2; // No peek on mobile
             goTo(index, false);
         }
         window.addEventListener('resize', updateSizes);
@@ -652,12 +666,21 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // This positions active slide centered, and with overflow: visible,
             // the previous and next slides will show 20% at the edges
-            const viewportCenter = window.innerWidth / 2;
-            return viewportCenter - (i * (slideW + gap)) - (slideW / 2);
+            if (isMobile()) {
+                // Mobile: center the slide in viewport
+                const viewportCenter = window.innerWidth / 2;
+                const slideCenter = (slideW / 2) + (i * (slideW + gap));
+                return viewportCenter - slideCenter;
+            } else {
+                // Desktop: center slide with peek previews on sides
+                const viewportCenter = window.innerWidth / 2;
+                return viewportCenter - (i * (slideW + gap)) - (slideW / 2);
+            }
         }
         
         function applyTransform(x) {
-            track.style.transform = `translateX(${x}px)`;
+            // Use translate3d for GPU acceleration
+            track.style.transform = `translate3d(${x}px, 0, 0)`;
         }
         
         function goTo(i, animate = true) {
@@ -692,49 +715,99 @@ document.addEventListener('DOMContentLoaded', function() {
         let startOffset = 0;
         
         function onDown(e) {
+            // Prevent default drag behavior
+            e.preventDefault();
+            e.stopPropagation();
+            
             dragging = true;
             startX = (e.touches ? e.touches[0].pageX : e.pageX);
             startOffset = offsetFor(index);
             track.style.transition = 'none';
+            track.style.willChange = 'transform';
             frame.style.cursor = 'grabbing';
         }
         
         function onMove(e) {
             if (!dragging) return;
             e.preventDefault();
+            
             const x = (e.touches ? e.touches[0].pageX : e.pageX);
             const dx = x - startX;
-            applyTransform(startOffset + dx);
+            
+            // Calculate new position with bounds
+            const minOffset = offsetFor(slides.length - 1);
+            const maxOffset = offsetFor(0);
+            let newOffset = startOffset + dx;
+            
+            // Apply resistance when dragging beyond bounds
+            if (newOffset > maxOffset) {
+                // Dragging right beyond first slide - add resistance
+                newOffset = maxOffset + (dx - (maxOffset - startOffset)) * 0.3;
+            } else if (newOffset < minOffset) {
+                // Dragging left beyond last slide - add resistance
+                newOffset = minOffset + (dx - (minOffset - startOffset)) * 0.3;
+            }
+            
+            // Apply transform immediately for smooth dragging
+            applyTransform(newOffset);
         }
         
         function onUp(e) {
             if (!dragging) return;
+            
             dragging = false;
             frame.style.cursor = 'grab';
+            track.style.willChange = '';
             
-            // decide next index based on how far we dragged
-            const currentX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX);
+            // Get current position - use pageX for mouse events
+            let currentX;
+            if (e.changedTouches && e.changedTouches.length > 0) {
+                currentX = e.changedTouches[0].pageX;
+            } else {
+                currentX = e.pageX;
+            }
+            
             const diffX = startX - currentX;
-            const threshold = slideW * 0.3; // 30% threshold
+            
+            // Mobile: more sensitive threshold (20px), Desktop: 30px
+            const threshold = isMobile() ? 20 : 30;
             
             if (Math.abs(diffX) > threshold) {
-                if (diffX > 0 && index < slides.length - 1) {
-                    index++;
-                } else if (diffX < 0 && index > 0) {
-                    index--;
+                if (diffX > 0) {
+                    // Dragged LEFT - go to NEXT slide (index++)
+                    if (index < slides.length - 1) {
+                        index++;
+                    }
+                } else {
+                    // Dragged RIGHT - go to PREVIOUS slide (index--)
+                    if (index > 0) {
+                        index--;
+                    }
                 }
             }
             
+            // Always go to the calculated index
             track.style.transition = '';
             goTo(index);
         }
         
         frame.addEventListener('mousedown', onDown);
-        frame.addEventListener('mousemove', onMove);
+        window.addEventListener('mousemove', onMove);
         window.addEventListener('mouseup', onUp);
         frame.addEventListener('touchstart', onDown, { passive: false });
         frame.addEventListener('touchmove', onMove, { passive: false });
         frame.addEventListener('touchend', onUp);
+        
+        // Prevent default drag behavior on the entire carousel
+        frame.addEventListener('dragstart', (e) => {
+            e.preventDefault();
+            return false;
+        });
+        
+        // Also prevent context menu on right-click
+        frame.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
         
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
@@ -747,8 +820,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Initialize slide width
+        // Initialize slide width and peek width
         slideW = getSlideWidth();
+        peekWidth = isMobile() ? 0 : window.innerWidth * 0.2;
         
         // Init
         goTo(0, false);
