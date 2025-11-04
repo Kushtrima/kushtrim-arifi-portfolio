@@ -117,21 +117,18 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             if (titleLine1) {
                 titleLine1.classList.add('animate');
-                console.log('Title line 1 animated');
             }
         }, 200);
         
         setTimeout(() => {
             if (titleLine2) {
                 titleLine2.classList.add('animate');
-                console.log('Title line 2 animated');
             }
         }, 400);
         
         setTimeout(() => {
             if (titleLine3) {
                 titleLine3.classList.add('animate');
-                console.log('Title line 3 animated');
             }
         }, 600);
         
@@ -313,16 +310,448 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // Project page image reveal animation
-    const projectMainImages = document.querySelectorAll('.project-main-image');
-    const projectGalleryContainers = document.querySelectorAll('.project-gallery-section .work-image');
-    
-    // Reveal main project images immediately on page load
-    if (projectMainImages.length > 0) {
-        setTimeout(() => {
-            projectMainImages.forEach(image => {
-                image.classList.add('revealed');
+    // Main Image Carousel with Mouse Drag - Simple approach
+    const frame = document.getElementById('carousel-frame');
+    if (frame) {
+        const track = document.getElementById('carousel-track');
+        const slides = Array.from(track.children);
+        const dotsEl = frame.querySelector('.carousel-dots');
+        
+        if (slides.length === 0) return;
+        
+        // State
+        let index = 0;
+        let slideW = 1180; // each slide is 1180px (desktop)
+        const gap = 24; // 24px gap between slides
+        let peekWidth = window.innerWidth * 0.2; // 20% of viewport for side previews
+        
+        function getSlideWidth() {
+            if (window.innerWidth <= 768) {
+                // Mobile: use viewport width minus padding
+                return Math.min(window.innerWidth - 40, 1180);
+            }
+            return 1180; // Desktop: fixed 1180px
+        }
+        
+        // Build dots
+        const dots = dotsEl.querySelectorAll('.dot');
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => goTo(i));
+        });
+        
+        function updateSizes() {
+            slideW = getSlideWidth();
+            peekWidth = window.innerWidth * 0.2; // 20% of viewport
+            goTo(index, false);
+        }
+        window.addEventListener('resize', updateSizes);
+        
+        function offsetFor(i) {
+            // Position the track so:
+            // - Active slide fills viewport: left edge at 0, right edge at slideW
+            // - Previous slide shows its rightmost peekWidth (20%) at the left edge
+            // - Next slide shows its leftmost peekWidth (20%) at the right edge
+            // - Clear gap between active slide and side previews
+            
+            // When slide i is active:
+            // - Slide i should fill viewport from 0 to slideW
+            // - Slide i in flexbox is at position: i * (slideW + gap)
+            // - To move slide i's left edge to 0: translateX = -(i * (slideW + gap))
+            
+            // For previous slide (i-1) to show peekWidth:
+            // - Slide i-1 is at position: (i-1) * (slideW + gap) = i * (slideW + gap) - (slideW + gap)
+            // - After translateX = -(i * (slideW + gap)), slide i-1 is at: -(slideW + gap)
+            // - Slide i-1's right edge is at: -(slideW + gap) + slideW = -gap
+            // - We want slide i-1's rightmost peekWidth visible at left edge
+            // - Slide i-1's rightmost peekWidth is from position (slideW - peekWidth) to slideW
+            // - Relative to slide i-1's left edge, this is at: slideW - peekWidth to slideW
+            // - After translateX, these become: -(slideW + gap) + (slideW - peekWidth) to -(slideW + gap) + slideW
+            // - Which is: -gap - peekWidth to -gap
+            // - We want this to be visible from 0 to peekWidth
+            // - So we need to shift right by: gap + peekWidth
+            // - Final translateX: -(i * (slideW + gap)) + gap + peekWidth
+            
+            // But wait, this moves active slide's left edge to gap + peekWidth, not 0...
+            
+            // Actually, the issue is that we can't have both:
+            // 1. Active slide fills viewport (0 to slideW)
+            // 2. Previous slide shows peekWidth starting at 0
+            
+            // The solution: active slide starts slightly to the right to make room for peekWidth
+            // Active slide should fill from peekWidth to peekWidth + slideW (but we clip to viewport)
+            // Or better: active slide fills viewport, and peekWidth shows beyond the edges
+            
+            // Let's try a different approach: position so active slide fills viewport, 
+            // and previous slide's right edge is at 0 (showing peekWidth from 0 to peekWidth)
+            // This means: translateX = -(i * (slideW + gap)) + peekWidth
+            // But then active slide's left edge is at peekWidth, not 0...
+            
+            // Actually, I think we need to reconsider: the viewport shows peekWidth + active + peekWidth
+            // So active slide doesn't fill the full viewport, it fills the middle portion
+            // But user said "main image fully in center" and "filling viewport"...
+            
+            // Let me try: active slide fills viewport (0 to slideW), and peekWidth is visible beyond edges
+            // This requires overflow: visible on container, but we have overflow: hidden...
+            
+            // Alternative: position so active slide is centered, with peekWidth visible on sides
+            // translateX = -(i * (slideW + gap)) + peekWidth
+            // This makes active slide start at peekWidth, filling peekWidth to peekWidth + slideW
+            // But viewport is 0 to slideW, so we see: peekWidth to slideW (not full slide)
+            
+            // I think the correct approach is:
+            // Position active slide to fill viewport, and show peekWidth beyond the edges
+            // This requires the container to be wider or overflow visible
+            // But we can simulate it by positioning correctly
+            
+            // Let's try: translateX = -(i * (slideW + gap)) + peekWidth
+            // This positions active slide starting at peekWidth
+            // But we want it to fill viewport, so we need to adjust
+            
+            // Actually, let me reconsider: if active slide fills viewport (0 to slideW),
+            // and previous slide shows peekWidth at left edge, then:
+            // - Previous slide's right edge should be at 0
+            // - Previous slide's rightmost peekWidth is from -peekWidth to 0
+            // - After translateX = -(i * (slideW + gap)), slide i-1's right edge is at -gap
+            // - We need to shift right by gap to make it 0
+            // - So: translateX = -(i * (slideW + gap)) + gap
+            // But this doesn't account for peekWidth...
+            
+            // I think the correct formula is:
+            // translateX = -(i * (slideW + gap)) + peekWidth
+            // This positions active slide starting at peekWidth, but we clip to show 0 to slideW
+            
+            // Actually wait, let me check what the user wants again:
+            // "main image fully in center" - so centered
+            // "filling viewport" - so fills 0 to slideW
+            // "previous slide shows 20% at left edge" - so peekWidth from 0
+            // This is impossible with overflow: hidden...
+            
+            // Unless... the container is wider than viewport? Or we use padding?
+            
+            // Position so active slide fills viewport (0 to slideW)
+            // And previous slide shows its rightmost peekWidth (20%) at the left edge
+            // This means: previous slide's right edge should be at 0 (showing peekWidth from -peekWidth to 0)
+            // But with overflow: hidden, we can't see beyond 0...
+            // So we position previous slide's right edge at peekWidth, showing peekWidth from 0 to peekWidth
+            // Active slide then starts at: peekWidth + gap
+            // But we want active slide to fill viewport (0 to slideW)...
+            
+            // Solution: position active slide at 0, and show peekWidth beyond the left edge
+            // But with overflow: hidden, we need to use a different approach
+            // OR: position active slide slightly to the right to make room for peekWidth
+            
+            // Let's try: position so active slide fills most of viewport, starting at peekWidth
+            // This means: translateX = -(i * (slideW + gap)) + peekWidth
+            // Active slide starts at peekWidth, fills peekWidth to peekWidth + slideW
+            // But viewport is 0 to slideW, so we see: peekWidth to slideW (not full slide)
+            
+            // Actually, I think we need to position differently:
+            // Active slide should fill 0 to slideW, and previous slide's peekWidth shows beyond -peekWidth to 0
+            // This requires overflow: visible OR we position active slide starting at peekWidth
+            
+            // With overflow: hidden, we can't show peekWidth beyond 0
+            // So we position previous slide's right edge at peekWidth, showing peekWidth from 0 to peekWidth
+            // And active slide starts at peekWidth + gap
+            // But we want active slide to fill viewport...
+            
+            // I think the correct approach with overflow: hidden is:
+            // Position active slide to fill viewport, and previous slide's right edge is at peekWidth
+            // This means: translateX = -(i * (slideW + gap)) + peekWidth
+            // Active slide starts at peekWidth, but we want it to fill 0 to slideW...
+            
+            // Actually, let me try: position active slide at 0, and previous slide's right edge at peekWidth
+            // This means previous slide shows peekWidth from 0 to peekWidth
+            // And active slide fills from peekWidth + gap to slideW
+            // But we want active slide to fill 0 to slideW...
+            
+            // With overflow: visible, we can show peekWidth beyond viewport edges
+            // Position active slide to fill viewport (0 to slideW)
+            // Previous slide's right edge should be at 0 (showing peekWidth from -peekWidth to 0)
+            // After translateX = -(i * (slideW + gap)), slide i's left edge is at 0 ✓
+            // Previous slide (i-1) is at -(slideW + gap), its right edge is at -gap
+            // We want previous slide's right edge at 0, so shift right by gap
+            // translateX = -(i * (slideW + gap)) + gap
+            // But this doesn't show peekWidth... we need previous slide's right edge at -peekWidth
+            // So shift right by gap + peekWidth
+            // translateX = -(i * (slideW + gap)) + gap + peekWidth
+            // But this moves active slide's left edge to gap + peekWidth, not 0...
+            
+            // Actually, I think the correct approach is:
+            // Position active slide at 0 (fills viewport)
+            // Previous slide's right edge at 0 (showing peekWidth from -peekWidth to 0)
+            // This means: translateX = -(i * (slideW + gap)) + gap
+            // Previous slide's right edge is at 0, showing peekWidth from -peekWidth to 0
+            // Active slide starts at gap, not 0...
+            
+            // Let me try: translateX = -(i * (slideW + gap))
+            // Active slide at 0 ✓
+            // Previous slide at -(slideW + gap), right edge at -gap
+            // To show peekWidth, we need previous slide's right edge at -peekWidth
+            // So shift right by: gap - peekWidth
+            // translateX = -(i * (slideW + gap)) + gap - peekWidth
+            // But this moves active slide's left edge to gap - peekWidth, not 0...
+            
+            // I think the simplest solution is:
+            // Position active slide at 0, and previous slide shows peekWidth beyond -peekWidth
+            // translateX = -(i * (slideW + gap)) + gap
+            // This positions active slide starting at gap, but we can adjust...
+            
+            // Actually, let me try: translateX = -(i * (slideW + gap))
+            // This positions active slide at 0 (fills viewport)
+            // Previous slide's right edge is at -gap
+            // With overflow: visible, we see from -gap to slideW
+            // But we want peekWidth visible from -peekWidth to 0
+            // So we need previous slide's right edge at -peekWidth
+            // Shift right by: gap - peekWidth
+            // But this doesn't work...
+            
+            // Position active slide to fill viewport (0 to slideW)
+            // With overflow: visible, previous slide's peekWidth shows beyond left edge
+            // translateX = -(i * (slideW + gap)) positions active slide at 0
+            // Previous slide is at -(slideW + gap), right edge at -gap
+            // To show peekWidth, we shift right by (gap - peekWidth)
+            // But this doesn't work...
+            
+            // Actually, let me recalculate from first principles:
+            // We want: active slide fills 0 to slideW
+            // Previous slide shows peekWidth from -peekWidth to 0
+            // Previous slide's right edge should be at 0
+            // Previous slide's left edge is at -slideW
+            // Previous slide in flexbox is at: (i-1) * (slideW + gap)
+            // After translateX, it should be at -slideW
+            // So: (i-1) * (slideW + gap) + translateX = -slideW
+            // translateX = -slideW - (i-1) * (slideW + gap)
+            // = -slideW - i*(slideW + gap) + (slideW + gap)
+            // = -i*(slideW + gap) + gap
+            
+            // But we also need active slide at 0:
+            // i * (slideW + gap) + translateX = 0
+            // translateX = -i * (slideW + gap)
+            
+            // These conflict! We need to choose one.
+            
+            // Let's prioritize: active slide fills viewport
+            // translateX = -(i * (slideW + gap))
+            // This positions active slide at 0
+            // Previous slide's right edge is at -gap
+            // With overflow: visible, we can see from -gap to slideW
+            // But we want peekWidth visible from -peekWidth to 0
+            // So we shift right by (gap - peekWidth) to show more of previous slide
+            // Final: translateX = -(i * (slideW + gap)) + (gap - peekWidth)
+            
+            // Simplified calculation:
+            // Position active slide to fill viewport (0 to slideW)
+            // translateX = -(i * (slideW + gap)) positions active slide at 0
+            // With overflow: visible, previous slide's peekWidth shows beyond left edge
+            // But we need to account for gap, so shift by gap
+            // translateX = -(i * (slideW + gap)) + gap
+            // This positions active slide starting at gap, not 0...
+            
+            // Actually, let me try: position active slide at 0, ignore gap for positioning
+            // translateX = -(i * slideW)
+            // But this doesn't account for gap...
+            
+            // Let me try the simplest that accounts for gap and peekWidth:
+            // Position so previous slide's right edge is at 0 (showing peekWidth from -peekWidth to 0)
+            // Active slide starts at gap
+            // But we want active slide to start at 0...
+            
+            // I think the solution is to position active slide at 0, and let peekWidth show beyond
+            // translateX = -(i * (slideW + gap))
+            // This positions active slide at 0 ✓
+            // Previous slide's right edge is at -gap
+            // With overflow: visible, we see from -gap to slideW
+            // To show peekWidth, we shift right by gap
+            // translateX = -(i * (slideW + gap)) + gap
+            // But this moves active slide to gap...
+            
+            // Actually, I think we need to accept that active slide can't fill 0 to slideW
+            // if we want to show peekWidth. Let me try:
+            // translateX = -(i * (slideW + gap)) + peekWidth
+            // Active slide starts at peekWidth, fills peekWidth to peekWidth + slideW
+            // With viewport 0 to slideW, we see peekWidth to slideW (not full slide)
+            
+            // Or maybe we need to make the container wider? Or use padding?
+            
+            // Position so active slide fills viewport (0 to slideW)
+            // and previous slide shows its rightmost 20% at left edge (0 to peekWidth)
+            
+            // Active slide should be at position 0 (fills 0 to slideW)
+            // Active slide in flexbox is at: i * (slideW + gap)
+            // So: translateX = -(i * (slideW + gap))
+            
+            // But we also need previous slide's right edge at peekWidth
+            // Previous slide (i-1) is at: (i-1) * (slideW + gap)
+            // After translateX = -(i * (slideW + gap)), it's at: -(slideW + gap)
+            // Previous slide's right edge is at: -(slideW + gap) + slideW = -gap
+            // We want it at peekWidth, so shift right by: gap + peekWidth
+            // Final: translateX = -(i * (slideW + gap)) + gap + peekWidth
+            
+            // But this moves active slide to gap + peekWidth, not 0...
+            
+            // I think the solution is that active slide can't fill 0 to slideW exactly
+            // if we want to show peekWidth. Active slide fills from peekWidth + gap to peekWidth + gap + slideW
+            // But viewport is 0 to slideW, so we need to adjust the container or use padding
+            
+            // Actually, with overflow: visible, we can show beyond edges
+            // So: translateX = -(i * (slideW + gap)) + gap
+            // This positions previous slide's right edge at 0, showing peekWidth from -peekWidth to 0
+            // But we want peekWidth from 0 to peekWidth, so shift by peekWidth more
+            // translateX = -(i * (slideW + gap)) + gap + peekWidth
+            
+            // But then active slide starts at gap + peekWidth...
+            
+            // Let me try: position active slide at 0, previous slide extends beyond
+            // translateX = -(i * (slideW + gap))
+            // Previous slide's right edge is at -gap
+            // To show peekWidth, we shift right by gap
+            // translateX = -(i * (slideW + gap)) + gap
+            
+            // Position so active slide (1200px) is centered in viewport
+            // and previous/next slides show 20% at the edges by default
+            
+            // Active slide should be centered in viewport
+            // Previous slide's right edge should be at peekWidth (showing 20% from 0 to peekWidth)
+            // Next slide's left edge should be at (viewportWidth - peekWidth) (showing 20% on right)
+            
+            // Active slide center should be at viewport center
+            // But we also need previous slide's right edge at peekWidth
+            // Previous slide (i-1) is at: (i-1) * (slideW + gap)
+            // After translateX, previous slide should be at: peekWidth - slideW
+            // So: (i-1) * (slideW + gap) + translateX = peekWidth - slideW
+            // translateX = peekWidth - slideW - (i-1) * (slideW + gap)
+            // = peekWidth - slideW - i*(slideW + gap) + (slideW + gap)
+            // = peekWidth - i*(slideW + gap) + gap
+            
+            // But we also want active slide centered
+            // Active slide center should be at: window.innerWidth / 2
+            // Active slide is at: i * (slideW + gap)
+            // After translateX, active slide left edge is at: i * (slideW + gap) + translateX
+            // Active slide center is at: i * (slideW + gap) + translateX + slideW / 2
+            
+            // Let's prioritize: show previous slide's 20% on left, active slide centered
+            // translateX = peekWidth - i*(slideW + gap) + gap
+            // This positions previous slide's right edge at peekWidth
+            // Active slide left edge is at: i * (slideW + gap) + peekWidth - i*(slideW + gap) + gap = peekWidth + gap
+            
+            // Actually, let's center active slide and show side previews
+            // translateX = window.innerWidth / 2 - i * (slideW + gap) - slideW / 2
+            // This centers active slide, and with overflow: visible, side previews should show
+            
+            // Position so active slide (1200px) is centered in viewport
+            // and previous/next slides show 20% at the edges by default
+            
+            // Active slide should be centered in viewport
+            // Viewport center is at: window.innerWidth / 2
+            // Active slide center should be at viewport center
+            // Active slide in flexbox is at: i * (slideW + gap)
+            // Active slide center is at: i * (slideW + gap) + slideW / 2
+            // After translateX, active slide center should be at: window.innerWidth / 2
+            // So: i * (slideW + gap) + slideW / 2 + translateX = window.innerWidth / 2
+            // translateX = window.innerWidth / 2 - i * (slideW + gap) - slideW / 2
+            
+            // This positions active slide centered, and with overflow: visible,
+            // the previous and next slides will show 20% at the edges
+            const viewportCenter = window.innerWidth / 2;
+            return viewportCenter - (i * (slideW + gap)) - (slideW / 2);
+        }
+        
+        function applyTransform(x) {
+            track.style.transform = `translateX(${x}px)`;
+        }
+        
+        function goTo(i, animate = true) {
+            index = Math.max(0, Math.min(slides.length - 1, i));
+            
+            if (!animate) {
+                track.style.transition = 'none';
+                requestAnimationFrame(() => {
+                    applyTransform(offsetFor(index));
+                    // force reflow then restore transition
+                    track.offsetHeight;
+                    track.style.transition = '';
+                });
+            } else {
+                applyTransform(offsetFor(index));
+            }
+            
+            // Update active states
+            slides.forEach((slide, slideIndex) => {
+                slide.classList.toggle('active', slideIndex === index);
             });
-        }, 500); // Small delay after page load
+            
+            // Update dots
+            dots.forEach((dot, dotIndex) => {
+                dot.classList.toggle('active', dotIndex === index);
+            });
+        }
+        
+        // Drag/swipe
+        let dragging = false;
+        let startX = 0;
+        let startOffset = 0;
+        
+        function onDown(e) {
+            dragging = true;
+            startX = (e.touches ? e.touches[0].pageX : e.pageX);
+            startOffset = offsetFor(index);
+            track.style.transition = 'none';
+            frame.style.cursor = 'grabbing';
+        }
+        
+        function onMove(e) {
+            if (!dragging) return;
+            e.preventDefault();
+            const x = (e.touches ? e.touches[0].pageX : e.pageX);
+            const dx = x - startX;
+            applyTransform(startOffset + dx);
+        }
+        
+        function onUp(e) {
+            if (!dragging) return;
+            dragging = false;
+            frame.style.cursor = 'grab';
+            
+            // decide next index based on how far we dragged
+            const currentX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX);
+            const diffX = startX - currentX;
+            const threshold = slideW * 0.3; // 30% threshold
+            
+            if (Math.abs(diffX) > threshold) {
+                if (diffX > 0 && index < slides.length - 1) {
+                    index++;
+                } else if (diffX < 0 && index > 0) {
+                    index--;
+                }
+            }
+            
+            track.style.transition = '';
+            goTo(index);
+        }
+        
+        frame.addEventListener('mousedown', onDown);
+        frame.addEventListener('mousemove', onMove);
+        window.addEventListener('mouseup', onUp);
+        frame.addEventListener('touchstart', onDown, { passive: false });
+        frame.addEventListener('touchmove', onMove, { passive: false });
+        frame.addEventListener('touchend', onUp);
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (frame.querySelector('.carousel-slide.active')) {
+                if (e.key === 'ArrowLeft') {
+                    goTo(index - 1);
+                } else if (e.key === 'ArrowRight') {
+                    goTo(index + 1);
+                }
+            }
+        });
+        
+        // Initialize slide width
+        slideW = getSlideWidth();
+        
+        // Init
+        goTo(0, false);
     }
     
     // Gallery images reveal only when scrolling to them
@@ -349,6 +778,27 @@ document.addEventListener('DOMContentLoaded', function() {
         galleryObserver.observe(projectGallerySection);
     }
     
+    // Horizontal Sections scroll reveals
+    const horizontalSectionItems = document.querySelectorAll('.horizontal-section-item');
+    
+    if (horizontalSectionItems.length > 0) {
+        const horizontalSectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting && !entry.target.classList.contains('revealed')) {
+                    setTimeout(() => {
+                        entry.target.classList.add('revealed');
+                    }, index * 150); // Staggered reveal
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px 0px -80px 0px'
+        });
+        
+        horizontalSectionItems.forEach(item => {
+            horizontalSectionObserver.observe(item);
+        });
+    }
     
     // Education section - simple reveal
     const educationSection = document.querySelector('.about-education');
@@ -370,30 +820,39 @@ document.addEventListener('DOMContentLoaded', function() {
         educationObserver.observe(educationSection);
     }
     
-    // Project page text reveal animation
+    // Project page text appear animation - observe each wrapper individually
     const projectPageWrappers = document.querySelectorAll('.project-main .text-reveal-wrapper');
     
     if (projectPageWrappers.length > 0) {
+        // Ensure all wrappers start in hidden state with opacity
+        projectPageWrappers.forEach(wrapper => {
+            if (!wrapper.classList.contains('revealed')) {
+                // Force initial state
+                const children = wrapper.children;
+                for (let child of children) {
+                    child.style.opacity = '0';
+                }
+            }
+        });
+        
         const projectPageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Staggered animation for text wrappers
-                    projectPageWrappers.forEach((wrapper, index) => {
-                        setTimeout(() => {
-                            wrapper.classList.add('revealed');
-                        }, index * 200); // 200ms delay between each element
-                    });
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting && !entry.target.classList.contains('revealed')) {
+                    // Add revealed class with a slight stagger for elements in the same section
+                    setTimeout(() => {
+                        entry.target.classList.add('revealed');
+                    }, index * 100); // 100ms delay between each element
                 }
             });
         }, {
-            threshold: 0.1
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
         });
         
-        // Observe project page section
-        const projectMain = document.querySelector('.project-main');
-        if (projectMain) {
-            projectPageObserver.observe(projectMain);
-        }
+        // Observe each wrapper individually
+        projectPageWrappers.forEach(wrapper => {
+            projectPageObserver.observe(wrapper);
+        });
     }
 
     // Start animations when page loads
