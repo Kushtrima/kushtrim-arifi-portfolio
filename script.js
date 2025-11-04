@@ -331,7 +331,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // State
         let index = 0;
-        let slideW = 1150; // each slide is 1150px (desktop)
+        let slideW = 1160; // each slide is 1160px (desktop)
         let gap = 24; // 24px gap between slides (desktop)
         let peekWidth = window.innerWidth * 0.2; // 20% of viewport for side previews
 
@@ -340,7 +340,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Mobile: 90vw as set in CSS
                 return window.innerWidth * 0.9;
             }
-            return 1150; // Desktop: fixed 1150px
+            return 1160; // Desktop: fixed 1160px
         }
         
         function getGap() {
