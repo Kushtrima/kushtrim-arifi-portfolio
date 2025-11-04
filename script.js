@@ -881,6 +881,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Gallery images reveal only when scrolling to them
+    const projectGalleryContainers = document.querySelectorAll('.project-gallery-section .work-image');
     const galleryObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
