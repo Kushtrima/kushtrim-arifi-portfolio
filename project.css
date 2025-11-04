@@ -50,11 +50,13 @@
     background-color: #212121;
     color: #ffffff;
     transition: background-color 1.5s ease-in-out;
+    overflow-x: hidden;
 }
 
 .project-main {
     padding-top: 80px;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .project-hero {
@@ -821,7 +823,7 @@
         width: 90vw;
         max-width: none;
         height: 65vh;
-        touch-action: none;
+        touch-action: pan-y;
         display: flex;
         align-items: center;
         justify-content: center;
