@@ -718,23 +718,16 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Drag/swipe
         let dragging = false;
-        let touchStarted = false;
         let startX = 0;
-        let startY = 0;
         let startOffset = 0;
         
         function onDown(e) {
-            // Don't prevent default immediately - let browser handle scrolling
-            // Only for mouse events, prevent immediately
-            if (!e.touches) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
+            // Prevent default drag behavior
+            e.preventDefault();
+            e.stopPropagation();
             
-            touchStarted = true;
-            dragging = false; // Don't start dragging yet
+            dragging = true;
             startX = (e.touches ? e.touches[0].pageX : e.pageX);
-            startY = (e.touches ? e.touches[0].pageY : e.pageY);
             startOffset = offsetFor(index);
             track.style.transition = 'none';
             track.style.willChange = 'transform';
@@ -742,39 +735,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         function onMove(e) {
-            if (!touchStarted) return;
+            if (!dragging) return;
+            e.preventDefault();
             
             const x = (e.touches ? e.touches[0].pageX : e.pageX);
-            const y = (e.touches ? e.touches[0].pageY : e.pageY);
             const dx = x - startX;
-            const dy = y - startY;
-            
-            // Determine scroll direction on first move
-            if (!dragging) {
-                const absDx = Math.abs(dx);
-                const absDy = Math.abs(dy);
-                
-                // If moved more horizontally than vertically, start dragging
-                if (absDx > absDy && absDx > 5) {
-                    dragging = true;
-                    if (e.touches) {
-                        e.preventDefault(); // Now prevent scrolling
-                    }
-                } else if (absDy > 5) {
-                    // Vertical scroll - cancel touch
-                    touchStarted = false;
-                    track.style.willChange = '';
-                    frame.style.cursor = 'grab';
-                    return;
-                }
-            }
-            
-            if (!dragging) return;
-            
-            // Prevent default only when actively dragging
-            if (e.touches) {
-                e.preventDefault();
-            }
             
             // Calculate new position with bounds
             const minOffset = offsetFor(slides.length - 1);
@@ -795,20 +760,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         function onUp(e) {
-            if (!dragging && !touchStarted) return;
+            if (!dragging) return;
             
-            const wasDragging = dragging;
             dragging = false;
-            touchStarted = false;
             frame.style.cursor = 'grab';
             track.style.willChange = '';
-            
-            // If wasn't actually dragging (just touched), don't change slide
-            if (!wasDragging) {
-                track.style.transition = '';
-                goTo(index);
-                return;
-            }
             
             // Get current position - use pageX for mouse events
             let currentX;
@@ -881,7 +837,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Gallery images reveal only when scrolling to them
-    const projectGalleryContainers = document.querySelectorAll('.project-gallery-section .work-image');
     const galleryObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
