@@ -331,16 +331,23 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // State
         let index = 0;
-        let slideW = 1180; // each slide is 1180px (desktop)
-        const gap = 24; // 24px gap between slides
+        let slideW = 1150; // each slide is 1150px (desktop)
+        let gap = 24; // 24px gap between slides (desktop)
         let peekWidth = window.innerWidth * 0.2; // 20% of viewport for side previews
-        
+
         function getSlideWidth() {
             if (window.innerWidth <= 768) {
-                // Mobile: use viewport width minus padding
-                return Math.min(window.innerWidth - 40, 1180);
+                // Mobile: 90vw as set in CSS
+                return window.innerWidth * 0.9;
             }
-            return 1180; // Desktop: fixed 1180px
+            return 1150; // Desktop: fixed 1150px
+        }
+        
+        function getGap() {
+            if (window.innerWidth <= 768) {
+                return 16; // Mobile: 16px as set in CSS
+            }
+            return 24; // Desktop: 24px
         }
         
         function isMobile() {
@@ -355,6 +362,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         function updateSizes() {
             slideW = getSlideWidth();
+            gap = getGap();
             peekWidth = isMobile() ? 0 : window.innerWidth * 0.2; // No peek on mobile
             goTo(index, false);
         }
@@ -667,10 +675,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // This positions active slide centered, and with overflow: visible,
             // the previous and next slides will show 20% at the edges
             if (isMobile()) {
-                // Mobile: center the slide in viewport
+                // Mobile: center the slide in viewport (same as desktop logic)
                 const viewportCenter = window.innerWidth / 2;
-                const slideCenter = (slideW / 2) + (i * (slideW + gap));
-                return viewportCenter - slideCenter;
+                return viewportCenter - (i * (slideW + gap)) - (slideW / 2);
             } else {
                 // Desktop: center slide with peek previews on sides
                 const viewportCenter = window.innerWidth / 2;
@@ -820,8 +827,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Initialize slide width and peek width
+        // Initialize slide width, gap, and peek width
         slideW = getSlideWidth();
+        gap = getGap();
         peekWidth = isMobile() ? 0 : window.innerWidth * 0.2;
         
         // Init
