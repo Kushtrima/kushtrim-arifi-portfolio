@@ -409,8 +409,8 @@
 }
 
 .carousel-slide:not(.active) {
-    filter: grayscale(100%);
-    opacity: 0.5;
+    filter: grayscale(0%);
+    opacity: 1;
 }
 
 

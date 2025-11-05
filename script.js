@@ -729,6 +729,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
                 e.stopPropagation();
             }
+            // For touch events, DON'T prevent default - allow normal scrolling initially
             
             dragging = true;
             startX = (e.touches ? e.touches[0].pageX : e.pageX);
@@ -748,15 +749,20 @@ document.addEventListener('DOMContentLoaded', function() {
             const dx = x - startX;
             const dy = y - startY;
             
-            // Detect swipe direction on first significant movement
-            if (isHorizontalSwipe === null && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
+            // Detect swipe direction on first significant movement (more sensitive threshold)
+            if (isHorizontalSwipe === null && (Math.abs(dx) > 10 || Math.abs(dy) > 10)) {
                 // Determine if this is a horizontal or vertical swipe
                 isHorizontalSwipe = Math.abs(dx) > Math.abs(dy);
             }
             
+            // If no clear direction yet, don't do anything
+            if (isHorizontalSwipe === null) {
+                return;
+            }
+            
             // Only handle horizontal swipes, allow vertical scrolling
             if (isHorizontalSwipe === false) {
-                // This is a vertical scroll, don't interfere
+                // This is a vertical scroll, don't interfere at all
                 dragging = false;
                 track.style.transition = '';
                 track.style.willChange = '';
@@ -764,8 +770,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // For horizontal swipes, prevent default to avoid page scroll
-            if (isHorizontalSwipe && e.touches) {
+            // For horizontal swipes, NOW prevent default to avoid page scroll
+            if (isHorizontalSwipe === true && e.touches) {
                 e.preventDefault();
             }
             
