@@ -783,6 +783,11 @@ document.addEventListener('DOMContentLoaded', function() {
             // We're dragging horizontally - transform slider
             // Can't preventDefault with passive: true, but touch-action handles it
             
+            // Prevent default for mouse events only
+            if (!e.touches) {
+                e.preventDefault();
+            }
+            
             // Calculate new position with bounds
             const minOffset = offsetFor(slides.length - 1);
             const maxOffset = offsetFor(0);
