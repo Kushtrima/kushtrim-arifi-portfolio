@@ -746,36 +746,38 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         function onMove(e) {
+            // For touch events, check direction FIRST before any calculations
+            if (e.touches && touchStarted && !dragging) {
+                // Get position but don't calculate yet
+                const x = e.touches[0].pageX;
+                const y = e.touches[0].pageY;
+                const dx = Math.abs(x - startX);
+                const dy = Math.abs(y - startY);
+                
+                // If vertical movement is greater, exit IMMEDIATELY - let browser scroll
+                if (dy > 3 && dy > dx) {
+                    touchStarted = false;
+                    dragging = false;
+                    return; // Exit before doing ANY work
+                }
+                
+                // Only continue if horizontal movement is detected
+                if (dx > 3 && dx > dy) {
+                    dragging = true;
+                    touchStarted = false;
+                    track.style.transition = 'none';
+                    track.style.willChange = 'transform';
+                } else {
+                    // Not enough movement yet
+                    return;
+                }
+            }
+            
+            // For mouse events, get coordinates normally
             const x = (e.touches ? e.touches[0].pageX : e.pageX);
             const y = (e.touches ? e.touches[0].pageY : e.pageY);
             const dx = x - startX;
             const dy = y - startY;
-            
-            // For touch events, detect direction IMMEDIATELY
-            if (e.touches && touchStarted && !dragging) {
-                // Very small threshold (2px) for instant detection
-                if (Math.abs(dx) > 2 || Math.abs(dy) > 2) {
-                    isHorizontalSwipe = Math.abs(dx) > Math.abs(dy);
-                    
-                    if (isHorizontalSwipe) {
-                        // Horizontal - engage slider
-                        dragging = true;
-                        touchStarted = false;
-                        track.style.transition = 'none';
-                        track.style.willChange = 'transform';
-                        // Now we can prevent default (but with passive: true, we can't actually)
-                        // The touch-action: pan-y on frame allows vertical scrolling
-                    } else {
-                        // Vertical - IMMEDIATELY disengage, let browser handle scroll
-                        touchStarted = false;
-                        dragging = false;
-                        return; // Exit - browser will handle vertical scroll
-                    }
-                } else {
-                    // Too small - don't interfere
-                    return;
-                }
-            }
             
             // If we're not dragging, exit immediately
             if (!dragging) return;

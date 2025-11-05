@@ -426,7 +426,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     pointer-events: auto;
-    touch-action: none;
+    touch-action: pan-y;
 }
 
 
@@ -826,7 +826,7 @@
         width: 90vw;
         max-width: none;
         height: 65vh;
-        touch-action: none;
+        touch-action: pan-y;
         display: flex;
         align-items: center;
         justify-content: center;
