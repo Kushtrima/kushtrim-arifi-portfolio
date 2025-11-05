@@ -848,12 +848,19 @@ document.addEventListener('DOMContentLoaded', function() {
             goTo(index);
         }
         
+        // Mouse events for desktop
         frame.addEventListener('mousedown', onDown);
         window.addEventListener('mousemove', onMove);
         window.addEventListener('mouseup', onUp);
-        frame.addEventListener('touchstart', onDown, { passive: true });
-        frame.addEventListener('touchmove', onMove, { passive: false });
-        frame.addEventListener('touchend', onUp, { passive: true });
+        
+        // For mobile: disable touch drag on carousel to allow normal scrolling
+        // Users can still navigate slides using the dots
+        if (!isMobile()) {
+            // Only enable touch drag on desktop/tablet
+            frame.addEventListener('touchstart', onDown, { passive: true });
+            frame.addEventListener('touchmove', onMove, { passive: false });
+            frame.addEventListener('touchend', onUp, { passive: true });
+        }
         
         // Prevent default drag behavior on the entire carousel
         frame.addEventListener('dragstart', (e) => {
