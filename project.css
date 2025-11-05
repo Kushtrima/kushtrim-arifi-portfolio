@@ -426,7 +426,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     pointer-events: auto;
-    touch-action: pan-y;
+    touch-action: none;
 }
 
 
