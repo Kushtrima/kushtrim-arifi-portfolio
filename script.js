@@ -834,9 +834,9 @@ document.addEventListener('DOMContentLoaded', function() {
         frame.addEventListener('mousedown', onDown);
         window.addEventListener('mousemove', onMove);
         window.addEventListener('mouseup', onUp);
-        frame.addEventListener('touchstart', onDown, { passive: false });
+        frame.addEventListener('touchstart', onDown, { passive: true });
         frame.addEventListener('touchmove', onMove, { passive: false });
-        frame.addEventListener('touchend', onUp);
+        frame.addEventListener('touchend', onUp, { passive: true });
         
         // Prevent default drag behavior on the entire carousel
         frame.addEventListener('dragstart', (e) => {
