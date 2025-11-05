@@ -374,7 +374,7 @@
     transform: translateX(-50%);
     user-select: none;
     -webkit-user-select: none;
-    touch-action: auto;
+    touch-action: pan-y;
 }
 
 
@@ -426,7 +426,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     pointer-events: auto;
-    touch-action: auto;
+    touch-action: pan-y;
 }
 
 

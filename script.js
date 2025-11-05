@@ -857,9 +857,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Touch events - attach to IMAGES only (they have pointer-events: auto)
         // The slides have pointer-events: none to allow scrolling
+        // touch-action: pan-y on frame allows vertical scrolling
         images.forEach(img => {
             img.addEventListener('touchstart', onDown, { passive: true });
-            img.addEventListener('touchmove', onMove, { passive: false });
+            img.addEventListener('touchmove', onMove, { passive: true });
             img.addEventListener('touchend', onUp, { passive: true });
         });
         
