@@ -718,60 +718,68 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Drag/swipe
         let dragging = false;
+        let touchStarted = false;
         let startX = 0;
         let startY = 0;
         let startOffset = 0;
         let isHorizontalSwipe = null; // Track if user is swiping horizontally or vertically
         
         function onDown(e) {
-            // For mouse events, prevent default immediately
+            // For mouse events, prevent default and start dragging immediately
             if (!e.touches) {
                 e.preventDefault();
                 e.stopPropagation();
+                dragging = true;
+                track.style.transition = 'none';
+                track.style.willChange = 'transform';
+                frame.style.cursor = 'grabbing';
+            } else {
+                // For touch events, just record the start position but DON'T start dragging yet
+                touchStarted = true;
+                dragging = false;
             }
-            // For touch events, DON'T prevent default - allow normal scrolling initially
             
-            dragging = true;
             startX = (e.touches ? e.touches[0].pageX : e.pageX);
             startY = (e.touches ? e.touches[0].pageY : e.pageY);
             startOffset = offsetFor(index);
             isHorizontalSwipe = null; // Reset swipe direction detection
-            track.style.transition = 'none';
-            track.style.willChange = 'transform';
-            frame.style.cursor = 'grabbing';
         }
         
         function onMove(e) {
-            if (!dragging) return;
-            
             const x = (e.touches ? e.touches[0].pageX : e.pageX);
             const y = (e.touches ? e.touches[0].pageY : e.pageY);
             const dx = x - startX;
             const dy = y - startY;
             
-            // Detect swipe direction on first significant movement (more sensitive threshold)
-            if (isHorizontalSwipe === null && (Math.abs(dx) > 10 || Math.abs(dy) > 10)) {
-                // Determine if this is a horizontal or vertical swipe
-                isHorizontalSwipe = Math.abs(dx) > Math.abs(dy);
+            // For touch events, determine direction first before doing anything
+            if (e.touches && touchStarted && !dragging) {
+                // Wait for significant movement to determine direction
+                if (Math.abs(dx) > 15 || Math.abs(dy) > 15) {
+                    isHorizontalSwipe = Math.abs(dx) > Math.abs(dy);
+                    
+                    if (isHorizontalSwipe) {
+                        // It's horizontal - NOW we start dragging
+                        dragging = true;
+                        touchStarted = false;
+                        track.style.transition = 'none';
+                        track.style.willChange = 'transform';
+                    } else {
+                        // It's vertical - cancel everything and allow normal scroll
+                        touchStarted = false;
+                        dragging = false;
+                        return;
+                    }
+                } else {
+                    // Not enough movement yet - don't do anything
+                    return;
+                }
             }
             
-            // If no clear direction yet, don't do anything
-            if (isHorizontalSwipe === null) {
-                return;
-            }
+            // If we're not dragging, don't do anything
+            if (!dragging) return;
             
-            // Only handle horizontal swipes, allow vertical scrolling
-            if (isHorizontalSwipe === false) {
-                // This is a vertical scroll, don't interfere at all
-                dragging = false;
-                track.style.transition = '';
-                track.style.willChange = '';
-                frame.style.cursor = 'grab';
-                return;
-            }
-            
-            // For horizontal swipes, NOW prevent default to avoid page scroll
-            if (isHorizontalSwipe === true && e.touches) {
+            // For horizontal swipes, prevent default to stop page scrolling
+            if (e.touches && isHorizontalSwipe) {
                 e.preventDefault();
             }
             
@@ -799,6 +807,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         function onUp(e) {
+            // Reset touch started flag
+            touchStarted = false;
+            
             if (!dragging) return;
             
             dragging = false;
