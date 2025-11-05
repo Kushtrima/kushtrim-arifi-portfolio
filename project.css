@@ -167,7 +167,7 @@
     
     .project-image-section {
         margin-bottom: 80px !important;
-        margin-top: -150px !important;
+        margin-top: -240px !important;
         transform: none !important;
         padding-top: 0 !important;
     }
@@ -531,6 +531,7 @@
     flex-direction: column;
     gap: 0;
     position: relative;
+    margin-bottom: 40px;
 }
 
 
@@ -578,7 +579,7 @@
     font-size: 16px;
     font-weight: 400;
     color: #ffffff;
-    line-height: 1.6;
+    line-height: 1.3;
     opacity: 0.8;
     transition: color 1.5s ease-in-out;
 }
@@ -928,10 +929,17 @@
         text-align: left;
     }
     
-    /* Move INDUSTRY and LOCATION to the left edge */
-    .project-detail-item:nth-child(1),
-    .project-detail-item:nth-child(3) {
+    /* Move INDUSTRY to the left edge */
+    .project-detail-item:nth-child(1) {
         transform: translateX(-49px);
+        justify-self: start;
+        text-align: left;
+        align-items: flex-start;
+    }
+    
+    /* Move LOCATION to the left edge and up */
+    .project-detail-item:nth-child(3) {
+        transform: translateX(-49px) translateY(-90px);
         justify-self: start;
         text-align: left;
         align-items: flex-start;
@@ -948,7 +956,7 @@
     }
     
     .project-detail-item:nth-child(4) {
-        transform: translateY(-90px); /* YEAR stays at current position */
+        transform: translateY(-180px); /* YEAR moved up more */
         text-align: right;
         align-items: flex-end;
         justify-self: end;
@@ -962,7 +970,7 @@
     
     .project-image-section {
         margin-bottom: 60px !important;
-        margin-top: -150px !important;
+        margin-top: -240px !important;
         transform: none !important;
         padding-top: 0 !important;
         padding-bottom: 0 !important;
@@ -971,18 +979,23 @@
     /* First description section - keep negative margin to move close to image */
     .project-description-section:first-of-type {
         margin-bottom: 80px !important; /* Increased spacing between sections on mobile */
-        margin-top: -110px; /* Move text closer to image by reducing top margin */
+        margin-top: -70px !important; /* Move text closer to image by reducing top margin */
     }
     
-    /* Subsequent description sections - no negative margin */
+    /* Specifically target three-column layout to move up */
+    .project-three-column {
+        margin-top: -70px !important;
+    }
+    
+    /* Subsequent description sections - move up with content */
     .project-description-section ~ .project-description-section {
         margin-bottom: 80px !important; /* Increased spacing between sections on mobile */
-        margin-top: 0 !important; /* Subsequent sections don't need negative margin */
+        margin-top: -90px !important; /* Move subsequent sections up */
     }
     
     .project-description-text p {
         margin-bottom: 24px !important; /* Increased spacing between paragraphs on mobile */
-        line-height: 1.8 !important; /* Better line height for readability */
+        line-height: 1.4 !important; /* Reduced line height for tighter spacing */
     }
     
     .project-description-text p:last-child {
@@ -991,6 +1004,11 @@
     
     .project-description-grid {
         gap: 15px !important; /* Closer gap between title and text on mobile */
+    }
+    
+    .project-three-column-grid {
+        grid-template-columns: 1fr !important; /* Single column layout on mobile */
+        gap: 20px !important; /* Reduced gap for mobile */
     }
     
     .project-gallery-section {
@@ -1089,7 +1107,7 @@
     }
     
     .project-image-section {
-        margin-top: -150px !important;
+        margin-top: -240px !important;
         margin-bottom: 60px;
         transform: none !important;
     }
