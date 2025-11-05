@@ -360,6 +360,21 @@
     position: relative;
 }
 
+.project-image-section .project-main-image {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.project-image-section .project-main-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
 /* Main Image Carousel */
 .project-main-image-carousel {
     position: relative;
@@ -982,6 +997,29 @@
         transform: none !important;
         padding-top: 0 !important;
         padding-bottom: 0 !important;
+    }
+    
+    .project-image-section .project-main-image {
+        width: 100%;
+        height: 74vh !important;
+        min-height: 74vh !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: hidden;
+    }
+    
+    .project-image-section .project-main-image img {
+        object-fit: contain !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-height: none !important;
+        max-width: 100% !important;
+        min-height: 100% !important;
+        transform: scale(1.43) !important;
+        transform-origin: center center !important;
     }
     
     /* First description section - keep negative margin to move close to image */
