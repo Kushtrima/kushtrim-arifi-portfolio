@@ -751,26 +751,30 @@ document.addEventListener('DOMContentLoaded', function() {
             const dx = x - startX;
             const dy = y - startY;
             
-            // For touch events, determine direction first before doing anything
+            // For touch events, determine direction IMMEDIATELY with small threshold
             if (e.touches && touchStarted && !dragging) {
-                // Wait for significant movement to determine direction
-                if (Math.abs(dx) > 15 || Math.abs(dy) > 15) {
+                // Small threshold (8px) for quick direction detection
+                if (Math.abs(dx) > 8 || Math.abs(dy) > 8) {
+                    // Determine swipe direction
                     isHorizontalSwipe = Math.abs(dx) > Math.abs(dy);
                     
                     if (isHorizontalSwipe) {
-                        // It's horizontal - NOW we start dragging
+                        // Horizontal swipe detected - start slider dragging
                         dragging = true;
                         touchStarted = false;
                         track.style.transition = 'none';
                         track.style.willChange = 'transform';
+                        // Now we'll prevent default on this and future moves
                     } else {
-                        // It's vertical - cancel everything and allow normal scroll
+                        // Vertical swipe detected - DON'T interfere, allow page scroll
                         touchStarted = false;
                         dragging = false;
+                        isHorizontalSwipe = false;
+                        // Exit immediately without preventing default
                         return;
                     }
                 } else {
-                    // Not enough movement yet - don't do anything
+                    // Movement too small to determine direction yet - don't interfere
                     return;
                 }
             }
@@ -853,14 +857,10 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('mousemove', onMove);
         window.addEventListener('mouseup', onUp);
         
-        // For mobile: disable touch drag on carousel to allow normal scrolling
-        // Users can still navigate slides using the dots
-        if (!isMobile()) {
-            // Only enable touch drag on desktop/tablet
-            frame.addEventListener('touchstart', onDown, { passive: true });
-            frame.addEventListener('touchmove', onMove, { passive: false });
-            frame.addEventListener('touchend', onUp, { passive: true });
-        }
+        // Touch events for mobile/tablet - re-enable for horizontal sliding
+        frame.addEventListener('touchstart', onDown, { passive: true });
+        frame.addEventListener('touchmove', onMove, { passive: false });
+        frame.addEventListener('touchend', onUp, { passive: true });
         
         // Prevent default drag behavior on the entire carousel
         frame.addEventListener('dragstart', (e) => {
