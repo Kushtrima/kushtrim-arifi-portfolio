@@ -719,16 +719,22 @@ document.addEventListener('DOMContentLoaded', function() {
         // Drag/swipe
         let dragging = false;
         let startX = 0;
+        let startY = 0;
         let startOffset = 0;
+        let isHorizontalSwipe = null; // Track if user is swiping horizontally or vertically
         
         function onDown(e) {
-            // Prevent default drag behavior
-            e.preventDefault();
-            e.stopPropagation();
+            // For mouse events, prevent default immediately
+            if (!e.touches) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
             
             dragging = true;
             startX = (e.touches ? e.touches[0].pageX : e.pageX);
+            startY = (e.touches ? e.touches[0].pageY : e.pageY);
             startOffset = offsetFor(index);
+            isHorizontalSwipe = null; // Reset swipe direction detection
             track.style.transition = 'none';
             track.style.willChange = 'transform';
             frame.style.cursor = 'grabbing';
@@ -736,10 +742,37 @@ document.addEventListener('DOMContentLoaded', function() {
         
         function onMove(e) {
             if (!dragging) return;
-            e.preventDefault();
             
             const x = (e.touches ? e.touches[0].pageX : e.pageX);
+            const y = (e.touches ? e.touches[0].pageY : e.pageY);
             const dx = x - startX;
+            const dy = y - startY;
+            
+            // Detect swipe direction on first significant movement
+            if (isHorizontalSwipe === null && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
+                // Determine if this is a horizontal or vertical swipe
+                isHorizontalSwipe = Math.abs(dx) > Math.abs(dy);
+            }
+            
+            // Only handle horizontal swipes, allow vertical scrolling
+            if (isHorizontalSwipe === false) {
+                // This is a vertical scroll, don't interfere
+                dragging = false;
+                track.style.transition = '';
+                track.style.willChange = '';
+                frame.style.cursor = 'grab';
+                return;
+            }
+            
+            // For horizontal swipes, prevent default to avoid page scroll
+            if (isHorizontalSwipe && e.touches) {
+                e.preventDefault();
+            }
+            
+            // Prevent default for mouse events
+            if (!e.touches) {
+                e.preventDefault();
+            }
             
             // Calculate new position with bounds
             const minOffset = offsetFor(slides.length - 1);

@@ -372,6 +372,7 @@
     transform: translateX(-50%);
     user-select: none;
     -webkit-user-select: none;
+    touch-action: pan-y;
 }
 
 
