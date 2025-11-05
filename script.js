@@ -751,39 +751,37 @@ document.addEventListener('DOMContentLoaded', function() {
             const dx = x - startX;
             const dy = y - startY;
             
-            // For touch events, determine direction IMMEDIATELY with small threshold
+            // For touch events, detect direction with MINIMAL threshold (3px)
             if (e.touches && touchStarted && !dragging) {
-                // Small threshold (8px) for quick direction detection
-                if (Math.abs(dx) > 8 || Math.abs(dy) > 8) {
-                    // Determine swipe direction
+                // Ultra-fast detection at just 3px movement
+                if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
+                    // Determine swipe direction INSTANTLY
                     isHorizontalSwipe = Math.abs(dx) > Math.abs(dy);
                     
                     if (isHorizontalSwipe) {
-                        // Horizontal swipe detected - start slider dragging
+                        // Horizontal - engage slider
                         dragging = true;
                         touchStarted = false;
                         track.style.transition = 'none';
                         track.style.willChange = 'transform';
-                        // Now we'll prevent default on this and future moves
                     } else {
-                        // Vertical swipe detected - DON'T interfere, allow page scroll
+                        // Vertical - completely disengage, allow scroll
                         touchStarted = false;
                         dragging = false;
-                        isHorizontalSwipe = false;
-                        // Exit immediately without preventing default
+                        // Don't set isHorizontalSwipe to false, just exit
                         return;
                     }
                 } else {
-                    // Movement too small to determine direction yet - don't interfere
+                    // Too small - don't block anything yet
                     return;
                 }
             }
             
-            // If we're not dragging, don't do anything
+            // If we're not dragging, exit immediately
             if (!dragging) return;
             
-            // For horizontal swipes, prevent default to stop page scrolling
-            if (e.touches && isHorizontalSwipe) {
+            // ONLY prevent default if we're actively dragging horizontally
+            if (e.touches && dragging) {
                 e.preventDefault();
             }
             
@@ -857,10 +855,13 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('mousemove', onMove);
         window.addEventListener('mouseup', onUp);
         
-        // Touch events for mobile/tablet - re-enable for horizontal sliding
-        frame.addEventListener('touchstart', onDown, { passive: true });
-        frame.addEventListener('touchmove', onMove, { passive: false });
-        frame.addEventListener('touchend', onUp, { passive: true });
+        // Touch events - attach to IMAGES only (they have pointer-events: auto)
+        // The slides have pointer-events: none to allow scrolling
+        images.forEach(img => {
+            img.addEventListener('touchstart', onDown, { passive: true });
+            img.addEventListener('touchmove', onMove, { passive: false });
+            img.addEventListener('touchend', onUp, { passive: true });
+        });
         
         // Prevent default drag behavior on the entire carousel
         frame.addEventListener('dragstart', (e) => {

@@ -401,6 +401,7 @@
     border-radius: 0;
     overflow: hidden;
     background: transparent;
+    pointer-events: none;
 }
 
 .carousel-slide.active {
@@ -425,6 +426,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     pointer-events: auto;
+    touch-action: auto;
 }
 
 
