@@ -1209,6 +1209,11 @@
 .project-back-section {
     margin-top: 60px;
     text-align: left;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .project-back-link {
