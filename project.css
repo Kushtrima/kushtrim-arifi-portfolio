@@ -411,6 +411,7 @@
 .carousel-slide {
     flex: 0 0 1160px;
     width: 1160px;
+    max-width: min(1160px, calc(100vw - 80px));
     height: auto;
     position: relative;
     border-radius: 0;

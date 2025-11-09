@@ -340,7 +340,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Mobile: 90vw as set in CSS
                 return window.innerWidth * 0.9;
             }
-            return 1160; // Desktop: fixed 1160px
+            // Desktop: Read actual width from first slide element (respects CSS max-width)
+            if (slides[0]) {
+                return slides[0].getBoundingClientRect().width;
+            }
+            return 1160; // Fallback
         }
         
         function getGap() {
