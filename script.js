@@ -1,19 +1,5 @@
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function() {
-    // Scroll Progress Indicator
-    const progressBar = document.createElement('div');
-    progressBar.className = 'scroll-progress';
-    document.body.appendChild(progressBar);
-    
-    function updateScrollProgress() {
-        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (window.scrollY / windowHeight) * 100;
-        progressBar.style.width = scrolled + '%';
-    }
-    
-    window.addEventListener('scroll', updateScrollProgress);
-    updateScrollProgress(); // Initial call
-    
     // Custom Cursor Implementation
     if (window.innerWidth > 768) { // Only on desktop
         const cursor = document.createElement('div');
