@@ -5,6 +5,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const navigation = document.querySelector('.navigation');
     const navClose = document.querySelector('.nav-close');
     
+    // Reset navigation state on page load
+    if (navigation) {
+        burgerMenu.classList.remove('active');
+        navigation.classList.remove('active');
+        // Clear any inline styles that might have been set
+        navigation.style.display = '';
+    }
+    
     // Burger menu toggle
     burgerMenu.addEventListener('click', function() {
         burgerMenu.classList.toggle('active');
@@ -34,7 +42,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Close menu when clicking on links
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // Close menu
+            // Don't close menu for links that open in new tab
+            if (this.getAttribute('target') === '_blank') {
+                return;
+            }
+            
+            // Close menu for normal navigation
             burgerMenu.classList.remove('active');
             navigation.classList.remove('active');
             if (window.innerWidth > 768) {
@@ -900,27 +913,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Gallery images reveal only when scrolling to them
-    const galleryObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Animate gallery images with stagger
-                const containers = Array.from(projectGalleryContainers);
-                containers.forEach((container, index) => {
-                    setTimeout(() => {
-                        container.classList.add('revealed');
-                    }, index * 300); // 300ms stagger between images
-                });
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px 0px 0px'
-    });
+    const projectGalleryImages = document.querySelectorAll('.project-gallery-section .work-image');
     
-    // Observe only the gallery section
-    const projectGallerySection = document.querySelector('.project-gallery-section');
-    if (projectGallerySection) {
-        galleryObserver.observe(projectGallerySection);
+    if (projectGalleryImages.length > 0) {
+        const galleryObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting && !entry.target.classList.contains('revealed')) {
+                    // Add revealed class with stagger
+                    setTimeout(() => {
+                        entry.target.classList.add('revealed');
+                    }, index * 200); // 200ms stagger between images
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        // Observe each gallery image individually
+        projectGalleryImages.forEach(image => {
+            galleryObserver.observe(image);
+        });
     }
     
     // Horizontal Sections scroll reveals
