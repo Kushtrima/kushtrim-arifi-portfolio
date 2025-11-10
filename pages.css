@@ -309,7 +309,7 @@ body {
 }
 
 .about-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Times New Roman', serif;
     font-size: 48px;
     font-weight: 300;
     color: #ffffff;
@@ -326,7 +326,7 @@ body {
 }
 
 .about-text-large {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Times New Roman', serif;
     font-size: 36px;
     font-weight: 300;
     line-height: 1.1;
@@ -349,7 +349,7 @@ body {
 }
 
 .signature-text {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Times New Roman', serif;
     font-size: 14px;
     font-weight: 400;
     color: #ffffff;
@@ -374,7 +374,7 @@ body {
 }
 
 .statement-large {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Times New Roman', serif;
     font-size: 96px;
     font-weight: 300;
     color: #ffffff;
@@ -389,7 +389,7 @@ body {
 }
 
 .statement-philosophy {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Times New Roman', serif;
     font-size: 11px;
     font-weight: 400;
     color: #ffffff;
@@ -436,7 +436,7 @@ body {
 .column:nth-child(4) { animation-delay: 0.4s; }
 
 .column-title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 14px;
     font-weight: 600;
     color: #ffffff;
@@ -453,7 +453,7 @@ body {
 }
 
 .column-list li {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 12px;
     font-weight: 400;
     color: #cccccc;
@@ -557,7 +557,7 @@ body {
         opacity: 1 !important;
         visibility: visible !important;
         display: block !important;
-        font-family: 'Playfair Display', serif !important;
+        font-family: 'Times New Roman', serif !important;
         font-weight: 400 !important;
         margin: 0 !important;
     }
@@ -647,7 +647,7 @@ body {
 }
 
 .skills-main-title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 24px;
     font-weight: 400;
     color: #ffffff;
@@ -672,7 +672,7 @@ body {
 }
 
 .skill-item {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 16px;
     font-weight: 400;
     color: #666666;
@@ -755,7 +755,7 @@ body {
 }
 
 .section-title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 18px;
     font-weight: 600;
     color: #ffffff;
@@ -788,7 +788,7 @@ body {
 }
 
 .education-degree {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 16px;
     font-weight: 600;
     color: #ffffff;
@@ -796,7 +796,7 @@ body {
 }
 
 .education-school {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 14px;
     font-weight: 400;
     color: #cccccc;
@@ -804,7 +804,7 @@ body {
 }
 
 .education-year {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 14px;
     font-weight: 400;
     color: #888888;
@@ -812,7 +812,7 @@ body {
 }
 
 .certification-item {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 14px;
     font-weight: 400;
     color: #ffffff;
@@ -955,7 +955,7 @@ body {
 }
 
 .collaborations-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Times New Roman', serif;
     font-size: 48px;
     font-weight: 400;
     color: #ffffff;
@@ -964,7 +964,7 @@ body {
 }
 
 .collaborations-companies {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 16px;
     font-weight: 400;
     color: #ffffff;
@@ -991,7 +991,7 @@ body {
 }
 
 .projects-note {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 14px;
     font-weight: 400;
     color: #888888;
