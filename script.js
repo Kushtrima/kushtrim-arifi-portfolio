@@ -1,5 +1,57 @@
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function() {
+    // Scroll Progress Indicator
+    const progressBar = document.createElement('div');
+    progressBar.className = 'scroll-progress';
+    document.body.appendChild(progressBar);
+    
+    function updateScrollProgress() {
+        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (window.scrollY / windowHeight) * 100;
+        progressBar.style.width = scrolled + '%';
+    }
+    
+    window.addEventListener('scroll', updateScrollProgress);
+    updateScrollProgress(); // Initial call
+    
+    // Custom Cursor Implementation
+    if (window.innerWidth > 768) { // Only on desktop
+        const cursor = document.createElement('div');
+        cursor.className = 'custom-cursor';
+        document.body.appendChild(cursor);
+        
+        // Hide cursor initially until first mouse move
+        cursor.style.opacity = '0';
+        
+        let currentX = 0;
+        let currentY = 0;
+        let isOverImage = false;
+        
+        // Track mouse position and update cursor immediately
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.opacity = '1';
+            currentX = e.clientX;
+            currentY = e.clientY;
+            
+            // If not over an image, follow cursor exactly
+            if (!isOverImage) {
+                cursor.style.left = currentX + 'px';
+                cursor.style.top = currentY + 'px';
+            }
+        });
+        
+        // Hover effects on all interactive elements (buttons, links, and projects)
+        const interactiveElements = document.querySelectorAll('a, button, .nav-link, .work-item, .gallery-item, .project-live-link, .project-back-link, .resume-button, .burger-menu, .work-image, .project-main-image, .project-gallery-item');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+        
+        // Click effect
+        document.addEventListener('mousedown', () => cursor.classList.add('click'));
+        document.addEventListener('mouseup', () => cursor.classList.remove('click'));
+    }
+    
     const navLinks = document.querySelectorAll('.nav-link');
     const burgerMenu = document.querySelector('.burger-menu');
     const navigation = document.querySelector('.navigation');
@@ -12,6 +64,38 @@ document.addEventListener('DOMContentLoaded', function() {
         // Clear any inline styles that might have been set
         navigation.style.display = '';
     }
+    
+    // Add ripple effect to buttons and links
+    const rippleElements = document.querySelectorAll('button, .project-live-link, .project-back-link, .resume-button, .nav-link');
+    rippleElements.forEach(element => {
+        element.classList.add('ripple');
+    });
+    
+    // Enhanced Scroll Reveal with fade and slide animations
+    const revealElements = document.querySelectorAll('.text-reveal-wrapper, .work-item, .project-detail-item, .project-description-section, .project-gallery-item');
+    
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting && !entry.target.classList.contains('revealed')) {
+                setTimeout(() => {
+                    entry.target.classList.add('revealed');
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 100);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    revealElements.forEach(element => {
+        // Set initial state for animation
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        element.style.transition = 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        revealObserver.observe(element);
+    });
     
     // Burger menu toggle
     burgerMenu.addEventListener('click', function() {
@@ -56,6 +140,37 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Let the browser handle navigation to other pages
             // No preventDefault needed for page navigation
+        });
+    });
+    
+    // Page Transitions - Fade out on link click
+    const allLinks = document.querySelectorAll('a[href]');
+    
+    allLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        
+        // Skip external links, new tab links, hash links, and special protocols
+        if (!href || 
+            link.getAttribute('target') === '_blank' ||
+            href.startsWith('http://') || 
+            href.startsWith('https://') ||
+            href.startsWith('#') ||
+            href.startsWith('mailto:') ||
+            href.startsWith('tel:')) {
+            return;
+        }
+        
+        // Only handle internal page links
+        link.addEventListener('click', function(e) {
+            // Add fade-out effect
+            document.body.classList.add('fade-out');
+            
+            // Navigate after animation
+            setTimeout(() => {
+                window.location.href = href;
+            }, 400); // Match fadeOut animation duration
+            
+            e.preventDefault();
         });
     });
     

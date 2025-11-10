@@ -47,6 +47,83 @@ body {
     max-width: 100vw;
     background-color: var(--color-primary);
     transition: background-color var(--transition-smooth);
+    cursor: none; /* Hide default cursor */
+}
+
+/* Scroll Progress Indicator */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: #ffffff;
+    z-index: 10000;
+    transition: width 0.1s ease-out;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Custom Cursor */
+.custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease-out, width 0.3s ease-out, height 0.3s ease-out, background-color 0.3s ease-out, border-color 0.3s ease-out;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+}
+
+.custom-cursor.hover {
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+.custom-cursor.click {
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+/* Page Transitions */
+body {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+body.fade-out {
+    animation: fadeOut 0.4s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Hide custom cursor on mobile */
+@media (max-width: 768px) {
+    body {
+        cursor: auto;
+    }
+    
+    .custom-cursor {
+        display: none;
+    }
 }
 
 /* Skip to main content link for accessibility */
@@ -123,11 +200,63 @@ body {
     text-decoration: none;
     font-weight: 400;
     font-size: 16px;
-    transition: opacity 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease;
 }
 
 .nav-link:hover {
     opacity: 0.8;
+    transform: translateY(-2px);
+}
+
+/* Enhanced Hover Animations for Buttons and Links */
+.project-live-link,
+.project-back-link,
+.resume-button,
+button {
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                color 0.3s ease,
+                background-color 0.3s ease;
+    overflow: hidden;
+}
+
+.project-live-link:hover,
+.project-back-link:hover,
+.resume-button:hover,
+button:hover {
+    transform: translateY(-2px);
+}
+
+/* Image containers */
+.work-image,
+.project-main-image,
+.project-gallery-section .work-image {
+    overflow: hidden;
+    position: relative;
+}
+
+/* Button Ripple Effect */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.ripple:active::before {
+    width: 300px;
+    height: 300px;
 }
 
 
@@ -1571,7 +1700,7 @@ body {
 }
 
 .work-item:hover .work-image img {
-    transform: scale(1.05);
+    transform: none;
 }
 
 .work-info {
@@ -2009,7 +2138,7 @@ body {
 }
 
 .gallery-item:hover {
-    transform: translateY(-5px);
+    transform: none;
 }
 
 .gallery-image {
@@ -2033,7 +2162,7 @@ body {
 }
 
 .gallery-item:hover .gallery-image img {
-    transform: scale(1.05);
+    transform: none;
 }
 
 .project-number {
