@@ -71,7 +71,7 @@
     width: 100%;
     height: 1px;
     background-color: rgba(255, 255, 255, 0.15);
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .project-title-section {
@@ -94,7 +94,7 @@
     letter-spacing: -5px;
     line-height: 0.8;
     margin: 0;
-    padding: 0;
+    padding: 0 0 0 10px;
     transition: color 1.5s ease-in-out;
 }
 
@@ -1268,7 +1268,7 @@
 
 .project-info-label {
     font-family: Arial, sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     color: #999999;
     text-transform: none;
@@ -1315,6 +1315,26 @@
 
 /* Mobile Only - 2 columns + description below */
 @media (max-width: 768px) {
+    /* Mobile Title adjustments */
+    .project-title {
+        font-size: 60px;
+        letter-spacing: -3px;
+        padding: 0;
+    }
+
+    .project-title-section {
+        margin-left: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .project-website-link {
+        font-size: 15px;
+        align-self: flex-end;
+        margin-top: -10px;
+    }
+
     .project-info-layout {
         grid-template-columns: 1fr 1fr;
         gap: 60px 80px;
@@ -1354,19 +1374,28 @@
     }
 
     .project-info-label {
-        font-size: 13px;
+        font-size: 15px;
     }
 
     .project-info-value {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .project-description-text {
-        font-size: 14px;
+        font-size: 16px;
     }
 }
 
 @media (max-width: 480px) {
+    .project-title {
+        font-size: 50px;
+        letter-spacing: -2px;
+    }
+
+    .project-website-link {
+        font-size: 14px;
+    }
+
     .project-info-layout {
         gap: 40px 60px;
         margin-top: 40px;
@@ -1382,15 +1411,15 @@
     }
 
     .project-info-label {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .project-info-value {
-        font-size: 13px;
+        font-size: 15px;
     }
 
     .project-description-text {
-        font-size: 13px;
+        font-size: 15px;
         line-height: 1.7;
     }
 }
