@@ -1254,6 +1254,146 @@ document.addEventListener('DOMContentLoaded', function() {
         updateImagePositions();
     }
 
+    // Monun Image Scroll-Linked Reveal - Same effect as Stplaner
+    const monunImages = document.querySelectorAll('.monun-image-reveal');
+    
+    if (monunImages.length > 0) {
+        let ticking = false;
+        const isMobile = window.innerWidth <= 768;
+        
+        function updateImagePositions() {
+            const windowHeight = window.innerHeight;
+            const scrollY = window.scrollY;
+            const viewportCenter = windowHeight / 2;
+            
+            monunImages.forEach((image) => {
+                const rect = image.getBoundingClientRect();
+                const imageTop = rect.top;
+                const imageBottom = rect.bottom;
+                const imageCenter = imageTop + (rect.height / 2);
+                
+                // MOBILE: Center spotlight effect - only centered image is fully visible
+                if (isMobile) {
+                    // Calculate distance from image center to viewport center
+                    const distanceFromCenter = Math.abs(imageCenter - viewportCenter);
+                    const fadeZone = windowHeight * 0.3; // Images fade over 30% of viewport height
+                    
+                    // Calculate opacity based on distance from center
+                    let opacity = 1;
+                    if (distanceFromCenter > fadeZone) {
+                        opacity = 0.3; // Minimum opacity for far images
+                    } else {
+                        // Smooth fade: 100% at center, fades to 30% at edge of fade zone
+                        opacity = 1 - (distanceFromCenter / fadeZone) * 0.7;
+                    }
+                    
+                    // Apply opacity
+                    image.style.opacity = opacity;
+                    image.style.transform = 'translateY(0) scale(1)';
+                    
+                    // Gradient overlay stays at 0 on mobile (no top shadow effect)
+                    image.style.setProperty('--gradient-opacity', 0);
+                    
+                } else {
+                    // DESKTOP: Original effect - images appear from bottom
+                    const viewportBottom = scrollY + windowHeight;
+                    const imageAbsoluteTop = scrollY + imageTop;
+                    
+                    // Start animation when image is about to enter viewport
+                    const animationDistance = windowHeight * 0.15; // MUCH FASTER - very short distance
+                    
+                    // Start animation earlier - add extra offset so images appear before reaching them
+                    const animationStart = imageAbsoluteTop - animationDistance - (windowHeight * 0.4);
+                    const animationEnd = imageAbsoluteTop + animationDistance;
+                
+                // Calculate progress based on scroll position
+                let progress = 0;
+                
+                if (scrollY < animationStart) {
+                    // Before animation starts - keep images hidden and down
+                    progress = 0;
+                } else if (scrollY >= animationStart && scrollY < animationEnd) {
+                    // During animation - calculate progress
+                    progress = (scrollY - animationStart) / (animationEnd - animationStart);
+                    progress = Math.min(Math.max(progress, 0), 1); // Clamp between 0 and 1
+                } else {
+                    // After animation - fully visible
+                    progress = 1;
+                }
+                
+                // Check if image is fully in view (centered or fully visible in viewport)
+                const imageBottomPos = imageTop + rect.height;
+                const imageInFullView = imageTop >= scrollY && imageBottomPos <= (scrollY + windowHeight);
+                const imageCenterY = imageTop + (rect.height / 2);
+                const viewportCenterY = scrollY + (windowHeight / 2);
+                const isNearCenter = Math.abs(imageCenterY - viewportCenterY) < windowHeight * 0.3;
+                
+                // If image is fully in view or near center, ensure 100% opacity
+                if ((imageInFullView || isNearCenter) && progress > 0.5) {
+                    progress = 1; // Force to full opacity when fully in view
+                }
+                
+                // Ease function for smoother animation
+                const easedProgress = progress * progress * (3 - 2 * progress); // Smoothstep
+                
+                // Calculate transform values
+                const translateY = (1 - easedProgress) * 80; // Start 80px below, move to 0
+                const opacity = easedProgress; // Start at 0 (hidden), end at 1 (fully visible) - ensure 100% when in full view
+                
+                // Calculate gradient overlay opacity
+                // Show CLEAR images early when scrolling down - gradient only appears very late
+                let gradientOpacity = 0;
+                
+                // Gradient should ONLY appear when image is very close to scrolling out at the top
+                // Keep it at 0 (no gradient, full color) for most of the viewport
+                if (easedProgress >= 0.5) {
+                    // Image is at least 50% visible
+                    // Only start gradient when image top is well past the top of viewport
+                    if (imageTop < -200) {
+                        // Image has scrolled 200px past top - now show gradient
+                        const distanceOutOfView = Math.abs(imageTop) - 200;
+                        const fadeDistance = 300;
+                        gradientOpacity = Math.min(distanceOutOfView / fadeDistance, 1);
+                    }
+                    // Otherwise gradient stays at 0 - full clear color
+                }
+                
+                const gradientOpacityClamped = Math.min(Math.max(gradientOpacity, 0), 1);
+                
+                    // Apply transforms directly (no transitions for scroll-linked effect)
+                    // Keep scale at 1 (original size) - no scaling
+                    image.style.transform = `translateY(${translateY}px) scale(1)`;
+                    image.style.opacity = opacity;
+                    
+                    // Control gradient overlay opacity via CSS custom property with delay
+                    image.style.setProperty('--gradient-opacity', gradientOpacityClamped);
+                }
+            });
+            
+            ticking = false;
+        }
+        
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateImagePositions);
+                ticking = true;
+            }
+        }
+        
+        // Initial setup - all images start hidden at bottom
+        monunImages.forEach((image) => {
+            image.style.transform = 'translateY(80px) scale(1)';
+            image.style.opacity = '0';
+        });
+        
+        // Listen to scroll events
+        window.addEventListener('scroll', requestTick, { passive: true });
+        window.addEventListener('resize', requestTick);
+        
+        // Initial update
+        updateImagePositions();
+    }
+
     // Start animations when page loads
     animateOnLoad();
     
