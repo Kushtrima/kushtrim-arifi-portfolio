@@ -381,6 +381,44 @@
     object-fit: contain;
 }
 
+/* Stplaner Image Scroll Reveal Effect - Scroll Linked */
+.project-image-section .stplaner-image-reveal {
+    position: relative;
+    overflow: hidden;
+    will-change: transform, opacity;
+    margin-bottom: 40px;
+    border-radius: 29px; /* More rounded corners */
+    background: #212121; /* Match background to prevent white space */
+}
+
+.project-image-section .stplaner-image-reveal:last-child {
+    margin-bottom: 0;
+}
+
+/* Subtle transparency gradient at top of image as it scrolls */
+.project-image-section .stplaner-image-reveal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: linear-gradient(to bottom, rgba(33, 33, 33, 0.3), transparent);
+    pointer-events: none;
+    z-index: 2;
+    opacity: var(--gradient-opacity, 0); /* Controlled by JavaScript with delay */
+    transition: opacity 0.3s ease;
+    border-radius: 29px 29px 0 0; /* Match rounded corners on top */
+}
+
+.project-image-section .stplaner-image-reveal img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Show images naturally in full */
+    border-radius: 29px; /* More rounded corners to match image */
+}
+
 /* Main Image Carousel */
 .project-main-image-carousel {
     position: relative;
@@ -1050,6 +1088,18 @@
         transform-origin: center center !important;
     }
     
+    /* Stplaner images - override fixed heights for natural display */
+    .project-image-section .stplaner-image-reveal {
+        height: auto !important;
+        min-height: auto !important;
+        margin-bottom: 25px !important;
+    }
+    
+    .project-image-section .stplaner-image-reveal img {
+        height: auto !important;
+        transform: none !important;
+    }
+    
     /* First description section - proper spacing from image */
     .project-description-section:first-of-type {
         margin-bottom: 40px !important;
@@ -1363,14 +1413,22 @@
     }
 
     .project-info-middle {
-        display: flex;
-        flex-direction: column;
-        gap: 50px;
-        height: auto;
+        display: contents; /* Unwrap so children become grid items */
     }
 
+    /* Year stays in right column, top */
+    .project-info-year {
+        grid-column: 2; /* Right column */
+        grid-row: 1; /* Top row */
+        align-self: start;
+    }
+
+    /* Stack moves to right column, SAME horizontal line as Location */
     .project-info-stack {
-        align-self: flex-start;
+        grid-column: 2; /* Right column */
+        grid-row: 1; /* Start at same row */
+        align-self: end; /* Align to bottom to match Location's position */
+        margin-top: 100px; /* Match Location's position from top */
     }
 
     .project-info-label {
@@ -1383,6 +1441,22 @@
 
     .project-description-text {
         font-size: 16px;
+    }
+    
+    /* Stplaner images on mobile - same effect as desktop */
+    .project-image-section .stplaner-image-reveal {
+        margin-bottom: 30px; /* Close to each other like desktop */
+        border-radius: 20px; /* Slightly smaller radius for mobile */
+    }
+    
+    .project-image-section .stplaner-image-reveal::before {
+        border-radius: 20px 20px 0 0;
+    }
+    
+    .project-image-section .stplaner-image-reveal img {
+        border-radius: 20px;
+        height: auto;
+        object-fit: contain; /* Show naturally in full */
     }
 }
 
