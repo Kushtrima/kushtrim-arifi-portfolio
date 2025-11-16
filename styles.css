@@ -2218,6 +2218,7 @@ button:hover {
 }
 
 .text-reveal-wrapper h1,
+.text-reveal-wrapper h2,
 .text-reveal-wrapper p,
 .text-reveal-wrapper .work-page-line {
     transform: translateY(100%);
@@ -2225,6 +2226,7 @@ button:hover {
 }
 
 .text-reveal-wrapper.revealed h1,
+.text-reveal-wrapper.revealed h2,
 .text-reveal-wrapper.revealed p,
 .text-reveal-wrapper.revealed .work-page-line {
     transform: translateY(0);

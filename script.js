@@ -61,24 +61,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const revealElements = document.querySelectorAll('.text-reveal-wrapper, .work-item, .project-detail-item, .project-description-section, .project-gallery-item');
     
     const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
+        entries.forEach((entry) => {
             if (entry.isIntersecting && !entry.target.classList.contains('revealed')) {
-                setTimeout(() => {
-                    entry.target.classList.add('revealed');
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }, index * 100);
+                // Animate immediately when entering viewport
+                entry.target.classList.add('revealed');
+                entry.target.style.setProperty('opacity', '1', 'important');
+                entry.target.style.setProperty('transform', 'translateY(0)', 'important');
             }
         });
     }, {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px 0px -100px 0px'
     });
     
     revealElements.forEach(element => {
-        // Set initial state for animation
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(30px)';
+        // Set initial state for animation - force with !important
+        element.style.setProperty('opacity', '0', 'important');
+        element.style.setProperty('transform', 'translateY(30px)', 'important');
         element.style.transition = 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
         revealObserver.observe(element);
     });
@@ -339,24 +338,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Work page text reveal animation
-    const workPageWrappers = document.querySelectorAll('.work-page-section .text-reveal-wrapper');
+    // Exclude gallery section title so it animates like other text via the generic observer
+    // Use the generic revealObserver for all text; only handle gallery items here
+    const workPageWrappers = []; // No special text handling to ensure consistent reveal
     const workGallery = document.querySelector('.work-gallery');
     
     const workPageObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Staggered animation for text wrappers
-                workPageWrappers.forEach((wrapper, index) => {
-                    setTimeout(() => {
-                        wrapper.classList.add('revealed');
-                    }, index * 200); // 200ms delay between each element
-                });
-                
-                // Animate gallery elements
                 if (workGallery) {
                     const galleryItems = workGallery.querySelectorAll('.gallery-item');
-                    
-                    // Animate gallery items
                     galleryItems.forEach((item, index) => {
                         setTimeout(() => {
                             item.style.opacity = '1';
@@ -366,15 +357,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
-    }, {
-        threshold: 0.1
-    });
+    }, { threshold: 0.1 });
     
-    // Observe work page section
+    // Observe work page section (for gallery items only)
     const workPageSection = document.querySelector('.work-page-section');
-    if (workPageSection) {
-        workPageObserver.observe(workPageSection);
-    }
+    if (workPageSection) workPageObserver.observe(workPageSection);
 
     // Gallery item click functionality - Direct navigation
     const galleryItems = document.querySelectorAll('.gallery-item');
@@ -1394,6 +1381,164 @@ document.addEventListener('DOMContentLoaded', function() {
         updateImagePositions();
     }
 
+    // Doratec Image Scroll-Linked Reveal - Same effect as Monun/Stplaner
+    const doratecImages = document.querySelectorAll('.doratec-image-reveal');
+    
+    if (doratecImages.length > 0) {
+        let ticking = false;
+        const isMobile = window.innerWidth <= 768;
+        
+        function updateDoratecPositions() {
+            const windowHeight = window.innerHeight;
+            const scrollY = window.scrollY;
+            const viewportCenter = windowHeight / 2;
+            
+            doratecImages.forEach((image) => {
+                const rect = image.getBoundingClientRect();
+                const imageTop = rect.top;
+                const imageBottom = rect.bottom;
+                const imageCenter = imageTop + (rect.height / 2);
+                
+                if (isMobile) {
+                    const distanceFromCenter = Math.abs(imageCenter - viewportCenter);
+                    const fadeZone = windowHeight * 0.3;
+                    let opacity = 1;
+                    if (distanceFromCenter > fadeZone) {
+                        opacity = 0.3;
+                    } else {
+                        opacity = 1 - (distanceFromCenter / fadeZone) * 0.7;
+                    }
+                    image.style.opacity = opacity;
+                    image.style.transform = 'translateY(0) scale(1)';
+                    image.style.setProperty('--gradient-opacity', 0);
+                } else {
+                    const imageAbsoluteTop = scrollY + imageTop;
+                    const animationDistance = windowHeight * 0.15;
+                    const animationStart = imageAbsoluteTop - animationDistance - (windowHeight * 0.4);
+                    const animationEnd = imageAbsoluteTop + animationDistance;
+                    let progress = 0;
+                    if (scrollY < animationStart) {
+                        progress = 0;
+                    } else if (scrollY >= animationStart && scrollY < animationEnd) {
+                        progress = (scrollY - animationStart) / (animationEnd - animationStart);
+                        progress = Math.min(Math.max(progress, 0), 1);
+                    } else {
+                        progress = 1;
+                    }
+                    const imageBottomPos = imageTop + rect.height;
+                    const imageInFullView = imageTop >= scrollY && imageBottomPos <= (scrollY + windowHeight);
+                    const imageCenterY = imageTop + (rect.height / 2);
+                    const viewportCenterY = scrollY + (windowHeight / 2);
+                    const isNearCenter = Math.abs(imageCenterY - viewportCenterY) < windowHeight * 0.3;
+                    if ((imageInFullView || isNearCenter) && progress > 0.5) {
+                        progress = 1;
+                    }
+                    const easedProgress = progress * progress * (3 - 2 * progress);
+                    const translateY = (1 - easedProgress) * 80;
+                    const opacity = easedProgress;
+                    let gradientOpacity = 0;
+                    if (easedProgress >= 0.5) {
+                        if (imageTop < -200) {
+                            const distanceOutOfView = Math.abs(imageTop) - 200;
+                            const fadeDistance = 300;
+                            gradientOpacity = Math.min(distanceOutOfView / fadeDistance, 1);
+                        }
+                    }
+                    const gradientOpacityClamped = Math.min(Math.max(gradientOpacity, 0), 1);
+                    image.style.transform = `translateY(${translateY}px) scale(1)`;
+                    image.style.opacity = opacity;
+                    image.style.setProperty('--gradient-opacity', gradientOpacityClamped);
+                }
+            });
+            
+            ticking = false;
+        }
+        
+        function requestDoratecTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateDoratecPositions);
+                ticking = true;
+            }
+        }
+        
+        doratecImages.forEach((image) => {
+            image.style.transform = 'translateY(80px) scale(1)';
+            image.style.opacity = '0';
+        });
+        
+        window.addEventListener('scroll', requestDoratecTick, { passive: true });
+        window.addEventListener('resize', requestDoratecTick);
+        updateDoratecPositions();
+    }
+
+    // Spitex Image Scroll-Linked Reveal - Same effect
+    const spitexImages = document.querySelectorAll('.spitex-image-reveal');
+    if (spitexImages.length > 0) {
+        let ticking = false;
+        const isMobile = window.innerWidth <= 768;
+        function updateSpitexPositions() {
+            const windowHeight = window.innerHeight;
+            const scrollY = window.scrollY;
+            const viewportCenter = windowHeight / 2;
+            spitexImages.forEach((image) => {
+                const rect = image.getBoundingClientRect();
+                const imageTop = rect.top;
+                const imageCenter = imageTop + (rect.height / 2);
+                if (isMobile) {
+                    const distanceFromCenter = Math.abs(imageCenter - viewportCenter);
+                    const fadeZone = windowHeight * 0.3;
+                    let opacity = 1;
+                    if (distanceFromCenter > fadeZone) {
+                        opacity = 0.3;
+                    } else {
+                        opacity = 1 - (distanceFromCenter / fadeZone) * 0.7;
+                    }
+                    image.style.opacity = opacity;
+                    image.style.transform = 'translateY(0) scale(1)';
+                    image.style.setProperty('--gradient-opacity', 0);
+                } else {
+                    const imageAbsoluteTop = scrollY + imageTop;
+                    const animationDistance = windowHeight * 0.15;
+                    const animationStart = imageAbsoluteTop - animationDistance - (windowHeight * 0.4);
+                    const animationEnd = imageAbsoluteTop + animationDistance;
+                    let progress = 0;
+                    if (scrollY < animationStart) {
+                        progress = 0;
+                    } else if (scrollY >= animationStart && scrollY < animationEnd) {
+                        progress = (scrollY - animationStart) / (animationEnd - animationStart);
+                        progress = Math.min(Math.max(progress, 0), 1);
+                    } else {
+                        progress = 1;
+                    }
+                    const eased = progress * progress * (3 - 2 * progress);
+                    const translateY = (1 - eased) * 80;
+                    let gradientOpacity = 0;
+                    if (eased >= 0.5 && imageTop < -200) {
+                        const distanceOutOfView = Math.abs(imageTop) - 200;
+                        const fadeDistance = 300;
+                        gradientOpacity = Math.min(distanceOutOfView / fadeDistance, 1);
+                    }
+                    image.style.transform = `translateY(${translateY}px) scale(1)`;
+                    image.style.opacity = eased;
+                    image.style.setProperty('--gradient-opacity', Math.min(Math.max(gradientOpacity, 0), 1));
+                }
+            });
+            ticking = false;
+        }
+        function requestSpitexTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateSpitexPositions);
+                ticking = true;
+            }
+        }
+        spitexImages.forEach((image) => {
+            image.style.transform = 'translateY(80px) scale(1)';
+            image.style.opacity = '0';
+        });
+        window.addEventListener('scroll', requestSpitexTick, { passive: true });
+        window.addEventListener('resize', requestSpitexTick);
+        updateSpitexPositions();
+    }
     // Start animations when page loads
     animateOnLoad();
     

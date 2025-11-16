@@ -7,6 +7,7 @@
 
 /* All direct children and nested elements start hidden with opacity */
 .text-reveal-wrapper > h1,
+.text-reveal-wrapper > h2,
 .text-reveal-wrapper > h3,
 .text-reveal-wrapper > p,
 .text-reveal-wrapper > span,
@@ -35,6 +36,7 @@
 
 /* When revealed, all direct children and nested elements appear */
 .text-reveal-wrapper.revealed > h1,
+.text-reveal-wrapper.revealed > h2,
 .text-reveal-wrapper.revealed > h3,
 .text-reveal-wrapper.revealed > p,
 .text-reveal-wrapper.revealed > span,
@@ -459,6 +461,82 @@
     background-color: #8A8A8A; /* Ensure behind transparent pixels is grey */
 }
 
+/* Doratec Image Scroll Reveal Effect - Same as Monun/Stplaner */
+.project-image-section .doratec-image-reveal {
+    position: relative;
+    overflow: hidden;
+    will-change: transform, opacity;
+    margin-bottom: 40px;
+    border-radius: 22px; /* Desktop radius */
+    background: #8A8A8A; /* Grey to avoid white bleed */
+}
+
+.project-image-section .doratec-image-reveal:last-child {
+    margin-bottom: 0;
+}
+
+/* Subtle transparency gradient at top of image as it scrolls */
+.project-image-section .doratec-image-reveal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: linear-gradient(to bottom, rgba(138, 138, 138, 0.3), transparent);
+    pointer-events: none;
+    z-index: 2;
+    opacity: var(--gradient-opacity, 0);
+    transition: opacity 0.3s ease;
+    border-radius: 22px 22px 0 0;
+}
+
+.project-image-section .doratec-image-reveal img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 22px;
+    background-color: #8A8A8A;
+}
+
+/* Spitex Image Scroll Reveal Effect - Same as others */
+.project-image-section .spitex-image-reveal {
+    position: relative;
+    overflow: hidden;
+    will-change: transform, opacity;
+    margin-bottom: 40px;
+    border-radius: 22px;
+    background: #8A8A8A;
+}
+
+.project-image-section .spitex-image-reveal:last-child {
+    margin-bottom: 0;
+}
+
+.project-image-section .spitex-image-reveal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: linear-gradient(to bottom, rgba(138, 138, 138, 0.3), transparent);
+    pointer-events: none;
+    z-index: 2;
+    opacity: var(--gradient-opacity, 0);
+    transition: opacity 0.3s ease;
+    border-radius: 22px 22px 0 0;
+}
+
+.project-image-section .spitex-image-reveal img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 22px;
+    background-color: #8A8A8A;
+}
 /* Main Image Carousel */
 .project-main-image-carousel {
     position: relative;
@@ -1525,6 +1603,38 @@
         border-radius: 12px;
         height: auto;
         object-fit: contain; /* Show naturally in full */
+    }
+    
+    /* Doratec images on mobile - same effect */
+    .project-image-section .doratec-image-reveal {
+        margin-bottom: 30px;
+        border-radius: 12px;
+    }
+    
+    .project-image-section .doratec-image-reveal::before {
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .project-image-section .doratec-image-reveal img {
+        border-radius: 12px;
+        height: auto;
+        object-fit: contain;
+    }
+    
+    /* Spitex images on mobile */
+    .project-image-section .spitex-image-reveal {
+        margin-bottom: 30px;
+        border-radius: 12px;
+    }
+    
+    .project-image-section .spitex-image-reveal::before {
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .project-image-section .spitex-image-reveal img {
+        border-radius: 12px;
+        height: auto;
+        object-fit: contain;
     }
 }
 
