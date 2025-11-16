@@ -387,8 +387,8 @@
     overflow: hidden;
     will-change: transform, opacity;
     margin-bottom: 40px;
-    border-radius: 29px; /* More rounded corners */
-    background: #212121; /* Match background to prevent white space */
+    border-radius: 22px; /* Adjusted desktop radius */
+    background: #8A8A8A; /* Updated to requested grey to avoid white bleed */
 }
 
 .project-image-section .stplaner-image-reveal:last-child {
@@ -403,12 +403,12 @@
     left: 0;
     right: 0;
     height: 150px;
-    background: linear-gradient(to bottom, rgba(33, 33, 33, 0.3), transparent);
+    background: linear-gradient(to bottom, rgba(138, 138, 138, 0.3), transparent); /* Match grey tone */
     pointer-events: none;
     z-index: 2;
     opacity: var(--gradient-opacity, 0); /* Controlled by JavaScript with delay */
     transition: opacity 0.3s ease;
-    border-radius: 29px 29px 0 0; /* Match rounded corners on top */
+    border-radius: 22px 22px 0 0; /* Match desktop rounded corners on top */
 }
 
 .project-image-section .stplaner-image-reveal img {
@@ -416,7 +416,8 @@
     width: 100%;
     height: auto;
     object-fit: contain; /* Show images naturally in full */
-    border-radius: 29px; /* More rounded corners to match image */
+    border-radius: 22px; /* Match desktop rounded corners */
+    background-color: #8A8A8A; /* Ensure behind transparent pixels is grey */
 }
 
 /* Monun Image Scroll Reveal Effect - Same as Stplaner */
@@ -425,8 +426,8 @@
     overflow: hidden;
     will-change: transform, opacity;
     margin-bottom: 40px;
-    border-radius: 29px; /* More rounded corners */
-    background: #212121; /* Match background to prevent white space */
+    border-radius: 22px; /* Adjusted desktop radius */
+    background: #8A8A8A; /* Updated to requested grey to avoid white bleed */
 }
 
 .project-image-section .monun-image-reveal:last-child {
@@ -441,12 +442,12 @@
     left: 0;
     right: 0;
     height: 150px;
-    background: linear-gradient(to bottom, rgba(33, 33, 33, 0.3), transparent);
+    background: linear-gradient(to bottom, rgba(138, 138, 138, 0.3), transparent); /* Match grey tone */
     pointer-events: none;
     z-index: 2;
     opacity: var(--gradient-opacity, 0); /* Controlled by JavaScript with delay */
     transition: opacity 0.3s ease;
-    border-radius: 29px 29px 0 0; /* Match rounded corners on top */
+    border-radius: 22px 22px 0 0; /* Match desktop rounded corners on top */
 }
 
 .project-image-section .monun-image-reveal img {
@@ -454,7 +455,8 @@
     width: 100%;
     height: auto;
     object-fit: contain; /* Show images naturally in full */
-    border-radius: 29px; /* More rounded corners to match image */
+    border-radius: 22px; /* Match desktop rounded corners */
+    background-color: #8A8A8A; /* Ensure behind transparent pixels is grey */
 }
 
 /* Main Image Carousel */
@@ -1496,15 +1498,15 @@
     /* Stplaner images on mobile - same effect as desktop */
     .project-image-section .stplaner-image-reveal {
         margin-bottom: 30px; /* Close to each other like desktop */
-        border-radius: 20px; /* Slightly smaller radius for mobile */
+        border-radius: 12px; /* Reduced radius for mobile */
     }
     
     .project-image-section .stplaner-image-reveal::before {
-        border-radius: 20px 20px 0 0;
+        border-radius: 12px 12px 0 0;
     }
     
     .project-image-section .stplaner-image-reveal img {
-        border-radius: 20px;
+        border-radius: 12px;
         height: auto;
         object-fit: contain; /* Show naturally in full */
     }
@@ -1512,15 +1514,15 @@
     /* Monun images on mobile - same effect as Stplaner */
     .project-image-section .monun-image-reveal {
         margin-bottom: 30px; /* Close to each other like desktop */
-        border-radius: 20px; /* Slightly smaller radius for mobile */
+        border-radius: 12px; /* Reduced radius for mobile */
     }
     
     .project-image-section .monun-image-reveal::before {
-        border-radius: 20px 20px 0 0;
+        border-radius: 12px 12px 0 0;
     }
     
     .project-image-section .monun-image-reveal img {
-        border-radius: 20px;
+        border-radius: 12px;
         height: auto;
         object-fit: contain; /* Show naturally in full */
     }
