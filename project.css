@@ -6,13 +6,13 @@
 }
 
 /* All direct children and nested elements start hidden with opacity */
-.text-reveal-wrapper > h1,
-.text-reveal-wrapper > h2,
-.text-reveal-wrapper > h3,
-.text-reveal-wrapper > p,
-.text-reveal-wrapper > span,
-.text-reveal-wrapper > a,
-.text-reveal-wrapper > div,
+.text-reveal-wrapper>h1,
+.text-reveal-wrapper>h2,
+.text-reveal-wrapper>h3,
+.text-reveal-wrapper>p,
+.text-reveal-wrapper>span,
+.text-reveal-wrapper>a,
+.text-reveal-wrapper>div,
 .text-reveal-wrapper div p,
 .text-reveal-wrapper div.project-detail-text {
     opacity: 0 !important;
@@ -21,27 +21,27 @@
 }
 
 /* Specific display settings */
-.text-reveal-wrapper > span,
-.text-reveal-wrapper > a {
+.text-reveal-wrapper>span,
+.text-reveal-wrapper>a {
     display: inline-block;
 }
 
-.text-reveal-wrapper > p,
-.text-reveal-wrapper > h1,
-.text-reveal-wrapper > h3,
-.text-reveal-wrapper > div,
+.text-reveal-wrapper>p,
+.text-reveal-wrapper>h1,
+.text-reveal-wrapper>h3,
+.text-reveal-wrapper>div,
 .text-reveal-wrapper div p {
     display: block;
 }
 
 /* When revealed, all direct children and nested elements appear */
-.text-reveal-wrapper.revealed > h1,
-.text-reveal-wrapper.revealed > h2,
-.text-reveal-wrapper.revealed > h3,
-.text-reveal-wrapper.revealed > p,
-.text-reveal-wrapper.revealed > span,
-.text-reveal-wrapper.revealed > a,
-.text-reveal-wrapper.revealed > div,
+.text-reveal-wrapper.revealed>h1,
+.text-reveal-wrapper.revealed>h2,
+.text-reveal-wrapper.revealed>h3,
+.text-reveal-wrapper.revealed>p,
+.text-reveal-wrapper.revealed>span,
+.text-reveal-wrapper.revealed>a,
+.text-reveal-wrapper.revealed>div,
 .text-reveal-wrapper.revealed div p,
 .text-reveal-wrapper.revealed div.project-detail-text {
     opacity: 1 !important;
@@ -52,12 +52,17 @@
     background-color: #212121;
     color: #ffffff;
     transition: background-color 1.5s ease-in-out;
+    overflow-x: clip;
+    /* Replaces hidden to allow sticky while still preventing horizontal scroll */
+    overflow-y: visible;
 }
 
 .project-main {
     padding-top: 80px;
     min-height: 100vh;
-    overflow-x: hidden;
+    /* overflow-x: hidden; Removed to allow sticky positioning to work correctly */
+    overflow: visible !important;
+    /* Force visibility for sticky */
     position: relative;
 }
 
@@ -250,7 +255,7 @@
     opacity: 0;
     transform: translateX(-50px) rotate(-2deg);
     transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .project-diagonal-block:nth-child(even) .project-diagonal-image {
@@ -309,7 +314,7 @@
     opacity: 0;
     transform: translateX(30px);
     transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s,
-                transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
+        transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
 }
 
 .project-diagonal-block:nth-child(even) .project-diagonal-text {
@@ -364,8 +369,10 @@
 .project-image-section {
     width: 100%;
     margin-bottom: 80px;
-    overflow: visible;
-    position: relative;
+    overflow: visible !important;
+    /* Critical for sticky to work */
+    position: static;
+    /* Changed from relative to allow sticky to work */
 }
 
 .project-image-section .project-main-image {
@@ -389,8 +396,10 @@
     overflow: hidden;
     will-change: transform, opacity;
     margin-bottom: 40px;
-    border-radius: 22px; /* Adjusted desktop radius */
-    background: #8A8A8A; /* Updated to requested grey to avoid white bleed */
+    border-radius: 8px;
+    /* Adjusted desktop radius */
+    background: #8A8A8A;
+    /* Updated to requested grey to avoid white bleed */
 }
 
 .project-image-section .stplaner-image-reveal:last-child {
@@ -405,21 +414,133 @@
     left: 0;
     right: 0;
     height: 150px;
-    background: linear-gradient(to bottom, rgba(138, 138, 138, 0.3), transparent); /* Match grey tone */
+    background: linear-gradient(to bottom, rgba(138, 138, 138, 0.3), transparent);
+    /* Match grey tone */
     pointer-events: none;
     z-index: 2;
-    opacity: var(--gradient-opacity, 0); /* Controlled by JavaScript with delay */
+    opacity: var(--gradient-opacity, 0);
+    /* Controlled by JavaScript with delay */
     transition: opacity 0.3s ease;
-    border-radius: 22px 22px 0 0; /* Match desktop rounded corners on top */
+    border-radius: 8px 8px 0 0;
+    /* Match desktop rounded corners on top */
 }
 
 .project-image-section .stplaner-image-reveal img {
     display: block;
     width: 100%;
     height: auto;
-    object-fit: contain; /* Show images naturally in full */
-    border-radius: 22px; /* Match desktop rounded corners */
-    background-color: #8A8A8A; /* Ensure behind transparent pixels is grey */
+    object-fit: contain;
+    /* Show images naturally in full */
+    border-radius: 8px;
+    /* Match desktop rounded corners */
+    background-color: #8A8A8A;
+    /* Ensure behind transparent pixels is grey */
+}
+
+/* Stplaner First Image - Full Width */
+/* Stplaner First Image - Full Width */
+.project-image-section .stplaner-first-image {
+    width: 100%;
+    margin-bottom: 40px;
+    /* Reduced from 80px to match Monun/others standard spacing */
+}
+
+/* Rounded Corners for Logo Pages */
+.project-rounded-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.project-rounded-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Shared Project Gallery Layout */
+.project-gallery-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 60px;
+    align-items: start;
+    margin-bottom: 80px;
+}
+
+.project-gallery-text {
+    align-self: start;
+    position: sticky;
+    top: 120px;
+    /* Adjust based on header height */
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    z-index: 100;
+    height: fit-content;
+}
+
+.project-gallery-title {
+    font-family: 'Times New Roman', serif;
+    font-size: 40px;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1.1;
+    margin: 0 0 12px 0;
+    letter-spacing: -1px;
+}
+
+.project-gallery-quote {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    max-width: 400px;
+}
+
+.project-gallery-images {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Stplaner Gallery Layout - Two Column */
+.stplaner-gallery-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 60px;
+    align-items: start;
+    margin-bottom: 80px;
+}
+
+/* Text Column - Left Side (Sticky) */
+.stplaner-gallery-text {
+    align-self: start;
+    position: sticky;
+    top: 120px;
+    /* Adjust based on header height */
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    z-index: 100;
+    /* High z-index to stay on top */
+    height: fit-content;
+    /* Ensure it doesn't expand to full height */
+}
+
+.stplaner-info-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.stplaner-info-label {
+    font-family: 'Times New Roman', serif;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 5px;
 }
 
 /* Monun Image Scroll Reveal Effect - Same as Stplaner */
@@ -428,8 +549,10 @@
     overflow: hidden;
     will-change: transform, opacity;
     margin-bottom: 40px;
-    border-radius: 22px; /* Adjusted desktop radius */
-    background: #8A8A8A; /* Updated to requested grey to avoid white bleed */
+    border-radius: 8px;
+    /* Adjusted desktop radius */
+    background: #8A8A8A;
+    /* Updated to requested grey to avoid white bleed */
 }
 
 .project-image-section .monun-image-reveal:last-child {
@@ -444,21 +567,27 @@
     left: 0;
     right: 0;
     height: 150px;
-    background: linear-gradient(to bottom, rgba(138, 138, 138, 0.3), transparent); /* Match grey tone */
+    background: linear-gradient(to bottom, rgba(138, 138, 138, 0.3), transparent);
+    /* Match grey tone */
     pointer-events: none;
     z-index: 2;
-    opacity: var(--gradient-opacity, 0); /* Controlled by JavaScript with delay */
+    opacity: var(--gradient-opacity, 0);
+    /* Controlled by JavaScript with delay */
     transition: opacity 0.3s ease;
-    border-radius: 22px 22px 0 0; /* Match desktop rounded corners on top */
+    border-radius: 8px 8px 0 0;
+    /* Match desktop rounded corners on top */
 }
 
 .project-image-section .monun-image-reveal img {
     display: block;
     width: 100%;
     height: auto;
-    object-fit: contain; /* Show images naturally in full */
-    border-radius: 22px; /* Match desktop rounded corners */
-    background-color: #8A8A8A; /* Ensure behind transparent pixels is grey */
+    object-fit: contain;
+    /* Show images naturally in full */
+    border-radius: 8px;
+    /* Match desktop rounded corners */
+    background-color: #8A8A8A;
+    /* Ensure behind transparent pixels is grey */
 }
 
 /* Doratec Image Scroll Reveal Effect - Same as Monun/Stplaner */
@@ -467,8 +596,10 @@
     overflow: hidden;
     will-change: transform, opacity;
     margin-bottom: 40px;
-    border-radius: 22px; /* Desktop radius */
-    background: #8A8A8A; /* Grey to avoid white bleed */
+    border-radius: 8px;
+    /* Desktop radius */
+    background: #8A8A8A;
+    /* Grey to avoid white bleed */
 }
 
 .project-image-section .doratec-image-reveal:last-child {
@@ -488,7 +619,7 @@
     z-index: 2;
     opacity: var(--gradient-opacity, 0);
     transition: opacity 0.3s ease;
-    border-radius: 22px 22px 0 0;
+    border-radius: 8px 8px 0 0;
 }
 
 .project-image-section .doratec-image-reveal img {
@@ -496,7 +627,176 @@
     width: 100%;
     height: auto;
     object-fit: contain;
-    border-radius: 22px;
+    border-radius: 8px;
+    background-color: #8A8A8A;
+}
+
+/* Jetonikeramika Image Scroll Reveal Effect - Same as others */
+.project-image-section .jetonikeramika-image-reveal {
+    position: relative;
+    overflow: hidden;
+    will-change: transform, opacity;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    /* Desktop radius */
+    background: #8A8A8A;
+    /* Grey to avoid white bleed */
+}
+
+.project-image-section .jetonikeramika-image-reveal:last-child {
+    margin-bottom: 0;
+}
+
+/* Subtle transparency gradient at top of image as it scrolls */
+.project-image-section .jetonikeramika-image-reveal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: linear-gradient(to bottom, rgba(138, 138, 138, 0.3), transparent);
+    pointer-events: none;
+    z-index: 2;
+    opacity: var(--gradient-opacity, 0);
+    transition: opacity 0.3s ease;
+    border-radius: 8px 8px 0 0;
+}
+
+.project-image-section .jetonikeramika-image-reveal img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    background-color: #8A8A8A;
+}
+
+/* Jetonikeramika Specific: Dark Grey Outline on Gallery Images (Main image excluded) */
+.project-gallery-images .jetonikeramika-image-reveal img {
+    border: 1px solid #555555;
+}
+
+/* Mardal Image Scroll Reveal Effect - Same as others */
+.project-image-section .mardal-image-reveal {
+    position: relative;
+    overflow: hidden;
+    will-change: transform, opacity;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    /* Desktop radius */
+    background: #8A8A8A;
+    /* Grey to avoid white bleed */
+}
+
+.project-image-section .mardal-image-reveal:last-child {
+    margin-bottom: 0;
+}
+
+/* Subtle transparency gradient at top of image as it scrolls */
+.project-image-section .mardal-image-reveal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: linear-gradient(to bottom, rgba(138, 138, 138, 0.3), transparent);
+    pointer-events: none;
+    z-index: 2;
+    opacity: var(--gradient-opacity, 0);
+    transition: opacity 0.3s ease;
+    border-radius: 8px 8px 0 0;
+}
+
+.project-image-section .mardal-image-reveal img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    background-color: #8A8A8A;
+}
+
+/* Alba Image Scroll Reveal Effect - Same as others */
+.project-image-section .alba-image-reveal {
+    position: relative;
+    overflow: hidden;
+    will-change: transform, opacity;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    /* Desktop radius */
+    background: #8A8A8A;
+    /* Grey to avoid white bleed */
+}
+
+.project-image-section .alba-image-reveal:last-child {
+    margin-bottom: 0;
+}
+
+/* Subtle transparency gradient at top of image as it scrolls */
+.project-image-section .alba-image-reveal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: linear-gradient(to bottom, rgba(138, 138, 138, 0.3), transparent);
+    pointer-events: none;
+    z-index: 2;
+    opacity: var(--gradient-opacity, 0);
+    transition: opacity 0.3s ease;
+    border-radius: 8px 8px 0 0;
+}
+
+.project-image-section .alba-image-reveal img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    background-color: #8A8A8A;
+}
+
+/* Ennur Image Scroll Reveal Effect - Same as others */
+.project-image-section .ennur-image-reveal {
+    position: relative;
+    overflow: hidden;
+    will-change: transform, opacity;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    /* Desktop radius */
+    background: #8A8A8A;
+    /* Grey to avoid white bleed */
+}
+
+.project-image-section .ennur-image-reveal:last-child {
+    margin-bottom: 0;
+}
+
+/* Subtle transparency gradient at top of image as it scrolls */
+.project-image-section .ennur-image-reveal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: linear-gradient(to bottom, rgba(138, 138, 138, 0.3), transparent);
+    pointer-events: none;
+    z-index: 2;
+    opacity: var(--gradient-opacity, 0);
+    transition: opacity 0.3s ease;
+    border-radius: 8px 8px 0 0;
+}
+
+.project-image-section .ennur-image-reveal img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
     background-color: #8A8A8A;
 }
 
@@ -506,7 +806,7 @@
     overflow: hidden;
     will-change: transform, opacity;
     margin-bottom: 40px;
-    border-radius: 22px;
+    border-radius: 8px;
     background: #8A8A8A;
 }
 
@@ -526,7 +826,7 @@
     z-index: 2;
     opacity: var(--gradient-opacity, 0);
     transition: opacity 0.3s ease;
-    border-radius: 22px 22px 0 0;
+    border-radius: 8px 8px 0 0;
 }
 
 .project-image-section .spitex-image-reveal img {
@@ -534,9 +834,10 @@
     width: 100%;
     height: auto;
     object-fit: contain;
-    border-radius: 22px;
+    border-radius: 8px;
     background-color: #8A8A8A;
 }
+
 /* Main Image Carousel */
 .project-main-image-carousel {
     position: relative;
@@ -658,7 +959,7 @@
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .horizontal-section-item.revealed {
@@ -740,30 +1041,30 @@
         grid-template-columns: 1fr 1fr;
         gap: 50px;
     }
-    
+
     .project-details-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 40px 60px;
         align-items: start;
     }
-    
+
     .project-detail-item {
         display: flex;
         flex-direction: column;
     }
-    
+
     .project-detail-item:nth-child(1),
     .project-detail-item:nth-child(3) {
         justify-self: start;
         text-align: left;
     }
-    
+
     .project-detail-item:nth-child(2),
     .project-detail-item:nth-child(4) {
         justify-self: end;
         text-align: right;
     }
-    
+
     .project-details-section {
         margin: 0px 0 60px 0;
     }
@@ -978,49 +1279,49 @@
     .project-diagonal-layout {
         gap: 120px;
     }
-    
+
     .project-diagonal-block {
         grid-template-columns: 1fr;
         gap: 60px;
     }
-    
+
     .project-diagonal-block:nth-child(even) .project-diagonal-image {
         order: 1;
     }
-    
+
     .project-diagonal-block:nth-child(even) .project-diagonal-text {
         order: 2;
     }
-    
+
     .project-diagonal-image {
         transform: translateY(40px) rotate(0deg) !important;
     }
-    
+
     .project-diagonal-block:nth-child(even) .project-diagonal-image {
         transform: translateY(40px) rotate(0deg) !important;
     }
-    
+
     .project-diagonal-block.revealed .project-diagonal-image {
         transform: translateY(0) rotate(0deg) !important;
     }
-    
+
     .project-diagonal-text {
         transform: translateY(30px) !important;
     }
-    
+
     .project-diagonal-block:nth-child(even) .project-diagonal-text {
         transform: translateY(30px) !important;
     }
-    
+
     .project-diagonal-block.revealed .project-diagonal-text {
         transform: translateY(0) !important;
     }
-    
+
     .project-diagonal-text.text-left,
     .project-diagonal-text.text-right {
         text-align: left;
     }
-    
+
 }
 
 /* Mobile Responsive */
@@ -1041,14 +1342,14 @@
         align-items: stretch;
         padding: 5px 0 10px 0 !important;
     }
-    
+
     .carousel-slides {
         gap: 16px;
         min-height: auto;
         height: auto;
         padding: 0 !important;
     }
-    
+
     .carousel-slide {
         flex: 0 0 90vw;
         width: 90vw;
@@ -1062,7 +1363,7 @@
         padding: 0 !important;
         margin: 0 !important;
     }
-    
+
     .carousel-slide img {
         object-fit: contain !important;
         width: 100% !important;
@@ -1072,7 +1373,7 @@
         transform: none !important;
         transform-origin: center center !important;
     }
-    
+
     .carousel-dots {
         bottom: 20px;
         gap: 8px;
@@ -1081,100 +1382,101 @@
         left: 50%;
         transform: translateX(-50%);
     }
-    
+
     .dot {
         width: 10px;
         height: 10px;
         cursor: pointer;
         touch-action: manipulation;
     }
-    
+
     .project-gallery-horizontal .work-image img,
     .project-gallery-side-by-side .work-image img {
         object-fit: contain;
     }
+
     .project-title {
         font-size: 60px;
         letter-spacing: -2px;
         margin: 0;
         padding: 0;
     }
-    
+
     .project-hero {
         padding: 40px 0 60px 0;
     }
-    
+
     .project-header-content {
         margin-bottom: 50px;
     }
-    
+
     .project-title-section {
         margin-bottom: 40px;
         margin-left: -10px;
         padding-left: 0;
     }
-    
+
     .project-meta {
         flex-direction: column;
         align-items: flex-start;
         gap: 15px;
     }
-    
+
     .project-meta-right {
         align-self: flex-end;
         margin-top: -43px;
     }
-    
+
     .project-diagonal-layout {
         gap: 100px;
     }
-    
+
     .project-diagonal-block {
         gap: 50px;
     }
-    
+
     .project-diagonal-text.text-left,
     .project-diagonal-text.text-right {
         text-align: left;
     }
-    
+
     .project-horizontal-sections {
         grid-template-columns: 1fr;
         gap: 30px;
         margin: 60px 0;
     }
-    
+
     .horizontal-section-image {
         aspect-ratio: 16 / 9;
     }
-    
+
     .project-details-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 40px 60px;
         align-items: start;
     }
-    
+
     .project-detail-item {
         display: flex;
         flex-direction: column;
     }
-    
+
     .project-detail-item:nth-child(1),
     .project-detail-item:nth-child(3) {
         justify-self: start;
         text-align: left;
     }
-    
+
     .project-detail-item:nth-child(2),
     .project-detail-item:nth-child(4) {
         justify-self: end;
         text-align: right;
     }
-    
+
     .project-details-section {
         margin: 0px 0 20px 0;
     }
-    
+
     .project-image-section {
         margin-bottom: 40px !important;
         margin-top: 0px !important;
@@ -1182,7 +1484,7 @@
         padding-top: 0 !important;
         padding-bottom: 0 !important;
     }
-    
+
     .project-image-section .project-main-image {
         width: 100%;
         height: 74vh !important;
@@ -1194,7 +1496,7 @@
         margin: 0 !important;
         overflow: hidden;
     }
-    
+
     .project-image-section .project-main-image img {
         object-fit: contain !important;
         width: 100% !important;
@@ -1205,116 +1507,170 @@
         transform: scale(1.43) !important;
         transform-origin: center center !important;
     }
-    
+
     /* Stplaner images - override fixed heights for natural display */
     .project-image-section .stplaner-image-reveal {
         height: auto !important;
         min-height: auto !important;
         margin-bottom: 25px !important;
     }
-    
+
     .project-image-section .stplaner-image-reveal img {
         height: auto !important;
         transform: none !important;
     }
-    
+
     /* Monun images - override fixed heights for natural display */
     .project-image-section .monun-image-reveal {
         height: auto !important;
         min-height: auto !important;
         margin-bottom: 25px !important;
     }
-    
+
     .project-image-section .monun-image-reveal img {
         height: auto !important;
         transform: none !important;
     }
-    
+
+    /* Doratec images - override fixed heights for natural display */
+    .project-image-section .doratec-image-reveal {
+        height: auto !important;
+        min-height: auto !important;
+        margin-bottom: 25px !important;
+    }
+
+    .project-image-section .doratec-image-reveal img {
+        height: auto !important;
+        transform: none !important;
+    }
+
+    /* Spitex images - override fixed heights for natural display */
+    .project-image-section .spitex-image-reveal {
+        height: auto !important;
+        min-height: auto !important;
+        margin-bottom: 25px !important;
+    }
+
+    .project-image-section .spitex-image-reveal img {
+        height: auto !important;
+        transform: none !important;
+    }
+
+    /* Jetonikeramika images - override fixed heights for natural display */
+    .project-image-section .jetonikeramika-image-reveal {
+        height: auto !important;
+        min-height: auto !important;
+        margin-bottom: 25px !important;
+    }
+
+    .project-image-section .jetonikeramika-image-reveal img {
+        height: auto !important;
+        transform: none !important;
+    }
+
+    /* Mardal images - override fixed heights for natural display */
+    .project-image-section .mardal-image-reveal {
+        height: auto !important;
+        min-height: auto !important;
+        margin-bottom: 25px !important;
+    }
+
+    .project-image-section .mardal-image-reveal img {
+        height: auto !important;
+        transform: none !important;
+    }
+
     /* First description section - proper spacing from image */
     .project-description-section:first-of-type {
         margin-bottom: 40px !important;
         margin-top: 40px !important;
     }
-    
+
     /* Specifically target three-column layout - proper spacing */
     .project-three-column {
         margin-top: 40px !important;
     }
-    
+
     /* Subsequent description sections - proper spacing */
-    .project-description-section ~ .project-description-section {
+    .project-description-section~.project-description-section {
         margin-bottom: 40px !important;
         margin-top: 40px !important;
     }
-    
+
     .project-description-text p {
-        margin-bottom: 24px !important; /* Increased spacing between paragraphs on mobile */
-        line-height: 1.4 !important; /* Reduced line height for tighter spacing */
+        margin-bottom: 24px !important;
+        /* Increased spacing between paragraphs on mobile */
+        line-height: 1.4 !important;
+        /* Reduced line height for tighter spacing */
     }
-    
+
     .project-description-text p:last-child {
         margin-bottom: 0 !important;
     }
-    
+
     .project-description-grid {
-        gap: 15px !important; /* Closer gap between title and text on mobile */
+        gap: 15px !important;
+        /* Closer gap between title and text on mobile */
     }
-    
+
     .project-detail-title {
-        margin-bottom: 2px !important; /* Reduced gap between title and text on mobile */
+        margin-bottom: 2px !important;
+        /* Reduced gap between title and text on mobile */
     }
-    
+
     .project-three-column-grid {
-        grid-template-columns: 1fr !important; /* Single column layout on mobile */
-        gap: 20px !important; /* Reduced gap for mobile */
+        grid-template-columns: 1fr !important;
+        /* Single column layout on mobile */
+        gap: 20px !important;
+        /* Reduced gap for mobile */
     }
-    
+
     .project-gallery-section {
         margin-bottom: 40px;
     }
-    
+
     .project-gallery-horizontal {
         margin-top: 20px;
     }
-    
+
     .project-gallery-horizontal .work-image {
         width: 100%;
         height: 20vh;
         min-height: 300px;
         max-height: 300px;
     }
-    
+
     .project-gallery-horizontal .work-image:only-child {
         width: 100%;
         height: 40vh;
         min-height: 400px;
         max-height: 500px;
     }
-    
+
     .project-gallery-section .work-image-empty {
         width: 100%;
         height: 20vh;
         min-height: 300px;
         max-height: 300px;
     }
-    
+
     .project-gallery-side-by-side {
         grid-template-columns: 1fr;
         gap: 15px;
     }
-    
+
     .project-gallery-side-by-side .work-image {
         height: 40vh;
         min-height: 400px;
         max-height: 500px;
     }
-    
+
     .project-gallery-section .work-image-empty {
         height: 15vh;
         min-height: 150px;
         max-height: 250px;
     }
-    
+
     .project-gallery-section {
         margin-bottom: 60px;
     }
@@ -1394,9 +1750,7 @@
     align-content: start;
 }
 
-.project-info-left .project-info-item:nth-child(1) {
-    /* Industry - at top */
-}
+
 
 .project-info-left .project-info-item:nth-child(2) {
     /* Service - vertically centered */
@@ -1406,9 +1760,7 @@
     align-items: flex-start;
 }
 
-.project-info-left .project-info-item:nth-child(3) {
-    /* Location - at bottom, aligns with Stack */
-}
+
 
 /* Middle Column: Year (top), Stack (bottom) */
 .project-info-middle {
@@ -1418,9 +1770,7 @@
     height: 100%;
 }
 
-.project-info-year {
-    /* Year at top - aligns with Industry */
-}
+
 
 .project-info-stack {
     /* Stack at bottom - aligns with Location */
@@ -1495,6 +1845,7 @@
 
 /* Mobile Only - 2 columns + description below */
 @media (max-width: 768px) {
+
     /* Mobile Title adjustments */
     .project-title {
         font-size: 60px;
@@ -1543,22 +1894,29 @@
     }
 
     .project-info-middle {
-        display: contents; /* Unwrap so children become grid items */
+        display: contents;
+        /* Unwrap so children become grid items */
     }
 
     /* Year stays in right column, top */
     .project-info-year {
-        grid-column: 2; /* Right column */
-        grid-row: 1; /* Top row */
+        grid-column: 2;
+        /* Right column */
+        grid-row: 1;
+        /* Top row */
         align-self: start;
     }
 
     /* Stack moves to right column, SAME horizontal line as Location */
     .project-info-stack {
-        grid-column: 2; /* Right column */
-        grid-row: 1; /* Start at same row */
-        align-self: end; /* Align to bottom to match Location's position */
-        margin-top: 100px; /* Match Location's position from top */
+        grid-column: 2;
+        /* Right column */
+        grid-row: 1;
+        /* Start at same row */
+        align-self: end;
+        /* Align to bottom to match Location's position */
+        margin-top: 100px;
+        /* Match Location's position from top */
     }
 
     .project-info-label {
@@ -1572,69 +1930,175 @@
     .project-description-text {
         font-size: 16px;
     }
-    
+
     /* Stplaner images on mobile - same effect as desktop */
     .project-image-section .stplaner-image-reveal {
-        margin-bottom: 30px; /* Close to each other like desktop */
-        border-radius: 12px; /* Reduced radius for mobile */
+        margin-bottom: 30px;
+        /* Close to each other like desktop */
+        border-radius: 12px;
+        /* Reduced radius for mobile */
     }
-    
+
     .project-image-section .stplaner-image-reveal::before {
         border-radius: 12px 12px 0 0;
     }
-    
+
     .project-image-section .stplaner-image-reveal img {
         border-radius: 12px;
         height: auto;
-        object-fit: contain; /* Show naturally in full */
+        object-fit: contain;
+        /* Show naturally in full */
     }
-    
+
+    /* Stplaner First Image - Mobile */
+    .project-image-section .stplaner-first-image {
+        margin-bottom: 40px;
+    }
+
+    /* Shared Gallery Layout - Mobile */
+    .project-gallery-layout {
+        grid-template-columns: 1fr;
+        gap: 0;
+        /* Removing gap so text sits directly on top */
+    }
+
+    .project-gallery-text {
+        position: relative;
+        top: auto;
+        z-index: 1;
+        width: 100%;
+        margin: 60px 0 40px 0;
+        /* Added 60px top margin for separation */
+        padding: 0;
+        background: transparent;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    /* Remove the gradient mask pseudo-element */
+    .project-gallery-text::before {
+        display: none;
+        content: none;
+    }
+
+    .project-gallery-title {
+        font-size: 32px;
+        margin-bottom: -5px;
+        /* Negative margin to pull text up very close */
+        line-height: 1;
+    }
+
+    .project-gallery-quote {
+        font-size: 15px;
+        max-width: 100%;
+        margin-bottom: 10px;
+        color: rgba(255, 255, 255, 0.9);
+        /* Slightly brighter for better contrast on mobile */
+    }
+
+    .project-gallery-images {
+        gap: 30px;
+    }
+
     /* Monun images on mobile - same effect as Stplaner */
     .project-image-section .monun-image-reveal {
-        margin-bottom: 30px; /* Close to each other like desktop */
-        border-radius: 12px; /* Reduced radius for mobile */
+        margin-bottom: 30px;
+        /* Close to each other like desktop */
+        border-radius: 12px;
+        /* Reduced radius for mobile */
     }
-    
+
     .project-image-section .monun-image-reveal::before {
         border-radius: 12px 12px 0 0;
     }
-    
+
     .project-image-section .monun-image-reveal img {
         border-radius: 12px;
         height: auto;
-        object-fit: contain; /* Show naturally in full */
+        object-fit: contain;
+        /* Show naturally in full */
     }
-    
+
     /* Doratec images on mobile - same effect */
     .project-image-section .doratec-image-reveal {
         margin-bottom: 30px;
         border-radius: 12px;
     }
-    
+
     .project-image-section .doratec-image-reveal::before {
         border-radius: 12px 12px 0 0;
     }
-    
+
     .project-image-section .doratec-image-reveal img {
         border-radius: 12px;
         height: auto;
         object-fit: contain;
     }
-    
+
     /* Spitex images on mobile */
     .project-image-section .spitex-image-reveal {
         margin-bottom: 30px;
         border-radius: 12px;
     }
-    
+
     .project-image-section .spitex-image-reveal::before {
         border-radius: 12px 12px 0 0;
     }
-    
+
     .project-image-section .spitex-image-reveal img {
         border-radius: 12px;
         height: auto;
         object-fit: contain;
+    }
+
+    /* Jetonikeramika First Image - Mobile */
+    .project-image-section .jetonikeramika-first-image {
+        margin-bottom: 40px;
+    }
+
+    /* Jetonikeramika images on mobile */
+    .project-image-section .jetonikeramika-image-reveal {
+        margin-bottom: 30px;
+        border-radius: 12px;
+    }
+
+    .project-image-section .jetonikeramika-image-reveal::before {
+        border-radius: 12px 12px 0 0;
+    }
+
+    .project-image-section .jetonikeramika-image-reveal img {
+        border-radius: 12px;
+        height: auto;
+        object-fit: contain;
+    }
+
+    /* Mardal First Image - Mobile */
+    .project-image-section .mardal-first-image {
+        margin-bottom: 40px;
+    }
+
+    /* Mardal images on mobile */
+    .project-image-section .mardal-image-reveal {
+        margin-bottom: 30px;
+        border-radius: 12px;
+    }
+
+    .project-image-section .mardal-image-reveal::before {
+        border-radius: 12px 12px 0 0;
+    }
+
+    .project-image-section .mardal-image-reveal img {
+        border-radius: 12px;
+        height: auto;
+        object-fit: contain;
+    }
+
+    /* Standardize First Image Margins for others */
+    .project-image-section .monun-first-image,
+    .project-image-section .doratec-first-image,
+    .project-image-section .spitex-first-image {
+        margin-bottom: 40px;
     }
 }
 
@@ -1675,5 +2139,3 @@
         line-height: 1.7;
     }
 }
-
-

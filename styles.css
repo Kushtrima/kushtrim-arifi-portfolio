@@ -6,22 +6,22 @@
     --color-text: #333333;
     --color-text-light: #666666;
     --color-accent: #f0f0f0;
-    
+
     /* Typography */
     --font-primary: Arial, sans-serif;
     --font-display: 'Times New Roman', serif;
-    
+
     /* Z-Index System */
     --z-header: 1000;
     --z-navigation: 1001;
     --z-hero-elements: 100;
     --z-content: 10;
     --z-background: -2;
-    
+
     /* Spacing */
     --container-max-width: 1200px;
     --container-padding: 20px;
-    
+
     /* Transitions */
     --transition-smooth: 0.8s cubic-bezier(0.01, 0.01, 0.5, 1);
     --transition-fast: 0.3s ease-in-out;
@@ -47,7 +47,8 @@ body {
     max-width: 100vw;
     background-color: var(--color-primary);
     transition: background-color var(--transition-smooth);
-    cursor: none; /* Hide default cursor */
+    cursor: none;
+    /* Hide default cursor */
 }
 
 /* Custom Cursor */
@@ -84,6 +85,7 @@ body {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -97,6 +99,7 @@ body.fade-out {
     from {
         opacity: 1;
     }
+
     to {
         opacity: 0;
     }
@@ -107,7 +110,7 @@ body.fade-out {
     body {
         cursor: auto;
     }
-    
+
     .custom-cursor {
         display: none;
     }
@@ -201,9 +204,9 @@ body.fade-out {
 .resume-button,
 button {
     position: relative;
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                color 0.3s ease,
-                background-color 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        color 0.3s ease,
+        background-color 0.3s ease;
     overflow: hidden;
 }
 
@@ -377,7 +380,8 @@ button:hover {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    height: 100%; /* Full height to allow bottom alignment */
+    height: 100%;
+    /* Full height to allow bottom alignment */
 }
 
 .hero-title-section {
@@ -389,17 +393,20 @@ button:hover {
 /* Title line wrappers with overflow hidden for proper reveal animation */
 .hero-title-line-1-wrapper {
     overflow: hidden;
-    padding-bottom: 15px; /* Give space for descenders */
+    padding-bottom: 15px;
+    /* Give space for descenders */
 }
 
 .hero-title-line-2-wrapper {
     overflow: hidden;
-    padding-bottom: 15px; /* Give space for descenders */
+    padding-bottom: 15px;
+    /* Give space for descenders */
 }
 
 .hero-title-line-3-wrapper {
     overflow: hidden;
-    padding-bottom: 15px; /* Give space for descenders */
+    padding-bottom: 15px;
+    /* Give space for descenders */
 }
 
 .hero-title-line-1 {
@@ -420,8 +427,10 @@ button:hover {
     color: var(--color-primary);
     line-height: 0.9;
     margin: 0;
-    margin-left: 291px; /* Move to the right to accommodate image + 41px more */
-    white-space: nowrap; /* Prevent text breaking */
+    margin-left: 291px;
+    /* Move to the right to accommodate image + 41px more */
+    white-space: nowrap;
+    /* Prevent text breaking */
     transform: translateY(100%);
     transition: transform var(--transition-smooth);
 }
@@ -433,8 +442,10 @@ button:hover {
     color: var(--color-primary);
     line-height: 0.9;
     margin: 0;
-    margin-left: 580px; /* Engineer moved 10px right */
-    white-space: nowrap; /* Prevent text breaking */
+    margin-left: 580px;
+    /* Engineer moved 10px right */
+    white-space: nowrap;
+    /* Prevent text breaking */
     transform: translateY(100%);
     transition: transform var(--transition-smooth);
 }
@@ -449,7 +460,8 @@ button:hover {
     width: 250px;
     height: 250px;
     overflow: hidden;
-    margin-top: -110px; /* Overlap with text - moved up another 40px */
+    margin-top: -110px;
+    /* Overlap with text - moved up another 40px */
 }
 
 .hero-portrait {
@@ -467,8 +479,10 @@ button:hover {
 /* Move name to bottom to align with experience text */
 .hero-name-section {
     overflow: hidden;
-    margin-top: auto; /* Push to bottom */
-    margin-bottom: 56px; /* Add bottom margin to align with "Creating since 2012" - moved down 4px */
+    margin-top: auto;
+    /* Push to bottom */
+    margin-bottom: 56px;
+    /* Add bottom margin to align with "Creating since 2012" - moved down 4px */
 }
 
 .hero-name {
@@ -524,7 +538,8 @@ button:hover {
     color: var(--color-primary);
     transform: translateY(100%);
     transition: transform var(--transition-smooth);
-    white-space: nowrap; /* Prevent wrapping */
+    white-space: nowrap;
+    /* Prevent wrapping */
     z-index: var(--z-hero-elements);
     text-align: right;
     margin: 0;
@@ -563,7 +578,8 @@ button:hover {
     padding: 0;
     transform: translateY(100%);
     transition: transform var(--transition-smooth);
-    white-space: nowrap; /* Prevent wrapping */
+    white-space: nowrap;
+    /* Prevent wrapping */
     z-index: var(--z-hero-elements);
     text-align: right;
 }
@@ -624,7 +640,8 @@ button:hover {
 
 .about-text-wrapper {
     overflow: hidden;
-    height: auto; /* Desktop - natural flow */
+    height: auto;
+    /* Desktop - natural flow */
     margin-bottom: 0px;
 }
 
@@ -773,12 +790,12 @@ button:hover {
     .experience-item {
         align-items: end;
     }
-    
+
     .job-description {
         align-self: end;
         margin-top: 12px;
     }
-    
+
     .job-details {
         align-self: end;
         margin-top: 12px;
@@ -796,18 +813,15 @@ button:hover {
 
 .job-title {
     font-family: var(--font-display);
-    font-size: 38px;
+    font-size: 20px;
     font-weight: 400;
     color: var(--color-primary);
     text-transform: uppercase;
-    letter-spacing: 1 px;
+    letter-spacing: 1px;
     line-height: 1.1;
 }
 
-/* Hide line breaks on desktop - let text flow naturally */
-.job-title br {
-    display: none;
-}
+
 
 .job-description {
     font-family: var(--font-display);
@@ -823,7 +837,7 @@ button:hover {
 .job-details {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 2px;
     text-align: right;
     align-items: flex-end;
     justify-content: flex-start;
@@ -833,17 +847,19 @@ button:hover {
 }
 
 .company {
-    font-family: var(--font-primary);
-    font-size: 14px;
+    font-family: var(--font-display);
+    font-size: 20px;
     font-weight: 400;
     color: var(--color-primary);
+    line-height: 1.1;
 }
 
 .dates {
-    font-family: var(--font-primary);
-    font-size: 14px;
+    font-family: var(--font-display);
+    font-size: 20px;
     font-weight: 400;
     color: var(--color-primary);
+    line-height: 1.1;
 }
 
 /* Medium Desktop Responsive */
@@ -851,38 +867,38 @@ button:hover {
     .hero-content .container {
         max-width: 1000px;
     }
-    
+
     .hero-title-line-1 {
         font-size: 85px;
     }
-    
+
     .hero-title-line-2 {
         font-size: 85px;
         margin-left: 250px;
     }
-    
+
     .hero-title-line-3 {
         font-size: 85px;
         margin-left: 520px;
     }
-    
+
     .hero-image-section {
         width: 220px;
         height: 220px;
     }
-    
+
     .hero-year {
         font-size: 14px;
     }
-    
+
     .hero-name {
         font-size: 14px;
     }
-    
+
     .hero-experience {
         font-size: 14px;
     }
-    
+
     .hero-right {
         min-width: 120px;
     }
@@ -892,38 +908,38 @@ button:hover {
     .hero-content .container {
         max-width: 950px;
     }
-    
+
     .hero-title-line-1 {
         font-size: 80px;
     }
-    
+
     .hero-title-line-2 {
         font-size: 80px;
         margin-left: 235px;
     }
-    
+
     .hero-title-line-3 {
         font-size: 80px;
         margin-left: 490px;
     }
-    
+
     .hero-image-section {
         width: 210px;
         height: 210px;
     }
-    
+
     .hero-year {
         font-size: 13.5px;
     }
-    
+
     .hero-name {
         font-size: 13.5px;
     }
-    
+
     .hero-experience {
         font-size: 13.5px;
     }
-    
+
     .hero-right {
         min-width: 110px;
     }
@@ -933,38 +949,38 @@ button:hover {
     .hero-content .container {
         max-width: 900px;
     }
-    
+
     .hero-title-line-1 {
         font-size: 75px;
     }
-    
+
     .hero-title-line-2 {
         font-size: 75px;
         margin-left: 220px;
     }
-    
+
     .hero-title-line-3 {
         font-size: 75px;
         margin-left: 460px;
     }
-    
+
     .hero-image-section {
         width: 200px;
         height: 200px;
     }
-    
+
     .hero-year {
         font-size: 13px;
     }
-    
+
     .hero-name {
         font-size: 13px;
     }
-    
+
     .hero-experience {
         font-size: 13px;
     }
-    
+
     .hero-right {
         min-width: 100px;
     }
@@ -974,38 +990,38 @@ button:hover {
     .hero-content .container {
         max-width: 850px;
     }
-    
+
     .hero-title-line-1 {
         font-size: 70px;
     }
-    
+
     .hero-title-line-2 {
         font-size: 70px;
         margin-left: 205px;
     }
-    
+
     .hero-title-line-3 {
         font-size: 70px;
         margin-left: 430px;
     }
-    
+
     .hero-image-section {
         width: 190px;
         height: 190px;
     }
-    
+
     .hero-year {
         font-size: 12.5px;
     }
-    
+
     .hero-name {
         font-size: 12.5px;
     }
-    
+
     .hero-experience {
         font-size: 12.5px;
     }
-    
+
     .hero-right {
         min-width: 90px;
     }
@@ -1015,38 +1031,38 @@ button:hover {
     .hero-content .container {
         max-width: 800px;
     }
-    
+
     .hero-title-line-1 {
         font-size: 65px;
     }
-    
+
     .hero-title-line-2 {
         font-size: 65px;
         margin-left: 190px;
     }
-    
+
     .hero-title-line-3 {
         font-size: 65px;
         margin-left: 400px;
     }
-    
+
     .hero-image-section {
         width: 180px;
         height: 180px;
     }
-    
+
     .hero-year {
         font-size: 12px;
     }
-    
+
     .hero-name {
         font-size: 12px;
     }
-    
+
     .hero-experience {
         font-size: 12px;
     }
-    
+
     .hero-right {
         min-width: 80px;
     }
@@ -1056,38 +1072,38 @@ button:hover {
     .hero-content .container {
         max-width: 750px;
     }
-    
+
     .hero-title-line-1 {
         font-size: 60px;
     }
-    
+
     .hero-title-line-2 {
         font-size: 60px;
         margin-left: 175px;
     }
-    
+
     .hero-title-line-3 {
         font-size: 60px;
         margin-left: 370px;
     }
-    
+
     .hero-image-section {
         width: 170px;
         height: 170px;
     }
-    
+
     .hero-year {
         font-size: 11.5px;
     }
-    
+
     .hero-name {
         font-size: 11.5px;
     }
-    
+
     .hero-experience {
         font-size: 11.5px;
     }
-    
+
     .hero-right {
         min-width: 75px;
     }
@@ -1097,38 +1113,38 @@ button:hover {
     .hero-content .container {
         max-width: 700px;
     }
-    
+
     .hero-title-line-1 {
         font-size: 55px;
     }
-    
+
     .hero-title-line-2 {
         font-size: 55px;
         margin-left: 160px;
     }
-    
+
     .hero-title-line-3 {
         font-size: 55px;
         margin-left: 340px;
     }
-    
+
     .hero-image-section {
         width: 160px;
         height: 160px;
     }
-    
+
     .hero-year {
         font-size: 11px;
     }
-    
+
     .hero-name {
         font-size: 11px;
     }
-    
+
     .hero-experience {
         font-size: 11px;
     }
-    
+
     .hero-right {
         min-width: 70px;
     }
@@ -1138,38 +1154,38 @@ button:hover {
     .hero-content .container {
         max-width: 650px;
     }
-    
+
     .hero-title-line-1 {
         font-size: 50px;
     }
-    
+
     .hero-title-line-2 {
         font-size: 50px;
         margin-left: 145px;
     }
-    
+
     .hero-title-line-3 {
         font-size: 50px;
         margin-left: 310px;
     }
-    
+
     .hero-image-section {
         width: 150px;
         height: 150px;
     }
-    
+
     .hero-year {
         font-size: 10.5px;
     }
-    
+
     .hero-name {
         font-size: 10.5px;
     }
-    
+
     .hero-experience {
         font-size: 10.5px;
     }
-    
+
     .hero-right {
         min-width: 65px;
     }
@@ -1177,7 +1193,7 @@ button:hover {
 
 /* Mobile menu styles */
 @media (max-width: 768px) {
-    
+
     .navigation {
         position: fixed;
         top: 0;
@@ -1194,21 +1210,21 @@ button:hover {
         transition: opacity 0.6s ease, visibility 0.6s ease;
         z-index: var(--z-navigation);
     }
-    
+
     .navigation.active {
         opacity: 1;
         visibility: visible;
     }
-    
+
     .nav-list {
         display: none;
     }
-    
+
     .nav-list li {
         opacity: 0;
         visibility: hidden;
     }
-    
+
     .navigation.active .nav-close {
         font-size: 28px;
         color: #000000;
@@ -1219,7 +1235,7 @@ button:hover {
         line-height: 1;
         font-weight: 300;
     }
-    
+
     .navigation.active .nav-right {
         display: flex;
         flex-direction: column;
@@ -1228,7 +1244,7 @@ button:hover {
         height: 100%;
         padding-top: 60px;
     }
-    
+
     .navigation.active .nav-overlay {
         display: flex;
         flex-direction: column;
@@ -1246,13 +1262,13 @@ button:hover {
         visibility: visible;
         transition: opacity 0.6s ease, visibility 0.6s ease;
     }
-    
+
     .nav-overlay {
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.6s ease, visibility 0.6s ease;
     }
-    
+
     .nav-overlay .nav-content,
     .nav-overlay .nav-list-overlay,
     .nav-overlay .nav-right,
@@ -1261,7 +1277,7 @@ button:hover {
         visibility: hidden;
         transition: opacity 0.6s ease, visibility 0.6s ease;
     }
-    
+
     .navigation.active .nav-overlay .nav-content,
     .navigation.active .nav-overlay .nav-list-overlay,
     .navigation.active .nav-overlay .nav-right,
@@ -1269,15 +1285,15 @@ button:hover {
         opacity: 1;
         visibility: visible;
     }
-    
+
     .navigation.active .nav-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 40px;
     }
-    
-        .navigation.active .nav-logo {
+
+    .navigation.active .nav-logo {
         display: block;
         color: var(--color-primary);
         font-size: 24px;
@@ -1287,15 +1303,15 @@ button:hover {
         font-family: var(--font-display);
         transform: translateY(-20px);
     }
-    
+
     .navigation.active .nav-close {
         display: none;
     }
-    
+
     .navigation.active .nav-right {
         display: none;
     }
-    
+
     .navigation.active .nav-content {
         display: flex;
         flex-direction: column;
@@ -1303,7 +1319,7 @@ button:hover {
         align-items: center;
         flex: 1;
     }
-    
+
     .navigation.active .nav-list-overlay {
         display: flex;
         flex-direction: column;
@@ -1317,23 +1333,23 @@ button:hover {
         opacity: 1;
         visibility: visible;
     }
-    
+
     .navigation.active .nav-list-overlay li {
         opacity: 1;
         transform: translateY(0);
         list-style: none;
     }
-    
+
     .navigation.active .nav-list-overlay li:nth-child(1) {
         opacity: 1;
         transform: translateY(0);
     }
-    
+
     .navigation.active .nav-list-overlay li:nth-child(2) {
         opacity: 1;
         transform: translateY(0);
     }
-    
+
     .navigation.active .nav-link-overlay {
         color: #ffffff !important;
         font-size: 24px;
@@ -1343,8 +1359,8 @@ button:hover {
         letter-spacing: 2px;
         text-decoration: none;
     }
-    
-    
+
+
     .burger-menu {
         display: flex;
         z-index: var(--z-navigation);
@@ -1352,13 +1368,13 @@ button:hover {
         visibility: visible;
         transform: scale(1);
     }
-    
+
     .hero-content .container {
         text-align: center;
         align-items: center;
         padding-top: 100px;
     }
-    
+
     /* Mobile Hero Grid Layout */
     .hero-grid {
         grid-template-columns: 1fr;
@@ -1366,96 +1382,107 @@ button:hover {
         padding-top: 40px;
         text-align: center;
     }
-    
+
     .hero-left {
         order: 1;
         align-items: center;
     }
-    
+
     .hero-right {
         order: 2;
         align-items: center;
         height: auto;
         gap: 30px;
     }
-    
+
     .hero-title-line-1,
     .hero-title-line-2,
     .hero-title-line-3 {
-        font-size: 50px !important; /* Changed from 53px to 50px */
+        font-size: 50px !important;
+        /* Changed from 53px to 50px */
         text-align: center;
-        margin-left: 0 !important; /* Reset margin on mobile */
-        white-space: normal; /* Allow wrapping on mobile */
+        margin-left: 0 !important;
+        /* Reset margin on mobile */
+        white-space: normal;
+        /* Allow wrapping on mobile */
     }
-    
+
     .hero-image-section {
         width: 200px;
         height: 200px;
         margin: 0 auto;
-        margin-top: 0 !important; /* Reset overlap on mobile */
+        margin-top: 0 !important;
+        /* Reset overlap on mobile */
     }
-    
+
     .hero-left {
-        height: auto; /* Reset height on mobile */
+        height: auto;
+        /* Reset height on mobile */
     }
-    
+
     .hero-name-section {
-        margin-top: 0; /* Reset bottom alignment on mobile */
+        margin-top: 0;
+        /* Reset bottom alignment on mobile */
     }
-    
+
     .hero-name {
         font-size: 14px;
         text-align: center;
     }
-    
+
     .hero-year {
         font-size: 14px;
-        transform: translateY(100%) !important; /* Restore original mobile animation */
+        transform: translateY(100%) !important;
+        /* Restore original mobile animation */
         transition: transform var(--transition-smooth);
     }
-    
+
     .hero-year.animate {
-        transform: translateY(0) !important; /* Mobile animate state */
+        transform: translateY(0) !important;
+        /* Mobile animate state */
     }
-    
+
     .hero-experience {
         font-size: 14px;
         text-align: center;
-        transform: translateY(100%) !important; /* Restore original mobile animation */
+        transform: translateY(100%) !important;
+        /* Restore original mobile animation */
         transition: transform var(--transition-smooth);
     }
-    
+
     .hero-experience.animate {
-        transform: translateY(0) !important; /* Mobile animate state */
+        transform: translateY(0) !important;
+        /* Mobile animate state */
     }
-    
+
     .hero-experience-section {
         margin-bottom: 0;
     }
-    
+
     .about-section {
         padding: 80px 0;
     }
-    
+
     .about-content-wrapper {
         flex-direction: column;
         gap: 40px;
     }
-    
+
     .about-text-wrapper {
         height: auto;
     }
-    
+
     .about-text {
-        font-size: 22px; /* Increased from 18px for better mobile readability */
+        font-size: 22px;
+        /* Increased from 18px for better mobile readability */
         line-height: 1.3;
     }
-    
+
     .experience-section {
         padding: 0px 0;
         margin-bottom: 50px;
     }
-    
+
     .experience-title {
         margin-bottom: 150px;
         text-align: right;
@@ -1463,7 +1490,7 @@ button:hover {
         margin-top: -60px;
         transform: translateX(21px);
     }
-    
+
     .experience-title h2 {
         font-family: var(--font-display);
         font-size: 60px;
@@ -1471,28 +1498,29 @@ button:hover {
         font-weight: 400;
         align-items: center;
     }
-    
+
     .title-line {
         margin-bottom: 8px;
     }
-    
+
     .experience-item {
         grid-template-columns: 1fr;
         gap: 20px;
         padding: 30px 0;
     }
-    
+
     .job-details {
         text-align: left;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        gap: 20px;
     }
-    
+
     .job-title {
         font-size: 26px;
     }
-    
+
     .job-description {
         font-size: 12px;
         line-height: 1.4;
@@ -1500,44 +1528,46 @@ button:hover {
         text-align: left;
         white-space: nowrap;
     }
-    
+
     .company {
-        font-size: 14px;
+        font-size: 20px;
+        font-family: var(--font-display);
     }
-    
+
     .dates {
-        font-size: 12px;
+        font-size: 20px;
+        font-family: var(--font-display);
     }
-    
+
     .name-wrapper {
         height: 250px;
     }
-    
+
     .name-image {
         width: 100%;
         max-width: 100%;
     }
-    
+
     .hero-year-wrapper {
         top: 210px;
         right: 20px;
         height: 20px;
     }
-    
+
     .hero-year {
         font-size: 16px;
         line-height: 20px;
     }
-    
+
     .hero-info {
         padding: 0 20px;
     }
-    
-    
+
+
     .experience {
         font-size: 16px;
     }
-    
+
     .profession {
         font-size: 18px;
         text-align: right;
@@ -1675,7 +1705,8 @@ button:hover {
 .work-image {
     width: 100%;
     height: 0;
-    padding-bottom: 100%; /* This creates a perfect square */
+    padding-bottom: 100%;
+    /* This creates a perfect square */
     position: relative;
     overflow: hidden;
     border-radius: 0;
@@ -1737,11 +1768,11 @@ button:hover {
     .resume-section {
         padding: 60px 0 80px 0;
     }
-    
+
     .resume-text {
         font-size: 16px;
     }
-    
+
     .resume-button {
         font-size: 14px;
     }
@@ -1752,60 +1783,61 @@ button:hover {
     .work-section {
         padding: 80px 0 60px 0;
     }
-    
+
     .work-title h2 {
         font-size: 60px;
         margin-bottom: 30px;
     }
-    
+
     .work-title {
         margin-bottom: 50px;
     }
-    
+
     .work-grid {
         grid-template-columns: 1fr;
         gap: 15px;
     }
-    
+
     .work-image {
         height: 0;
-        padding-bottom: 100%; /* Maintain square on mobile */
+        padding-bottom: 100%;
+        /* Maintain square on mobile */
         margin-bottom: 20px;
     }
-    
+
     /* Social Media & Printing Mobile Layout */
     .social-printing-wrapper {
         grid-template-columns: 1fr !important;
         gap: 40px !important;
     }
-    
+
     .social-printing-item:nth-child(2) {
         margin-top: 110px;
     }
-    
+
     .work-info {
         flex-direction: column;
         gap: 10px;
     }
-    
+
     .work-description {
         margin: 10px 0;
     }
-    
+
     .work-page-section {
         padding: 80px 0;
         min-height: 80vh;
     }
-    
+
     .work-page-title {
         margin-bottom: 60px;
     }
-    
+
     .work-page-title h1 {
         font-size: 80px;
         letter-spacing: -2px;
     }
-    
+
     .work-page-description p {
         font-size: 16px;
     }
@@ -1815,64 +1847,67 @@ button:hover {
     .container {
         padding: 0 15px;
     }
-    
+
     .nav-list {
         gap: 15px;
     }
-    
+
     .nav-link {
         font-family: var(--font-display);
         font-size: 14px;
     }
-    
+
     .name-wrapper {
         height: 180px;
     }
-    
+
     .hero-year-wrapper {
         top: 170px;
         right: 15px;
         height: 18px;
     }
-    
+
     .hero-year {
         font-size: 14px;
         line-height: 18px;
-        transform: translateY(100%) !important; /* Restore original mobile animation */
+        transform: translateY(100%) !important;
+        /* Restore original mobile animation */
         transition: transform var(--transition-smooth);
     }
-    
+
     .hero-year.animate {
-        transform: translateY(0) !important; /* Small mobile animate state */
+        transform: translateY(0) !important;
+        /* Small mobile animate state */
     }
-    
+
     .hero-info {
         padding: 0 15px;
     }
-    
+
     .about-section {
         padding: 60px 0;
     }
-    
+
     .about-content-wrapper {
         flex-direction: column;
         gap: 30px;
     }
-    
+
     .about-text-wrapper {
         height: auto;
     }
-    
+
     .about-text {
-        font-size: 20px; /* Increased from 16px for better mobile readability */
+        font-size: 20px;
+        /* Increased from 16px for better mobile readability */
         line-height: 1.3;
     }
-    
+
     .experience-section {
         padding: 0px 0;
         margin-bottom: 50px;
     }
-    
+
     .experience-title {
         margin-bottom: 160px;
         text-align: right;
@@ -1880,7 +1915,7 @@ button:hover {
         margin-left: 0px;
         transform: translateX(21px);
     }
-    
+
     .experience-title h2 {
         font-size: 36px;
         letter-spacing: 2px;
@@ -1888,29 +1923,30 @@ button:hover {
         font-weight: 600;
         align-items: center;
     }
-    
+
     .title-line {
         margin-bottom: 3px;
     }
-    
+
     .experience-item {
         grid-template-columns: 1fr;
         gap: 10px;
         padding: 20px 0;
         text-align: left;
     }
-    
+
     .job-title {
-        font-size: 18px;
+        font-size: 20px;
         margin-bottom: 8px;
         line-height: 1.3;
+        font-family: var(--font-display);
     }
-    
+
     /* Show line breaks on mobile devices */
     .job-title br {
         display: block;
     }
-    
+
     .job-description {
         font-size: 14px !important;
         line-height: 1.4 !important;
@@ -1920,31 +1956,35 @@ button:hover {
         text-align: left !important;
         white-space: nowrap !important;
     }
-    
+
     .job-details {
         display: flex;
         flex-direction: column;
-        gap: 3px;
+        gap: 2px;
         align-items: flex-end;
         text-align: right;
     }
-    
+
     .company {
-        font-size: 13px;
-        font-weight: 600;
+        font-size: 20px;
+        font-weight: 400;
         color: var(--color-primary);
         text-align: right;
+        font-family: var(--font-display);
+        line-height: 1.1;
     }
-    
+
     .dates {
-        font-size: 11px;
-        color: #999999;
+        font-size: 20px;
+        color: var(--color-primary);
+        font-family: var(--font-display);
+        line-height: 1.1;
     }
-    
+
     .experience {
         font-size: 14px;
     }
-    
+
     .profession {
         font-size: 16px;
     }
@@ -1952,7 +1992,7 @@ button:hover {
 
 /* Work View More Button */
 .work-view-more {
-    text-align: left;
+    text-align: right;
     margin-top: 60px;
 }
 
@@ -2012,7 +2052,7 @@ button:hover {
     color: var(--color-primary);
     margin: 0 0 40px 0;
     letter-spacing: 1px;
-    text-transform: lowercase;
+    text-transform: none;
 }
 
 .logo-gallery {
@@ -2073,7 +2113,7 @@ button:hover {
         grid-template-columns: 1fr;
         gap: 30px;
     }
-    
+
     .project-gallery-section {
         margin-top: 60px;
         margin-bottom: 40px;
@@ -2106,7 +2146,7 @@ button:hover {
     color: var(--color-primary);
     margin: 0 0 15px 0;
     letter-spacing: 1px;
-    text-transform: lowercase;
+    text-transform: none;
 }
 
 .gallery-line {
@@ -2125,7 +2165,77 @@ button:hover {
     transition: transform 0.3s ease;
     opacity: 0;
     transform: translateY(30px);
+
+    /* Default hover color */
+    --project-hover-color: rgba(255, 255, 255, 0.9);
 }
+
+/* Unique Project Colors for Hover - More distinct palette */
+.gallery-item[data-project="stplaner"] {
+    --project-hover-color: #ffcfcf;
+}
+
+/* Red */
+.gallery-item[data-project="monun"] {
+    --project-hover-color: #f7c3e1;
+}
+
+/* Pink */
+.gallery-item[data-project="doratec"] {
+    --project-hover-color: #c7f0d4;
+}
+
+/* Green */
+.gallery-item[data-project="spitex"] {
+    --project-hover-color: #c7e6ff;
+}
+
+/* Blue */
+.gallery-item[data-project="jetonikeramika"] {
+    --project-hover-color: #e4d7f5;
+}
+
+/* Purple */
+.gallery-item[data-project="mardal"] {
+    --project-hover-color: #c2f2ed;
+}
+
+/* Teal */
+.gallery-item[data-project="alba"] {
+    --project-hover-color: #fffbcc;
+}
+
+/* Yellow */
+.gallery-item[data-project="ennur"] {
+    --project-hover-color: #ffe9cc;
+}
+
+/* Orange */
+.gallery-item[data-project="riesen"] {
+    --project-hover-color: #d9dfff;
+}
+
+/* Indigo */
+.gallery-item[data-project="baren"] {
+    --project-hover-color: #ccf9ff;
+}
+
+/* Cyan */
+.gallery-item[data-project="archiget"] {
+    --project-hover-color: #ffdccd;
+}
+
+/* Peach */
+.gallery-item[data-project="socialmedia"] {
+    --project-hover-color: #dbd2f7;
+}
+
+/* Violet */
+.gallery-item[data-project="printing"] {
+    --project-hover-color: #d4f2ff;
+}
+
+/* Sky Blue */
 
 .gallery-item:hover {
     transform: none;
@@ -2140,6 +2250,39 @@ button:hover {
     margin-bottom: 25px;
 }
 
+/* Hover Overlay */
+.gallery-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--project-hover-color);
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 5;
+}
+
+/* Precise Plus Sign (Bolder 1px thickness) */
+.gallery-image::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    transform: translate(-50%, -50%) scale(0.5);
+    /* Drawn with linear gradients for precise 1px thickness */
+    background:
+        linear-gradient(#212121, #212121) no-repeat center/100% 1px,
+        linear-gradient(#212121, #212121) no-repeat center/1px 100%;
+    opacity: 0;
+    z-index: 10;
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: none;
+}
+
 .gallery-image img {
     position: absolute;
     top: 0;
@@ -2147,8 +2290,17 @@ button:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border-radius: 0;
+}
+
+.gallery-item:hover .gallery-image::after {
+    opacity: 1;
+}
+
+.gallery-item:hover .gallery-image::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .gallery-item:hover .gallery-image img {
@@ -2428,37 +2580,37 @@ button:hover {
     .work-gallery {
         margin-top: 60px;
     }
-    
+
     .gallery-title h2 {
         font-size: 28px;
         margin-bottom: 12px;
     }
-    
+
     .gallery-grid {
         grid-template-columns: 1fr;
         gap: 40px;
         margin-top: 60px;
     }
-    
+
     .logo-gallery {
         grid-template-columns: 1fr;
         gap: 40px;
     }
-    
+
     .gallery-image {
         height: 0;
         padding-bottom: 100%;
         margin-bottom: 20px;
     }
-    
+
     .project-title {
         font-size: 14px;
     }
-    
+
     .project-category {
         font-size: 14px;
     }
-    
+
     .project-number {
         font-size: 10px;
         top: 0;
@@ -2570,57 +2722,57 @@ button:hover {
         padding: 60px 0 30px 0;
         margin-top: 0;
     }
-    
+
     .footer-title-spacer {
         height: 40px;
         margin-bottom: 40px;
     }
-    
+
     .footer-upper,
     .footer-lower {
         flex-direction: column;
         gap: 20px;
         text-align: center;
     }
-    
+
     .footer-right {
         text-align: center;
     }
-    
+
     .footer-social,
     .footer-nav,
     .footer-utility {
         justify-content: center;
         flex-wrap: wrap;
     }
-    
+
     .footer-social {
         gap: 15px;
     }
-    
+
     .footer-nav {
         gap: 15px;
     }
-    
+
     .footer-utility {
         gap: 15px;
     }
-    
+
     .work-page-section {
         padding: 60px 0;
         min-height: 70vh;
     }
-    
+
     .work-page-title {
         margin-bottom: 40px;
     }
-    
+
     .work-page-title h1 {
         font-family: var(--font-display);
         font-size: 60px;
         letter-spacing: -1px;
     }
-    
+
     .work-page-description p {
         font-family: var(--font-primary);
         font-size: 14px;
@@ -2630,23 +2782,26 @@ button:hover {
 /* Mobile Phone Styles - Added at the end to override all other styles */
 @media (max-width: 600px) {
     .hero-title-line-1 {
-        font-size: 50px !important; /* Changed from 55px to 50px */
+        font-size: 50px !important;
+        /* Changed from 55px to 50px */
         margin-left: 0 !important;
         text-align: left !important;
     }
-    
+
     .hero-title-line-2 {
-        font-size: 50px !important; /* Changed from 55px to 50px */
+        font-size: 50px !important;
+        /* Changed from 55px to 50px */
         margin-left: 0 !important;
         text-align: left !important;
     }
-    
+
     .hero-title-line-3 {
-        font-size: 50px !important; /* Changed from 55px to 50px */
+        font-size: 50px !important;
+        /* Changed from 55px to 50px */
         margin-left: 0 !important;
         text-align: left !important;
     }
-    
+
     .hero-image-section {
         width: 220px !important;
         height: 220px !important;
@@ -2657,19 +2812,19 @@ button:hover {
         top: 400px !important;
         right: -1px !important;
     }
-    
+
     .hero-grid {
         display: flex !important;
         flex-direction: column !important;
         gap: 30px !important;
     }
-    
+
     .hero-left {
         display: flex !important;
         flex-direction: column !important;
         gap: 20px !important;
     }
-    
+
     .hero-right {
         display: flex !important;
         flex-direction: row !important;
@@ -2677,7 +2832,7 @@ button:hover {
         align-items: center !important;
         gap: 20px !important;
     }
-    
+
     .hero-right {
         display: flex !important;
         flex-direction: row !important;
@@ -2685,16 +2840,18 @@ button:hover {
         align-items: center !important;
         width: 100% !important;
     }
-    
-    .hero-year, .hero-name, .hero-experience {
+
+    .hero-year,
+    .hero-name,
+    .hero-experience {
         font-size: 16.8px !important;
         margin: 0 !important;
     }
-    
+
     .hero-name-section {
         margin-top: 230px !important;
     }
-    
+
     .experience-title {
         margin-top: -30px !important;
     }
@@ -2706,26 +2863,26 @@ button:hover {
     .container {
         padding: 0 10px;
     }
-    
+
     .hero-title-line-1,
     .hero-title-line-2,
     .hero-title-line-3 {
         font-size: 28px !important;
     }
-    
+
     .hero-year,
     .hero-experience {
         font-size: 12px;
     }
-    
+
     .experience-title {
         font-size: 28px;
     }
-    
+
     .job-title {
         font-size: 28px;
     }
-    
+
     .about-text {
         font-size: 16px;
     }
