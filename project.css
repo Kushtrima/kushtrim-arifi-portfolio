@@ -800,6 +800,48 @@
     background-color: #8A8A8A;
 }
 
+/* HBS Image Scroll Reveal Effect - Same as others */
+.project-image-section .hbs-image-reveal {
+    position: relative;
+    overflow: hidden;
+    will-change: transform, opacity;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    /* Desktop radius */
+    background: #8A8A8A;
+    /* Grey to avoid white bleed */
+}
+
+.project-image-section .hbs-image-reveal:last-child {
+    margin-bottom: 0;
+}
+
+/* Subtle transparency gradient at top of image as it scrolls */
+.project-image-section .hbs-image-reveal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: linear-gradient(to bottom, rgba(138, 138, 138, 0.3), transparent);
+    pointer-events: none;
+    z-index: 2;
+    opacity: var(--gradient-opacity, 0);
+    transition: opacity 0.3s ease;
+    border-radius: 8px 8px 0 0;
+}
+
+.project-image-section .hbs-image-reveal img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    background-color: #8A8A8A;
+}
+
+
 /* Spitex Image Scroll Reveal Effect - Same as others */
 .project-image-section .spitex-image-reveal {
     position: relative;

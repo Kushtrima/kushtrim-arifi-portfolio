@@ -441,8 +441,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     window.location.href = 'jetonikeramika.html';
                 } else if (projectName === 'mardal') {
                     window.location.href = 'mardal.html';
-                } else if (projectName === 'archiget') {
-                    window.location.href = 'archiget.html';
                 } else if (projectName === 'baren') {
                     window.location.href = 'baren.html';
                 } else if (projectName === 'riesen') {
@@ -457,6 +455,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     window.location.href = 'alba.html';
                 } else if (projectName === 'wmk') {
                     window.location.href = 'wmk.html';
+                } else if (projectName === 'hbs') {
+                    window.location.href = 'hbs.html';
                 }
             }, 300);
         });
@@ -672,6 +672,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setupScrollLinkedReveal('.mardal-image-reveal', scrollManager);
     setupScrollLinkedReveal('.alba-image-reveal', scrollManager);
     setupScrollLinkedReveal('.ennur-image-reveal', scrollManager);
+    setupScrollLinkedReveal('.hbs-image-reveal', scrollManager);
 
     // Start animations when page loads
     animateOnLoad();

@@ -2221,9 +2221,7 @@ button:hover {
 }
 
 /* Cyan */
-.gallery-item[data-project="archiget"] {
-    --project-hover-color: #ffdccd;
-}
+
 
 /* Peach */
 .gallery-item[data-project="socialmedia"] {
@@ -2235,7 +2233,10 @@ button:hover {
     --project-hover-color: #d4f2ff;
 }
 
-/* Sky Blue */
+/* Peach */
+.gallery-item[data-project="hbs"] {
+    --project-hover-color: #ffdccd;
+}
 
 .gallery-item:hover {
     transform: none;
