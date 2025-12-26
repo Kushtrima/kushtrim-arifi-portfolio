@@ -455,6 +455,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     window.location.href = 'printing.html';
                 } else if (projectName === 'alba') {
                     window.location.href = 'alba.html';
+                } else if (projectName === 'wmk') {
+                    window.location.href = 'wmk.html';
                 }
             }, 300);
         });

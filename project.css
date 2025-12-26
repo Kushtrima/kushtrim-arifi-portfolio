@@ -1407,7 +1407,7 @@
     }
 
     .project-header-content {
-        margin-bottom: 50px;
+        margin-bottom: 20px;
     }
 
     .project-title-section {
@@ -1478,8 +1478,8 @@
     }
 
     .project-image-section {
-        margin-bottom: 40px !important;
-        margin-top: 0px !important;
+        margin-bottom: 20px !important;
+        margin-top: 0 !important;
         transform: none !important;
         padding-top: 0 !important;
         padding-bottom: 0 !important;
@@ -1487,8 +1487,8 @@
 
     .project-image-section .project-main-image {
         width: 100%;
-        height: 74vh !important;
-        min-height: 74vh !important;
+        height: auto !important;
+        min-height: auto !important;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1500,11 +1500,11 @@
     .project-image-section .project-main-image img {
         object-fit: contain !important;
         width: 100% !important;
-        height: 100% !important;
+        height: auto !important;
         max-height: none !important;
         max-width: 100% !important;
-        min-height: 100% !important;
-        transform: scale(1.43) !important;
+        min-height: auto !important;
+        transform: none !important;
         transform-origin: center center !important;
     }
 
@@ -1582,19 +1582,19 @@
 
     /* First description section - proper spacing from image */
     .project-description-section:first-of-type {
-        margin-bottom: 40px !important;
-        margin-top: 40px !important;
+        margin-bottom: 20px !important;
+        margin-top: 20px !important;
     }
 
     /* Specifically target three-column layout - proper spacing */
     .project-three-column {
-        margin-top: 40px !important;
+        margin-top: 20px !important;
     }
 
     /* Subsequent description sections - proper spacing */
     .project-description-section~.project-description-section {
-        margin-bottom: 40px !important;
-        margin-top: 40px !important;
+        margin-bottom: 20px !important;
+        margin-top: 20px !important;
     }
 
     .project-description-text p {
@@ -1626,7 +1626,8 @@
     }
 
     .project-gallery-section {
-        margin-bottom: 40px;
+        margin-bottom: 20px !important;
+        margin-top: 0 !important;
     }
 
     .project-gallery-horizontal {
@@ -1672,7 +1673,8 @@
     }
 
     .project-gallery-section {
-        margin-bottom: 60px;
+        margin-bottom: 20px !important;
+        margin-top: 0 !important;
     }
 }
 
@@ -1718,14 +1720,55 @@
     display: inline-block;
     width: 16px;
     height: 16px;
-    margin-left: 0;
+    margin-right: 6px;
+    vertical-align: middle;
+    filter: brightness(0) invert(1);
+    position: relative;
+    flex-shrink: 0;
+    transform: rotate(180deg);
+}
+
+.project-back-link:hover .project-back-arrow {
+    transform: rotate(180deg) translate(6px, 2px);
+}
+
+.project-next-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'Times New Roman', serif;
+    font-size: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+    position: relative;
+    padding: 4px 0 4px 12px;
+    border: none;
+    background: transparent;
+    transition: opacity 0.3s ease;
+    overflow: visible;
+}
+
+.project-next-link:hover {
+    color: #ffffff;
+    opacity: 0.7;
+    transform: none !important;
+}
+
+.project-next-arrow {
+    transition: transform 0.3s ease;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 0;
     vertical-align: middle;
     filter: brightness(0) invert(1);
     position: relative;
     flex-shrink: 0;
 }
 
-.project-back-link:hover .project-back-arrow {
+.project-next-link:hover .project-next-arrow {
     transform: translate(6px, -2px);
 }
 
@@ -1869,8 +1912,8 @@
     .project-info-layout {
         grid-template-columns: 1fr 1fr;
         gap: 60px 80px;
-        margin-top: 60px;
-        margin-bottom: 60px;
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
     }
 
     .project-info-right {

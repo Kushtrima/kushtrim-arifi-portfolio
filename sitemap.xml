@@ -103,6 +103,13 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://kushtrimarifi.com/wmk.html</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
   <!-- Portfolio Sections -->
   <url>
     <loc>https://kushtrimarifi.com/socialmedia.html</loc>
