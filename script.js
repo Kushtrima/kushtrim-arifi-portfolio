@@ -457,6 +457,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     window.location.href = 'wmk.html';
                 } else if (projectName === 'hbs') {
                     window.location.href = 'hbs.html';
+                } else if (projectName === 'hbs-website') {
+                    window.location.href = 'hbs-website.html';
                 }
             }, 300);
         });
@@ -673,6 +675,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setupScrollLinkedReveal('.alba-image-reveal', scrollManager);
     setupScrollLinkedReveal('.ennur-image-reveal', scrollManager);
     setupScrollLinkedReveal('.hbs-image-reveal', scrollManager);
+    setupScrollLinkedReveal('.hbs-website-image-reveal', scrollManager);
 
     // Start animations when page loads
     animateOnLoad();
