@@ -1,0 +1,85 @@
+{
+  "projects": [
+    {
+      "id": "hbs-website",
+      "name": "HBS",
+      "category": "CONSTRUCTION COMPANY",
+      "year": "2026",
+      "image": "work/hbs-website/hbswebsite-cover.jpg",
+      "link": "hbs-website.html",
+      "description": "My role was exclusively on UX design and front-end development, translating business requirements into a clear, functional, and visually refined digital experience."
+    },
+    {
+      "id": "jetonikeramika",
+      "name": "Jetonikeramika",
+      "category": "TILES INDUSTRY",
+      "year": "2025",
+      "image": "work/jetonikeramika/jetoni-cover.jpg",
+      "link": "jetonikeramika.html",
+      "description": "This project was approached with a focus on minimalism and functionality, using a dark visual foundation with white typography and subtle yellow accents derived from the brand identity."
+    },
+    {
+      "id": "ennur",
+      "name": "EN-NUR",
+      "category": "SOFTWARE APPLICATION",
+      "year": "2025",
+      "image": "work/ennur/en-cover.jpg",
+      "link": "ennur.html",
+      "description": "Software application project for EN-NUR."
+    },
+    {
+      "id": "doratec",
+      "name": "DORATEC GMBH",
+      "category": "WINDOW & DOORS",
+      "year": "2025",
+      "image": "work/doratec/dora-cover.jpg",
+      "link": "doratec.html",
+      "description": "Website design and development for Doratec GmbH."
+    },
+    {
+      "id": "mardal",
+      "name": "MARDAL",
+      "category": "MARKETING AGENCY",
+      "year": "2025",
+      "image": "work/mardal/mardal-cover.jpg",
+      "link": "mardal.html",
+      "description": "Marketing agency website project."
+    },
+    {
+      "id": "spitex",
+      "name": "SPITEX SCHWAB AG",
+      "category": "HEALTHCARE PLATFORM",
+      "year": "2025",
+      "image": "work/spitex/spitex-cover.jpg",
+      "link": "spitex.html",
+      "description": "Healthcare platform for Spitex Schwab AG."
+    },
+    {
+      "id": "stplaner",
+      "name": "STPLANER",
+      "category": "SWITZERLAND",
+      "year": "2025",
+      "image": "work/stplaner/stplaner-cover.jpg",
+      "link": "stplaner.html",
+      "description": "I designed and developed the Stplaner website, creating a professional platform for planning and architectural services with comprehensive UX/UI design and clean, responsive development."
+    },
+    {
+      "id": "monun",
+      "name": "MONUN AG",
+      "category": "SWITZERLAND",
+      "year": "2025",
+      "image": "work/monun/monun-cover.jpg",
+      "link": "monun.html",
+      "description": "As UX/UI Designer & Full-Stack Engineer at MONUN AG, I designed and developed their website from the ground up—from Figma design to full implementation, collaborating closely with management to deliver a user-centered solution."
+    },
+    {
+      "id": "alba",
+      "name": "ALBASOLAR",
+      "category": "ENERGY SOLAR",
+      "year": "2025",
+      "image": "work/alba/alba-cover.jpg",
+      "link": "alba.html",
+      "description": "Solar energy company website project."
+    }
+  ]
+}
