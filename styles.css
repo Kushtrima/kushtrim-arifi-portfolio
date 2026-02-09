@@ -1716,6 +1716,11 @@ button:hover {
 }
 
 /* Red */
+.work-item[href*="cityhotel"] {
+    --project-hover-color: #dcdcdc;
+}
+
+/* Grey */
 .work-item[href*="monun"] {
     --project-hover-color: #f7c3e1;
 }
@@ -2290,6 +2295,10 @@ button:hover {
 }
 
 /* Red */
+.gallery-item[data-project="cityhotel"] {
+    --project-hover-color: #dcdcdc;
+}
+
 .gallery-item[data-project="monun"] {
     --project-hover-color: #f7c3e1;
 }

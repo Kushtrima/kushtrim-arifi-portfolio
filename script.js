@@ -676,6 +676,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setupScrollLinkedReveal('.ennur-image-reveal', scrollManager);
     setupScrollLinkedReveal('.hbs-image-reveal', scrollManager);
     setupScrollLinkedReveal('.hbs-website-image-reveal', scrollManager);
+    setupScrollLinkedReveal('.cityhotel-image-reveal', scrollManager);
 
     // Start animations when page loads
     animateOnLoad();

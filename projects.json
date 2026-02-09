@@ -10,6 +10,15 @@
       "description": "My role was exclusively on UX design and front-end development, translating business requirements into a clear, functional, and visually refined digital experience."
     },
     {
+      "id": "cityhotel",
+      "name": "Cityhotel",
+      "category": "HOTEL & RESTAURANT",
+      "year": "2026",
+      "image": "work/cityhotel/city-cover.jpg",
+      "link": "cityhotel.html",
+      "description": "Designed to capture the essence of minimal luxury, the Cityhotel website offers a seamless booking experience wrapped in an elegant visual identity."
+    },
+    {
       "id": "jetonikeramika",
       "name": "Jetonikeramika",
       "category": "TILES INDUSTRY",
