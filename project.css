@@ -2318,7 +2318,7 @@
     align-items: flex-end;
     justify-content: center;
     min-height: 220px;
-    padding: 40px 0 15px;
+    padding: 40px 0 35px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     background: var(--color-secondary, #212121);
 }
@@ -2387,7 +2387,7 @@
 @media (max-width: 768px) {
     .project-pagination {
         min-height: 180px;
-        padding: 32px 0 12px;
+        padding: 32px 0 28px;
     }
     .project-pagination .container {
         grid-template-columns: 1fr 1fr;
