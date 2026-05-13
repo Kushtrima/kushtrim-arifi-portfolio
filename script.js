@@ -427,38 +427,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 item.style.transform = 'translateY(-5px)';
             }, 200);
 
-            // Navigate to project page
+            // Navigate to project page (all project pages live under /work/)
             setTimeout(() => {
-                if (projectName === 'stplaner') {
-                    window.location.href = 'stplaner.html';
-                } else if (projectName === 'monun') {
-                    window.location.href = 'monun.html';
-                } else if (projectName === 'doratec') {
-                    window.location.href = 'doratec.html';
-                } else if (projectName === 'spitex') {
-                    window.location.href = 'spitex.html';
-                } else if (projectName === 'jetonikeramika') {
-                    window.location.href = 'jetonikeramika.html';
-                } else if (projectName === 'mardal') {
-                    window.location.href = 'mardal.html';
-                } else if (projectName === 'baren') {
-                    window.location.href = 'baren.html';
-                } else if (projectName === 'riesen') {
-                    window.location.href = 'riesen.html';
-                } else if (projectName === 'ennur') {
-                    window.location.href = 'ennur.html';
-                } else if (projectName === 'socialmedia') {
-                    window.location.href = 'socialmedia.html';
-                } else if (projectName === 'printing') {
-                    window.location.href = 'printing.html';
-                } else if (projectName === 'alba') {
-                    window.location.href = 'alba.html';
-                } else if (projectName === 'wmk') {
-                    window.location.href = 'wmk.html';
-                } else if (projectName === 'hbs') {
-                    window.location.href = 'hbs.html';
-                } else if (projectName === 'hbs-website') {
-                    window.location.href = 'hbs-website.html';
+                const knownProjects = [
+                    'stplaner', 'monun', 'doratec', 'spitex', 'jetonikeramika',
+                    'mardal', 'baren', 'riesen', 'ennur', 'socialmedia',
+                    'printing', 'alba', 'wmk', 'hbs', 'hbs-website', 'cityhotel', 'etno'
+                ];
+                if (knownProjects.includes(projectName)) {
+                    window.location.href = '/work/' + projectName + '.html';
                 }
             }, 300);
         });

@@ -14,6 +14,26 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteCond %{HTTP_HOST} ^www\.kushtrimarifi\.com$ [NC]
 RewriteRule ^(.*)$ https://kushtrimarifi.com/$1 [L,R=301]
 
+# ---- 1b. 301 redirects: old flat URLs → new /work/ structure ----
+# These preserve SEO authority and prevent broken links from any external sites
+RewriteRule ^cityhotel\.html$       /work/cityhotel.html       [R=301,L]
+RewriteRule ^hbs-website\.html$     /work/hbs-website.html     [R=301,L]
+RewriteRule ^jetonikeramika\.html$  /work/jetonikeramika.html  [R=301,L]
+RewriteRule ^ennur\.html$           /work/ennur.html           [R=301,L]
+RewriteRule ^doratec\.html$         /work/doratec.html         [R=301,L]
+RewriteRule ^mardal\.html$          /work/mardal.html          [R=301,L]
+RewriteRule ^spitex\.html$          /work/spitex.html          [R=301,L]
+RewriteRule ^stplaner\.html$        /work/stplaner.html        [R=301,L]
+RewriteRule ^monun\.html$           /work/monun.html           [R=301,L]
+RewriteRule ^alba\.html$            /work/alba.html            [R=301,L]
+RewriteRule ^hbs\.html$             /work/hbs.html             [R=301,L]
+RewriteRule ^wmk\.html$             /work/wmk.html             [R=301,L]
+RewriteRule ^riesen\.html$          /work/riesen.html          [R=301,L]
+RewriteRule ^baren\.html$           /work/baren.html           [R=301,L]
+RewriteRule ^socialmedia\.html$     /work/socialmedia.html     [R=301,L]
+RewriteRule ^printing\.html$        /work/printing.html        [R=301,L]
+RewriteRule ^etno\.html$            /work/etno.html            [R=301,L]
+
 # ---- 2. Pretty URLs (drop .html extension) ----
 # Disabled by default — turning this on requires updating all internal links to drop .html
 # Uncomment when ready:

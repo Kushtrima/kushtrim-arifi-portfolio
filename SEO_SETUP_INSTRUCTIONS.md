@@ -1,6 +1,24 @@
 # SEO Setup & Maintenance Guide — kushtrimarifi.com
 
-**Last full SEO pass:** 2026-05-13
+**Last full SEO pass:** 2026-05-13 (URL restructure to `/work/` subdirectory included)
+
+## 🆕 URL structure change (2026-05-13)
+
+All 17 project detail pages have been moved from root-level to a `/work/` subdirectory:
+
+| Old URL | New URL |
+|---|---|
+| `kushtrimarifi.com/cityhotel.html` | `kushtrimarifi.com/work/cityhotel.html` |
+| `kushtrimarifi.com/hbs-website.html` | `kushtrimarifi.com/work/hbs-website.html` |
+| `kushtrimarifi.com/spitex.html` | `kushtrimarifi.com/work/spitex.html` |
+| ... (17 pages total) | |
+
+**Permanent 301 redirects in `.htaccess`** automatically route any old URL to its new location, preserving any existing SEO authority and external links.
+
+**After deploy, re-submit sitemap in GSC** so Google picks up the new URLs.
+
+---
+
 
 ---
 
