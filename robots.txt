@@ -1,21 +1,11 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://kushtrimarifi.com/sitemap.xml
+# Disallow direct indexing of the resume PDF so it doesn't outrank the homepage
+Disallow: /work/resume/
 
-# Disallow crawling of any hidden files or temp files (if any exist)
+# Disallow CorelDRAW source files if any are uploaded by accident
 Disallow: /*.cdr$
 
-# Optional: Allow all major search engines to crawl
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Slurp
-Allow: /
-
-# Crawl-delay for bots (optional - remove if not needed)
-Crawl-delay: 1
+# Sitemap location
+Sitemap: https://kushtrimarifi.com/sitemap.xml
