@@ -2293,6 +2293,14 @@ button:hover {
     --project-hover-color: rgba(255, 255, 255, 0.9);
 }
 
+/* Each card is wrapped in a real <a> so the project pages are crawlable.
+   Make the anchor fill the card so the whole card stays clickable. */
+.gallery-item a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
 /* Unique Project Colors for Hover - More distinct palette */
 .gallery-item[data-project="stplaner"] {
     --project-hover-color: #ffcfcf;
