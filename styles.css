@@ -76,7 +76,6 @@ body {
     overflow-x: hidden;
     max-width: 100vw;
     background-color: var(--color-primary);
-    transition: background-color var(--transition-smooth);
     cursor: none;
     /* Hide default cursor */
 }
@@ -99,20 +98,8 @@ button {
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
-    transition: transform 0.15s ease-out, width 0.3s ease-out, height 0.3s ease-out, background-color 0.3s ease-out, border-color 0.3s ease-out;
     transform: translate(-50%, -50%);
     mix-blend-mode: difference;
-}
-
-.custom-cursor.hover {
-    width: 40px;
-    height: 40px;
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
-}
-
-.custom-cursor.click {
-    transform: translate(-50%, -50%) scale(0.8);
 }
 
 /* Page Transitions */
@@ -127,20 +114,6 @@ body {
 
     to {
         opacity: 1;
-    }
-}
-
-body.fade-out {
-    animation: fadeOut 0.4s ease-in-out forwards;
-}
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
     }
 }
 
@@ -275,17 +248,16 @@ button:hover {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 0;
-    height: 0;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
     background: rgba(var(--color-primary-rgb), 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.6s;
 }
 
 .ripple:active::before {
-    width: 300px;
-    height: 300px;
+    transform: translate(-50%, -50%) scale(1);
 }
 
 
@@ -456,7 +428,6 @@ button:hover {
     line-height: 0.9;
     margin: 0;
     transform: translateY(100%);
-    transition: transform var(--transition-smooth);
 }
 
 .hero-title-line-2 {
@@ -471,7 +442,6 @@ button:hover {
     white-space: nowrap;
     /* Prevent text breaking */
     transform: translateY(100%);
-    transition: transform var(--transition-smooth);
 }
 
 .hero-title-line-3 {
@@ -486,13 +456,6 @@ button:hover {
     white-space: nowrap;
     /* Prevent text breaking */
     transform: translateY(100%);
-    transition: transform var(--transition-smooth);
-}
-
-.hero-title-line-1.animate,
-.hero-title-line-2.animate,
-.hero-title-line-3.animate {
-    transform: translateY(0);
 }
 
 .hero-image-section {
@@ -508,11 +471,6 @@ button:hover {
     height: 100%;
     object-fit: cover;
     transform: translateY(100%);
-    transition: transform var(--transition-smooth);
-}
-
-.hero-portrait.animate {
-    transform: translateY(0);
 }
 
 /* Move name to bottom to align with experience text */
@@ -531,11 +489,6 @@ button:hover {
     color: var(--color-primary);
     margin: 0;
     transform: translateY(100%);
-    transition: transform var(--transition-smooth);
-}
-
-.hero-name.animate {
-    transform: translateY(0);
 }
 
 /* Right Column */
@@ -576,17 +529,12 @@ button:hover {
     font-weight: 300;
     color: var(--color-primary);
     transform: translateY(100%);
-    transition: transform var(--transition-smooth);
     white-space: nowrap;
     /* Prevent wrapping */
     z-index: var(--z-hero-elements);
     text-align: right;
     margin: 0;
     padding: 0;
-}
-
-.hero-year.animate {
-    transform: translateY(0);
 }
 
 .hero-experience-section {
@@ -616,15 +564,10 @@ button:hover {
     margin: 0;
     padding: 0;
     transform: translateY(100%);
-    transition: transform var(--transition-smooth);
     white-space: nowrap;
     /* Prevent wrapping */
     z-index: var(--z-hero-elements);
     text-align: right;
-}
-
-.hero-experience.animate {
-    transform: translateY(0);
 }
 
 /* Remove person/portrait styles */
@@ -658,7 +601,6 @@ button:hover {
     color: var(--color-grey-cc);
     flex-shrink: 0;
     margin-top: 0;
-    transition: color 0.8s ease-in-out;
 }
 
 .about-content {
@@ -697,11 +639,6 @@ button:hover {
     text-wrap: pretty;
     letter-spacing: 0.5px;
     transform: translateY(100%);
-    transition: transform 0.8s cubic-bezier(0.01, 0.01, 0.5, 1), color 0.3s ease-in-out;
-}
-
-.about-text.animate {
-    transform: translateY(0);
 }
 
 .about-cta {
@@ -719,7 +656,7 @@ button:hover {
     gap: 6px;
     padding: 0;
     border: none;
-    transition: opacity 0.8s ease, color 0.8s ease-in-out;
+    transition: opacity 0.8s ease;
 }
 
 .cta-link:hover {
@@ -770,16 +707,10 @@ button:hover {
     max-width: 600px;
     opacity: 0;
     transform: translateY(50px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
 .experience-title h2 .title-word {
     color: var(--color-text-light);
-    transition: color 0.8s ease-out;
-}
-
-.experience-title h2 .title-word.revealed {
-    color: var(--color-primary);
 }
 
 .title-line.left {
@@ -788,11 +719,6 @@ button:hover {
 
 .title-line.center {
     align-self: center;
-}
-
-.experience-title h2.animate {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .title-line {
@@ -823,7 +749,6 @@ button:hover {
     align-items: end;
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 /* Desktop Experience Alignment */
@@ -841,11 +766,6 @@ button:hover {
         align-self: end;
         margin-top: 12px;
     }
-}
-
-.experience-item.animate {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .experience-item:last-child {
@@ -1473,27 +1393,13 @@ button:hover {
 
     .hero-year {
         font-size: 14px;
-        transform: translateY(100%) !important;
-        /* Restore original mobile animation */
-        transition: transform var(--transition-smooth);
-    }
-
-    .hero-year.animate {
-        transform: translateY(0) !important;
-        /* Mobile animate state */
+        transform: translateY(100%);
     }
 
     .hero-experience {
         font-size: 14px;
         text-align: center;
-        transform: translateY(100%) !important;
-        /* Restore original mobile animation */
-        transition: transform var(--transition-smooth);
-    }
-
-    .hero-experience.animate {
-        transform: translateY(0) !important;
-        /* Mobile animate state */
+        transform: translateY(100%);
     }
 
     .hero-experience-section {
@@ -2030,14 +1936,7 @@ button:hover {
     .hero-year {
         font-size: 14px;
         line-height: 18px;
-        transform: translateY(100%) !important;
-        /* Restore original mobile animation */
-        transition: transform var(--transition-smooth);
-    }
-
-    .hero-year.animate {
-        transform: translateY(0) !important;
-        /* Small mobile animate state */
+        transform: translateY(100%);
     }
 
     .hero-info {
@@ -2322,7 +2221,6 @@ button:hover {
 
 .gallery-item {
     cursor: pointer;
-    transition: transform 0.3s ease;
     opacity: 0;
     transform: translateY(30px);
 
@@ -2546,15 +2444,7 @@ button:hover {
 .text-reveal-wrapper h2,
 .text-reveal-wrapper p,
 .text-reveal-wrapper .work-page-line {
-    transform: translateY(100%);
-    transition: transform 1.2s cubic-bezier(0.01, 0.01, 0.5, 1);
-}
-
-.text-reveal-wrapper.revealed h1,
-.text-reveal-wrapper.revealed h2,
-.text-reveal-wrapper.revealed p,
-.text-reveal-wrapper.revealed .work-page-line {
-    transform: translateY(0);
+    transform: translateY(calc(var(--text-reveal-y, 1) * 100%));
 }
 
 .work-page-title h1 {
@@ -2611,41 +2501,6 @@ button:hover {
     margin-bottom: 60px;
 }
 
-.project-item {
-    display: grid;
-    grid-template-columns: 1fr 208px;
-    gap: 40px;
-    align-items: center;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--color-grey-22);
-    transition: all 0.3s ease, opacity 0.6s ease, transform 0.6s ease;
-    opacity: 0;
-    transform: translateX(-30px);
-    cursor: pointer;
-    position: relative;
-    text-decoration: none;
-    color: inherit;
-}
-
-.project-item:hover {
-    transform: translateX(10px);
-}
-
-.project-item::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 3px;
-    background: var(--color-primary);
-    transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.project-item:hover::before {
-    width: 100%;
-}
-
 .project-info {
     display: flex;
     flex-direction: column;
@@ -2659,66 +2514,8 @@ button:hover {
     gap: 8px;
 }
 
-.project-item .project-title {
-    font-size: 24px;
-    font-weight: 400;
-    color: var(--color-primary) !important;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: opacity 0.8s ease, transform 0.8s ease;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.project-item .project-category {
-    font-size: 12px;
-    font-weight: 400;
-    color: var(--color-grey-88);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: opacity 0.8s ease, transform 0.8s ease;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.project-item .project-year {
-    font-size: 12px;
-    font-weight: 400;
-    color: var(--color-text-light);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: opacity 0.8s ease, transform 0.8s ease;
-    opacity: 1;
-    transform: translateY(0);
-}
-
 /* Initial hidden state for text reveal */
-.project-item:not(:hover) .project-title,
-.project-item:not(:hover) .project-category,
-.project-item:not(:hover) .project-year {
-    opacity: 0.3;
-    transform: translateY(10px);
-}
-
 /* Text reveal on hover */
-.project-item:hover .project-title {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0.2s;
-}
-
-.project-item:hover .project-category {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0.4s;
-}
-
-.project-item:hover .project-year {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0.6s;
-}
-
 .project-visual-small {
     width: 208px;
     height: 208px;
@@ -3201,5 +2998,18 @@ button:hover {
         gap: 20px;
         align-items: center;
         text-align: center;
+    }
+}
+
+/* Less motion requested by the system: CSS transitions and animations finish at once
+   (GSAP motion is sped up the same way in script.js) */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0s !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0s !important;
     }
 }

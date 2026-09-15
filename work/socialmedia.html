@@ -44,8 +44,8 @@
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
 
     <link rel="preload" href="/fonts/bilena-regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/styles.css">
-    <link rel="stylesheet" href="/project.css">
+    <link rel="stylesheet" href="/styles.css?v=20260915">
+    <link rel="stylesheet" href="/project.css?v=20260915">
 
     <!-- Structured Data: CreativeWork -->
     <script type="application/ld+json">
@@ -546,30 +546,10 @@
         </div>
     </footer>
 
-    <script src="/script.js" defer></script>
-    <script>
-        // Image spotlight effect for social media page
-        document.addEventListener('DOMContentLoaded', function () {
-            const images = document.querySelectorAll('.social-media-page .work-image');
-
-            const imageObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('in-view');
-                    } else {
-                        entry.target.classList.remove('in-view');
-                    }
-                });
-            }, {
-                threshold: 0.5, // Image needs to be 50% visible
-                rootMargin: '-20% 0px -20% 0px' // Creates a spotlight zone in the middle of viewport
-            });
-
-            images.forEach(image => {
-                imageObserver.observe(image);
-            });
-        });
-    </script>
+    <script src="/vendor/gsap/gsap.min.js" defer></script>
+    <script src="/vendor/gsap/ScrollTrigger.min.js" defer></script>
+    <script src="/vendor/gsap/CustomEase.min.js" defer></script>
+    <script src="/script.js?v=20260915" defer></script>
 </body>
 
 </html>
