@@ -7,6 +7,7 @@
     --color-text-light: #666666;
     --color-accent: #f0f0f0;
     --color-black: #000000;
+    --color-orange: #fe531d; /* the compact header's "+" */
 
     /* Greys, named after their hex value until they are consolidated */
     --color-grey-0a: #0a0a0a;
@@ -318,6 +319,106 @@ button:hover {
     transform: scaleX(1.1);
 }
 
+/* Compact header (script.js builds it): past the top of the page a small dark bar in the middle of the top with "[a]"
+   and an orange "+"; the "+" opens it sideways onto the page links and turns into a "×". The faint border keeps it visible on dark
+   sections too */
+.header-bar {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    z-index: var(--z-header);
+    display: flex;
+    align-items: center;
+    height: 42px;
+    padding: 0 4px 0 8px;
+    border: 1px solid rgba(var(--color-primary-rgb), 0.16);
+    border-radius: 6px;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    visibility: hidden;
+}
+
+.header-bar-home {
+    padding: 0 4px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* The page links, folded to nothing until the "+" opens them */
+.header-bar-links {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.header-bar-link {
+    padding: 0 12px;
+    font-size: 16px;
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+.header-bar-link:first-child {
+    padding-left: 18px;
+}
+
+/* Orange like the "+" on hover, and for the page you're on */
+.header-bar-link:hover,
+.header-bar-link:focus-visible,
+.header-bar-link.is-current {
+    color: var(--color-orange);
+}
+
+/* Two thin lines make the "+"; script.js turns the button 45° into a "×". No lift on hover or transition, which would
+   fight the turn, and no ripple */
+.header-bar-toggle {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    margin-left: 4px;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--color-orange);
+    cursor: pointer;
+    transition: none;
+}
+
+.header-bar-toggle:hover {
+    transform: none;
+}
+
+.header-bar-toggle.ripple::before {
+    content: none;
+}
+
+.header-bar-toggle span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 14px;
+    height: 1.5px;
+    background-color: currentColor;
+    translate: -50% -50%;
+}
+
+.header-bar-toggle span + span {
+    rotate: 90deg;
+}
+
+.header-bar-home:focus-visible,
+.header-bar-link:focus-visible,
+.header-bar-toggle:focus-visible {
+    outline: 1px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
 .year {
     display: none;
 }
@@ -409,8 +510,8 @@ html.intro-on .header .logo-text {
 }
 
 /* Hero: a square portrait on a dark grey field with the name on one line through it: "Kushtrim" runs over the photo's
-   left edge and "Arifi" over its right edge, both at eye level beside the face; the job title and "Creating since
-   2012" are small captions at the foot, on the logo's and the navigation's edges. Every position comes from the
+   left edge and "Arifi" over its right edge, both at eye level beside the face; the job title sits small under the
+   start of the name and "Creating since 2012" at the foot, on the navigation's edge. Every position comes from the
    photo's size (--photo) and centre (--cx, --cy), so the overlaps hold at every width; the photo sits right of the
    middle by half the difference between the two names' widths (3.76em and 1.87em), so the whole line is centred. script.js opens the photo from its
    centre, raises the words in reading order, and on scroll pulls the name apart while the photo drifts slower than
@@ -549,12 +650,19 @@ body:has(.hero) .header:has(.navigation.active) {
     font-size: clamp(18px, 1.6vw, 26px);
 }
 
+/* Under the start of "Kushtrim": on its first letter (the name ends 0.24 of the photo inside the photo's left edge and
+   is 3.76em of Times wide) and 78px below its baseline (0.7875em below the top of its line) */
 .hero-caption--left {
-    left: 0;
+    left: calc(var(--cx) - var(--photo) * 0.24 - var(--big) * 3.76);
+    top: calc(var(--cy) - var(--photo) * 0.08 + var(--big) * 0.3375 + 78px);
+    bottom: auto;
 }
 
+/* At the foot on the navigation's edge, 30px above the captions' usual bottom margin */
 .hero-caption--right {
     right: 0;
+    bottom: calc(clamp(24px, 4vh, 40px) + 30px);
+    text-align: right;
 }
 
 .hero-small-mask {
@@ -583,12 +691,12 @@ body:has(.hero) .header:has(.navigation.active) {
 }
 
 /* Phones and portrait tablets: "Kushtrim" across the top with its feet on the photo, "Arifi" at the right standing on
-   the photo's bottom edge, then the two captions one under the other. Sizes in vw keep the arrangement the same at
+   the photo's bottom edge, then the job title and "Creating since 2012" one under the other. Sizes in vw keep the arrangement the same at
    every width; the hero is as tall as its content */
 @media (max-width: 699px), (max-width: 1023px) and (orientation: portrait) {
     .hero {
         --cx: 50%;
-        height: calc(96px + 76vw + 2.6 * clamp(16px, 4.6vw, 24px) + 32px);
+        height: calc(96px + 80vw + 5 * clamp(16px, 4.6vw, 24px) + 32px);
         min-height: 0;
     }
 
@@ -625,11 +733,13 @@ body:has(.hero) .header:has(.navigation.active) {
     }
 
     .hero-caption--left {
-        top: calc(96px + 76vw);
+        left: 0;
+        top: calc(96px + 80vw);
     }
 
+    /* Under the job title's two lines */
     .hero-caption--right {
-        top: calc(96px + 76vw + 1.3em);
+        top: calc(96px + 80vw + 2.5em);
     }
 }
 

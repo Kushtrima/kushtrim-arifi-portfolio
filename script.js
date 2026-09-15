@@ -46,6 +46,107 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.project-gallery-section .work-image').forEach((image) => image.style.setProperty('--curtain', '1'));
     }
 
+    // Compact header: past the top of the page the header folds into a small bar in the middle of the top, holding
+    // "[a]" and a "+". The "+" opens the bar sideways onto the page links and turns into a "×" to close it (so do Escape and
+    // a click elsewhere); back at the top the full header returns. Built here, before the cursor, ripple and page
+    // transition code below pick up links and buttons, so without GSAP the plain header simply stays
+    const siteHeader = document.querySelector('.header');
+    if (siteHeader && hasMotion) {
+        const headerLogo = siteHeader.querySelector('.logo-text');
+        const bar = document.createElement('div');
+        bar.className = 'header-bar';
+
+        const home = document.createElement('a');
+        home.className = 'header-bar-home';
+        home.href = headerLogo ? headerLogo.getAttribute('href') : 'index.html';
+        home.textContent = '[a]';
+        home.setAttribute('aria-label', 'Kushtrim Arifi, home');
+
+        const links = document.createElement('nav');
+        links.className = 'header-bar-links';
+        links.id = 'header-bar-links';
+        links.setAttribute('aria-label', 'Pages');
+        // The link for the page you're on stays orange; project pages under /work/ count as Work
+        const pagePath = (path) => path.replace(/\.html$/, '').replace(/\/index$/, '/');
+        const here = pagePath(location.pathname);
+        siteHeader.querySelectorAll('.nav-list .nav-link').forEach((link) => {
+            const copy = link.cloneNode(true);
+            copy.className = 'header-bar-link';
+            copy.tabIndex = -1;
+            const target = pagePath(new URL(link.getAttribute('href'), location.href).pathname);
+            if (target === here || (target.endsWith('/work') && here.includes('/work/'))) {
+                copy.classList.add('is-current');
+                copy.setAttribute('aria-current', 'page');
+            }
+            links.append(copy);
+        });
+
+        const toggle = document.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'header-bar-toggle';
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-controls', links.id);
+        toggle.setAttribute('aria-label', 'Open menu');
+        toggle.innerHTML = '<span></span><span></span>';
+
+        bar.append(home, links, toggle);
+        document.body.append(bar);
+        // Centred by GSAP's xPercent, a percentage of the bar's own width that keeps it centred as it opens (a CSS
+        // translate is dropped once GSAP moves the bar)
+        gsap.set(bar, { autoAlpha: 0, xPercent: -50 });
+        gsap.set(links, { width: 0 });
+        const glide = CustomEase.create('header-glide', '0.65,0,0.35,1');
+
+        let open = false;
+        const setOpen = (state) => {
+            if (open === state) return;
+            open = state;
+            toggle.setAttribute('aria-expanded', String(state));
+            toggle.setAttribute('aria-label', state ? 'Close menu' : 'Open menu');
+            links.querySelectorAll('a').forEach((link) => { link.tabIndex = state ? 0 : -1; });
+            if (state) {
+                // Opening: the bar widens evenly both ways while the links drift in one after another
+                gsap.to(links, { width: links.scrollWidth, duration: 0.8, ease: glide, overwrite: 'auto' });
+                gsap.fromTo(links.children, { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.6, ease: 'power2.out', stagger: 0.08, delay: 0.25, overwrite: 'auto' });
+            } else {
+                // Closing: the links fade first, then the bar narrows back to "[a]" and "+"
+                gsap.to(links.children, { opacity: 0, x: -6, duration: 0.25, ease: 'power1.in', stagger: { each: 0.04, from: 'end' }, overwrite: 'auto' });
+                gsap.to(links, { width: 0, duration: 0.7, ease: glide, delay: 0.12, overwrite: 'auto' });
+            }
+            gsap.to(toggle, { rotation: state ? 135 : 0, duration: 0.7, ease: glide, overwrite: 'auto' });
+        };
+
+        // The full header at the top. Below it the logo and the links drift toward the middle as they fade and the bar
+        // rises into place there; back at the top the bar sinks away and they drift back out (not while the phone menu
+        // is open)
+        const [logoPart, ...rightParts] = [siteHeader.querySelector('.logo'), siteHeader.querySelector('.navigation'), siteHeader.querySelector('.burger-menu')];
+        const headerParts = [logoPart, ...rightParts].filter(Boolean);
+        const setCompact = (state) => {
+            if (state && siteHeader.querySelector('.navigation.active')) return;
+            if (!state) setOpen(false);
+            if (state) {
+                if (logoPart) gsap.to(logoPart, { x: 40, autoAlpha: 0, duration: 0.6, ease: 'power2.inOut', overwrite: 'auto' });
+                gsap.to(rightParts.filter(Boolean), { x: -40, autoAlpha: 0, duration: 0.6, ease: 'power2.inOut', overwrite: 'auto' });
+                gsap.fromTo(bar, { autoAlpha: 0, y: -14, scale: 0.92 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.8, ease: 'power3.out', delay: 0.2, overwrite: 'auto' });
+            } else {
+                gsap.to(bar, { autoAlpha: 0, y: -10, scale: 0.95, duration: 0.4, ease: 'power2.in', overwrite: 'auto' });
+                gsap.to(headerParts, { x: 0, autoAlpha: 1, duration: 0.7, ease: 'power3.out', delay: 0.15, overwrite: 'auto' });
+            }
+        };
+        ScrollTrigger.create({ start: 80, end: 'max', onEnter: () => setCompact(true), onLeaveBack: () => setCompact(false) });
+
+        toggle.addEventListener('click', () => setOpen(!open));
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && open) {
+                setOpen(false);
+                toggle.focus();
+            }
+        });
+        document.addEventListener('click', (event) => {
+            if (open && !bar.contains(event.target)) setOpen(false);
+        });
+    }
+
     // Custom Cursor Implementation
     if (window.innerWidth > 768 && hasMotion) { // Only on desktop
         const cursor = document.createElement('div');
