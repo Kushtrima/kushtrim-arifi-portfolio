@@ -1,7 +1,7 @@
 /* CSS Custom Properties */
 :root {
     /* Colors */
-    --color-primary: #ffffff;
+    --color-primary: #f2ede3; /* warm off-white: light text on dark, and the light background */
     --color-secondary: #212121;
     --color-text: #333333;
     --color-text-light: #666666;
@@ -17,10 +17,9 @@
     --color-grey-8a: #8a8a8a;
     --color-grey-99: #999999;
     --color-grey-cc: #cccccc;
-    --color-grey-f8: #f8f8f8;
 
     /* The same colours as "R, G, B" for transparency: rgba(var(--color-primary-rgb), 0.5) */
-    --color-primary-rgb: 255, 255, 255;
+    --color-primary-rgb: 242, 237, 227;
     --color-secondary-rgb: 33, 33, 33;
     --color-black-rgb: 0, 0, 0;
     --color-grey-14-rgb: 20, 20, 20;
@@ -342,7 +341,7 @@ html.intro-on {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-grey-f8);
+    color: var(--color-primary);
     animation: intro-give-way 0s 6s forwards;
 }
 
@@ -427,7 +426,7 @@ html.intro-on .header .logo-text {
     min-height: 620px;
     overflow: hidden;
     background-color: var(--color-secondary);
-    color: var(--color-grey-f8);
+    color: var(--color-primary);
 }
 
 /* On the home page the header inverts against what is behind it, so it stays readable over the white About section */
@@ -474,26 +473,6 @@ body:has(.hero) .header:has(.navigation.active) {
 
 .hero-mask > span {
     display: block;
-}
-
-/* The frosted copy of the name, over the solid one: its letters are windows onto a blurred, lighter copy of the photo
-   (img/kaimage-frost.jpg) that script.js keeps lined up with the photo through its zoom and parallax, so the letters
-   look like frosted glass where they cross the photo; elsewhere its background is empty and the solid letters show.
-   Hidden until script.js has lined it up, so without JavaScript the name is simply solid */
-.hero-frost {
-    visibility: hidden;
-}
-
-.hero-frost.is-lined-up {
-    visibility: visible;
-}
-
-.hero-frost .hero-mask > span {
-    color: transparent;
-    background: url('img/kaimage-frost.jpg') no-repeat;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-stroke: 1px rgba(var(--color-primary-rgb), 0.55);
 }
 /* Ends 0.24 of the photo inside its left edge, just clear of the face, its line centred at 42% of the photo's height */
 .hero-word--first {
@@ -590,7 +569,7 @@ body:has(.hero) .header:has(.navigation.active) {
     font-weight: 400;
     line-height: 1.2;
     white-space: nowrap;
-    color: var(--color-grey-f8);
+    color: var(--color-primary);
 }
 
 /* Starting state of the entrance in script.js; without JavaScript nothing is hidden */
@@ -1311,7 +1290,7 @@ body:has(.hero) .header:has(.navigation.active) {
     transition: transform 0.3s ease;
 
     /* Default hover color */
-    --project-hover-color: rgba(255, 255, 255, 0.9);
+    --project-hover-color: rgba(var(--color-primary-rgb), 0.9);
 }
 
 /* Unique Project Colors for Homepage Work Items */
@@ -1866,7 +1845,7 @@ body:has(.hero) .header:has(.navigation.active) {
     transform: translateY(30px);
 
     /* Default hover color */
-    --project-hover-color: rgba(255, 255, 255, 0.9);
+    --project-hover-color: rgba(var(--color-primary-rgb), 0.9);
 }
 
 /* Each card is wrapped in a real <a> so the project pages are crawlable.

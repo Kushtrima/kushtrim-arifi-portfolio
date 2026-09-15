@@ -290,6 +290,9 @@ document.addEventListener('DOMContentLoaded', function () {
             };
         };
         const introOpen = CustomEase.create('intro-open', '0.76,0,0.24,1');
+        const channels = (name) => cssVar(name).match(/[0-9a-f]{2}/gi).map((hex) => parseInt(hex, 16));
+        const [light, dark] = [channels('--color-primary'), channels('--color-secondary')];
+        const landedColour = `rgb(${light.map((value, i) => Math.abs(value - dark[i])).join(', ')})`;
 
         // Slow and soft: the steps overlap a little, each letter drifts up as its box grows and lifts away as it shrinks,
         // with a pause on the whole name and on "[a]"
@@ -307,8 +310,8 @@ document.addEventListener('DOMContentLoaded', function () {
             .to([...letters].reverse(), { width: 0, opacity: 0, yPercent: -30, duration: 0.35, ease: 'power2.inOut', stagger: 0.035 }, 2.3)
             .fromTo(letterA, { yPercent: 35 }, { width: widths.get(letterA), opacity: 1, yPercent: 0, duration: 0.5, ease: 'power3.out' }, 3.2)
             .add(measureLanding, 3.84)
-            // #dedede is how the header shows its white logo over the hero: its difference blend against #212121
-            .to(introLogo, { x: () => landing.x, y: () => landing.y, scale: () => landing.scale, color: '#dedede', duration: 1.2, ease: 'power3.inOut' }, 3.85)
+            // Ends in the colour the header shows its logo in over the hero: its difference blend against the dark ground
+            .to(introLogo, { x: () => landing.x, y: () => landing.y, scale: () => landing.scale, color: landedColour, duration: 1.2, ease: 'power3.inOut' }, 3.85)
             .to(introCover.querySelector('.intro-half--top'), { yPercent: -100, duration: 1.2, ease: introOpen }, 3.95)
             .to(introCover.querySelector('.intro-half--bottom'), { yPercent: 100, duration: 1.2, ease: introOpen }, 3.95)
             .set(introHeaderLogo, { visibility: 'visible', opacity: 0, transition: 'none' }, 4.7)
@@ -325,28 +328,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // The photo and the cut-out person above the name move as one
         const photos = hero.querySelectorAll('.hero-image-section');
 
-        // The frosted copy of the name: its background, the blurred photo, is kept exactly where the photo is, through
-        // the photo's zoom and parallax and the words' rise and drift, so its letters show the photo wherever they cross it
-        const portrait = hero.querySelector('.hero-portrait');
-        const frost = hero.querySelector('.hero-frost');
-        if (frost) {
-            const frostLines = [...frost.querySelectorAll('.hero-mask > span')];
-            const lineUpFrost = () => {
-                const image = portrait.getBoundingClientRect();
-                if (image.bottom < 0 || image.top > innerHeight) return;
-                const width = image.height * (portrait.naturalWidth / portrait.naturalHeight || 1236 / 1200);
-                const left = image.left + (image.width - width) / 2;
-                frostLines.forEach((line) => {
-                    const box = line.getBoundingClientRect();
-                    line.style.backgroundSize = `${width}px ${image.height}px`;
-                    line.style.backgroundPosition = `${left - box.left}px ${image.top - box.top}px`;
-                });
-            };
-            lineUpFrost();
-            gsap.ticker.add(lineUpFrost);
-            frost.classList.add('is-lined-up');
-        }
-
         gsap.timeline({ defaults: { ease: heroOut }, delay: introLength })
             .fromTo(photos, { clipPath: 'inset(50% 50% 50% 50%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3 }, 0.1)
             .fromTo('.hero-portrait', { scale: 1.2 }, { scale: 1, duration: 2.2 }, 0.1)
@@ -359,7 +340,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // fade into the dots as the burst starts; the cut-out person stays above the canvas, so dots pass behind the head
         const particleCanvas = hero.querySelector('.hero-particles');
         const nameWords = hero.querySelectorAll('.hero-title-section .hero-mask');
-        const nameLines = [...hero.querySelectorAll('.hero-title-section:not(.hero-frost) .hero-mask > span')];
+        const nameLines = [...hero.querySelectorAll('.hero-title-section .hero-mask > span')];
         const burst = { progress: 0 };
         let dots = [];
 
@@ -377,7 +358,7 @@ document.addEventListener('DOMContentLoaded', function () {
             gsap.set(nameWords, handover > 0 ? { opacity: 1 - handover } : { clearProps: 'opacity' });
             if (handover <= 0) return;
             ink.setTransform(ratio, 0, 0, ratio, 0, 0);
-            ink.fillStyle = '#f8f8f8';
+            ink.fillStyle = cssVar('--color-primary');
             for (const dot of dots) {
                 const travel = Math.min(1, Math.max(0, (burst.progress - dot.delay) / (1 - dot.delay)));
                 if (travel >= 1) continue;
