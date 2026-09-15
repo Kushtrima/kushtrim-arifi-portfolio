@@ -314,7 +314,7 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin: 0;
-    /* Left, not justify: with Bilena, justify stretched some word gaps to over 4x a normal space */
+    /* Left, not justify: justified lines stretched some word gaps to over 4x a normal space */
     text-align: left;
     text-wrap: pretty;
     opacity: 0;

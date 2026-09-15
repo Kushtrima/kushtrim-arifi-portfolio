@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#000000">
     <title>Kushtrim Arifi — Product Designer &amp; Developer</title>
     <meta name="description"
-        content="Portfolio of Kushtrim Arifi — Product Designer &amp; Developer in Switzerland. 15+ years building websites, brands and design systems for global clients.">
+        content="Portfolio of Kushtrim Arifi — Product Designer &amp; Developer in Switzerland. Designing since 2012, building websites, mobile apps and custom CRM systems.">
     <meta name="keywords"
         content="Kushtrim Arifi, UX Designer Schweiz, UI Designer, Front-End Engineer, Webdesigner Zürich, Web Developer, Portfolio, Design Systems, Brand Design, Frontend Entwickler, UX UI Designer Kosovo, Figma Designer">
     <meta name="author" content="Kushtrim Arifi">
@@ -17,7 +17,7 @@
     <!-- Open Graph -->
     <meta property="og:title" content="Kushtrim Arifi — Product Designer &amp; Developer">
     <meta property="og:description"
-        content="15+ years of UX/UI design and front-end engineering for Swiss and international clients. Explore selected case studies and design systems work.">
+        content="Designer since 2012, software engineer since 2020: websites, mobile apps, custom CRM systems and an AI mental health tool, for Swiss and international clients.">
     <meta property="og:type" content="profile">
     <meta property="og:url" content="https://kushtrimarifi.com/">
     <meta property="og:image" content="https://kushtrimarifi.com/img/kaimage.jpg">
@@ -34,7 +34,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Kushtrim Arifi — Product Designer &amp; Developer">
     <meta name="twitter:description"
-        content="15+ years of UX/UI design and front-end engineering. Portfolio of selected case studies for Swiss and international clients.">
+        content="Designer since 2012, software engineer since 2020. Portfolio of selected case studies for Swiss and international clients.">
     <meta name="twitter:image" content="https://kushtrimarifi.com/img/kaimage.jpg">
     <meta name="twitter:image:alt" content="Kushtrim Arifi — Product Designer and Developer">
 
@@ -49,8 +49,9 @@
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
     <link rel="preload" as="image" href="img/kaimage.jpg" fetchpriority="high">
 
-    <link rel="preload" href="/fonts/bilena-regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="styles.css?v=20260915">
+    <!-- Lets styles.css hold the hero's entrance start state only when scripts run -->
+    <script>document.documentElement.classList.add('js');</script>
+    <link rel="stylesheet" href="styles.css?v=20260915-2">
 
     <!-- Structured Data: Person + ProfilePage -->
     <script type="application/ld+json">
@@ -67,7 +68,7 @@
         "image": "https://kushtrimarifi.com/img/kaimage.jpg",
         "email": "kushtrim.m.arifi@gmail.com",
         "telephone": "+38349210999",
-        "description": "Product Designer & Developer with 15+ years of experience building websites, web applications, brands and design systems for Swiss and international clients.",
+        "description": "Product Designer & Developer. Started as a designer in 2012, moved through UX/UI, then into software engineering in 2020, building websites, mobile apps, custom CRM systems and an AI mental health tool for Swiss and international clients.",
         "knowsAbout": [
           "UX Design",
           "UI Design",
@@ -124,6 +125,14 @@
 </head>
 
 <body>
+    <!--
+    THESIS: The name around the person. A small square portrait a little right of the middle of a dark grey field, "Kushtrim" huge on the left running over its edge beside the face and "Arifi" standing on its bottom edge; the job title and "Creating since 2012" small at the foot. Refuses the big photo beside a text block.
+    OWN-WORLD: #212121 field, off-white Times New Roman: the name huge and frosted glass where it crosses the photo, the two captions at one small size; the site's grayscale studio portrait vignetted into the field.
+    STORY: A hiring visitor meets the face and the name first, reads Product Designer & Developer and Creating since 2012 at the foot, then scrolls as the name pulls apart into About me.
+    FIRST VIEWPORT: Square photo just right of centre; "Kushtrim" over its left edge beside the face; "Arifi" on its bottom edge running out past its right side; "Product Designer & Developer" bottom left on the logo's edge, "Creating since 2012" bottom right on the navigation's edge.
+    FORM: name around the portrait, from the owner's reference image and follow-up notes; a section inside the established world, so no concept seed.
+    FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+    -->
     <a href="#main-content" class="skip-to-main">Skip to main content</a>
     <header class="header">
         <div class="container">
@@ -171,41 +180,29 @@
     </header>
 
     <main id="main-content" class="hero">
-        <div class="hero-background"></div>
+        <div class="hero-stage container">
+            <div class="hero-frame">
+                <div class="hero-caption hero-caption--left">
+                    <div class="hero-small-mask"><h1 class="hero-caption-text">Product Designer &amp; Developer</h1></div>
+                </div>
 
-        <div class="hero-content">
-            <div class="container">
-                <div class="hero-grid">
-                    <!-- Left Column -->
-                    <div class="hero-left">
-                        <h1 class="hero-title-section" aria-label="Product Designer & Developer">
-                            <div class="hero-title-line-1-wrapper">
-                                <div class="hero-title-line-1">Product</div>
-                            </div>
-                            <div class="hero-title-line-2-wrapper">
-                                <div class="hero-title-line-2">Designer &amp;</div>
-                            </div>
-                            <div class="hero-title-line-3-wrapper">
-                                <div class="hero-title-line-3">Developer</div>
-                            </div>
-                        </h1>
-                        <div class="hero-image-section">
-                            <img src="img/kaimage.jpg" alt="Kushtrim Arifi — Product Designer and Developer portrait" class="hero-portrait" fetchpriority="high" decoding="async" width="250" height="250">
-                        </div>
-                        <div class="hero-name-section">
-                            <h2 class="hero-name">Kushtrim Arifi</h2>
-                        </div>
-                    </div>
+                <h2 class="hero-title-section" aria-label="Kushtrim Arifi">
+                    <span class="hero-mask hero-word hero-word--first hero-drift-left"><span>Kushtrim</span></span>
+                    <span class="hero-mask hero-word hero-word--last hero-drift-right"><span>Arifi</span></span>
+                </h2>
 
-                    <!-- Right Column -->
-                    <div class="hero-right">
-                        <div class="hero-year-section">
-                            <div class="hero-year">2025</div>
-                        </div>
-                        <div class="hero-experience-section">
-                            <p class="hero-experience">Creating since 2012</p>
-                        </div>
-                    </div>
+                <!-- The name again as frosted glass over the solid one: where it crosses the photo its letters show the photo blurred -->
+                <div class="hero-title-section hero-frost" aria-hidden="true">
+                    <span class="hero-mask hero-word hero-word--first hero-drift-left"><span>Kushtrim</span></span>
+                    <span class="hero-mask hero-word hero-word--last hero-drift-right"><span>Arifi</span></span>
+                </div>
+
+                <figure class="hero-image-section">
+                    <img src="img/kaimage.jpg" alt="Kushtrim Arifi — Product Designer and Developer portrait" class="hero-portrait" fetchpriority="high" decoding="async" width="1236" height="1200">
+                </figure>
+
+                <div class="hero-caption hero-caption--right">
+                    <div class="hero-small-mask"><p class="hero-caption-text">Creating since 2012</p></div>
                 </div>
             </div>
         </div>
@@ -219,18 +216,19 @@
                     <div class="about-text-parts">
                         <div class="about-paragraph about-paragraph-1">
                             <div class="about-text-wrapper">
-                                <p class="about-text">Started as a UX designer in 2012, then shifted into software
-                                    engineering in 2020. Since then, I've worked across a range of projects, from
-                                    websites and mobile apps to custom CRM systems.</p>
+                                <p class="about-text">Started as a designer in 2012, moved through UX/UI, then into
+                                    software engineering in 2020. Since then I've worked across websites, mobile apps
+                                    and custom CRM systems, most recently an AI mental health tool built with a
+                                    clinical team.</p>
                             </div>
                         </div>
 
                         <div class="about-paragraph about-paragraph-2">
                             <div class="about-text-wrapper">
-                                <p class="about-text">My background in Clinical psychology helps me bridge design and
-                                    development with a focus on how people actually use digital products. I enjoy
-                                    solving real problems and building things that make sense to the user, not just the
-                                    screen.</p>
+                                <p class="about-text">My MSc in Clinical Psychology means I run my own user research
+                                    (interviews, usability testing, measurement) rather than designing from
+                                    assumptions. I enjoy solving real problems and building things that make sense to
+                                    the user, not just the screen.</p>
                             </div>
                         </div>
                     </div>
@@ -391,7 +389,7 @@
     <script src="/vendor/gsap/gsap.min.js" defer></script>
     <script src="/vendor/gsap/ScrollTrigger.min.js" defer></script>
     <script src="/vendor/gsap/CustomEase.min.js" defer></script>
-    <script src="script.js?v=20260915" defer></script>
+    <script src="script.js?v=20260915-2" defer></script>
 </body>
 
 </html>

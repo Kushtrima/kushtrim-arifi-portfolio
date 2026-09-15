@@ -31,11 +31,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // GSAP didn't load: show everything that would otherwise wait for an animation
     function showWithoutMotion() {
         document.body.style.cursor = 'auto';
-        document.querySelectorAll('.hero-title-line-1, .hero-title-line-2, .hero-title-line-3, .hero-portrait, .hero-name, .hero-year, .hero-experience, .about-text, .experience-title h2, .experience-item, .work-gallery .gallery-item, .about-title, .about-text-large, .four-column-section, .column')
+        document.querySelectorAll('.hero-mask > span, .hero-small-mask > *, .hero-portrait, .about-text, .experience-title h2, .experience-item, .work-gallery .gallery-item, .about-title, .about-text-large, .four-column-section, .column')
             .forEach((element) => {
                 element.style.opacity = '1';
                 element.style.transform = 'none';
             });
+        document.querySelectorAll('.hero-image-section').forEach((frame) => { frame.style.clipPath = 'none'; });
         document.querySelectorAll('.experience-title .title-word').forEach((word) => { word.style.color = cssVar('--color-primary'); });
         document.querySelectorAll('.text-reveal-wrapper').forEach((wrapper) => {
             wrapper.style.setProperty('--text-reveal', '1');
@@ -246,12 +247,48 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Page load: hero lines slide up out of their masks, then the portrait, name, year and experience
-    if (hasMotion) {
-        [['.hero-title-line-1', 0.2], ['.hero-title-line-2', 0.4], ['.hero-title-line-3', 0.6], ['.hero-portrait', 0.8],
-            ['.hero-name', 1.0], ['.hero-year', 1.2], ['.hero-experience', 1.4]].forEach(([selector, delay]) => {
-            const element = document.querySelector(selector);
-            if (element) gsap.fromTo(element, { y: 0, yPercent: 100 }, { yPercent: 0, duration: 0.8, ease: EASE.smooth, delay });
+    // Hero: the photo opens from its centre while it settles from a slight zoom, the big words rise out of their
+    // masks in reading order, then the small print. On scroll the words marked to drift slide apart and the photo
+    // moves slower than the page.
+    const hero = document.querySelector('.hero');
+    if (hero && hasMotion) {
+        const heroOut = CustomEase.create('hero-out', '0.16,1,0.3,1');
+        const photo = hero.querySelector('.hero-image-section');
+
+        // The frosted copy of the name: its background, the blurred photo, is kept exactly where the photo is, through
+        // the photo's zoom and parallax and the words' rise and drift, so its letters show the photo wherever they cross it
+        const portrait = hero.querySelector('.hero-portrait');
+        const frost = hero.querySelector('.hero-frost');
+        if (frost) {
+            const frostLines = [...frost.querySelectorAll('.hero-mask > span')];
+            const lineUpFrost = () => {
+                const image = portrait.getBoundingClientRect();
+                if (image.bottom < 0 || image.top > innerHeight) return;
+                const width = image.height * (portrait.naturalWidth / portrait.naturalHeight || 1236 / 1200);
+                const left = image.left + (image.width - width) / 2;
+                frostLines.forEach((line) => {
+                    const box = line.getBoundingClientRect();
+                    line.style.backgroundSize = `${width}px ${image.height}px`;
+                    line.style.backgroundPosition = `${left - box.left}px ${image.top - box.top}px`;
+                });
+            };
+            lineUpFrost();
+            gsap.ticker.add(lineUpFrost);
+            frost.classList.add('is-lined-up');
+        }
+
+        gsap.timeline({ defaults: { ease: heroOut } })
+            .fromTo(photo, { clipPath: 'inset(50% 50% 50% 50%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3 }, 0.1)
+            .fromTo('.hero-portrait', { scale: 1.2 }, { scale: 1, duration: 2.2 }, 0.1)
+            .fromTo(hero.querySelectorAll('.hero-word--first > span'), { y: 0, yPercent: 100 }, { yPercent: 0, duration: 1.1 }, 0.55)
+            .fromTo(hero.querySelectorAll('.hero-word--last > span'), { y: 0, yPercent: 100 }, { yPercent: 0, duration: 1.1 }, 0.69)
+            .fromTo(hero.querySelectorAll('.hero-small-mask > *'), { y: 0, yPercent: 100 }, { yPercent: 0, duration: 0.9, stagger: 0.08 }, 1.25);
+
+        gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+            const scrub = () => ({ trigger: hero, start: 'top top', end: 'bottom top', scrub: true });
+            gsap.to(hero.querySelectorAll('.hero-drift-left'), { xPercent: -18, ease: 'none', scrollTrigger: scrub() });
+            gsap.to(hero.querySelectorAll('.hero-drift-right'), { xPercent: 18, ease: 'none', scrollTrigger: scrub() });
+            gsap.to(photo, { yPercent: 12, ease: 'none', scrollTrigger: scrub() });
         });
     }
 
