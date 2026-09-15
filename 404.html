@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#212121">
     <title>404 — Page Not Found | Kushtrim Arifi</title>
-    <meta name="description" content="The page you were looking for doesn't exist. Browse the portfolio of UX/UI Designer & Front-End Engineer Kushtrim Arifi instead.">
+    <meta name="description" content="The page you were looking for doesn't exist. Browse the portfolio of Product Designer & Developer Kushtrim Arifi instead.">
     <meta name="robots" content="noindex, follow">
 
     <!-- Favicon (absolute paths so they work for any 404 URL) -->
@@ -15,11 +15,12 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
 
+    <link rel="preload" href="/fonts/bilena-regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/styles.css">
 
     <style>
         /* Force dark background regardless of body class on this page */
-        html, body { background-color: #212121; color: #ffffff; cursor: auto; }
+        html, body { background-color: var(--color-secondary); color: var(--color-primary); cursor: auto; }
         a, button { cursor: pointer; }
         .not-found {
             min-height: calc(100vh - 200px);
@@ -31,26 +32,26 @@
             padding: 80px 24px;
         }
         .not-found-code {
-            font-family: 'Times New Roman', serif;
+            font-family: var(--font-display);
             font-size: clamp(96px, 20vw, 240px);
             font-weight: 300;
             line-height: 1;
             margin: 0 0 16px;
             letter-spacing: -4px;
-            color: #ffffff;
+            color: var(--color-primary);
         }
         .not-found-title {
-            font-family: 'Times New Roman', serif;
+            font-family: var(--font-display);
             font-size: clamp(32px, 5vw, 56px);
             font-weight: 300;
             margin: 0 0 24px;
-            color: #ffffff;
+            color: var(--color-primary);
         }
         .not-found-text {
             max-width: 540px;
             font-size: 17px;
             line-height: 1.6;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(var(--color-primary-rgb), 0.7);
             margin: 0 0 40px;
         }
         .not-found-actions {
@@ -62,19 +63,19 @@
         .not-found-btn {
             display: inline-block;
             padding: 14px 32px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(var(--color-primary-rgb), 0.4);
             border-radius: 999px;
             text-decoration: none;
-            color: #ffffff;
+            color: var(--color-primary);
             font-size: 13px;
             letter-spacing: 2px;
             text-transform: uppercase;
             transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
         .not-found-btn:hover {
-            background: #ffffff;
-            color: #212121;
-            border-color: #ffffff;
+            background: var(--color-primary);
+            color: var(--color-secondary);
+            border-color: var(--color-primary);
         }
     </style>
 </head>

@@ -220,31 +220,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (scrollY < aboutBottom) {
                 // BEFORE END OF ABOUT SECTION - WHITE
-                document.body.style.setProperty('background-color', '#ffffff', 'important');
+                document.body.style.setProperty('background-color', 'var(--color-primary)', 'important');
                 // Update text colors for white background
                 document.querySelectorAll('.about-text').forEach(el => {
-                    el.style.setProperty('color', '#333333', 'important');
+                    el.style.setProperty('color', 'var(--color-text)', 'important');
                 });
                 const label = document.querySelector('.about-label');
-                if (label) label.style.setProperty('color', '#333333', 'important');
+                if (label) label.style.setProperty('color', 'var(--color-text)', 'important');
                 const ctaLink = document.querySelector('.cta-link');
                 if (ctaLink) {
-                    ctaLink.style.setProperty('color', '#333333', 'important');
-                    ctaLink.style.setProperty('border-color', '#333333', 'important');
+                    ctaLink.style.setProperty('color', 'var(--color-text)', 'important');
+                    ctaLink.style.setProperty('border-color', 'var(--color-text)', 'important');
                 }
             } else {
                 // AFTER END OF ABOUT SECTION - GRAY
-                document.body.style.setProperty('background-color', '#212121', 'important');
+                document.body.style.setProperty('background-color', 'var(--color-secondary)', 'important');
                 // Update text colors for gray background
                 document.querySelectorAll('.about-text').forEach(el => {
-                    el.style.setProperty('color', '#ffffff', 'important');
+                    el.style.setProperty('color', 'var(--color-primary)', 'important');
                 });
                 const label = document.querySelector('.about-label');
-                if (label) label.style.setProperty('color', '#ffffff', 'important');
+                if (label) label.style.setProperty('color', 'var(--color-primary)', 'important');
                 const ctaLink = document.querySelector('.cta-link');
                 if (ctaLink) {
-                    ctaLink.style.setProperty('color', '#ffffff', 'important');
-                    ctaLink.style.setProperty('border-color', '#ffffff', 'important');
+                    ctaLink.style.setProperty('color', 'var(--color-primary)', 'important');
+                    ctaLink.style.setProperty('border-color', 'var(--color-primary)', 'important');
                 }
             }
         }

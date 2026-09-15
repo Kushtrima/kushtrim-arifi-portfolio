@@ -2,20 +2,20 @@
 .page-content {
     padding-top: 100px;
     min-height: 100vh;
-    color: #333333;
+    color: var(--color-text);
 }
 
 .page-hero {
     text-align: center;
     padding: 80px 0 60px;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--color-accent);
     margin-bottom: 60px;
 }
 
 .page-title {
     font-size: 48px;
     font-weight: 700;
-    color: #333333;
+    color: var(--color-text);
     margin-bottom: 20px;
     opacity: 0;
     transform: translateY(20px);
@@ -25,7 +25,7 @@
 .page-subtitle {
     font-size: 18px;
     font-weight: 300;
-    color: #666666;
+    color: var(--color-text-light);
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.8s ease-out 0.4s forwards;
@@ -33,25 +33,25 @@
 
 /* Header adjustments for pages */
 .header {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(var(--color-primary-rgb), 0.95);
     backdrop-filter: blur(10px);
 }
 
 .header .logo-text {
-    color: #333333;
+    color: var(--color-text);
 }
 
 .header .nav-link {
-    color: #333333;
+    color: var(--color-text);
 }
 
 .header .nav-link.active {
-    color: #000000;
+    color: var(--color-black);
     font-weight: 600;
 }
 
 .header .burger-line {
-    background-color: #333333;
+    background-color: var(--color-text);
 }
 
 /* Work page styles */
@@ -93,25 +93,25 @@
 .work-placeholder {
     width: 100%;
     height: 300px;
-    background: #f8f8f8;
+    background: var(--color-grey-f8);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #999999;
+    color: var(--color-grey-99);
     font-weight: 300;
 }
 
 .work-title {
     font-size: 24px;
     font-weight: 600;
-    color: #333333;
+    color: var(--color-text);
     margin-bottom: 15px;
 }
 
 .work-description {
     font-size: 16px;
     font-weight: 300;
-    color: #666666;
+    color: var(--color-text-light);
     line-height: 1.6;
     margin-bottom: 20px;
 }
@@ -123,8 +123,8 @@
 }
 
 .tag {
-    background: #f0f0f0;
-    color: #666666;
+    background: var(--color-accent);
+    color: var(--color-text-light);
     padding: 6px 12px;
     border-radius: 20px;
     font-size: 14px;
@@ -153,21 +153,21 @@
 .about-text h2 {
     font-size: 32px;
     font-weight: 600;
-    color: #333333;
+    color: var(--color-text);
     margin-bottom: 30px;
 }
 
 .about-text h3 {
     font-size: 24px;
     font-weight: 600;
-    color: #333333;
+    color: var(--color-text);
     margin: 40px 0 20px;
 }
 
 .about-text p {
     font-size: 16px;
     font-weight: 300;
-    color: #666666;
+    color: var(--color-text-light);
     line-height: 1.7;
     margin-bottom: 20px;
 }
@@ -180,9 +180,9 @@
 .skills-list li {
     font-size: 16px;
     font-weight: 400;
-    color: #666666;
+    color: var(--color-text-light);
     padding: 8px 0;
-    border-bottom: 0.5px solid #555555;
+    border-bottom: 0.5px solid var(--color-grey-55);
 }
 
 .about-image {
@@ -207,7 +207,7 @@
 .experience-section h3 {
     font-size: 24px;
     font-weight: 600;
-    color: #333333;
+    color: var(--color-text);
     margin-bottom: 40px;
 }
 
@@ -217,26 +217,26 @@
     gap: 40px;
     margin-bottom: 40px;
     padding-bottom: 40px;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--color-accent);
 }
 
 .experience-year {
     font-size: 14px;
     font-weight: 500;
-    color: #999999;
+    color: var(--color-grey-99);
 }
 
 .experience-content h4 {
     font-size: 18px;
     font-weight: 600;
-    color: #333333;
+    color: var(--color-text);
     margin-bottom: 10px;
 }
 
 .experience-content p {
     font-size: 16px;
     font-weight: 300;
-    color: #666666;
+    color: var(--color-text-light);
     line-height: 1.6;
 }
 
@@ -301,7 +301,7 @@
 
 
 .about-main {
-    background-color: #212121;
+    background-color: var(--color-secondary);
     min-height: 100vh;
     padding: 120px 0 0 0;
 }
@@ -320,10 +320,10 @@
 }
 
 .about-title {
-    font-family: 'Times New Roman', serif;
+    font-family: var(--font-display);
     font-size: 56px;
     font-weight: 300;
-    color: #ffffff;
+    color: var(--color-primary);
     text-transform: uppercase;
     letter-spacing: 2px;
     margin: 0 0 40px 0;
@@ -337,15 +337,17 @@
 }
 
 .about-text-large {
-    font-family: 'Times New Roman', serif;
+    font-family: var(--font-display);
     font-size: 40px;
     font-weight: 300;
     line-height: 1.1;
-    color: #ffffff;
+    color: var(--color-primary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin: 0;
-    text-align: justify;
+    /* Left, not justify: with Bilena, justify stretched some word gaps to over 4x a normal space */
+    text-align: left;
+    text-wrap: pretty;
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 0.8s ease-out 0.2s forwards;
@@ -360,10 +362,10 @@
 }
 
 .signature-text {
-    font-family: 'Times New Roman', serif;
+    font-family: var(--font-display);
     font-size: 16px;
     font-weight: 400;
-    color: #ffffff;
+    color: var(--color-primary);
     text-transform: none;
     letter-spacing: 1px;
     margin: 0;
@@ -385,10 +387,10 @@
 }
 
 .statement-large {
-    font-family: 'Times New Roman', serif;
+    font-family: var(--font-display);
     font-size: 96px;
     font-weight: 300;
-    color: #ffffff;
+    color: var(--color-primary);
     text-transform: uppercase;
     letter-spacing: 1px;
     line-height: 1.1;
@@ -400,10 +402,10 @@
 }
 
 .statement-philosophy {
-    font-family: 'Times New Roman', serif;
+    font-family: var(--font-display);
     font-size: 11px;
     font-weight: 400;
-    color: #ffffff;
+    color: var(--color-primary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     line-height: 1.6;
@@ -419,7 +421,7 @@
 /* Four Column Section */
 .four-column-section {
     padding: 80px 0;
-    background-color: #212121;
+    background-color: var(--color-secondary);
     opacity: 0;
     transform: translateY(50px);
     animation: fadeInUp 0.8s ease-out forwards;
@@ -454,10 +456,10 @@
 }
 
 .column-title {
-    font-family: 'Times New Roman', serif;
+    font-family: var(--font-display);
     font-size: 24px;
     font-weight: 400;
-    color: #ffffff;
+    color: var(--color-primary);
     text-transform: none;
     letter-spacing: 1px;
     margin: 0 0 30px 0;
@@ -471,10 +473,10 @@
 }
 
 .column-list li {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 18px;
     font-weight: 400;
-    color: #cccccc;
+    color: var(--color-grey-cc);
     text-transform: none;
     letter-spacing: 0.5px;
     line-height: 1.8;
@@ -566,7 +568,7 @@
         visibility: visible !important;
         position: relative !important;
         z-index: 1 !important;
-        background-color: #212121 !important;
+        background-color: var(--color-secondary) !important;
     }
 
     .names-layout {
@@ -578,11 +580,11 @@
         font-size: 20px;
         text-align: right;
         line-height: 1.1;
-        color: #ffffff !important;
+        color: var(--color-primary) !important;
         opacity: 1 !important;
         visibility: visible !important;
         display: block !important;
-        font-family: 'Times New Roman', serif !important;
+        font-family: var(--font-display) !important;
         font-weight: 400 !important;
         margin: 0 !important;
     }
@@ -604,7 +606,7 @@
         font-size: 10px;
         height: 50px;
         letter-spacing: 0.3px;
-        border: 1px solid #666666;
+        border: 1px solid var(--color-text-light);
         background-color: transparent;
         display: flex;
         align-items: center;
@@ -627,7 +629,7 @@
     width: 160px;
     height: 160px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(var(--color-black-rgb), 0.3);
     transition: transform 0.3s ease;
 }
 
@@ -672,10 +674,10 @@
 }
 
 .skills-main-title {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 24px;
     font-weight: 400;
-    color: #ffffff;
+    color: var(--color-primary);
     margin: 0;
     line-height: 1.4;
     letter-spacing: 0.5px;
@@ -697,10 +699,10 @@
 }
 
 .skill-item {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 16px;
     font-weight: 400;
-    color: #666666;
+    color: var(--color-text-light);
     padding: 8px 0;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -713,13 +715,13 @@
 }
 
 .skill-item.active {
-    color: #ffffff;
+    color: var(--color-primary);
     opacity: 1;
     transform: translateX(0);
 }
 
 .skill-item:hover {
-    color: #cccccc;
+    color: var(--color-grey-cc);
     opacity: 0.8;
 }
 
@@ -770,7 +772,7 @@
 /* Education & Certification Section - Simple Design */
 .about-education {
     padding: 120px 0;
-    background-color: #212121;
+    background-color: var(--color-secondary);
 }
 
 .education-section,
@@ -780,10 +782,10 @@
 }
 
 .section-title {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 18px;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--color-primary);
     text-transform: uppercase;
     letter-spacing: 2px;
     margin: 0 0 40px 0;
@@ -818,34 +820,34 @@
 }
 
 .education-degree {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 20px;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--color-primary);
     margin: 0 0 5px 0;
 }
 
 .education-school {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 16px;
     font-weight: 400;
-    color: #cccccc;
+    color: var(--color-grey-cc);
     margin: 0 0 5px 0;
 }
 
 .education-year {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 16px;
     font-weight: 400;
-    color: #888888;
+    color: var(--color-grey-88);
     margin: 0;
 }
 
 .certification-item {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 16px;
     font-weight: 400;
-    color: #ffffff;
+    color: var(--color-primary);
     margin: 0 0 15px 0;
     opacity: 0;
     transform: translateY(20px);
@@ -912,20 +914,20 @@
 }
 
 .about-main .header .logo-text {
-    color: #ffffff !important;
+    color: var(--color-primary) !important;
 }
 
 .about-main .header .nav-link {
-    color: #ffffff !important;
+    color: var(--color-primary) !important;
 }
 
 .about-main .header .nav-link.active {
-    color: #ffffff !important;
+    color: var(--color-primary) !important;
     font-weight: 600;
 }
 
 .about-main .header .burger-line {
-    background-color: #ffffff !important;
+    background-color: var(--color-primary) !important;
 }
 
 /* About page responsive */
@@ -990,7 +992,7 @@
 /* Collaborations Section */
 .collaborations-section {
     padding: 80px 0;
-    background-color: #212121;
+    background-color: var(--color-secondary);
     text-align: right;
 }
 
@@ -1001,19 +1003,19 @@
 }
 
 .collaborations-title {
-    font-family: 'Times New Roman', serif;
+    font-family: var(--font-display);
     font-size: 56px;
     font-weight: 400;
-    color: #ffffff;
+    color: var(--color-primary);
     margin: 0 0 40px 0;
     line-height: 1.2;
 }
 
 .collaborations-companies {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 18px;
     font-weight: 400;
-    color: #ffffff;
+    color: var(--color-primary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin: 0;
@@ -1026,7 +1028,7 @@
 /* Additional Projects Note Section */
 .projects-note-section {
     padding: 20px 0;
-    background-color: #212121;
+    background-color: var(--color-secondary);
     text-align: left;
 }
 
@@ -1037,10 +1039,10 @@
 }
 
 .projects-note {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 16px;
     font-weight: 400;
-    color: #888888;
+    color: var(--color-grey-88);
     margin: 0;
     line-height: 1.5;
     text-align: left;
