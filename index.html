@@ -49,8 +49,12 @@
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
     <link rel="preload" as="image" href="img/kaimage.jpg" fetchpriority="high">
 
-    <!-- Lets styles.css hold the hero's entrance start state only when scripts run -->
-    <script>document.documentElement.classList.add('js');</script>
+    <!-- Lets styles.css hold the hero's entrance start state only when scripts run, and covers the page with the intro
+         on every load (never when the system asks for less motion) -->
+    <script>
+        document.documentElement.classList.add('js');
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('intro-on');
+    </script>
     <link rel="stylesheet" href="styles.css?v=20260915-2">
 
     <!-- Structured Data: Person + ProfilePage -->
@@ -126,13 +130,19 @@
 
 <body>
     <!--
-    THESIS: The name around the person. A small square portrait a little right of the middle of a dark grey field, "Kushtrim" huge on the left running over its edge beside the face and "Arifi" standing on its bottom edge; the job title and "Creating since 2012" small at the foot. Refuses the big photo beside a text block.
+    THESIS: The name around the person. A square portrait on a dark grey field with the name huge on one line through it, "Kushtrim" over its left edge and "Arifi" over its right edge beside the face; the job title and "Creating since 2012" small at the foot. Refuses the big photo beside a text block.
     OWN-WORLD: #212121 field, off-white Times New Roman: the name huge and frosted glass where it crosses the photo, the two captions at one small size; the site's grayscale studio portrait vignetted into the field.
-    STORY: A hiring visitor meets the face and the name first, reads Product Designer & Developer and Creating since 2012 at the foot, then scrolls as the name pulls apart into About me.
-    FIRST VIEWPORT: Square photo just right of centre; "Kushtrim" over its left edge beside the face; "Arifi" on its bottom edge running out past its right side; "Product Designer & Developer" bottom left on the logo's edge, "Creating since 2012" bottom right on the navigation's edge.
+    STORY: A hiring visitor meets the face and the name first, reads Product Designer & Developer and Creating since 2012 at the foot, then scrolls: the hero holds still while the name starts to burst into particles, and About me follows with the dots still in the air.
+    FIRST VIEWPORT: Square photo just right of centre so the line is centred; "Kushtrim" over its left edge and "Arifi" over its right edge, one line at eye level; "Product Designer & Developer" bottom left on the logo's edge, "Creating since 2012" bottom right on the navigation's edge.
     FORM: name around the portrait, from the owner's reference image and follow-up notes; a section inside the established world, so no concept seed.
     FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
     -->
+    <!-- Intro on every load of the home page: brackets, the name written between them, back to "[a]", which moves to the header's logo as the ground opens (script.js) -->
+    <div class="intro" aria-hidden="true">
+        <div class="intro-half intro-half--top"></div>
+        <div class="intro-half intro-half--bottom"></div>
+        <div class="intro-logo"><span class="intro-bracket">[</span><span class="intro-name">Kushtrim Arifi</span><span class="intro-a">a</span><span class="intro-bracket">]</span></div>
+    </div>
     <a href="#main-content" class="skip-to-main">Skip to main content</a>
     <header class="header">
         <div class="container">
@@ -201,11 +211,17 @@
                     <img src="img/kaimage.jpg" alt="Kushtrim Arifi — Product Designer and Developer portrait" class="hero-portrait" fetchpriority="high" decoding="async" width="1236" height="1200">
                 </figure>
 
+                <!-- The person cut out of the photo, above the name, so the name can pass behind the head as the page scrolls -->
+                <figure class="hero-image-section hero-cutout" aria-hidden="true">
+                    <img src="img/kaimage.jpg" alt="" class="hero-portrait" decoding="async" width="1236" height="1200">
+                </figure>
+
                 <div class="hero-caption hero-caption--right">
                     <div class="hero-small-mask"><p class="hero-caption-text">Creating since 2012</p></div>
                 </div>
             </div>
         </div>
+        <canvas class="hero-particles" aria-hidden="true"></canvas>
     </main>
 
     <section class="about-section">

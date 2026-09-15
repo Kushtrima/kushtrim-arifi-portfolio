@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // GSAP didn't load: show everything that would otherwise wait for an animation
     function showWithoutMotion() {
+        document.documentElement.classList.remove('intro-on');
         document.body.style.cursor = 'auto';
         document.querySelectorAll('.hero-mask > span, .hero-small-mask > *, .hero-portrait, .about-text, .experience-title h2, .experience-item, .work-gallery .gallery-item, .about-title, .about-text-large, .four-column-section, .column')
             .forEach((element) => {
@@ -247,13 +248,82 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Intro on every load of the home page: empty brackets appear, the name writes itself out between them (the
+    // brackets moving apart as it grows), unwrites again, an "a" takes its place, and "[a]" moves to its place in the
+    // header's logo while the dark ground opens from the middle; the header's logo fades in around it
+    const introCover = document.documentElement.classList.contains('intro-on') ? document.querySelector('.intro') : null;
+    const introHeaderLogo = document.querySelector('.header .logo-text');
+    let introLength = 0;
+    if (introCover && introHeaderLogo && hasMotion) {
+        const introLogo = introCover.querySelector('.intro-logo');
+        const brackets = [...introCover.querySelectorAll('.intro-bracket')];
+        const nameBox = introCover.querySelector('.intro-name');
+        const letterA = introCover.querySelector('.intro-a');
+
+        // One clipped box per letter, so each can grow from nothing to its own width
+        const name = nameBox.textContent;
+        nameBox.textContent = '';
+        const letters = [...name].map((character) => {
+            const letter = document.createElement('span');
+            letter.className = 'intro-letter';
+            letter.textContent = character === ' ' ? ' ' : character;
+            nameBox.append(letter);
+            return letter;
+        });
+        letterA.classList.add('intro-letter');
+        const widths = new Map([...letters, letterA].map((letter) => [letter, letter.getBoundingClientRect().width]));
+        gsap.set([...letters, letterA], { width: 0, opacity: 0 });
+
+        // Where "[a]" sits inside the header's "Kushtrim [a]", and how much smaller the header's type is
+        let landing = { x: 0, y: 0, scale: 1 };
+        const measureLanding = () => {
+            const text = introHeaderLogo.firstChild;
+            const range = document.createRange();
+            range.setStart(text, text.textContent.indexOf('['));
+            range.setEnd(text, text.textContent.trimEnd().length);
+            const to = range.getBoundingClientRect();
+            const from = introLogo.getBoundingClientRect();
+            landing = {
+                x: to.left - from.left,
+                y: to.top + to.height / 2 - (from.top + from.height / 2),
+                scale: parseFloat(getComputedStyle(introHeaderLogo).fontSize) / parseFloat(getComputedStyle(introLogo).fontSize),
+            };
+        };
+        const introOpen = CustomEase.create('intro-open', '0.76,0,0.24,1');
+
+        // Slow and soft: the steps overlap a little, each letter drifts up as its box grows and lifts away as it shrinks,
+        // with a pause on the whole name and on "[a]"
+        introLength = 3.9;
+        gsap.timeline({
+            onComplete: () => {
+                document.documentElement.classList.remove('intro-on');
+                gsap.set(introHeaderLogo, { clearProps: 'opacity,transition,visibility' });
+            },
+        })
+            .set([introCover, introHeaderLogo], { animation: 'none' })
+            .set(introLogo, { visibility: 'visible', transformOrigin: '0% 50%' })
+            .fromTo(brackets, { opacity: 0, yPercent: 20 }, { opacity: 1, yPercent: 0, duration: 0.7, ease: 'power3.out' }, 0.15)
+            .fromTo(letters, { yPercent: 35 }, { width: (i, letter) => widths.get(letter), opacity: 1, yPercent: 0, duration: 0.45, ease: 'power3.out', stagger: 0.06 }, 0.55)
+            .to([...letters].reverse(), { width: 0, opacity: 0, yPercent: -30, duration: 0.35, ease: 'power2.inOut', stagger: 0.035 }, 2.3)
+            .fromTo(letterA, { yPercent: 35 }, { width: widths.get(letterA), opacity: 1, yPercent: 0, duration: 0.5, ease: 'power3.out' }, 3.2)
+            .add(measureLanding, 3.84)
+            // #dedede is how the header shows its white logo over the hero: its difference blend against #212121
+            .to(introLogo, { x: () => landing.x, y: () => landing.y, scale: () => landing.scale, color: '#dedede', duration: 1.2, ease: 'power3.inOut' }, 3.85)
+            .to(introCover.querySelector('.intro-half--top'), { yPercent: -100, duration: 1.2, ease: introOpen }, 3.95)
+            .to(introCover.querySelector('.intro-half--bottom'), { yPercent: 100, duration: 1.2, ease: introOpen }, 3.95)
+            .set(introHeaderLogo, { visibility: 'visible', opacity: 0, transition: 'none' }, 4.7)
+            .to(introHeaderLogo, { opacity: 1, duration: 0.45, ease: 'power1.inOut' }, 4.7)
+            .to(introLogo, { opacity: 0, duration: 0.45, ease: 'power1.inOut' }, 4.7);
+    }
+
     // Hero: the photo opens from its centre while it settles from a slight zoom, the big words rise out of their
-    // masks in reading order, then the small print. On scroll the words marked to drift slide apart and the photo
-    // moves slower than the page.
+    // masks in reading order, then the small print. On scroll the hero holds still (when the name sits beside the photo)
+    // while the name bursts into particles that pass behind the cut-out person.
     const hero = document.querySelector('.hero');
     if (hero && hasMotion) {
         const heroOut = CustomEase.create('hero-out', '0.16,1,0.3,1');
-        const photo = hero.querySelector('.hero-image-section');
+        // The photo and the cut-out person above the name move as one
+        const photos = hero.querySelectorAll('.hero-image-section');
 
         // The frosted copy of the name: its background, the blurred photo, is kept exactly where the photo is, through
         // the photo's zoom and parallax and the words' rise and drift, so its letters show the photo wherever they cross it
@@ -277,18 +347,130 @@ document.addEventListener('DOMContentLoaded', function () {
             frost.classList.add('is-lined-up');
         }
 
-        gsap.timeline({ defaults: { ease: heroOut } })
-            .fromTo(photo, { clipPath: 'inset(50% 50% 50% 50%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3 }, 0.1)
+        gsap.timeline({ defaults: { ease: heroOut }, delay: introLength })
+            .fromTo(photos, { clipPath: 'inset(50% 50% 50% 50%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3 }, 0.1)
             .fromTo('.hero-portrait', { scale: 1.2 }, { scale: 1, duration: 2.2 }, 0.1)
             .fromTo(hero.querySelectorAll('.hero-word--first > span'), { y: 0, yPercent: 100 }, { yPercent: 0, duration: 1.1 }, 0.55)
             .fromTo(hero.querySelectorAll('.hero-word--last > span'), { y: 0, yPercent: 100 }, { yPercent: 0, duration: 1.1 }, 0.69)
             .fromTo(hero.querySelectorAll('.hero-small-mask > *'), { y: 0, yPercent: 100 }, { yPercent: 0, duration: 0.9, stagger: 0.08 }, 1.25);
 
-        gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-            const scrub = () => ({ trigger: hero, start: 'top top', end: 'bottom top', scrub: true });
-            gsap.to(hero.querySelectorAll('.hero-drift-left'), { xPercent: -18, ease: 'none', scrollTrigger: scrub() });
-            gsap.to(hero.querySelectorAll('.hero-drift-right'), { xPercent: 18, ease: 'none', scrollTrigger: scrub() });
-            gsap.to(photo, { yPercent: 12, ease: 'none', scrollTrigger: scrub() });
+        // The name breaks into particles on scroll: its letters are sampled into dots on the .hero-particles canvas,
+        // which fly outward and fade as the scroll goes on and gather back into the name on the way up. The real words
+        // fade into the dots as the burst starts; the cut-out person stays above the canvas, so dots pass behind the head
+        const particleCanvas = hero.querySelector('.hero-particles');
+        const nameWords = hero.querySelectorAll('.hero-title-section .hero-mask');
+        const nameLines = [...hero.querySelectorAll('.hero-title-section:not(.hero-frost) .hero-mask > span')];
+        const burst = { progress: 0 };
+        let dots = [];
+
+        // Each dot starts in its letter and flies out along its own path, leaving a little later than the last, and
+        // fades as it goes
+        const drawDots = () => {
+            if (!particleCanvas) return;
+            const ink = particleCanvas.getContext('2d');
+            const ratio = particleCanvas.width / (hero.offsetWidth || 1);
+            ink.setTransform(1, 0, 0, 1, 0, 0);
+            ink.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+            // The letters hand over to the dots over the first 8% of the burst: the words fade out as the dots fade in,
+            // so the name dissolves into dots instead of switching to them
+            const handover = Math.min(1, burst.progress / 0.08);
+            gsap.set(nameWords, handover > 0 ? { opacity: 1 - handover } : { clearProps: 'opacity' });
+            if (handover <= 0) return;
+            ink.setTransform(ratio, 0, 0, ratio, 0, 0);
+            ink.fillStyle = '#f8f8f8';
+            for (const dot of dots) {
+                const travel = Math.min(1, Math.max(0, (burst.progress - dot.delay) / (1 - dot.delay)));
+                if (travel >= 1) continue;
+                const eased = 1 - (1 - travel) ** 3;
+                ink.globalAlpha = (1 - travel) * handover;
+                ink.fillRect(dot.x + dot.dx * eased, dot.y + dot.dy * eased, dot.size, dot.size);
+            }
+            ink.globalAlpha = 1;
+        };
+
+        // Draws each word at its resting place (layout offsets, which ignore the transforms) on a scratch canvas and
+        // keeps one dot for every few pixels of ink
+        const buildDots = () => {
+            if (!particleCanvas) return;
+            const ratio = Math.min(window.devicePixelRatio || 1, 2);
+            particleCanvas.width = Math.round(hero.offsetWidth * ratio);
+            particleCanvas.height = Math.round(hero.offsetHeight * ratio);
+            const scratch = document.createElement('canvas');
+            scratch.width = particleCanvas.width;
+            scratch.height = particleCanvas.height;
+            const ink = scratch.getContext('2d', { willReadFrequently: true });
+            dots = [];
+            nameLines.forEach((line) => {
+                const mask = line.parentElement;
+                const frame = mask.offsetParent;
+                const style = getComputedStyle(line);
+                const size = parseFloat(style.fontSize);
+                const left = frame.offsetLeft + mask.offsetLeft;
+                const top = frame.offsetTop + mask.offsetTop;
+                ink.setTransform(ratio, 0, 0, ratio, 0, 0);
+                ink.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+                ink.letterSpacing = style.letterSpacing;
+                ink.fillStyle = '#fff';
+                const metrics = ink.measureText(line.textContent);
+                const lineHeight = parseFloat(style.lineHeight) || size * 0.9;
+                const baseline = top + (lineHeight - metrics.fontBoundingBoxAscent - metrics.fontBoundingBoxDescent) / 2 + metrics.fontBoundingBoxAscent;
+                ink.fillText(line.textContent, left, baseline);
+
+                const x0 = Math.max(0, Math.floor((left - size * 0.2) * ratio));
+                const y0 = Math.max(0, Math.floor((top - size * 0.2) * ratio));
+                const x1 = Math.min(scratch.width, Math.ceil((left + mask.offsetWidth + size * 0.2) * ratio));
+                const y1 = Math.min(scratch.height, Math.ceil((top + size * 1.2) * ratio));
+                if (x1 <= x0 || y1 <= y0) return;
+                const regionWidth = x1 - x0;
+                const pixels = ink.getImageData(x0, y0, regionWidth, y1 - y0).data;
+                const step = Math.max(2, Math.round((size * ratio) / 55));
+                const centreX = left + mask.offsetWidth / 2;
+                const centreY = top + size * 0.45;
+                for (let y = 0; y < y1 - y0; y += step) {
+                    for (let x = 0; x < regionWidth; x += step) {
+                        if (pixels[(y * regionWidth + x) * 4 + 3] < 128) continue;
+                        const dotX = (x0 + x) / ratio;
+                        const dotY = (y0 + y) / ratio;
+                        const angle = Math.atan2(dotY - centreY, dotX - centreX) + (Math.random() - 0.5) * 1.4;
+                        const reach = size * (0.8 + Math.random() * 2.4);
+                        dots.push({
+                            x: dotX,
+                            y: dotY,
+                            dx: Math.cos(angle) * reach,
+                            dy: Math.sin(angle) * reach - size * 0.6 * Math.random(),
+                            delay: Math.random() * 0.4,
+                            size: step / ratio,
+                        });
+                    }
+                }
+            });
+            drawDots();
+        };
+
+        gsap.matchMedia().add({
+            stacked: '(max-width: 699px), (max-width: 1023px) and (orientation: portrait)',
+            wide: '(min-width: 700px)',
+            reduceMotion: '(prefers-reduced-motion: reduce)',
+        }, ({ conditions }) => {
+            if (conditions.reduceMotion || !particleCanvas) return undefined;
+            // Only 15% of the way: the page moves on with the name starting to break up and the dots still in the air
+            const animation = gsap.to(burst, { progress: 0.15, ease: 'none', onUpdate: drawDots });
+            if (!conditions.stacked) {
+                // Name beside the photo: the hero holds still for 15% of a screen's scrolling while the name bursts that
+                // far (the pace of a full burst over a whole screen), then the page moves on. It is pinned after the triggers above it were made, so they are re-sorted
+                // to measure with the pin's extra scroll
+                ScrollTrigger.create({ trigger: hero, start: 'top top', end: '+=15%', pin: true, scrub: 1, animation, refreshPriority: 1, onRefresh: buildDots });
+                ScrollTrigger.sort();
+            } else {
+                // Stacked (shorter than the screen): the name bursts as the hero scrolls away, the photo slower than the page
+                const scroll = { trigger: hero, start: 'top top', end: 'bottom top', scrub: true };
+                ScrollTrigger.create({ ...scroll, animation, onRefresh: buildDots });
+                gsap.to(photos, { yPercent: 12, ease: 'none', scrollTrigger: { ...scroll } });
+            }
+            return () => {
+                burst.progress = 0;
+                drawDots();
+            };
         });
     }
 

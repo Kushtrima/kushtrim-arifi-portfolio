@@ -323,17 +323,103 @@ button:hover {
     display: none;
 }
 
-/* Hero: a small square portrait on a dark grey field with the name around it. "Kushtrim" huge on the left runs over
-   the photo's left edge beside the face and "Arifi" stands on its bottom edge, running out past its right side; the
-   job title and "Creating since 2012" are small captions at the foot, on the logo's and the navigation's edges. Every
-   position comes from the photo's size (--photo) and centre (--cx, --cy), so the overlaps hold at every width; the
-   photo sits a little right of the middle so the long first name has room. script.js opens the photo from its
+/* Intro on every load of the home page (the head script in index.html adds .intro-on before the first paint): empty
+   brackets, the name written out between them and taken back to "[a]", which moves to the header's logo while the
+   dark ground opens from the middle. If script.js never runs, the cover gives way after 6s */
+.intro {
+    display: none;
+}
+
+/* Dark behind the page too, so the page's load fade goes from dark to dark */
+html.intro-on {
+    background-color: var(--color-secondary);
+}
+
+.intro-on .intro {
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-grey-f8);
+    animation: intro-give-way 0s 6s forwards;
+}
+
+@keyframes intro-give-way {
+    to {
+        visibility: hidden;
+    }
+}
+
+/* The dark ground in two halves that overlap a little in the middle, so no seam shows before they part */
+.intro-half {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 50.5%;
+    background-color: var(--color-secondary);
+}
+
+.intro-half--top {
+    top: 0;
+}
+
+.intro-half--bottom {
+    bottom: 0;
+}
+
+.intro-logo {
+    position: relative;
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3vw, 44px);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 2px;
+    white-space: nowrap;
+}
+
+/* Hidden until script.js has split the name into letters */
+.js .intro-logo {
+    visibility: hidden;
+}
+
+.intro-bracket,
+.intro-name,
+.intro-letter {
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* Each letter is clipped to a box script.js grows from nothing to the letter's width, so the brackets move with the writing */
+.intro-letter {
+    overflow: hidden;
+}
+
+/* The header's own logo waits under the cover until "[a]" arrives at it (and comes back by itself after 6s if
+   script.js never runs) */
+html.intro-on .header .logo-text {
+    visibility: hidden;
+    animation: intro-logo-back 0s 6s forwards;
+}
+
+@keyframes intro-logo-back {
+    to {
+        visibility: visible;
+    }
+}
+
+/* Hero: a square portrait on a dark grey field with the name on one line through it: "Kushtrim" runs over the photo's
+   left edge and "Arifi" over its right edge, both at eye level beside the face; the job title and "Creating since
+   2012" are small captions at the foot, on the logo's and the navigation's edges. Every position comes from the
+   photo's size (--photo) and centre (--cx, --cy), so the overlaps hold at every width; the photo sits right of the
+   middle by half the difference between the two names' widths (3.76em and 1.87em), so the whole line is centred. script.js opens the photo from its
    centre, raises the words in reading order, and on scroll pulls the name apart while the photo drifts slower than
    the page. */
 .hero {
-    --photo: min(26vw, 46vh);
-    --big: min(9.5vw, 15.5vh);
-    --cx: calc(50% + 6vw);
+    --photo: min(30vw, 50vh);
+    --big: min(12vw, 19vh);
+    --cx: calc(50% + var(--big) * 0.945);
     --cy: calc(50% + 3vh);
     position: relative;
     height: 100vh;
@@ -415,11 +501,10 @@ body:has(.hero) .header:has(.navigation.active) {
     top: calc(var(--cy) - var(--photo) * 0.08 - var(--big) * 0.45);
 }
 
-/* Starts 0.4 of the photo inside its right edge, below the chin, standing on the photo's bottom edge (0.79em is how
-   far the baseline sits below the top of a 0.9 line of Times New Roman) */
+/* On the same line as "Kushtrim", starting 0.26 of the photo inside its right edge, just clear of the face */
 .hero-word--last {
-    left: calc(var(--cx) + var(--photo) * 0.1);
-    top: calc(var(--cy) + var(--photo) * 0.5 - var(--big) * 0.79);
+    left: calc(var(--cx) + var(--photo) * 0.24);
+    top: calc(var(--cy) - var(--photo) * 0.08 - var(--big) * 0.45);
 }
 
 .hero-image-section {
@@ -451,6 +536,31 @@ body:has(.hero) .header:has(.navigation.active) {
     object-position: 50% 26%;
     filter: grayscale(1) contrast(1.1) brightness(0.8);
     transform-origin: 50% 40%;
+}
+
+/* The person alone, above the name: a second photo layer masked to the silhouette macOS Vision found
+   (img/kaimage-mask.png), sized like the photo's cover crop, so the name disappears where it slides behind the head */
+.hero-cutout {
+    z-index: 2;
+    -webkit-mask-image: url('img/kaimage-mask.png');
+    mask-image: url('img/kaimage-mask.png');
+    -webkit-mask-size: auto 100%;
+    mask-size: auto 100%;
+    -webkit-mask-position: 50% 26%;
+    mask-position: 50% 26%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    pointer-events: none;
+}
+
+/* The name as particles on scroll (script.js draws them): over the words, under the cut-out person */
+.hero-particles {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 }
 
 /* The job title bottom left and "Creating since 2012" bottom right, at one small size */
@@ -517,6 +627,11 @@ body:has(.hero) .header:has(.navigation.active) {
         top: calc(96px + 12vw);
         width: 56vw;
         translate: -50% 0;
+    }
+
+    /* Stacked, the name already crosses the body where it rests, so the cut-out would hide it: the name stays in front */
+    .hero-cutout {
+        display: none;
     }
 
     .hero-word--last {
