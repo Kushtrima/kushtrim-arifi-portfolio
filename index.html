@@ -265,49 +265,87 @@
                     <span class="title-line center title-word">EXPERIENCE</span>
                     <span class="title-line left title-word">THROUGH</span>
                     <span class="title-line center title-word">TIME</span>
-                    <canvas class="title-particles" aria-hidden="true"></canvas>
                 </h2>
             </div>
             <div class="experience-content">
-                <div class="experience-item">
-                    <div class="job-title">UX/UI & <br>Full-Stack Engineer</div>
-                    <div class="job-details">
-                        <div class="company">MONUN AG</div>
-                        <div class="dates">Switzerland | 2024 – Present</div>
-                    </div>
-                </div>
-
-                <div class="experience-item">
-                    <div class="job-title">UX/UI &<br> Web Developer</div>
-                    <div class="job-details">
-                        <div class="company">Business Leaders AG</div>
-                        <div class="dates">Switzerland | 2020 – 2024</div>
-                    </div>
-                </div>
-
-                <div class="experience-item">
-                    <div class="job-title">UX/UI DESIGNER & <br>WordPress Dev</div>
-                    <div class="job-details">
-                        <div class="company">MARDAL</div>
-                        <div class="dates">Kosovo | 2018 – 2020</div>
-                    </div>
-                </div>
-
-                <div class="experience-item">
-                    <div class="job-title">UX/UI DESIGNER & <br>WordPress</div>
-                    <div class="job-details">
-                        <div class="company">Prior Marketing GmbH</div>
-                        <div class="dates">Switzerland | 2015 – 2018</div>
-                    </div>
-                </div>
-
-                <div class="experience-item">
-                    <div class="job-title">UX UI & <br>GRAPHIC DESIGNER</div>
-                    <div class="job-details">
-                        <div class="company">FREELANCE</div>
-                        <div class="dates">Kosovo | 2011 – 2015</div>
-                    </div>
-                </div>
+                <!-- One quiet row per job, newest first; the current job's years are orange. Clicking a row opens what was
+                     done there (from the CV) with a link to the CV, and its orange "+" turns into a "−"; without script.js
+                     every row is open -->
+                <ol class="experience-list" role="list">
+                    <li class="experience-row is-open">
+                        <span class="job-years">2024 – Present</span>
+                        <button class="job-title" type="button" aria-expanded="true" aria-controls="job-monun">Product Designer &amp; Developer</button>
+                        <span class="job-where">MONUN AG, <span class="job-where-end">Switzerland<span class="job-sign" aria-hidden="true"><span></span><span></span></span></span></span>
+                        <div class="job-work" id="job-monun">
+                            <ul>
+                                <li>Shipped 10+ corporate sites &amp; campaigns end-to-end (Figma &amp; production), owning IA, UI kits, responsive build, QA, and launch.</li>
+                                <li>Built custom WordPress themes (HTML/CSS/JS, React, PHP, Tailwind), ensuring cross-device performance and accessibility.</li>
+                                <li>Implemented CI/CD (Namecheap, Hoststar, Render), cutting deployment time by 40%.</li>
+                                <li>Raised code quality by fixing 700+ lint issues and adding ESLint/Stylelint/Prettier, cutting JS defects ~45% and CSS defects ~33%.</li>
+                                <li>Designed &amp; delivered a CRM: multi-member accounts &amp; roles, recurring billing, invoicing, Stripe payments, admin dashboards, and audit logs.</li>
+                            </ul>
+                            <a class="job-resume" href="work/resume/resume-ka.pdf" target="_blank" rel="noopener noreferrer">Resume<span class="visually-hidden"> (PDF, opens in a new tab)</span></a>
+                        </div>
+                    </li>
+                    <li class="experience-row is-open">
+                        <span class="job-years">2020 – 2024</span>
+                        <button class="job-title" type="button" aria-expanded="true" aria-controls="job-business-leaders">UX/UI &amp; Web Developer</button>
+                        <span class="job-where">Business Leaders AG, <span class="job-where-end">Switzerland<span class="job-sign" aria-hidden="true"><span></span><span></span></span></span></span>
+                        <div class="job-work" id="job-business-leaders">
+                            <ul>
+                                <li>Designed 50+ responsive websites (Figma → WordPress/Elementor) and delivered cross-device, high-performance UIs.</li>
+                                <li>Ran user research + usability testing, translating insights into design improvements that boosted customer satisfaction &amp; engagement.</li>
+                                <li>Built full front-end features in HTML, CSS, JavaScript, React, improving load speed and interactivity.</li>
+                                <li>Optimized WooCommerce stores (checkout flow, product mgmt.), driving higher sales conversions.</li>
+                                <li>Secured &amp; tuned performance across 50+ client sites, achieving 40% stronger security and 25% faster DB response times.</li>
+                                <li>Produced graphic design assets for digital and print: social media visuals, brand guidelines, brochures, and event materials.</li>
+                            </ul>
+                            <a class="job-resume" href="work/resume/resume-ka.pdf" target="_blank" rel="noopener noreferrer">Resume<span class="visually-hidden"> (PDF, opens in a new tab)</span></a>
+                        </div>
+                    </li>
+                    <li class="experience-row is-open">
+                        <span class="job-years">2018 – 2020</span>
+                        <button class="job-title" type="button" aria-expanded="true" aria-controls="job-mardal">UX/UI Designer &amp; WordPress Dev</button>
+                        <span class="job-where">Mardal, <span class="job-where-end">Kosovo<span class="job-sign" aria-hidden="true"><span></span><span></span></span></span></span>
+                        <div class="job-work" id="job-mardal">
+                            <ul>
+                                <li>Designed and launched 30+ user-centric WordPress websites, boosting engagement by 20% through responsive UI/UX.</li>
+                                <li>Optimized WooCommerce platforms and integrated APIs, improving sales conversions (+15%) and site performance (+25%).</li>
+                                <li>Reduced content update time by 30% with Elementor/Gutenberg and enhanced security, cutting vulnerabilities by 40%.</li>
+                                <li>Assisted in website maintenance and updates, applying UX improvements to enhance navigation, accessibility, and overall user satisfaction.</li>
+                            </ul>
+                            <a class="job-resume" href="work/resume/resume-ka.pdf" target="_blank" rel="noopener noreferrer">Resume<span class="visually-hidden"> (PDF, opens in a new tab)</span></a>
+                        </div>
+                    </li>
+                    <li class="experience-row is-open">
+                        <span class="job-years">2015 – 2018</span>
+                        <button class="job-title" type="button" aria-expanded="true" aria-controls="job-prior-marketing">UX/UI Designer &amp; WordPress</button>
+                        <span class="job-where">Prior Marketing GmbH, <span class="job-where-end">Switzerland<span class="job-sign" aria-hidden="true"><span></span><span></span></span></span></span>
+                        <div class="job-work" id="job-prior-marketing">
+                            <ul>
+                                <li>Directed UI/UX design for company websites and apps, increasing user engagement by 20%.</li>
+                                <li>Developed and launched 16+ responsive WordPress websites using Elementor and Gutenberg, ensuring 99.9% uptime and consistent visuals.</li>
+                                <li>Customized WordPress themes through Elementor blocks and Gutenberg editors, improving design flexibility and speeding up delivery.</li>
+                                <li>Delivered branding assets (logos, visuals) that increased brand recognition and user engagement by 15%.</li>
+                            </ul>
+                            <a class="job-resume" href="work/resume/resume-ka.pdf" target="_blank" rel="noopener noreferrer">Resume<span class="visually-hidden"> (PDF, opens in a new tab)</span></a>
+                        </div>
+                    </li>
+                    <li class="experience-row is-open">
+                        <span class="job-years">2011 – 2015</span>
+                        <button class="job-title" type="button" aria-expanded="true" aria-controls="job-freelance">UX/UI &amp; Graphic Designer</button>
+                        <span class="job-where">Freelance, <span class="job-where-end">Kosovo<span class="job-sign" aria-hidden="true"><span></span><span></span></span></span></span>
+                        <div class="job-work" id="job-freelance">
+                            <ul>
+                                <li>Designed 20+ websites with a focus on clean layouts, intuitive navigation, and responsive visuals.</li>
+                                <li>Delivered branding and graphic design assets (logos, style guides, promotional materials) that reinforced brand recognition.</li>
+                                <li>Focused on visual storytelling and aesthetics, creating designs that supported client marketing strategies.</li>
+                                <li>Collaborated directly with clients to capture requirements and tailor designs to their target audience.</li>
+                            </ul>
+                            <a class="job-resume" href="work/resume/resume-ka.pdf" target="_blank" rel="noopener noreferrer">Resume<span class="visually-hidden"> (PDF, opens in a new tab)</span></a>
+                        </div>
+                    </li>
+                </ol>
             </div>
         </div>
     </section>
@@ -357,48 +395,37 @@
 
     <!-- Modern Footer Section -->
     <footer class="modern-footer">
+        <!-- Big name sign-off: three small columns (menu, social, contact), the year and back to top, then the name huge across
+             the full width, sitting on the bottom edge of the page with its lower fifth cut off -->
         <div class="container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <a href="#main-content" class="footer-logo">Kushtrim [a]</a>
+            <div class="footer-columns">
+                <nav class="footer-column" aria-label="Footer">
+                    <p class="footer-label">Menu</p>
+                    <a href="work.html">Work</a>
+                    <a href="about.html">About</a>
+                    <a href="work/resume/resume-ka.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+                </nav>
+                <div class="footer-column">
+                    <p class="footer-label">Social</p>
+                    <a href="https://www.linkedin.com/in/kushtrim-arifi-60313713b/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <!-- MEDIUM: add <a href="https://medium.com/@..." target="_blank" rel="noopener noreferrer">Medium</a> here once the profile link is known -->
                 </div>
-
-                <div class="footer-nav-group">
-                    <h4 class="footer-heading">Menu</h4>
-                    <ul class="footer-links">
-                        <li><a href="work.html">Work</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="work/resume/resume-ka.pdf" target="_blank">Resume</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-nav-group">
-                    <h4 class="footer-heading">Social</h4>
-                    <ul class="footer-links">
-                        <li><a href="https://www.linkedin.com/in/kushtrim-arifi-60313713b/" target="_blank">LinkedIn</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="footer-nav-group">
-                    <h4 class="footer-heading">Contact</h4>
-                    <ul class="footer-links">
-                        <li><a href="mailto:kushtrim.m.arifi@gmail.com">kushtrim.m.arifi@gmail.com</a></li>
-                        <li><a href="tel:+38349210999">+383 49 210 999</a></li>
-                    </ul>
+                <div class="footer-column footer-column--contact">
+                    <p class="footer-label">Contact</p>
+                    <a href="mailto:info@kushtrimarifi.com">info@kushtrimarifi.com</a>
+                    <a href="tel:+38349210999">+383 49 210 999</a>
                 </div>
             </div>
 
-            <div class="footer-bottom">
-                <div class="copyright">© 2025 Kushtrim Arifi.</div>
-                <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
-                    aria-label="Back to top">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
+            <div class="footer-bar">
+                <p class="footer-copyright">© <span class="footer-year">2026</span> Kushtrim Arifi</p>
+                <button class="back-to-top" type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
+                    Top
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg>
                 </button>
             </div>
+
+            <p class="footer-name" aria-hidden="true">Kushtrim Arifi</p>
         </div>
     </footer>
 

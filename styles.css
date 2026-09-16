@@ -900,20 +900,6 @@ body:has(.hero) .header:has(.navigation.active) {
     color: var(--color-text-light);
 }
 
-/* The title's particles (script.js): a canvas inside the title, 2em larger all round so the dots have room to fly */
-.experience-title h2 {
-    position: relative;
-}
-
-.title-particles {
-    position: absolute;
-    top: -2em;
-    left: -2em;
-    width: calc(100% + 4em);
-    height: calc(100% + 4em);
-    pointer-events: none;
-}
-
 .title-line.left {
     align-self: flex-start;
 }
@@ -936,92 +922,223 @@ body:has(.hero) .header:has(.navigation.active) {
     text-align: left;
 }
 
+/* Experience: a quiet list, one row per job, newest first. Years, role, and company with country on one line at one
+   small size, hairlines between rows; the current job's years are orange. script.js fades the rows up as they arrive,
+   lights the row at the middle of the screen (its years orange) while the others' text dims to half (through
+   --row-years and --row-text), and opens a row on click to show what was done there and a link to the CV, turning its
+   "+" into a "−". Hovering a row fills it white (the orange sign stays orange) */
+.experience-section .experience-title {
+    margin-bottom: clamp(72px, 10vh, 110px);
+}
+
 .experience-content {
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.experience-item {
+.experience-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* 16px wider than the list on each side, so the white hover band has room around the text; the hairline stays text-wide */
+.experience-row {
+    position: relative;
     display: grid;
-    grid-template-columns: 1fr 1.2fr 1fr;
-    gap: 25px;
-    padding: 60px 0;
-    border-bottom: 1px solid var(--color-text);
-    align-items: end;
-    opacity: 0;
-    transform: translateY(30px);
+    grid-template-columns: 11em minmax(0, 1fr) auto;
+    column-gap: 32px;
+    align-items: baseline;
+    margin: 0 -16px;
+    padding: 22px 16px;
+    border-radius: 4px;
+    font-family: var(--font-primary);
+    font-size: clamp(15px, 1.2vw, 18px);
+    font-weight: 400;
+    line-height: 1.4;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/* Desktop Experience Alignment */
-@media (min-width: 769px) {
-    .experience-item {
-        align-items: end;
-    }
-
-    .job-description {
-        align-self: end;
-        margin-top: 12px;
-    }
-
-    .job-details {
-        align-self: end;
-        margin-top: 12px;
-    }
+.experience-row::after {
+    content: '';
+    position: absolute;
+    right: 16px;
+    bottom: 0;
+    left: 16px;
+    height: 1px;
+    background-color: rgba(var(--color-primary-rgb), 0.14);
 }
 
-.experience-item:last-child {
-    border-bottom: none;
+.experience-row:last-child::after {
+    content: none;
 }
 
+.job-years {
+    color: var(--row-years, var(--color-primary));
+}
+
+.experience-row:first-child .job-years {
+    color: var(--row-years, var(--color-orange));
+}
+
+.job-where,
+.job-work {
+    color: var(--row-text, var(--color-primary));
+}
+
+/* The role opens the row: a plain-text button */
 .job-title {
-    font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--color-primary);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    line-height: 1.1;
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    text-align: left;
+    color: var(--row-text, var(--color-primary));
+    cursor: pointer;
+    overflow: visible;
 }
 
+.job-title:hover {
+    transform: none;
+}
 
+.job-title.ripple::before {
+    content: none;
+}
 
-.job-description {
-    font-family: var(--font-display);
-    font-size: 12px;
-    font-weight: 400;
-    color: var(--color-grey-cc);
-    line-height: 1.3;
-    align-self: start;
-    margin-left: 90px;
+.job-title:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 4px;
+}
+
+.job-where {
+    text-align: right;
+}
+
+/* The country and the sign wrap as one, so the sign never ends up alone on a line */
+.job-where-end {
     white-space: nowrap;
 }
 
-.job-details {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    text-align: right;
-    align-items: flex-end;
-    justify-content: flex-start;
-    align-self: start;
-    grid-column: 3;
-    justify-self: end;
+/* The orange open/close sign after the company: two bars like the compact header's "+"; while the row is open the
+   upright bar turns flat, so the "+" becomes a "−" */
+.job-sign {
+    position: relative;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 12px;
+    vertical-align: -2px;
+    color: var(--color-orange);
 }
 
-.company {
-    font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--color-primary);
-    line-height: 1.1;
+.job-sign span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 1.5px;
+    background-color: currentColor;
+    translate: -50% -50%;
 }
 
-.dates {
-    font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--color-primary);
-    line-height: 1.1;
+.job-sign span + span {
+    rotate: 90deg;
+    transition: rotate 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.experience-row.is-open .job-sign span + span {
+    rotate: 0deg;
+}
+
+/* Hidden from sight, still read out */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+/* What was done there, under the role and company; script.js collapses it and opens one row at a time */
+.job-work {
+    grid-column: 2 / -1;
+}
+
+.job-work ul {
+    max-width: 70ch;
+    margin: 0;
+    padding: 18px 0 4px 1.1em;
+    list-style: disc;
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+.job-work li + li {
+    margin-top: 6px;
+}
+
+.job-work li::marker {
+    color: var(--color-orange);
+}
+
+/* The CV, under what was done there */
+.job-resume {
+    display: inline-block;
+    margin: 14px 0 6px;
+    font-size: 0.9em;
+    color: var(--color-orange);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+.job-resume:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 4px;
+}
+
+/* Hover (mouse and trackpad only, so a tapped row on a phone doesn't stay white): the row fills white, its text dark */
+@media (hover: hover) {
+    .experience-row:hover {
+        background-color: var(--color-primary);
+    }
+
+    .experience-row:hover .job-years,
+    .experience-row:hover .job-title,
+    .experience-row:hover .job-where,
+    .experience-row:hover .job-work,
+    .experience-row:hover .job-resume {
+        color: var(--color-secondary);
+    }
+}
+
+/* Phones: the years beside two short lines, the role over company and country; the work list under the whole row */
+@media (max-width: 768px) {
+    .experience-row {
+        grid-template-columns: 7.4em minmax(0, 1fr);
+        column-gap: 16px;
+        margin: 0 -12px;
+        padding: 18px 12px;
+    }
+
+    .experience-row::after {
+        right: 12px;
+        left: 12px;
+    }
+
+    .job-title,
+    .job-where {
+        grid-column: 2;
+        text-align: left;
+    }
+
+    .job-work {
+        grid-column: 1 / -1;
+    }
 }
 
 /* Mobile menu styles */
@@ -1244,42 +1361,6 @@ body:has(.hero) .header:has(.navigation.active) {
 
     .title-line {
         margin-bottom: 8px;
-    }
-
-    .experience-item {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 30px 0;
-    }
-
-    .job-details {
-        text-align: left;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .job-title {
-        font-size: 26px;
-    }
-
-    .job-description {
-        font-size: 12px;
-        line-height: 1.4;
-        margin-left: 0;
-        text-align: left;
-        white-space: nowrap;
-    }
-
-    .company {
-        font-size: 20px;
-        font-family: var(--font-display);
-    }
-
-    .dates {
-        font-size: 20px;
-        font-family: var(--font-display);
     }
 
     .name-wrapper {
@@ -1750,59 +1831,6 @@ body:has(.hero) .header:has(.navigation.active) {
 
     .title-line {
         margin-bottom: 3px;
-    }
-
-    .experience-item {
-        grid-template-columns: 1fr;
-        gap: 10px;
-        padding: 20px 0;
-        text-align: left;
-    }
-
-    .job-title {
-        font-size: 20px;
-        margin-bottom: 8px;
-        line-height: 1.3;
-        font-family: var(--font-display);
-    }
-
-    /* Show line breaks on mobile devices */
-    .job-title br {
-        display: block;
-    }
-
-    .job-description {
-        font-size: 14px !important;
-        line-height: 1.4 !important;
-        margin: 0 0 10px 0 !important;
-        margin-left: 0 !important;
-        color: var(--color-grey-cc) !important;
-        text-align: left !important;
-        white-space: nowrap !important;
-    }
-
-    .job-details {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        align-items: flex-end;
-        text-align: right;
-    }
-
-    .company {
-        font-size: 20px;
-        font-weight: 400;
-        color: var(--color-primary);
-        text-align: right;
-        font-family: var(--font-display);
-        line-height: 1.1;
-    }
-
-    .dates {
-        font-size: 20px;
-        color: var(--color-primary);
-        font-family: var(--font-display);
-        line-height: 1.1;
     }
 
     .experience {
@@ -2355,144 +2383,7 @@ body:has(.hero) .header:has(.navigation.active) {
     }
 }
 
-/* Footer Section */
-.footer-section {
-    background-color: var(--color-secondary);
-    padding: 80px 0 40px 0;
-    margin-top: 0;
-}
-
-.footer-content {
-    color: var(--color-primary);
-}
-
-.footer-title-spacer {
-    height: 60px;
-    margin-bottom: 60px;
-}
-
-.footer-divider {
-    width: 100vw;
-    height: 1px;
-    background-color: var(--color-text);
-    margin: 40px 0;
-    margin-left: calc(-50vw + 50%);
-}
-
-.footer-upper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.footer-lower {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.footer-left {
-    flex: 1;
-}
-
-.footer-right {
-    flex: 1;
-    text-align: right;
-}
-
-.footer-credit {
-    font-size: 14px;
-    color: var(--color-grey-cc);
-    margin: 0;
-}
-
-.footer-social {
-    display: flex;
-    gap: 20px;
-    justify-content: flex-end;
-}
-
-.social-link {
-    font-size: 14px;
-    color: var(--color-primary);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.social-link:hover {
-    color: var(--color-grey-cc);
-}
-
-.footer-nav {
-    display: flex;
-    gap: 20px;
-}
-
-.footer-nav-link {
-    font-size: 14px;
-    color: var(--color-primary);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-nav-link:hover {
-    color: var(--color-grey-cc);
-}
-
-.footer-utility {
-    display: flex;
-    gap: 20px;
-    justify-content: flex-end;
-}
-
-.utility-text {
-    font-size: 14px;
-    color: var(--color-primary);
-}
-
-/* Footer Mobile Responsive */
 @media (max-width: 768px) {
-    .footer-section {
-        padding: 60px 0 30px 0;
-        margin-top: 0;
-    }
-
-    .footer-title-spacer {
-        height: 40px;
-        margin-bottom: 40px;
-    }
-
-    .footer-upper,
-    .footer-lower {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
-    }
-
-    .footer-right {
-        text-align: center;
-    }
-
-    .footer-social,
-    .footer-nav,
-    .footer-utility {
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .footer-social {
-        gap: 15px;
-    }
-
-    .footer-nav {
-        gap: 15px;
-    }
-
-    .footer-utility {
-        gap: 15px;
-    }
-
     .work-page-section {
         padding: 60px 0;
         min-height: 70vh;
@@ -2533,10 +2424,6 @@ body:has(.hero) .header:has(.navigation.active) {
         font-size: 28px;
     }
 
-    .job-title {
-        font-size: 28px;
-    }
-
     .about-text {
         font-size: 16px;
     }
@@ -2548,141 +2435,125 @@ body:has(.hero) .header:has(.navigation.active) {
     }
 }
 
-/* Modern Footer Styles */
+/* Footer: a big name sign-off. Three small columns (menu, social, contact), the year and back to top, then "Kushtrim Arifi"
+   in the display serif across the full width of the container: its font size is the container's width divided by the
+   name's width in em (5.64 at -0.02em tracking). It sits on the bottom edge of the page with the lower fifth of its letters
+   cut off. No hover effects (the cursor shows the links); keyboard focus gets an outline */
 .modern-footer {
-    background-color: var(--color-secondary);
-    padding: 100px 0 40px;
-    color: var(--color-primary);
     margin-top: 100px;
-    border-top: 1px solid var(--color-text);
+    padding: clamp(72px, 12vh, 120px) 0 0;
+    border-top: 1px solid rgba(var(--color-primary-rgb), 0.14);
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    overflow: hidden;
 }
 
-.modern-footer .footer-top {
+.modern-footer .container {
+    container-type: inline-size;
+}
+
+.footer-columns {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 40px;
-    margin-bottom: 80px;
 }
 
-.footer-brand {
+.footer-column {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    align-items: flex-start;
+    gap: 10px;
+    font-family: var(--font-primary);
+    font-size: 15px;
+    line-height: 1.4;
 }
 
-.footer-logo {
-    font-family: var(--font-display);
-    font-size: 24px;
+.footer-label {
+    margin: 0 0 6px;
+    font-size: 13px;
+    color: var(--color-grey-99);
+}
+
+.footer-column a {
     color: var(--color-primary);
     text-decoration: none;
-    letter-spacing: 1px;
 }
 
-.footer-tagline {
-    font-family: var(--font-primary);
-    font-size: 14px;
-    color: var(--color-grey-88);
-    max-width: 250px;
-    line-height: 1.6;
-    margin: 0;
-}
-
-.footer-heading {
-    font-family: var(--font-display);
-    font-size: 16px;
-    color: var(--color-primary);
-    margin-bottom: 25px;
-    font-weight: 400;
-    letter-spacing: 1px;
-}
-
-.footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.footer-bar {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.footer-links li a {
-    font-family: var(--font-primary);
-    font-size: 14px;
-    color: var(--color-grey-cc);
-    text-decoration: none;
-    transition: color 0.3s ease, transform 0.3s ease;
-    display: inline-block;
-}
-
-.footer-links li a:hover {
-    color: var(--color-primary);
-    transform: translateX(5px);
-}
-
-.modern-footer .footer-bottom {
-    border-top: 1px solid var(--color-text);
-    padding-top: 40px;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: clamp(56px, 9vh, 96px);
+    font-family: var(--font-primary);
+    font-size: 14px;
+    line-height: 1.4;
 }
 
-.copyright {
-    font-family: var(--font-primary);
-    font-size: 12px;
-    /* #666 read at 2.8:1 on the dark footer; #999 reads at 5.6:1 (WCAG AA needs 4.5:1) */
+.footer-copyright {
+    margin: 0;
     color: var(--color-grey-99);
 }
 
 .back-to-top {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    /* Same grey as the copyright line: #666 was 2.8:1 on the dark footer, under the 3:1 a control needs */
-    border: 1px solid var(--color-grey-99);
-    background: none;
-    color: var(--color-grey-99);
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    gap: 8px;
     padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    color: var(--color-primary);
+    cursor: pointer;
+    overflow: visible;
 }
 
 .back-to-top:hover {
+    transform: none;
+}
+
+.back-to-top.ripple::before {
+    content: none;
+}
+
+.back-to-top svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* Cut at 80% of the letters' height: they stand 0.694em above the baseline and 0.014em below it, so the page ends 0.128em
+   above the baseline; on a 0.8 line the box ends 0.0625em below the baseline, hence the -0.19em margin (the footer clips) */
+.footer-name {
+    margin: clamp(20px, 3vh, 40px) 0 -0.19em;
+    font-family: var(--font-display);
+    font-size: calc(min(1160px, 100vw - 40px) / 5.64);
+    font-size: calc(100cqw / 5.64);
+    font-weight: 400;
+    line-height: 0.8;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
     color: var(--color-primary);
-    border-color: var(--color-primary);
-    transform: translateY(-3px);
 }
 
-/* Footer Responsive */
-@media (max-width: 900px) {
-    .modern-footer .footer-top {
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-    }
+.footer-column a:focus-visible,
+.back-to-top:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 4px;
 }
 
+/* Phones: menu and social side by side, contact under them */
 @media (max-width: 600px) {
     .modern-footer {
-        padding: 60px 0 30px;
+        margin-top: 72px;
     }
 
-    .modern-footer .footer-top {
-        grid-template-columns: 1fr;
-        gap: 50px;
+    .footer-columns {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 36px 24px;
     }
 
-    .footer-brand {
-        margin-bottom: 20px;
-    }
-
-    .modern-footer .footer-bottom {
-        flex-direction: column;
-        gap: 20px;
-        align-items: center;
-        text-align: center;
+    .footer-column--contact {
+        grid-column: 1 / -1;
     }
 }
 

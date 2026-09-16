@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function showWithoutMotion() {
         document.documentElement.classList.remove('intro-on');
         document.body.style.cursor = 'auto';
-        document.querySelectorAll('.hero-mask > span, .hero-small-mask > *, .hero-portrait, .about-text, .experience-title h2, .experience-item, .work-gallery .gallery-item, .about-title, .about-text-large, .four-column-section, .column')
+        document.querySelectorAll('.hero-mask > span, .hero-small-mask > *, .hero-portrait, .about-text, .experience-title h2, .work-gallery .gallery-item, .about-title, .about-text-large, .four-column-section, .column')
             .forEach((element) => {
                 element.style.opacity = '1';
                 element.style.transform = 'none';
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // Hover effects on all interactive elements (buttons, links, and projects)
-        const interactiveElements = document.querySelectorAll('a, button, .nav-link, .work-item, .gallery-item, .project-live-link, .project-back-link, .resume-button, .burger-menu, .work-image, .project-main-image, .project-gallery-item');
+        const interactiveElements = document.querySelectorAll('a, button, .experience-row, .nav-link, .work-item, .gallery-item, .project-live-link, .project-back-link, .resume-button, .burger-menu, .work-image, .project-main-image, .project-gallery-item');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', grow);
             el.addEventListener('mouseleave', shrink);
@@ -317,6 +317,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // The footer's year
+    document.querySelectorAll('.footer-year').forEach((year) => { year.textContent = String(new Date().getFullYear()); });
+
     // Back/forward can restore a page from memory still faded out
     window.addEventListener('pageshow', (event) => {
         if (event.persisted && hasMotion) gsap.set(document.body, { opacity: 1 });
@@ -420,15 +423,14 @@ document.addEventListener('DOMContentLoaded', function () {
             .to(introLogo, { opacity: 0, duration: 0.45, ease: 'power1.inOut' }, 4.2);
     }
 
-    // Text into particles on scroll (the hero's name, the experience title). The letters are drawn on a scratch canvas
-    // and every few pixels of ink become a dot with its own outward path and start. Dots grow with the type, never
-    // smaller than minDot CSS pixels
-    const sampleDots = (ink, [x0, y0, x1, y1], ratio, size, centreX, centreY, minDot = 0) => {
+    // Text into particles on scroll (the hero's name). The letters are drawn on a scratch canvas and every few pixels of
+    // ink become a dot with its own outward path and start; dots grow with the type
+    const sampleDots = (ink, [x0, y0, x1, y1], ratio, size, centreX, centreY) => {
         const dots = [];
         if (x1 <= x0 || y1 <= y0) return dots;
         const regionWidth = x1 - x0;
         const pixels = ink.getImageData(x0, y0, regionWidth, y1 - y0).data;
-        const step = Math.max(2, Math.round((size * ratio) / 55), Math.round(minDot * ratio));
+        const step = Math.max(2, Math.round((size * ratio) / 55));
         for (let y = 0; y < y1 - y0; y += step) {
             for (let x = 0; x < regionWidth; x += step) {
                 if (pixels[(y * regionWidth + x) * 4 + 3] < 128) continue;
@@ -594,72 +596,89 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
             });
         }
-        // As soon as the whole title is on screen (its middle three quarters of the way down), scrolling on breaks it into
-        // the hero name's particles, and like the name only 15% of the way, over 15% of a screen's scrolling; the dots
-        // stay in the air as the page moves on and gather back into the title on the way up. The canvas sits inside the
-        // title, so it rises with it; the trigger is the title's wrapper, which doesn't rise, so the start isn't 50px late
-        const titleCanvas = experienceTitle && experienceTitle.querySelector('.title-particles');
-        if (titleCanvas) {
-            // The title's type is small next to the hero's name, so its dots get a floor size or they read as grain
-            const TITLE_DOT = 2;
-            const titleWords = [...experienceTitle.querySelectorAll('.title-word')];
-            const titleBurst = { progress: 0 };
-            let titleDots = [];
-            const drawTitleDots = () => paintDots(titleCanvas, titleCanvas.width / (titleCanvas.offsetWidth || 1), titleDots, titleBurst.progress, titleWords);
-
-            // Each word is drawn where its text sits inside the canvas (both inside the title, so its rise doesn't matter)
-            const buildTitleDots = () => {
-                const ratio = Math.min(window.devicePixelRatio || 1, 2);
-                titleCanvas.width = Math.round(titleCanvas.offsetWidth * ratio);
-                titleCanvas.height = Math.round(titleCanvas.offsetHeight * ratio);
-                const scratch = document.createElement('canvas');
-                scratch.width = titleCanvas.width;
-                scratch.height = titleCanvas.height;
-                const ink = scratch.getContext('2d', { willReadFrequently: true });
-                const box = titleCanvas.getBoundingClientRect();
-                titleDots = [];
-                titleWords.forEach((word) => {
-                    const style = getComputedStyle(word);
-                    const size = parseFloat(style.fontSize);
-                    const range = document.createRange();
-                    range.selectNodeContents(word);
-                    const text = range.getBoundingClientRect();
-                    const left = text.left - box.left;
-                    const top = text.top - box.top;
-                    ink.setTransform(ratio, 0, 0, ratio, 0, 0);
-                    ink.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
-                    ink.letterSpacing = style.letterSpacing;
-                    ink.fillStyle = '#fff';
-                    ink.fillText(word.textContent, left, top + ink.measureText(word.textContent).fontBoundingBoxAscent);
-                    const region = [
-                        Math.max(0, Math.floor((left - size * 0.2) * ratio)),
-                        Math.max(0, Math.floor((top - size * 0.2) * ratio)),
-                        Math.min(scratch.width, Math.ceil((left + text.width + size * 0.2) * ratio)),
-                        Math.min(scratch.height, Math.ceil((top + text.height + size * 0.2) * ratio)),
-                    ];
-                    titleDots = titleDots.concat(sampleDots(ink, region, ratio, size, left + text.width / 2, top + text.height / 2, TITLE_DOT));
-                });
-                drawTitleDots();
-            };
-
+        // Experience list: the rows fade up one after another as the list comes into view. Then reading focus: the row at
+        // the middle of the screen is at full light with its years orange, and the light passes to the next row over the
+        // distance between their middles (so a taller, wrapped row dims like the rest). The focus glides after the scroll
+        // rather than jumping, and past either end of the list the first or last row keeps it
+        const experienceRows = [...document.querySelectorAll('.experience-row')];
+        if (experienceRows.length) {
             gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-                const animation = gsap.to(titleBurst, { progress: 0.15, ease: 'none', onUpdate: drawTitleDots });
-                ScrollTrigger.create({ trigger: experienceTitle.parentElement, start: 'center 75%', end: '+=15%', scrub: 1, animation, onRefresh: buildTitleDots });
-                return () => {
-                    titleBurst.progress = 0;
-                    drawTitleDots();
-                };
+                gsap.from(experienceRows, {
+                    autoAlpha: 0, y: 16, duration: 0.8, ease: 'power3.out', stagger: 0.08,
+                    scrollTrigger: { trigger: experienceRows[0].parentElement, start: 'top 85%', once: true },
+                });
+            });
+
+            // Dimmed through the text colour (the row's --row-years and --row-text), not opacity, so the orange CV "+" stays at
+            // full colour and the white hover can take over
+            const [red, green, blue] = cssVar('--color-primary-rgb').split(',').map(Number);
+            const dimText = `rgba(${red}, ${green}, ${blue}, 0.5)`;
+            const lightToText = gsap.utils.interpolate(dimText, cssVar('--color-primary'));
+            const lightToYears = gsap.utils.interpolate(dimText, cssVar('--color-orange'));
+            let centres = [];
+            let remeasured = true;
+            // From the layout (offsetTop), so a row still moving in its fade-up isn't measured out of place
+            const pageTop = (element) => {
+                let top = 0;
+                for (let node = element; node; node = node.offsetParent) top += node.offsetTop;
+                return top;
+            };
+            const measureRows = () => {
+                centres = experienceRows.map((row) => pageTop(row) + row.offsetHeight / 2);
+                remeasured = true;
+            };
+            measureRows();
+            ScrollTrigger.addEventListener('refresh', measureRows);
+
+            let focus = null;
+            gsap.ticker.add(() => {
+                const list = experienceRows[0].parentElement.getBoundingClientRect();
+                if (list.bottom < -window.innerHeight || list.top > window.innerHeight * 2) return;
+                const target = gsap.utils.clamp(centres[0], centres[centres.length - 1], window.scrollY + window.innerHeight / 2);
+                const next = focus === null || reducedMotion ? target : focus + (target - focus) * 0.14;
+                if (!remeasured && focus !== null && Math.abs(next - focus) < 0.05) return;
+                remeasured = false;
+                focus = next;
+                experienceRows.forEach((row, i) => {
+                    const neighbour = focus >= centres[i] ? centres[i + 1] : centres[i - 1];
+                    const light = neighbour === undefined ? 1 : gsap.utils.clamp(0, 1, 1 - Math.abs(focus - centres[i]) / Math.abs(neighbour - centres[i]));
+                    row.style.setProperty('--row-years', lightToYears(light));
+                    row.style.setProperty('--row-text', lightToText(light));
+                });
+            });
+
+            // Clicking a row (anywhere but the open list itself, so its text can be selected and the CV link used) opens what
+            // was done there, turning its "+" into a "−", and closes the row that was open. The rows below move with it, so the focus is re-measured as it
+            // opens and the scroll triggers after it
+            const setWorkOpen = (row, open) => {
+                const work = row.querySelector('.job-work');
+                row.classList.toggle('is-open', open);
+                row.querySelector('.job-title').setAttribute('aria-expanded', String(open));
+                gsap.to(work, {
+                    height: open ? 'auto' : 0, duration: 0.5, ease: 'power3.inOut', overwrite: true, onUpdate: measureRows, onComplete: () => ScrollTrigger.refresh(),
+                });
+                gsap.to(work.firstElementChild, {
+                    autoAlpha: open ? 1 : 0, y: open ? 0 : 8, duration: open ? 0.45 : 0.25, delay: open ? 0.15 : 0, ease: 'power2.out', overwrite: true,
+                });
+            };
+            experienceRows.forEach((row) => {
+                const work = row.querySelector('.job-work');
+                const toggle = row.querySelector('.job-title');
+                if (!work || !toggle) return;
+                gsap.set(work, { height: 0, overflow: 'hidden' });
+                gsap.set(work.firstElementChild, { autoAlpha: 0, y: 8 });
+                toggle.setAttribute('aria-expanded', 'false');
+                row.classList.remove('is-open');
+                row.addEventListener('click', (event) => {
+                    if (event.target.closest('.job-work')) return;
+                    const open = toggle.getAttribute('aria-expanded') !== 'true';
+                    experienceRows.forEach((other) => {
+                        if (other !== row && other.querySelector('.job-title')?.getAttribute('aria-expanded') === 'true') setWorkOpen(other, false);
+                    });
+                    setWorkOpen(row, open);
+                });
             });
         }
-
-        document.querySelectorAll('.experience-item').forEach((item, index) => {
-            ScrollTrigger.create({
-                trigger: item,
-                start: 'top+=30% bottom',
-                once: true,
-                onEnter: () => gsap.to(item, { opacity: 1, y: 0, duration: 0.8, ease: EASE.easeOut, delay: index * 0.2 }),
-            });
-        });
     }
 
     // Work page gallery: each card appears and slides up 30px, 600ms after the section shows and 200ms apart

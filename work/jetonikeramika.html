@@ -316,48 +316,37 @@
 
     <!-- Modern Footer Section -->
     <footer class="modern-footer">
+        <!-- Big name sign-off: three small columns (menu, social, contact), the year and back to top, then the name huge across
+             the full width, sitting on the bottom edge of the page with its lower fifth cut off -->
         <div class="container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <a href="#main-content" class="footer-logo">Kushtrim [a]</a>
+            <div class="footer-columns">
+                <nav class="footer-column" aria-label="Footer">
+                    <p class="footer-label">Menu</p>
+                    <a href="/work.html">Work</a>
+                    <a href="/about.html">About</a>
+                    <a href="/work/resume/resume-ka.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+                </nav>
+                <div class="footer-column">
+                    <p class="footer-label">Social</p>
+                    <a href="https://www.linkedin.com/in/kushtrim-arifi-60313713b/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <!-- MEDIUM: add <a href="https://medium.com/@..." target="_blank" rel="noopener noreferrer">Medium</a> here once the profile link is known -->
                 </div>
-
-                <div class="footer-nav-group">
-                    <h4 class="footer-heading">Menu</h4>
-                    <ul class="footer-links">
-                        <li><a href="/work.html">Work</a></li>
-                        <li><a href="/about.html">About</a></li>
-                        <li><a href="/work/resume/resume-ka.pdf" target="_blank">Resume</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-nav-group">
-                    <h4 class="footer-heading">Social</h4>
-                    <ul class="footer-links">
-                        <li><a href="https://www.linkedin.com/in/kushtrim-arifi-60313713b/" target="_blank">LinkedIn</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="footer-nav-group">
-                    <h4 class="footer-heading">Contact</h4>
-                    <ul class="footer-links">
-                        <li><a href="mailto:kushtrim.m.arifi@gmail.com">kushtrim.m.arifi@gmail.com</a></li>
-                        <li><a href="tel:+38349210999">+383 49 210 999</a></li>
-                    </ul>
+                <div class="footer-column footer-column--contact">
+                    <p class="footer-label">Contact</p>
+                    <a href="mailto:info@kushtrimarifi.com">info@kushtrimarifi.com</a>
+                    <a href="tel:+38349210999">+383 49 210 999</a>
                 </div>
             </div>
 
-            <div class="footer-bottom">
-                <div class="copyright">© 2025 Kushtrim Arifi.</div>
-                <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
-                    aria-label="Back to top">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
+            <div class="footer-bar">
+                <p class="footer-copyright">© <span class="footer-year">2026</span> Kushtrim Arifi</p>
+                <button class="back-to-top" type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
+                    Top
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg>
                 </button>
             </div>
+
+            <p class="footer-name" aria-hidden="true">Kushtrim Arifi</p>
         </div>
     </footer>
 
