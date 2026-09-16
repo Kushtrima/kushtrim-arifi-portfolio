@@ -395,9 +395,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const [light, dark] = [channels('--color-primary'), channels('--color-secondary')];
         const landedColour = `rgb(${light.map((value, i) => Math.abs(value - dark[i])).join(', ')})`;
 
-        // Slow and soft: the steps overlap a little, each letter drifts up as its box grows and lifts away as it shrinks,
-        // with a pause on the whole name and on "[a]"
-        introLength = 3.9;
+        // Slow and soft, and straight: nothing moves up or down, the letters only grow and fade in place. The "a" grows
+        // in while the last letters leave, so the brackets close straight onto "[a]"; a short pause on it, then the glide
+        introLength = 3.4;
         gsap.timeline({
             onComplete: () => {
                 document.documentElement.classList.remove('intro-on');
@@ -406,18 +406,18 @@ document.addEventListener('DOMContentLoaded', function () {
         })
             .set([introCover, introHeaderLogo], { animation: 'none' })
             .set(introLogo, { visibility: 'visible', transformOrigin: '0% 50%' })
-            .fromTo(brackets, { opacity: 0, yPercent: 20 }, { opacity: 1, yPercent: 0, duration: 0.7, ease: 'power3.out' }, 0.15)
-            .fromTo(letters, { yPercent: 35 }, { width: (i, letter) => widths.get(letter), opacity: 1, yPercent: 0, duration: 0.45, ease: 'power3.out', stagger: 0.06 }, 0.55)
-            .to([...letters].reverse(), { width: 0, opacity: 0, yPercent: -30, duration: 0.35, ease: 'power2.inOut', stagger: 0.035 }, 2.3)
-            .fromTo(letterA, { yPercent: 35 }, { width: widths.get(letterA), opacity: 1, yPercent: 0, duration: 0.5, ease: 'power3.out' }, 3.2)
-            .add(measureLanding, 3.84)
+            .fromTo(brackets, { opacity: 0 }, { opacity: 1, duration: 0.7, ease: 'power3.out' }, 0.15)
+            .to(letters, { width: (i, letter) => widths.get(letter), opacity: 1, duration: 0.45, ease: 'power3.out', stagger: 0.06 }, 0.55)
+            .to([...letters].reverse(), { width: 0, opacity: 0, duration: 0.35, ease: 'power2.inOut', stagger: 0.035 }, 2.3)
+            .to(letterA, { width: widths.get(letterA), opacity: 1, duration: 0.5, ease: 'power2.inOut' }, 2.7)
+            .add(measureLanding, 3.34)
             // Ends in the colour the header shows its logo in over the hero: its difference blend against the dark ground
-            .to(introLogo, { x: () => landing.x, y: () => landing.y, scale: () => landing.scale, color: landedColour, duration: 1.2, ease: 'power3.inOut' }, 3.85)
-            .to(introCover.querySelector('.intro-half--top'), { yPercent: -100, duration: 1.2, ease: introOpen }, 3.95)
-            .to(introCover.querySelector('.intro-half--bottom'), { yPercent: 100, duration: 1.2, ease: introOpen }, 3.95)
-            .set(introHeaderLogo, { visibility: 'visible', opacity: 0, transition: 'none' }, 4.7)
-            .to(introHeaderLogo, { opacity: 1, duration: 0.45, ease: 'power1.inOut' }, 4.7)
-            .to(introLogo, { opacity: 0, duration: 0.45, ease: 'power1.inOut' }, 4.7);
+            .to(introLogo, { x: () => landing.x, y: () => landing.y, scale: () => landing.scale, color: landedColour, duration: 1.2, ease: 'power3.inOut' }, 3.35)
+            .to(introCover.querySelector('.intro-half--top'), { yPercent: -100, duration: 1.2, ease: introOpen }, 3.45)
+            .to(introCover.querySelector('.intro-half--bottom'), { yPercent: 100, duration: 1.2, ease: introOpen }, 3.45)
+            .set(introHeaderLogo, { visibility: 'visible', opacity: 0, transition: 'none' }, 4.2)
+            .to(introHeaderLogo, { opacity: 1, duration: 0.45, ease: 'power1.inOut' }, 4.2)
+            .to(introLogo, { opacity: 0, duration: 0.45, ease: 'power1.inOut' }, 4.2);
     }
 
     // Hero: the photo opens from its centre while it settles from a slight zoom, the big words rise out of their

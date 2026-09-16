@@ -472,7 +472,7 @@ html.intro-on {
 .intro-logo {
     position: relative;
     font-family: var(--font-display);
-    font-size: clamp(28px, 3vw, 44px);
+    font-size: clamp(20px, 2vw, 30px);
     font-weight: 400;
     line-height: 1.2;
     letter-spacing: 2px;
@@ -811,37 +811,58 @@ body:has(.hero) .header:has(.navigation.active) {
     margin-top: 20px;
 }
 
+/* Home page "My story" link, a pilot for the site's links: the words in the section's text colour (script.js sets it
+   as the section turns light or dark) and a thin arrow in the same colour, so it is white wherever the words are. The
+   words stay put on hover, the cursor shows it is a link; only the arrow moves, and keyboard focus gets an outline */
 .cta-link {
-    font-family: var(--font-display);
-    color: var(--color-text);
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 400;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 9px;
     padding: 0;
     border: none;
-    transition: opacity 0.8s ease;
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--color-text);
+    text-decoration: none;
 }
 
-.cta-link:hover {
-    opacity: 0.7;
-}
-
+/* The arrow's window: on hover the arrow flies out at the top right while the next one comes in from the bottom left */
 .cta-arrow {
+    position: relative;
     display: inline-block;
-    width: 16px;
-    height: 16px;
-    margin-left: 0;
-    vertical-align: middle;
-    filter: brightness(0) invert(1);
-    transition: transform 0.3s ease;
     flex-shrink: 0;
+    width: 15px;
+    height: 15px;
+    overflow: hidden;
 }
 
-.cta-link:hover .cta-arrow {
-    transform: translate(6px, -2px);
+.cta-arrow-icon {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.cta-arrow-icon--next {
+    transform: translate(-110%, 110%);
+}
+
+.cta-link:hover .cta-arrow-icon,
+.cta-link:focus-visible .cta-arrow-icon {
+    transform: translate(110%, -110%);
+}
+
+.cta-link:hover .cta-arrow-icon--next,
+.cta-link:focus-visible .cta-arrow-icon--next {
+    transform: translate(0, 0);
+}
+
+.cta-link:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 4px;
 }
 
 /* Experience Section */
