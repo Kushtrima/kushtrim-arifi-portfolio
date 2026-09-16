@@ -420,6 +420,57 @@ document.addEventListener('DOMContentLoaded', function () {
             .to(introLogo, { opacity: 0, duration: 0.45, ease: 'power1.inOut' }, 4.2);
     }
 
+    // Text into particles on scroll (the hero's name, the experience title). The letters are drawn on a scratch canvas
+    // and every few pixels of ink become a dot with its own outward path and start. Dots grow with the type, never
+    // smaller than minDot CSS pixels
+    const sampleDots = (ink, [x0, y0, x1, y1], ratio, size, centreX, centreY, minDot = 0) => {
+        const dots = [];
+        if (x1 <= x0 || y1 <= y0) return dots;
+        const regionWidth = x1 - x0;
+        const pixels = ink.getImageData(x0, y0, regionWidth, y1 - y0).data;
+        const step = Math.max(2, Math.round((size * ratio) / 55), Math.round(minDot * ratio));
+        for (let y = 0; y < y1 - y0; y += step) {
+            for (let x = 0; x < regionWidth; x += step) {
+                if (pixels[(y * regionWidth + x) * 4 + 3] < 128) continue;
+                const dotX = (x0 + x) / ratio;
+                const dotY = (y0 + y) / ratio;
+                const angle = Math.atan2(dotY - centreY, dotX - centreX) + (Math.random() - 0.5) * 1.4;
+                const reach = size * (0.8 + Math.random() * 2.4);
+                dots.push({
+                    x: dotX,
+                    y: dotY,
+                    dx: Math.cos(angle) * reach,
+                    dy: Math.sin(angle) * reach - size * 0.6 * Math.random(),
+                    delay: Math.random() * 0.4,
+                    size: step / ratio,
+                });
+            }
+        }
+        return dots;
+    };
+
+    // Each dot starts in its letter and flies out along its own path, leaving a little later than the last, and fades
+    // as it goes. The letters hand over to the dots over the first 8% of the burst: the words fade out as the dots fade
+    // in, so the text dissolves into dots instead of switching to them
+    const paintDots = (canvas, ratio, dots, progress, words) => {
+        const ink = canvas.getContext('2d');
+        ink.setTransform(1, 0, 0, 1, 0, 0);
+        ink.clearRect(0, 0, canvas.width, canvas.height);
+        const handover = Math.min(1, progress / 0.08);
+        gsap.set(words, handover > 0 ? { opacity: 1 - handover } : { clearProps: 'opacity' });
+        if (handover <= 0) return;
+        ink.setTransform(ratio, 0, 0, ratio, 0, 0);
+        ink.fillStyle = cssVar('--color-primary');
+        for (const dot of dots) {
+            const travel = Math.min(1, Math.max(0, (progress - dot.delay) / (1 - dot.delay)));
+            if (travel >= 1) continue;
+            const eased = 1 - (1 - travel) ** 3;
+            ink.globalAlpha = (1 - travel) * handover;
+            ink.fillRect(dot.x + dot.dx * eased, dot.y + dot.dy * eased, dot.size, dot.size);
+        }
+        ink.globalAlpha = 1;
+    };
+
     // Hero: the photo opens from its centre while it settles from a slight zoom, the big words rise out of their
     // masks in reading order, then the small print. On scroll the hero holds still (when the name sits beside the photo)
     // while the name bursts into particles that pass behind the cut-out person.
@@ -445,29 +496,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const burst = { progress: 0 };
         let dots = [];
 
-        // Each dot starts in its letter and flies out along its own path, leaving a little later than the last, and
-        // fades as it goes
         const drawDots = () => {
-            if (!particleCanvas) return;
-            const ink = particleCanvas.getContext('2d');
-            const ratio = particleCanvas.width / (hero.offsetWidth || 1);
-            ink.setTransform(1, 0, 0, 1, 0, 0);
-            ink.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
-            // The letters hand over to the dots over the first 8% of the burst: the words fade out as the dots fade in,
-            // so the name dissolves into dots instead of switching to them
-            const handover = Math.min(1, burst.progress / 0.08);
-            gsap.set(nameWords, handover > 0 ? { opacity: 1 - handover } : { clearProps: 'opacity' });
-            if (handover <= 0) return;
-            ink.setTransform(ratio, 0, 0, ratio, 0, 0);
-            ink.fillStyle = cssVar('--color-primary');
-            for (const dot of dots) {
-                const travel = Math.min(1, Math.max(0, (burst.progress - dot.delay) / (1 - dot.delay)));
-                if (travel >= 1) continue;
-                const eased = 1 - (1 - travel) ** 3;
-                ink.globalAlpha = (1 - travel) * handover;
-                ink.fillRect(dot.x + dot.dx * eased, dot.y + dot.dy * eased, dot.size, dot.size);
-            }
-            ink.globalAlpha = 1;
+            if (particleCanvas) paintDots(particleCanvas, particleCanvas.width / (hero.offsetWidth || 1), dots, burst.progress, nameWords);
         };
 
         // Draws each word at its resting place (layout offsets, which ignore the transforms) on a scratch canvas and
@@ -498,33 +528,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 const baseline = top + (lineHeight - metrics.fontBoundingBoxAscent - metrics.fontBoundingBoxDescent) / 2 + metrics.fontBoundingBoxAscent;
                 ink.fillText(line.textContent, left, baseline);
 
-                const x0 = Math.max(0, Math.floor((left - size * 0.2) * ratio));
-                const y0 = Math.max(0, Math.floor((top - size * 0.2) * ratio));
-                const x1 = Math.min(scratch.width, Math.ceil((left + mask.offsetWidth + size * 0.2) * ratio));
-                const y1 = Math.min(scratch.height, Math.ceil((top + size * 1.2) * ratio));
-                if (x1 <= x0 || y1 <= y0) return;
-                const regionWidth = x1 - x0;
-                const pixels = ink.getImageData(x0, y0, regionWidth, y1 - y0).data;
-                const step = Math.max(2, Math.round((size * ratio) / 55));
-                const centreX = left + mask.offsetWidth / 2;
-                const centreY = top + size * 0.45;
-                for (let y = 0; y < y1 - y0; y += step) {
-                    for (let x = 0; x < regionWidth; x += step) {
-                        if (pixels[(y * regionWidth + x) * 4 + 3] < 128) continue;
-                        const dotX = (x0 + x) / ratio;
-                        const dotY = (y0 + y) / ratio;
-                        const angle = Math.atan2(dotY - centreY, dotX - centreX) + (Math.random() - 0.5) * 1.4;
-                        const reach = size * (0.8 + Math.random() * 2.4);
-                        dots.push({
-                            x: dotX,
-                            y: dotY,
-                            dx: Math.cos(angle) * reach,
-                            dy: Math.sin(angle) * reach - size * 0.6 * Math.random(),
-                            delay: Math.random() * 0.4,
-                            size: step / ratio,
-                        });
-                    }
-                }
+                const region = [
+                    Math.max(0, Math.floor((left - size * 0.2) * ratio)),
+                    Math.max(0, Math.floor((top - size * 0.2) * ratio)),
+                    Math.min(scratch.width, Math.ceil((left + mask.offsetWidth + size * 0.2) * ratio)),
+                    Math.min(scratch.height, Math.ceil((top + size * 1.2) * ratio)),
+                ];
+                dots = dots.concat(sampleDots(ink, region, ratio, size, left + mask.offsetWidth / 2, top + size * 0.45));
             });
             drawDots();
         };
@@ -584,6 +594,64 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
             });
         }
+        // As soon as the whole title is on screen (its middle three quarters of the way down), scrolling on breaks it into
+        // the hero name's particles, and like the name only 15% of the way, over 15% of a screen's scrolling; the dots
+        // stay in the air as the page moves on and gather back into the title on the way up. The canvas sits inside the
+        // title, so it rises with it; the trigger is the title's wrapper, which doesn't rise, so the start isn't 50px late
+        const titleCanvas = experienceTitle && experienceTitle.querySelector('.title-particles');
+        if (titleCanvas) {
+            // The title's type is small next to the hero's name, so its dots get a floor size or they read as grain
+            const TITLE_DOT = 2;
+            const titleWords = [...experienceTitle.querySelectorAll('.title-word')];
+            const titleBurst = { progress: 0 };
+            let titleDots = [];
+            const drawTitleDots = () => paintDots(titleCanvas, titleCanvas.width / (titleCanvas.offsetWidth || 1), titleDots, titleBurst.progress, titleWords);
+
+            // Each word is drawn where its text sits inside the canvas (both inside the title, so its rise doesn't matter)
+            const buildTitleDots = () => {
+                const ratio = Math.min(window.devicePixelRatio || 1, 2);
+                titleCanvas.width = Math.round(titleCanvas.offsetWidth * ratio);
+                titleCanvas.height = Math.round(titleCanvas.offsetHeight * ratio);
+                const scratch = document.createElement('canvas');
+                scratch.width = titleCanvas.width;
+                scratch.height = titleCanvas.height;
+                const ink = scratch.getContext('2d', { willReadFrequently: true });
+                const box = titleCanvas.getBoundingClientRect();
+                titleDots = [];
+                titleWords.forEach((word) => {
+                    const style = getComputedStyle(word);
+                    const size = parseFloat(style.fontSize);
+                    const range = document.createRange();
+                    range.selectNodeContents(word);
+                    const text = range.getBoundingClientRect();
+                    const left = text.left - box.left;
+                    const top = text.top - box.top;
+                    ink.setTransform(ratio, 0, 0, ratio, 0, 0);
+                    ink.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+                    ink.letterSpacing = style.letterSpacing;
+                    ink.fillStyle = '#fff';
+                    ink.fillText(word.textContent, left, top + ink.measureText(word.textContent).fontBoundingBoxAscent);
+                    const region = [
+                        Math.max(0, Math.floor((left - size * 0.2) * ratio)),
+                        Math.max(0, Math.floor((top - size * 0.2) * ratio)),
+                        Math.min(scratch.width, Math.ceil((left + text.width + size * 0.2) * ratio)),
+                        Math.min(scratch.height, Math.ceil((top + text.height + size * 0.2) * ratio)),
+                    ];
+                    titleDots = titleDots.concat(sampleDots(ink, region, ratio, size, left + text.width / 2, top + text.height / 2, TITLE_DOT));
+                });
+                drawTitleDots();
+            };
+
+            gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+                const animation = gsap.to(titleBurst, { progress: 0.15, ease: 'none', onUpdate: drawTitleDots });
+                ScrollTrigger.create({ trigger: experienceTitle.parentElement, start: 'center 75%', end: '+=15%', scrub: 1, animation, onRefresh: buildTitleDots });
+                return () => {
+                    titleBurst.progress = 0;
+                    drawTitleDots();
+                };
+            });
+        }
+
         document.querySelectorAll('.experience-item').forEach((item, index) => {
             ScrollTrigger.create({
                 trigger: item,

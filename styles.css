@@ -900,6 +900,20 @@ body:has(.hero) .header:has(.navigation.active) {
     color: var(--color-text-light);
 }
 
+/* The title's particles (script.js): a canvas inside the title, 2em larger all round so the dots have room to fly */
+.experience-title h2 {
+    position: relative;
+}
+
+.title-particles {
+    position: absolute;
+    top: -2em;
+    left: -2em;
+    width: calc(100% + 4em);
+    height: calc(100% + 4em);
+    pointer-events: none;
+}
+
 .title-line.left {
     align-self: flex-start;
 }
