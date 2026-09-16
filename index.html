@@ -55,7 +55,7 @@
         document.documentElement.classList.add('js');
         if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('intro-on');
     </script>
-    <link rel="stylesheet" href="styles.css?v=20260915-2">
+    <link rel="stylesheet" href="styles.css?v=20260916-5">
 
     <!-- Structured Data: Person + ProfilePage -->
     <script type="application/ld+json">
@@ -221,10 +221,10 @@
     <section class="about-section">
         <div class="container">
             <div class="about-content-wrapper">
-                <div class="about-label">(About me)</div>
+                <div class="about-label" data-reveal>(About me)</div>
                 <div class="about-content">
                     <div class="about-text-parts">
-                        <div class="about-paragraph about-paragraph-1">
+                        <div class="about-paragraph about-paragraph-1" data-reveal>
                             <div class="about-text-wrapper">
                                 <p class="about-text">Started as a designer in 2012, moved through UX/UI, then into
                                     software engineering in 2020. Since then I've worked across websites, mobile apps
@@ -233,7 +233,7 @@
                             </div>
                         </div>
 
-                        <div class="about-paragraph about-paragraph-2">
+                        <div class="about-paragraph about-paragraph-2" data-reveal>
                             <div class="about-text-wrapper">
                                 <p class="about-text">My MSc in Clinical Psychology means I run my own user research
                                     (interviews, usability testing, measurement) rather than designing from
@@ -242,7 +242,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="about-cta">
+                    <div class="about-cta" data-reveal>
                         <a href="about.html" class="cta-link arrow-link"><span class="arrow-link-label">My story</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
                     </div>
                 </div>
@@ -254,7 +254,7 @@
     <section class="experience-section">
         <div class="container">
             <div class="experience-title">
-                <h2>
+                <h2 data-reveal>
                     <span class="title-line left title-word">MY</span>
                     <span class="title-line center title-word">EXPERIENCE</span>
                     <span class="title-line left title-word">THROUGH</span>
@@ -266,7 +266,7 @@
                      done there (from the CV) with a link to the CV, and its orange "+" turns into a "−"; without script.js
                      every row is open -->
                 <ol class="experience-list" role="list">
-                    <li class="experience-row is-open">
+                    <li class="experience-row is-open" data-reveal>
                         <span class="job-years">2024 – Present</span>
                         <button class="job-title" type="button" aria-expanded="true" aria-controls="job-monun">Product Designer &amp; Developer</button>
                         <span class="job-where">MONUN AG, <span class="job-where-end">Switzerland<span class="job-sign" aria-hidden="true"><span></span><span></span></span></span></span>
@@ -281,7 +281,7 @@
                             <a class="job-resume arrow-link" href="work/resume/resume-ka.pdf" target="_blank" rel="noopener noreferrer"><span class="arrow-link-label">Resume</span><span class="visually-hidden"> (PDF, opens in a new tab)</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
                         </div>
                     </li>
-                    <li class="experience-row is-open">
+                    <li class="experience-row is-open" data-reveal>
                         <span class="job-years">2020 – 2024</span>
                         <button class="job-title" type="button" aria-expanded="true" aria-controls="job-business-leaders">UX/UI &amp; Web Developer</button>
                         <span class="job-where">Business Leaders AG, <span class="job-where-end">Switzerland<span class="job-sign" aria-hidden="true"><span></span><span></span></span></span></span>
@@ -297,7 +297,7 @@
                             <a class="job-resume arrow-link" href="work/resume/resume-ka.pdf" target="_blank" rel="noopener noreferrer"><span class="arrow-link-label">Resume</span><span class="visually-hidden"> (PDF, opens in a new tab)</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
                         </div>
                     </li>
-                    <li class="experience-row is-open">
+                    <li class="experience-row is-open" data-reveal>
                         <span class="job-years">2018 – 2020</span>
                         <button class="job-title" type="button" aria-expanded="true" aria-controls="job-mardal">UX/UI Designer &amp; WordPress Dev</button>
                         <span class="job-where">Mardal, <span class="job-where-end">Kosovo<span class="job-sign" aria-hidden="true"><span></span><span></span></span></span></span>
@@ -311,7 +311,7 @@
                             <a class="job-resume arrow-link" href="work/resume/resume-ka.pdf" target="_blank" rel="noopener noreferrer"><span class="arrow-link-label">Resume</span><span class="visually-hidden"> (PDF, opens in a new tab)</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
                         </div>
                     </li>
-                    <li class="experience-row is-open">
+                    <li class="experience-row is-open" data-reveal>
                         <span class="job-years">2015 – 2018</span>
                         <button class="job-title" type="button" aria-expanded="true" aria-controls="job-prior-marketing">UX/UI Designer &amp; WordPress</button>
                         <span class="job-where">Prior Marketing GmbH, <span class="job-where-end">Switzerland<span class="job-sign" aria-hidden="true"><span></span><span></span></span></span></span>
@@ -325,7 +325,7 @@
                             <a class="job-resume arrow-link" href="work/resume/resume-ka.pdf" target="_blank" rel="noopener noreferrer"><span class="arrow-link-label">Resume</span><span class="visually-hidden"> (PDF, opens in a new tab)</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
                         </div>
                     </li>
-                    <li class="experience-row is-open">
+                    <li class="experience-row is-open" data-reveal>
                         <span class="job-years">2011 – 2015</span>
                         <button class="job-title" type="button" aria-expanded="true" aria-controls="job-freelance">UX/UI &amp; Graphic Designer</button>
                         <span class="job-where">Freelance, <span class="job-where-end">Kosovo<span class="job-sign" aria-hidden="true"><span></span><span></span></span></span></span>
@@ -347,13 +347,13 @@
     <!-- Work Section -->
     <section class="work-section">
         <div class="container">
-            <div class="work-title">
+            <div class="work-title" data-reveal>
                 <h2>my Work</h2>
                 <div class="work-line"></div>
             </div>
             <div class="work-content">
                 <div class="work-grid" id="featured-projects">
-                    <a href="work/cityhotel.html" class="work-item work-link" aria-label="View Cityhotel project details">
+                    <a href="work/cityhotel.html" class="work-item work-link" data-reveal aria-label="View Cityhotel project details">
                         <div class="work-image">
                             <img src="work/cityhotel/city-cover.jpg" alt="Cityhotel — luxury hotel website UX/UI design cover image" loading="lazy">
                         </div>
@@ -365,7 +365,7 @@
                         </div>
                     </a>
 
-                    <a href="work/hbs-website.html" class="work-item work-link" aria-label="View HBS project details">
+                    <a href="work/hbs-website.html" class="work-item work-link" data-reveal aria-label="View HBS project details">
                         <div class="work-image">
                             <img src="work/hbs-website/hbswebsite-cover.jpg" alt="HBS construction company website design cover" loading="lazy">
                         </div>
@@ -380,7 +380,7 @@
                 </div>
             </div>
 
-            <div class="work-view-more">
+            <div class="work-view-more" data-reveal>
                 <a href="work.html" class="arrow-link"><span class="arrow-link-label">View more</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
             </div>
         </div>
@@ -422,7 +422,7 @@
     <script src="/vendor/gsap/gsap.min.js" defer></script>
     <script src="/vendor/gsap/ScrollTrigger.min.js" defer></script>
     <script src="/vendor/gsap/CustomEase.min.js" defer></script>
-    <script src="script.js?v=20260915-2" defer></script>
+    <script src="script.js?v=20260916-10" defer></script>
 </body>
 
 </html>

@@ -217,7 +217,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // over 1.2s (on project pages project.css never gave that slide a transition, so the text is simply in place).
     // The hidden state eases in over 0.8s (as the old CSS transition did), so an element already on screen
     // is measured where it sits and revealed before it has moved.
-    const revealElements = document.querySelectorAll('.text-reveal-wrapper, .work-item, .project-detail-item, .project-description-section, .project-gallery-item');
+    const revealElements = [...document.querySelectorAll('.text-reveal-wrapper, .work-item, .project-detail-item, .project-description-section, .project-gallery-item')]
+        .filter((element) => !element.hasAttribute('data-reveal'));
     if (hasMotion) {
         const textSlides = !document.body.classList.contains('project-body');
         revealElements.forEach((element) => {
@@ -568,21 +569,38 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // About section scroll animation - the second paragraph starts shortly after the first
-    document.querySelectorAll('.about-paragraph').forEach((paragraph) => {
-        const texts = paragraph.querySelectorAll('.about-text');
-        if (!hasMotion || !texts.length) return;
-        ScrollTrigger.create({
-            trigger: paragraph,
-            start: 'top+=10% bottom-=100',
-            once: true,
-            onEnter: () => gsap.fromTo(texts, { y: 0, yPercent: 100 }, {
-                yPercent: 0, duration: 0.8, ease: EASE.smooth, delay: paragraph.classList.contains('about-paragraph-2') ? 0.4 : 0.2,
-            }),
+    // Scroll reveal: parts marked data-reveal fade up with the scroll itself. Over a short stretch as a part comes into
+    // view (its top from 95% to 70% of the screen) it goes from transparent and 40px lower to fully in place; scrolling
+    // back plays exactly the same in reverse, and a light 0.5s smoothing takes the edge off trackpad jumps. No timers, so
+    // it is never early or late, and past that stretch a part is simply there. The stretch is measured from the layout
+    // (offsetTop), which the part's own movement doesn't change. Parts already on the first screen when the page opens are
+    // left alone. Nothing moves when less motion is asked for
+    if (hasMotion) {
+        gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+            const pageTop = (element) => {
+                let top = 0;
+                for (let node = element; node; node = node.offsetParent) top += node.offsetTop;
+                return top;
+            };
+            gsap.utils.toArray('[data-reveal]').forEach((part) => {
+                if (pageTop(part) < window.innerHeight * 0.95) return;
+                gsap.fromTo(part, { autoAlpha: 0, y: 40 }, {
+                    autoAlpha: 1,
+                    y: 0,
+                    ease: 'power1.out',
+                    scrollTrigger: {
+                        trigger: part,
+                        start: () => pageTop(part) - window.innerHeight * 0.95,
+                        end: () => pageTop(part) - window.innerHeight * 0.7,
+                        scrub: 0.5,
+                        invalidateOnRefresh: true,
+                    },
+                });
+            });
         });
-    });
+    }
 
-    // Experience section: the title rises and its words brighten 200ms apart; items rise 200ms apart
+    // Experience section: the title's words brighten 200ms apart when it arrives (its fade up is data-reveal)
     if (hasMotion) {
         const experienceTitle = document.querySelector('.experience-title h2');
         if (experienceTitle) {
@@ -590,25 +608,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 trigger: experienceTitle,
                 start: 'top+=30% bottom',
                 once: true,
-                onEnter: () => {
-                    gsap.to(experienceTitle, { opacity: 1, y: 0, duration: 1, ease: EASE.easeOut });
-                    gsap.to(experienceTitle.querySelectorAll('.title-word'), { color: cssVar('--color-primary'), duration: 0.8, ease: EASE.easeOut, stagger: 0.2 });
-                },
+                onEnter: () => gsap.to(experienceTitle.querySelectorAll('.title-word'), { color: cssVar('--color-primary'), duration: 0.8, ease: EASE.easeOut, stagger: 0.2 }),
             });
         }
-        // Experience list: the rows fade up one after another as the list comes into view. Then reading focus: the row at
+        // Experience list (its rows fade up with data-reveal). Reading focus: the row at
         // the middle of the screen is at full light with its years orange, and the light passes to the next row over the
         // distance between their middles (so a taller, wrapped row dims like the rest). The focus glides after the scroll
         // rather than jumping, and past either end of the list the first or last row keeps it
         const experienceRows = [...document.querySelectorAll('.experience-row')];
         if (experienceRows.length) {
-            gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-                gsap.from(experienceRows, {
-                    autoAlpha: 0, y: 16, duration: 0.8, ease: 'power3.out', stagger: 0.08,
-                    scrollTrigger: { trigger: experienceRows[0].parentElement, start: 'top 85%', once: true },
-                });
-            });
-
             // Dimmed through the text colour (the row's --row-years and --row-text), not opacity, so the orange CV "+" stays at
             // full colour and the white hover can take over
             const [red, green, blue] = cssVar('--color-primary-rgb').split(',').map(Number);

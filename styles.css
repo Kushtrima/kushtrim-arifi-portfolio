@@ -800,7 +800,6 @@ body:has(.hero) .header:has(.navigation.active) {
     text-align: left;
     text-wrap: pretty;
     letter-spacing: 0.5px;
-    transform: translateY(100%);
 }
 
 .about-cta {
@@ -944,8 +943,6 @@ body:has(.hero) .header:has(.navigation.active) {
     align-items: center;
     width: 100%;
     max-width: 600px;
-    opacity: 0;
-    transform: translateY(50px);
 }
 
 .experience-title h2 .title-word {
