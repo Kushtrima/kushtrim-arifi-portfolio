@@ -201,8 +201,6 @@ body {
 }
 
 /* Enhanced Hover Animations for Buttons and Links */
-.project-live-link,
-.project-back-link,
 .resume-button,
 button {
     position: relative;
@@ -212,8 +210,6 @@ button {
     overflow: hidden;
 }
 
-.project-live-link:hover,
-.project-back-link:hover,
 .resume-button:hover,
 button:hover {
     transform: translateY(-2px);
@@ -811,25 +807,50 @@ body:has(.hero) .header:has(.navigation.active) {
     margin-top: 20px;
 }
 
-/* Home page "My story" link, a pilot for the site's links: the words in the section's text colour (script.js sets it
-   as the section turns light or dark) and a thin arrow in the same colour, so it is white wherever the words are. The
-   words stay put on hover, the cursor shows it is a link; only the arrow moves, and keyboard focus gets an outline */
-.cta-link {
+/* Arrow link: the site's one button style, first made for the home page's "My story". The words in the colour of the text
+   around them and a thin arrow in a small window beside them. On hover or keyboard focus the arrow flies out the way it
+   points while a second copy comes in behind it; the words stay put (the cursor shows it is a link). ↗ by default,
+   .arrow-link--back ↙ for going back, .arrow-link--up ↑ for back to top. Used as <a> and <button> */
+.arrow-link {
     display: inline-flex;
     align-items: center;
     gap: 9px;
     padding: 0;
     border: none;
+    background: none;
     font-family: var(--font-display);
     font-size: 18px;
     font-weight: 400;
     line-height: 1.2;
-    color: var(--color-text);
+    letter-spacing: 0;
+    text-transform: none;
+    color: inherit;
     text-decoration: none;
+    cursor: pointer;
+    overflow: visible;
 }
 
-/* The arrow's window: on hover the arrow flies out at the top right while the next one comes in from the bottom left */
-.cta-arrow {
+/* On project pages some sit in a text-reveal wrapper, whose `>a { display: inline-block }` (project.css) would drop the gap
+   before the arrow */
+.text-reveal-wrapper > .arrow-link {
+    display: inline-flex;
+}
+
+.arrow-link:hover {
+    opacity: 1;
+    transform: none;
+}
+
+.arrow-link.ripple::before {
+    content: none;
+}
+
+.arrow-link:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 4px;
+}
+
+.arrow-link-arrow {
     position: relative;
     display: inline-block;
     flex-shrink: 0;
@@ -838,7 +859,7 @@ body:has(.hero) .header:has(.navigation.active) {
     overflow: hidden;
 }
 
-.cta-arrow-icon {
+.arrow-link-icon {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -846,23 +867,54 @@ body:has(.hero) .header:has(.navigation.active) {
     transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-.cta-arrow-icon--next {
+/* ↗ out at the top right, the next one in from the bottom left */
+.arrow-link-icon--next {
     transform: translate(-110%, 110%);
 }
 
-.cta-link:hover .cta-arrow-icon,
-.cta-link:focus-visible .cta-arrow-icon {
+.arrow-link:hover .arrow-link-icon,
+.arrow-link:focus-visible .arrow-link-icon {
     transform: translate(110%, -110%);
 }
 
-.cta-link:hover .cta-arrow-icon--next,
-.cta-link:focus-visible .cta-arrow-icon--next {
+.arrow-link:hover .arrow-link-icon--next,
+.arrow-link:focus-visible .arrow-link-icon--next {
     transform: translate(0, 0);
 }
 
-.cta-link:focus-visible {
-    outline: 1px solid currentColor;
-    outline-offset: 4px;
+/* ↙ out at the bottom left, the next one in from the top right */
+.arrow-link--back .arrow-link-icon--next {
+    transform: translate(110%, -110%);
+}
+
+.arrow-link--back:hover .arrow-link-icon,
+.arrow-link--back:focus-visible .arrow-link-icon {
+    transform: translate(-110%, 110%);
+}
+
+.arrow-link--back:hover .arrow-link-icon--next,
+.arrow-link--back:focus-visible .arrow-link-icon--next {
+    transform: translate(0, 0);
+}
+
+/* ↑ out at the top, the next one in from below */
+.arrow-link--up .arrow-link-icon--next {
+    transform: translate(0, 110%);
+}
+
+.arrow-link--up:hover .arrow-link-icon,
+.arrow-link--up:focus-visible .arrow-link-icon {
+    transform: translate(0, -110%);
+}
+
+.arrow-link--up:hover .arrow-link-icon--next,
+.arrow-link--up:focus-visible .arrow-link-icon--next {
+    transform: translate(0, 0);
+}
+
+/* "My story" takes the about section's text colour (script.js sets it as the section turns light or dark) */
+.cta-link {
+    color: var(--color-text);
 }
 
 /* Experience Section */
@@ -928,7 +980,7 @@ body:has(.hero) .header:has(.navigation.active) {
    --row-years and --row-text), and opens a row on click to show what was done there and a link to the CV, turning its
    "+" into a "−". Hovering a row fills it white (the orange sign stays orange) */
 .experience-section .experience-title {
-    margin-bottom: clamp(72px, 10vh, 110px);
+    margin-bottom: calc(clamp(72px, 10vh, 110px) + clamp(40px, 6vw, 80px));
 }
 
 .experience-content {
@@ -1085,20 +1137,9 @@ body:has(.hero) .header:has(.navigation.active) {
     color: var(--color-orange);
 }
 
-/* The CV, under what was done there */
+/* The CV, under what was done there (an arrow link) */
 .job-resume {
-    display: inline-block;
     margin: 14px 0 6px;
-    font-size: 0.9em;
-    color: var(--color-orange);
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
-}
-
-.job-resume:focus-visible {
-    outline: 1px solid currentColor;
-    outline-offset: 4px;
 }
 
 /* Hover (mouse and trackpad only, so a tapped row on a phone doesn't stay white): the row fills white, its text dark */
@@ -1733,16 +1774,6 @@ body:has(.hero) .header:has(.navigation.active) {
         margin-bottom: 20px;
     }
 
-    /* Social Media & Printing Mobile Layout */
-    .social-printing-wrapper {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 20px !important;
-    }
-
-    .social-printing-item:nth-child(2) {
-        margin-top: 110px;
-    }
-
     .work-info {
         flex-direction: column;
         gap: 10px;
@@ -1848,49 +1879,6 @@ body:has(.hero) .header:has(.navigation.active) {
     margin-top: 60px;
 }
 
-.view-more-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--font-display);
-    font-size: 16px;
-    font-weight: 400;
-    color: var(--color-primary);
-    text-decoration: none;
-    padding: 0;
-    border: none;
-    border-radius: 0;
-    transition: all 0.3s ease;
-    text-transform: none;
-    letter-spacing: 0;
-    position: relative;
-}
-
-.view-more-button:hover {
-    background-color: transparent;
-    color: var(--color-primary);
-    transform: none;
-}
-
-.view-more-button:hover .arrow {
-    transform: translate(6px, -2px);
-}
-
-.view-more-button .arrow {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    margin-left: 0;
-    vertical-align: middle;
-    filter: brightness(0) invert(1);
-    transition: transform 0.3s ease;
-    flex-shrink: 0;
-}
-
-.view-more-button::after {
-    display: none;
-}
-
 /* Logo Section */
 .logo-section {
     padding: 50px 0;
@@ -1917,23 +1905,6 @@ body:has(.hero) .header:has(.navigation.active) {
 .logo-gallery .gallery-item {
     opacity: 1;
     transform: translateY(0);
-}
-
-/* Offline Section - Hidden but easy to reactivate */
-.offline {
-    display: none !important;
-}
-
-/* Social Media & Printing Wrapper */
-.social-printing-wrapper {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 60px;
-    margin-top: 70px;
-}
-
-.logo-gallery.single-item {
-    grid-template-columns: 1fr;
 }
 
 /* Project Gallery Section */
@@ -2085,16 +2056,6 @@ body:has(.hero) .header:has(.navigation.active) {
 
 /* Cyan */
 
-
-/* Peach */
-.gallery-item[data-project="socialmedia"] {
-    --project-hover-color: #dbd2f7;
-}
-
-/* Violet */
-.gallery-item[data-project="printing"] {
-    --project-hover-color: #d4f2ff;
-}
 
 /* Peach */
 .gallery-item[data-project="hbs"] {
@@ -2495,32 +2456,6 @@ body:has(.hero) .header:has(.navigation.active) {
     color: var(--color-grey-99);
 }
 
-.back-to-top {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0;
-    border: 0;
-    background: none;
-    font: inherit;
-    color: var(--color-primary);
-    cursor: pointer;
-    overflow: visible;
-}
-
-.back-to-top:hover {
-    transform: none;
-}
-
-.back-to-top.ripple::before {
-    content: none;
-}
-
-.back-to-top svg {
-    width: 14px;
-    height: 14px;
-}
-
 /* Cut at 80% of the letters' height: they stand 0.694em above the baseline and 0.014em below it, so the page ends 0.128em
    above the baseline; on a 0.8 line the box ends 0.0625em below the baseline, hence the -0.19em margin (the footer clips) */
 .footer-name {
@@ -2535,8 +2470,7 @@ body:has(.hero) .header:has(.navigation.active) {
     color: var(--color-primary);
 }
 
-.footer-column a:focus-visible,
-.back-to-top:focus-visible {
+.footer-column a:focus-visible {
     outline: 1px solid currentColor;
     outline-offset: 4px;
 }

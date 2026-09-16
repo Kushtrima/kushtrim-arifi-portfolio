@@ -56,25 +56,8 @@
         .not-found-actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 16px 44px;
             justify-content: center;
-        }
-        .not-found-btn {
-            display: inline-block;
-            padding: 14px 32px;
-            border: 1px solid rgba(var(--color-primary-rgb), 0.4);
-            border-radius: 999px;
-            text-decoration: none;
-            color: var(--color-primary);
-            font-size: 13px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-        }
-        .not-found-btn:hover {
-            background: var(--color-primary);
-            color: var(--color-secondary);
-            border-color: var(--color-primary);
         }
     </style>
 </head>
@@ -101,9 +84,9 @@
         <h1 class="not-found-title">Page not found</h1>
         <p class="not-found-text">The page you were looking for doesn't exist or has moved. Try heading back home or browsing my work.</p>
         <div class="not-found-actions">
-            <a href="/" class="not-found-btn">Home</a>
-            <a href="/work.html" class="not-found-btn">View Work</a>
-            <a href="/about.html" class="not-found-btn">About</a>
+            <a href="/" class="arrow-link"><span class="arrow-link-label">Home</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
+            <a href="/work.html" class="arrow-link"><span class="arrow-link-label">View work</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
+            <a href="/about.html" class="arrow-link"><span class="arrow-link-label">About</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
         </div>
     </main>
 </body>

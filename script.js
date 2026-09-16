@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // Hover effects on all interactive elements (buttons, links, and projects)
-        const interactiveElements = document.querySelectorAll('a, button, .experience-row, .nav-link, .work-item, .gallery-item, .project-live-link, .project-back-link, .resume-button, .burger-menu, .work-image, .project-main-image, .project-gallery-item');
+        const interactiveElements = document.querySelectorAll('a, button, .experience-row, .nav-link, .work-item, .gallery-item, .resume-button, .burger-menu, .work-image, .project-main-image, .project-gallery-item');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', grow);
             el.addEventListener('mouseleave', shrink);
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Add ripple effect to buttons and links
-    const rippleElements = document.querySelectorAll('button, .project-live-link, .project-back-link, .resume-button, .nav-link');
+    const rippleElements = document.querySelectorAll('button, .resume-button, .nav-link');
     rippleElements.forEach(element => {
         element.classList.add('ripple');
     });
@@ -715,8 +715,8 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(() => {
                 const knownProjects = [
                     'stplaner', 'monun', 'doratec', 'spitex', 'jetonikeramika',
-                    'mardal', 'baren', 'riesen', 'ennur', 'socialmedia',
-                    'printing', 'alba', 'wmk', 'hbs', 'hbs-website', 'cityhotel', 'etno'
+                    'mardal', 'baren', 'riesen', 'ennur', 'alba', 'wmk', 'hbs',
+                    'hbs-website', 'cityhotel', 'etno'
                 ];
                 if (knownProjects.includes(projectName)) {
                     window.location.href = '/work/' + projectName + '.html';

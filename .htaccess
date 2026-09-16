@@ -30,8 +30,6 @@ RewriteRule ^hbs\.html$             /work/hbs.html             [R=301,L]
 RewriteRule ^wmk\.html$             /work/wmk.html             [R=301,L]
 RewriteRule ^riesen\.html$          /work/riesen.html          [R=301,L]
 RewriteRule ^baren\.html$           /work/baren.html           [R=301,L]
-RewriteRule ^socialmedia\.html$     /work/socialmedia.html     [R=301,L]
-RewriteRule ^printing\.html$        /work/printing.html        [R=301,L]
 RewriteRule ^etno\.html$            /work/etno.html            [R=301,L]
 
 # ---- 2. Pretty URLs (drop .html extension) ----

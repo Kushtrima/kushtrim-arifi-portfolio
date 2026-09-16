@@ -93,7 +93,9 @@
     transition: color 1.5s ease-in-out;
 }
 
+/* The project's own website: an arrow link (styles.css) that keeps its small grey sans text, with a clear gap before its arrow */
 .project-website-link {
+    gap: 14px;
     font-family: var(--font-primary);
     font-size: 16px;
     font-weight: 400;
@@ -101,6 +103,11 @@
     text-decoration: none;
     transition: color 0.3s ease;
     line-height: 1;
+}
+
+.project-website-link .arrow-link-arrow {
+    width: 14px;
+    height: 14px;
 }
 
 .project-website-link:hover {
@@ -128,45 +135,6 @@
     color: var(--color-primary);
     opacity: 0.7;
     transition: color 1.5s ease-in-out;
-}
-
-.project-live-link {
-    font-family: var(--font-display);
-    font-size: 15px;
-    font-weight: 400;
-    color: var(--color-primary);
-    text-decoration: none;
-    text-transform: uppercase;
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 4px 12px 4px 0;
-    border: none;
-    background: transparent;
-    transition: opacity 0.3s ease;
-    overflow: visible;
-}
-
-.project-live-link:hover {
-    opacity: 0.7;
-    transform: none !important;
-}
-
-.project-arrow {
-    transition: transform 0.3s ease;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    margin-left: 0;
-    vertical-align: middle;
-    filter: brightness(0) invert(1);
-    position: relative;
-    flex-shrink: 0;
-}
-
-.project-live-link:hover .project-arrow {
-    transform: translate(6px, -2px);
 }
 
 .project-details-section {
@@ -1411,99 +1379,6 @@
 }
 
 
-/* Project Back Link Styles */
-.project-back-section {
-    margin-top: 60px;
-    text-align: left;
-    display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    overflow: visible;
-}
-
-.project-back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--color-primary);
-    text-decoration: none;
-    font-family: var(--font-display);
-    font-size: 15px;
-    font-weight: 400;
-    text-transform: uppercase;
-    position: relative;
-    padding: 4px 12px 4px 0;
-    border: none;
-    background: transparent;
-    transition: opacity 0.3s ease;
-    overflow: visible;
-}
-
-.project-back-link:hover {
-    color: var(--color-primary);
-    opacity: 0.7;
-    transform: none !important;
-}
-
-.project-back-arrow {
-    transition: transform 0.3s ease;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    margin-right: 6px;
-    vertical-align: middle;
-    filter: brightness(0) invert(1);
-    position: relative;
-    flex-shrink: 0;
-    transform: rotate(180deg);
-}
-
-.project-back-link:hover .project-back-arrow {
-    transform: rotate(180deg) translate(6px, 2px);
-}
-
-.project-next-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--color-primary);
-    text-decoration: none;
-    font-family: var(--font-display);
-    font-size: 15px;
-    font-weight: 400;
-    text-transform: uppercase;
-    position: relative;
-    padding: 4px 0 4px 12px;
-    border: none;
-    background: transparent;
-    transition: opacity 0.3s ease;
-    overflow: visible;
-}
-
-.project-next-link:hover {
-    color: var(--color-primary);
-    opacity: 0.7;
-    transform: none !important;
-}
-
-.project-next-arrow {
-    transition: transform 0.3s ease;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    margin-right: 0;
-    vertical-align: middle;
-    filter: brightness(0) invert(1);
-    position: relative;
-    flex-shrink: 0;
-}
-
-.project-next-link:hover .project-next-arrow {
-    transform: translate(6px, -2px);
-}
-
 /* ========================================
    MONUN THREE-COLUMN INFO LAYOUT
    ======================================== */
@@ -1915,93 +1790,55 @@
     }
 }
 /* ============================================
-   Project Pagination (Prev / Next)
+   Project Pagination: one quiet line between two hairlines. The previous project (↙) on the left, all projects in the
+   middle, the next project (↗) on the right, as small arrow links: "Previous" / "Next" in grey, the project's name in the
+   text colour. Phones stack the three
    ============================================ */
 .project-pagination {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    min-height: 220px;
-    padding: 40px 0 35px;
-    border-top: 1px solid rgba(var(--color-primary-rgb), 0.08);
-    background: var(--color-secondary, var(--color-secondary));
+    padding: 28px 0;
+    border-top: 1px solid rgba(var(--color-primary-rgb), 0.14);
+    border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.14);
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
 }
 
-.project-pagination .container {
+.project-pagination-row {
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;
     gap: 24px;
-    width: 100%;
 }
 
-.project-pagination-link {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    color: var(--color-primary);
-    text-decoration: none;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.project-pagination-link:hover {
-    opacity: 0.75;
-    transform: translateY(-2px);
+.project-pagination .arrow-link {
+    font-size: 16px;
 }
 
 .project-pagination-prev {
-    text-align: left;
+    justify-self: start;
 }
 
 .project-pagination-next {
-    text-align: right;
-    align-items: flex-end;
+    justify-self: end;
 }
 
-.project-pagination-all {
-    text-align: center;
-    align-items: center;
-    padding: 10px 22px;
-    border: 1px solid rgba(var(--color-primary-rgb), 0.25);
-    border-radius: 999px;
-    font-size: 12px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
+.project-pagination-label,
+.project-pagination-dot {
+    color: var(--color-grey-99);
 }
 
-.project-pagination-all:hover {
-    border-color: var(--color-primary);
-    transform: none;
-}
-
-.project-pagination-label {
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(var(--color-primary-rgb), 0.55);
-}
-
-.project-pagination-name {
-    font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 300;
-    line-height: 1.2;
-}
-
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .project-pagination {
-        min-height: 180px;
-        padding: 32px 0 28px;
+        padding: 24px 0;
     }
-    .project-pagination .container {
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
+
+    .project-pagination-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
     }
+
+    .project-pagination-prev,
+    .project-pagination-next,
     .project-pagination-all {
-        grid-column: 1 / -1;
-        order: 3;
-    }
-    .project-pagination-name {
-        font-size: 16px;
+        justify-self: start;
     }
 }

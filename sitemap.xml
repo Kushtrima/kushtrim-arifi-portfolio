@@ -174,25 +174,5 @@
     </image:image>
   </url>
 
-  <!-- Portfolio Sections -->
-  <url>
-    <loc>https://kushtrimarifi.com/work/socialmedia.html</loc>
-    <lastmod>2026-05-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-    <image:image>
-      <image:loc>https://kushtrimarifi.com/work/socialmedia/sm-cover.jpg</image:loc>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://kushtrimarifi.com/work/printing.html</loc>
-    <lastmod>2026-05-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-    <image:image>
-      <image:loc>https://kushtrimarifi.com/work/printing/printing-cover.jpg</image:loc>
-    </image:image>
-  </url>
 
 </urlset>
