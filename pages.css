@@ -90,10 +90,10 @@
 }
 
 .work-description {
-    font-size: 16px;
+    font-size: var(--text-paragraph);
     font-weight: 300;
     color: var(--color-text-light);
-    line-height: 1.6;
+    line-height: 1.5;
     margin-bottom: 20px;
 }
 
@@ -395,7 +395,8 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 60px;
-    width: 1200px;
+    /* As wide as the container allows (a fixed 1200px spilled 40px past its right edge) */
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -425,7 +426,7 @@
 
 .column-list li {
     font-family: var(--font-primary);
-    font-size: 18px;
+    font-size: var(--text-paragraph);
     font-weight: 400;
     color: var(--color-grey-cc);
     text-transform: none;
@@ -470,7 +471,7 @@
     }
 
     .column-list li {
-        font-size: 14px;
+        font-size: var(--text-paragraph);
         /* Increased from 10px for better mobile readability */
         line-height: 1.4;
         margin-bottom: 3px;
@@ -963,7 +964,7 @@
 
 .collaborations-companies {
     font-family: var(--font-primary);
-    font-size: 18px;
+    font-size: var(--text-paragraph);
     font-weight: 400;
     color: var(--color-primary);
     text-transform: uppercase;
@@ -990,7 +991,7 @@
 
 .projects-note {
     font-family: var(--font-primary);
-    font-size: 16px;
+    font-size: var(--text-paragraph);
     font-weight: 400;
     color: var(--color-grey-88);
     margin: 0;
@@ -1019,7 +1020,6 @@
     }
 
     .collaborations-companies {
-        font-size: 14px;
     }
 
     .projects-note-section {
@@ -1027,6 +1027,5 @@
     }
 
     .projects-note {
-        font-size: 11px;
     }
 }

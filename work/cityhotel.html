@@ -43,8 +43,8 @@
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
 
-    <link rel="stylesheet" href="/styles.css?v=20260916-5">
-    <link rel="stylesheet" href="/project.css?v=20260916">
+    <link rel="stylesheet" href="/styles.css?v=20260917-22">
+    <link rel="stylesheet" href="/project.css?v=20260917-11">
 
     <!-- Structured Data: CreativeWork -->
     <script type="application/ld+json">
@@ -151,143 +151,165 @@
                     <div class="project-header-divider"></div>
                 </div>
 
-                <!-- Three Column Layout -->
-                <div class="project-info-layout">
-                    <!-- Left Column -->
-                    <div class="project-info-left">
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Industry</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Hotel & Restaurant</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Service</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Web Design & Development</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Location</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Switzerland</span>
-                            </div>
-                        </div>
+                <!-- The project in one row under the name -->
+                <dl class="project-facts">
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Industry</dt>
+                        <dd class="project-info-value">Hotel &amp;<br>Restaurant</dd>
                     </div>
-
-                    <!-- Middle Column -->
-                    <div class="project-info-middle">
-                        <div class="project-info-item project-info-year">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Year</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">2026</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item project-info-stack">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Stack</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Figma · WordPress · Custom JavaScript · Custom
-                                    CSS</span>
-                            </div>
-                        </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Service</dt>
+                        <dd class="project-info-value">Product Design &amp;<br>Development</dd>
                     </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Agency</dt>
+                        <dd class="project-info-value">Monun AG</dd>
+                    </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Location</dt>
+                        <dd class="project-info-value">Näfels,<br>Switzerland</dd>
+                    </div>
+                    <div class="project-fact project-fact--stack text-reveal-wrapper">
+                        <dt class="project-info-label">Stack</dt>
+                        <dd class="project-info-value">Figma · WordPress · PHP · Vanilla&nbsp;JavaScript · SCSS · Git</dd>
+                    </div>
+                </dl>
 
-                    <!-- Right Column: Project Description -->
-                    <div class="project-info-right">
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Project Description</span>
+                <!-- Case study, one part after another: a heading and its text. On a wide screen script.js lists every part's
+                     name on the left, held in view as the texts pass: dark grey, and light for the part being read; on a
+                     phone (or without script.js) each heading sits with its text. A new part is one more .case-step -->
+                <div class="case-study">
+                    <div class="case-study-steps">
+                        <section class="case-step" aria-labelledby="case-company">
+                            <h2 class="case-step-title" id="case-company">Company</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>A four-star hotel that also runs a
+                                    restaurant</h3>
+                                <p data-reveal>Cityhotel sits in Näfels, in the canton of Glarus. Alongside the hotel
+                                    it runs Glaré, a restaurant with its own name, its own regulars and its own reasons to
+                                    visit. The project came through Monun AG in 2026, where I work as a product designer
+                                    and developer. I took it from the first Figma screen through to the deployed site.</p>
                             </div>
-                            <div class="project-description-content">
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">Cityhotel is a four-star hotel located in
-                                        Näfels, Switzerland, and includes a dedicated restaurant named Glaré. The
-                                        project was requested by Monun AG, and my role was to complete the website as a
-                                        full project based on the provided requirements.</p>
-                                </div>
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">After receiving the initial ideas and content, I
-                                        conducted research on the Swiss hotel website market. During this process, I
-                                        identified functionality as a primary focus across similar websites, which
-                                        directly informed my overall approach to the project.</p>
-                                </div>
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">I designed the UX/UI with an emphasis on clarity
-                                        and easy navigation, integrating all required website functions. The structure
-                                        includes a minimal header, a large menu, multiple reservation options, and a
-                                        secondary page behavior where the header logo changes when navigating to the
-                                        restaurant section.</p>
-                                </div>
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">Following the design phase in Figma, the website
-                                        was developed using WordPress, with JavaScript used for specific functionality
-                                        and CSS applied for global styling. The final website uses smooth interactions
-                                        and a friendly color palette.</p>
-                                </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-problem">
+                            <h2 class="case-step-title" id="case-problem">The problem</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Two businesses, one website, neither can be
+                                    a subsection of the other</h3>
+                                <p data-reveal>Hotel guests and restaurant guests are not the same people. Guests book
+                                    rooms weeks ahead, often from outside Switzerland, comparing rates against other
+                                    options. Glaré guests are local, deciding within the week, and want a table, a menu
+                                    and an address.</p>
+                                <p data-reveal>Building Glaré a separate site would have split a small business across
+                                    two builds, two hosting bills and two things to keep updated. Folding it into the
+                                    hotel site as another page would have made a restaurant with its own name look like a
+                                    hotel amenity. Neither was acceptable to the client.</p>
                             </div>
-                        </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-research">
+                            <h2 class="case-step-title" id="case-research">Research</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>These are not sites people browse, they are
+                                    sites people use</h3>
+                                <p data-reveal>Before designing anything I went through how comparable Swiss hotels
+                                    structure their websites. The pattern that stood out is that almost nobody arrives
+                                    without a task. They come to check a rate, find an address, look at a menu or make a
+                                    booking, and everything that is not that task is standing in the way of it.</p>
+                                <p data-reveal>That set the priority for the whole project. Function carries the site,
+                                    and atmosphere is carried by photography and spacing rather than by anything the guest
+                                    has to click through.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-solution">
+                            <h2 class="case-step-title" id="case-solution">Solution</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Shared structure, switching identity</h3>
+                                <p data-reveal>The header carries the brand, not the page. Move into the restaurant
+                                    section and the logo switches from Cityhotel to Glaré, while navigation, layout and
+                                    behaviour stay identical. Guests keep one mental model of how the site works, and they
+                                    are told which business they are dealing with in the one place they are always
+                                    looking. Glaré reads as its own name rather than a page inside a hotel, without a
+                                    second domain behind it.</p>
+                                <p data-reveal>Booking a room and reserving a table stay separate. The two
+                                    transactions carry different urgency, different lead times and different information.
+                                    One generic Book button would have forced every visitor through a decision they had
+                                    already made before they arrived, so each path stays visible and distinct, positioned
+                                    where its audience is already looking.</p>
+                                <p data-reveal>Nothing gets buried to make room. A hotel carries more pages than a top
+                                    bar can hold: rooms, restaurant, seminars, events, contact, and everything beneath
+                                    those. Keeping the header minimal and moving the full structure into a large menu
+                                    meant the header stays quiet while guests read, and the whole site is one click away
+                                    when they are ready to move.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-build">
+                            <h2 class="case-step-title" id="case-build">Build</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Handed over so the hotel can run it
+                                    themselves</h3>
+                                <p data-reveal>Designed in Figma, then built as a custom WordPress theme rather than a
+                                    page builder, so the hotel's team can manage seasonal content through structured
+                                    fields without touching layout. Interaction behaviour is written in vanilla JavaScript
+                                    with no framework dependency, including the header transition between the two brands.
+                                    Styling is a single global system of design tokens and shared components rather than
+                                    per-page CSS, so both identities inherit the same spacing, type scale and colour
+                                    logic, and new pages stay consistent without additional styling work.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-outcome">
+                            <h2 class="case-step-title" id="case-outcome">Outcome</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>One site, two brands, one thing to
+                                    maintain</h3>
+                                <p data-reveal>Glaré has a distinct identity and its own reservation path without a
+                                    second website behind it, and the hotel updates both from a single admin. The
+                                    structure holds as pages are added, which matters for a business that changes its
+                                    offering with the season.</p>
+                            </div>
+                        </section>
                     </div>
                 </div>
 
-                <div class="project-image-section">
-                    <!-- First big image - full width -->
+                <!-- Images in a narrower column; on a wide screen script.js adds a navigator on the right: every image small,
+                     with a frame showing which part is on screen -->
+                <div class="project-image-section project-image-section--navigator">
+                    <!-- First image -->
                     <div class="project-main-image cityhotel-image-reveal cityhotel-first-image">
-                        <img src="/work/cityhotel/city-01.jpg" alt="Cityhotel Website Hero" loading="lazy">
+                        <img src="/work/cityhotel/city-01.jpg" width="1500" height="880" alt="Cityhotel Website Hero" loading="lazy">
                     </div>
 
-                    <!-- Gallery section with text on left and smaller images on right -->
+                    <!-- Gallery: the smaller images, one under another -->
                     <div class="project-gallery-layout">
-                        <div class="project-gallery-text">
-                            <div class="text-reveal-wrapper">
-                                <h2 class="project-gallery-title">Elegant simplicity, refined experience.</h2>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <p class="project-gallery-quote">Every element is designed to enhance usability while
-                                    maintaining a premium aesthetic.</p>
-                                <p class="project-gallery-quote">Clean layouts and thoughtful interactions guide guests
-                                    through the booking journey seamlessly.</p>
-                            </div>
-                        </div>
                         <div class="project-gallery-images">
                             <div class="project-main-image cityhotel-image-reveal">
-                                <img src="/work/cityhotel/city-2.jpg" alt="Cityhotel Website 2" loading="lazy">
+                                <img src="/work/cityhotel/city-2.jpg" width="1440" height="914" alt="Cityhotel Website 2" loading="lazy">
                             </div>
                             <div class="project-main-image cityhotel-image-reveal">
-                                <img src="/work/cityhotel/city-3.jpg" alt="Cityhotel Website 3" loading="lazy">
+                                <img src="/work/cityhotel/city-3.jpg" width="1440" height="914" alt="Cityhotel Website 3" loading="lazy">
                             </div>
                             <div class="project-main-image cityhotel-image-reveal">
-                                <img src="/work/cityhotel/city-4.jpg" alt="Cityhotel Website 4" loading="lazy">
+                                <img src="/work/cityhotel/city-4.jpg" width="1440" height="1649" alt="Cityhotel Website 4" loading="lazy">
                             </div>
                             <div class="project-main-image cityhotel-image-reveal">
-                                <img src="/work/cityhotel/city-5.jpg" alt="Cityhotel Website 5" loading="lazy">
+                                <img src="/work/cityhotel/city-5.jpg" width="1440" height="2080" alt="Cityhotel Website 5" loading="lazy">
                             </div>
                             <div class="project-main-image cityhotel-image-reveal">
-                                <img src="/work/cityhotel/city-6.jpg" alt="Cityhotel Website 6" loading="lazy">
+                                <img src="/work/cityhotel/city-6.jpg" width="1440" height="2075" alt="Cityhotel Website 6" loading="lazy">
                             </div>
                             <div class="project-main-image cityhotel-image-reveal">
-                                <img src="/work/cityhotel/city-7.jpg" alt="Cityhotel Website 7" loading="lazy">
+                                <img src="/work/cityhotel/city-7.jpg" width="816" height="1716" alt="Cityhotel Website 7" loading="lazy">
                             </div>
                             <div class="project-main-image cityhotel-image-reveal">
-                                <img src="/work/cityhotel/city-8.jpg" alt="Cityhotel Website 8" loading="lazy">
+                                <img src="/work/cityhotel/city-8.jpg" width="1440" height="1130" alt="Cityhotel Website 8" loading="lazy">
                             </div>
                             <div class="project-main-image cityhotel-image-reveal">
-                                <img src="/work/cityhotel/city-9.jpg" alt="Cityhotel Website 9" loading="lazy">
+                                <img src="/work/cityhotel/city-9.jpg" width="1440" height="3585" alt="Cityhotel Website 9" loading="lazy">
                             </div>
                             <div class="project-main-image cityhotel-image-reveal">
-                                <img src="/work/cityhotel/city-10.jpg" alt="Cityhotel Website 10" loading="lazy">
+                                <img src="/work/cityhotel/city-10.jpg" width="1440" height="911" alt="Cityhotel Website 10" loading="lazy">
                             </div>
                             <div class="project-main-image cityhotel-image-reveal">
-                                <img src="/work/cityhotel/city-11.jpg" alt="Cityhotel Website 11" loading="lazy">
+                                <img src="/work/cityhotel/city-11.jpg" width="1440" height="1097" alt="Cityhotel Website 11" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -312,6 +334,7 @@
              the full width, sitting on the bottom edge of the page with its lower fifth cut off -->
         <div class="container">
             <div class="footer-columns">
+                <a href="/" class="footer-logo" aria-label="Kushtrim Arifi, home">[a]</a>
                 <nav class="footer-column" aria-label="Footer">
                     <p class="footer-label">Menu</p>
                     <a href="/work.html">Work</a>
@@ -342,7 +365,7 @@
     <script src="/vendor/gsap/gsap.min.js" defer></script>
     <script src="/vendor/gsap/ScrollTrigger.min.js" defer></script>
     <script src="/vendor/gsap/CustomEase.min.js" defer></script>
-    <script src="/script.js?v=20260916-10" defer></script>
+    <script src="/script.js?v=20260917-21" defer></script>
 </body>
 
 </html>

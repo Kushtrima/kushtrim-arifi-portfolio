@@ -30,6 +30,8 @@
     --font-primary: Arial, sans-serif;
     --font-display: 'Times New Roman', Times, Tinos, 'Liberation Serif', serif;
     --font-editorial: Georgia, serif;
+    /* Every paragraph on the site: 20px, 16px on phones (below) */
+    --text-paragraph: 20px;
 
     /* Z-Index System */
     --z-header: 1000;
@@ -45,6 +47,12 @@
     /* Transitions */
     --transition-smooth: 0.8s cubic-bezier(0.01, 0.01, 0.5, 1);
     --transition-fast: 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --text-paragraph: 16px;
+    }
 }
 
 /* Reset and base styles */
@@ -191,7 +199,7 @@ body {
     color: var(--color-primary);
     text-decoration: none;
     font-weight: 400;
-    font-size: 16px;
+    font-size: var(--text-paragraph);
     transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease;
 }
 
@@ -354,7 +362,7 @@ button:hover {
 
 .header-bar-link {
     padding: 0 12px;
-    font-size: 16px;
+    font-size: var(--text-paragraph);
     color: inherit;
     text-decoration: none;
     transition: color 0.25s ease;
@@ -509,13 +517,14 @@ html.intro-on .header .logo-text {
    left edge and "Arifi" over its right edge, both at eye level beside the face; the job title sits small under the
    start of the name and "Creating since 2012" at the foot, on the navigation's edge. Every position comes from the
    photo's size (--photo) and centre (--cx, --cy), so the overlaps hold at every width; the photo sits right of the
-   middle by half the difference between the two names' widths (3.76em and 1.87em), so the whole line is centred. script.js opens the photo from its
+   middle by half the difference between the two names' inked widths (0.916em: "Kushtrim" 3.74em, "Arifi" 1.90em plus
+   the gap's side bearings, measured in the browser), so the whole line is centred. script.js opens the photo from its
    centre, raises the words in reading order, and on scroll pulls the name apart while the photo drifts slower than
    the page. */
 .hero {
     --photo: min(30vw, 50vh);
     --big: min(12vw, 19vh);
-    --cx: calc(50% + var(--big) * 0.945);
+    --cx: calc(50% + var(--big) * 0.916);
     --cy: calc(50% + 3vh);
     position: relative;
     height: 100vh;
@@ -739,7 +748,8 @@ body:has(.hero) .header:has(.navigation.active) {
     }
 }
 
-/* About section */
+/* About section: "ABOUT" big in the display serif at the top left, like the other section titles; under it the two
+   paragraphs in the plain font as two justified columns across the full width, and "My story" at the bottom right */
 .about-section {
     padding: 120px 0;
     min-height: 100vh;
@@ -747,63 +757,72 @@ body:has(.hero) .header:has(.navigation.active) {
     align-items: center;
 }
 
+/* A flex item only as wide as its content otherwise, which would squeeze the grid below */
+.about-section .container {
+    width: 100%;
+}
+
 .about-content-wrapper {
-    display: flex;
-    align-items: flex-start;
-    gap: 60px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: clamp(40px, 5vw, 64px);
     margin-bottom: 80px;
 }
 
 .about-label {
-    font-family: var(--font-primary);
-    font-size: 14px;
+    font-family: var(--font-display);
+    font-size: clamp(40px, 4.7vw, 60px);
     font-weight: 400;
+    line-height: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
     /* #333, the colour the script sets on load: without this, a page where the script doesn't run showed
        this text, .about-text and .cta-link in #ccc on white (1.6:1) */
     color: var(--color-text);
-    flex-shrink: 0;
-    margin-top: 0;
+    margin: 0;
 }
 
 .about-content {
-    flex: 1;
+    min-width: 0;
 }
 
 .about-text-parts {
-    margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(32px, 5vw, 80px);
+    margin-bottom: clamp(48px, 6vw, 80px);
 }
 
 .about-paragraph {
-    margin-bottom: 60px;
-}
-
-.about-paragraph:last-child {
-    margin-bottom: 0;
+    margin: 0;
 }
 
 .about-text-wrapper {
     overflow: hidden;
-    height: auto;
-    /* Desktop - natural flow */
-    margin-bottom: 0px;
 }
 
+/* Justified is fine at this size: hyphenation (lang="en") keeps the word gaps even. At the old 36px serif it wasn't */
 .about-text {
-    font-family: var(--font-display);
-    font-size: 36px;
+    font-family: var(--font-primary);
+    font-size: var(--text-paragraph);
     font-weight: 400;
+    line-height: 1.5;
     color: var(--color-text);
-    /* Normal case needs more room than the capitals did at 0.9: descenders touched the next line */
-    line-height: 1.1;
     margin: 0;
-    /* Left, not justify: justified lines stretched some word gaps to almost 3x a normal space */
-    text-align: left;
-    text-wrap: pretty;
-    letter-spacing: 0.5px;
+    text-align: justify;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+/* The long dash that opens the text; decoration only, so screen readers skip it */
+.about-paragraph-1 .about-text::before {
+    content: "\2014\2014\00a0";
+    content: "\2014\2014\00a0" / "";
 }
 
 .about-cta {
-    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 /* Arrow link: the site's one button style, first made for the home page's "My story". The words in the colour of the text
@@ -818,7 +837,7 @@ body:has(.hero) .header:has(.navigation.active) {
     border: none;
     background: none;
     font-family: var(--font-display);
-    font-size: 18px;
+    font-size: var(--text-paragraph);
     font-weight: 400;
     line-height: 1.2;
     letter-spacing: 0;
@@ -923,59 +942,52 @@ body:has(.hero) .header:has(.navigation.active) {
 }
 
 .experience-title {
-    text-align: right;
     margin-bottom: 180px;
-    margin-left: 100px;
     margin-top: -40px;
 }
 
+/* The title's four lines step in and out ("MY" and "THROUGH" flush, "EXPERIENCE" and "TIME" indented) and the whole
+   stepped shape is centred on the page: the heading is only as wide as its widest line. The letter spacing after the
+   last letter of that line is empty space, so the heading moves half of it to the right to stay visually centred */
 .experience-title h2 {
+    --title-tracking: 8px;
     font-family: var(--font-display);
     font-size: 60px;
     font-weight: 400;
     color: var(--color-primary);
     text-transform: uppercase;
-    letter-spacing: 8px;
+    letter-spacing: var(--title-tracking);
     margin: 0 auto;
     line-height: 0.9;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 600px;
+    align-items: flex-start;
+    width: fit-content;
+    translate: calc(var(--title-tracking) / 2) 0;
 }
 
 .experience-title h2 .title-word {
     color: var(--color-text-light);
 }
 
-.title-line.left {
-    align-self: flex-start;
-}
-
-.title-line.center {
-    align-self: center;
-}
-
 .title-line {
     display: block;
     margin-bottom: 10px;
-    width: 100%;
 }
 
-.title-line.center {
-    text-align: center;
+.title-line:nth-child(2) {
+    padding-left: 1.28em;
 }
 
-.title-line.left {
-    text-align: left;
+.title-line:nth-child(4) {
+    padding-left: 3.52em;
 }
 
-/* Experience: a quiet list, one row per job, newest first. Years, role, and company with country on one line at one
-   small size, hairlines between rows; the current job's years are orange. script.js fades the rows up as they arrive,
-   lights the row at the middle of the screen (its years orange) while the others' text dims to half (through
-   --row-years and --row-text), and opens a row on click to show what was done there and a link to the CV, turning its
-   "+" into a "−". Hovering a row fills it white (the orange sign stays orange) */
+/* Experience, set like film credits: newest first, everything in capitals at the paragraph size and in the light text
+   colour; the years regular and right-aligned, the role and "company—country" in bold beside them, the two columns as
+   one block in the middle of the page. Each job has a note: with a mouse it takes the job's place while the pointer rests
+   on the job, elsewhere a tap opens it under the role and company (turning the orange "+" into a "−"). While a note is
+   open the other jobs turn dark grey */
 .experience-section .experience-title {
     margin-bottom: calc(clamp(72px, 10vh, 110px) + clamp(40px, 6vw, 80px));
 }
@@ -985,65 +997,57 @@ body:has(.hero) .header:has(.navigation.active) {
     margin: 0 auto;
 }
 
+/* As wide as its two columns and centred; each job shares the columns (subgrid), so all the years line up */
 .experience-list {
-    margin: 0;
+    position: relative;
+    display: grid;
+    grid-template-columns: max-content minmax(0, max-content);
+    column-gap: clamp(32px, 4.5vw, 64px);
+    row-gap: clamp(40px, 4.5vw, 60px);
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
     padding: 0;
     list-style: none;
 }
 
-/* 16px wider than the list on each side, so the white hover band has room around the text; the hairline stays text-wide */
 .experience-row {
-    position: relative;
     display: grid;
-    grid-template-columns: 11em minmax(0, 1fr) auto;
-    column-gap: 32px;
-    align-items: baseline;
-    margin: 0 -16px;
-    padding: 22px 16px;
-    border-radius: 4px;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: start;
     font-family: var(--font-primary);
-    font-size: clamp(15px, 1.2vw, 18px);
+    font-size: var(--text-paragraph);
     font-weight: 400;
-    line-height: 1.4;
+    line-height: 1.3;
+    text-transform: uppercase;
+    color: var(--row-ink, var(--color-primary));
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.experience-row::after {
-    content: '';
-    position: absolute;
-    right: 16px;
-    bottom: 0;
-    left: 16px;
-    height: 1px;
-    background-color: rgba(var(--color-primary-rgb), 0.14);
-}
-
-.experience-row:last-child::after {
-    content: none;
+    transition: color 0.6s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .job-years {
-    color: var(--row-years, var(--color-primary));
+    text-align: right;
 }
 
-.experience-row:first-child .job-years {
-    color: var(--row-years, var(--color-orange));
+.job-names {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-weight: 700;
 }
 
-.job-where,
-.job-work {
-    color: var(--row-text, var(--color-primary));
-}
-
-/* The role opens the row: a plain-text button */
+/* The role opens the note: a plain-text button */
 .job-title {
     padding: 0;
     border: 0;
     background: none;
     font: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
     text-align: left;
-    color: var(--row-text, var(--color-primary));
+    color: inherit;
     cursor: pointer;
     overflow: visible;
 }
@@ -1061,8 +1065,8 @@ body:has(.hero) .header:has(.navigation.active) {
     outline-offset: 4px;
 }
 
-.job-where {
-    text-align: right;
+.experience-list:has(.is-open) .experience-row:not(.is-open) {
+    --row-ink: var(--color-grey-55);
 }
 
 /* The country and the sign wrap as one, so the sign never ends up alone on a line */
@@ -1070,7 +1074,7 @@ body:has(.hero) .header:has(.navigation.active) {
     white-space: nowrap;
 }
 
-/* The orange open/close sign after the company: two bars like the compact header's "+"; while the row is open the
+/* The orange open/close sign after the company: two bars like the compact header's "+"; while the note is open the
    upright bar turns flat, so the "+" becomes a "−" */
 .job-sign {
     position: relative;
@@ -1112,70 +1116,112 @@ body:has(.hero) .header:has(.navigation.active) {
     white-space: nowrap;
 }
 
-/* What was done there, under the role and company; script.js collapses it and opens one row at a time */
+/* The note, in normal case: under the role and company. Width 0 with a full minimum, so its long line doesn't widen
+   the column */
 .job-work {
-    grid-column: 2 / -1;
+    grid-column: 2;
+    width: 0;
+    min-width: 100%;
+    font-weight: 400;
+    text-transform: none;
+    cursor: auto;
 }
 
-.job-work ul {
-    max-width: 70ch;
+.job-note {
+    padding: 16px 0 4px;
+}
+
+.job-note p {
     margin: 0;
-    padding: 18px 0 4px 1.1em;
-    list-style: disc;
-    font-size: 0.9em;
-    line-height: 1.6;
+    line-height: 1.5;
+    color: var(--color-primary);
 }
 
-.job-work li + li {
-    margin-top: 6px;
-}
-
-.job-work li::marker {
-    color: var(--color-orange);
-}
-
-/* The CV, under what was done there (an arrow link) */
+/* The CV, under the note (an arrow link) */
 .job-resume {
     margin: 14px 0 6px;
 }
 
-/* Hover (mouse and trackpad only, so a tapped row on a phone doesn't stay white): the row fills white, its text dark */
-@media (hover: hover) {
-    .experience-row:hover {
-        background-color: var(--color-primary);
+/* A mouse and room for the two columns: pointing at a job swaps its years, role and company for its note in the same
+   place (script.js), across both columns and over the gap below, on the section's background so the next job never
+   shows through; nothing moves. The "+" and the CV link aren't needed there */
+@media (hover: hover) and (min-width: 769px) {
+    /* Room for a four-line note between one job and the next */
+    .experience-list.is-ready {
+        row-gap: 76px;
     }
 
-    .experience-row:hover .job-years,
-    .experience-row:hover .job-title,
-    .experience-row:hover .job-where,
-    .experience-row:hover .job-work,
-    .experience-row:hover .job-resume {
-        color: var(--color-secondary);
+    .experience-list.is-ready .experience-row {
+        position: relative;
+    }
+
+    .experience-list.is-ready .experience-row.is-open {
+        z-index: 2;
+    }
+
+    .experience-list.is-ready .job-years,
+    .experience-list.is-ready .job-names {
+        transition: opacity 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .experience-list.is-ready .experience-row.is-open .job-years,
+    .experience-list.is-ready .experience-row.is-open .job-names {
+        opacity: 0;
+    }
+
+    /* The open job dims with the rest as it fades out, so it never brightens on its way out */
+    .experience-list.is-ready:has(.is-open) .experience-row {
+        --row-ink: var(--color-grey-55);
+    }
+
+    /* A keyboard focus shows on the note, since the role it belongs to is hidden */
+    .experience-list.is-ready .experience-row:has(.job-title:focus-visible) .job-note {
+        outline: 1px solid rgba(var(--color-primary-rgb), 0.5);
+        outline-offset: 10px;
+    }
+
+    .experience-list.is-ready .job-work {
+        position: absolute;
+        grid-column: 1 / -1;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .experience-list.is-ready .job-note {
+        padding: 0 0 4px;
+        background-color: var(--color-secondary);
+    }
+
+    .experience-list.is-ready .job-note p {
+        line-height: 1.3;
+        text-align: center;
+    }
+
+    .experience-list.is-ready .job-sign,
+    .experience-list.is-ready .job-resume {
+        display: none;
     }
 }
 
-/* Phones: the years beside two short lines, the role over company and country; the work list under the whole row */
-@media (max-width: 768px) {
+/* Phones: one column, the years over the role and company, the note under them */
+@media (max-width: 600px) {
+    .experience-list {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 36px;
+        width: auto;
+    }
+
     .experience-row {
-        grid-template-columns: 7.4em minmax(0, 1fr);
-        column-gap: 16px;
-        margin: 0 -12px;
-        padding: 18px 12px;
+        row-gap: 6px;
     }
 
-    .experience-row::after {
-        right: 12px;
-        left: 12px;
-    }
-
-    .job-title,
-    .job-where {
-        grid-column: 2;
+    .job-years {
         text-align: left;
     }
 
     .job-work {
-        grid-column: 1 / -1;
+        grid-column: 1;
     }
 }
 
@@ -1361,19 +1407,16 @@ body:has(.hero) .header:has(.navigation.active) {
         padding: 80px 0;
     }
 
-    .about-content-wrapper {
-        flex-direction: column;
-        gap: 40px;
-    }
-
-    .about-text-wrapper {
-        height: auto;
+    /* One column of text, left-aligned: justified lines this short open wide gaps between the words */
+    .about-text-parts {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 1.5em;
     }
 
     .about-text {
-        font-size: 22px;
-        /* Increased from 18px for better mobile readability */
-        line-height: 1.3;
+        text-align: left;
+        -webkit-hyphens: manual;
+        hyphens: manual;
     }
 
     .experience-section {
@@ -1383,18 +1426,14 @@ body:has(.hero) .header:has(.navigation.active) {
 
     .experience-title {
         margin-bottom: 150px;
-        text-align: right;
-        margin-left: 100px;
         margin-top: -60px;
-        transform: translateX(21px);
     }
 
     .experience-title h2 {
+        --title-tracking: 6px;
         font-family: var(--font-display);
         font-size: 60px;
-        letter-spacing: 6px;
         font-weight: 400;
-        align-items: center;
     }
 
     .title-line {
@@ -1701,7 +1740,7 @@ body:has(.hero) .header:has(.navigation.active) {
 }
 
 .work-name {
-    font-size: 18px;
+    font-size: var(--text-paragraph);
     font-weight: 400;
     color: var(--color-primary);
     margin: 0;
@@ -1711,17 +1750,17 @@ body:has(.hero) .header:has(.navigation.active) {
 }
 
 .work-description {
-    font-size: 14px;
+    font-size: var(--text-paragraph);
     font-weight: 400;
     color: var(--color-primary);
-    line-height: 1.6;
+    line-height: 1.5;
     margin: 0;
     flex: 1;
     opacity: 0.8;
 }
 
 .work-year {
-    font-size: 14px;
+    font-size: var(--text-paragraph);
     font-weight: 400;
     color: var(--color-primary);
     opacity: 0.6;
@@ -1794,9 +1833,6 @@ body:has(.hero) .header:has(.navigation.active) {
         letter-spacing: -2px;
     }
 
-    .work-page-description p {
-        font-size: 16px;
-    }
 }
 
 @media (max-width: 480px) {
@@ -1810,7 +1846,7 @@ body:has(.hero) .header:has(.navigation.active) {
 
     .nav-link {
         font-family: var(--font-display);
-        font-size: 14px;
+        font-size: var(--text-paragraph);
     }
 
     .name-wrapper {
@@ -1821,20 +1857,6 @@ body:has(.hero) .header:has(.navigation.active) {
         padding: 60px 0;
     }
 
-    .about-content-wrapper {
-        flex-direction: column;
-        gap: 30px;
-    }
-
-    .about-text-wrapper {
-        height: auto;
-    }
-
-    .about-text {
-        font-size: 20px;
-        /* Increased from 16px for better mobile readability */
-        line-height: 1.3;
-    }
 
     .experience-section {
         padding: 0px 0;
@@ -1843,18 +1865,13 @@ body:has(.hero) .header:has(.navigation.active) {
 
     .experience-title {
         margin-bottom: 160px;
-        text-align: right;
         margin-top: -90px;
-        margin-left: 0px;
-        transform: translateX(21px);
     }
 
     .experience-title h2 {
+        --title-tracking: 2px;
         font-size: 36px;
-        letter-spacing: 2px;
-        max-width: 350px;
         font-weight: 600;
-        align-items: center;
     }
 
     .title-line {
@@ -2134,7 +2151,7 @@ body:has(.hero) .header:has(.navigation.active) {
     top: 0;
     left: 0;
     font-family: var(--font-primary);
-    font-size: 12px;
+    font-size: var(--text-paragraph);
     font-weight: 400;
     color: var(--color-primary);
     z-index: var(--z-content);
@@ -2153,24 +2170,24 @@ body:has(.hero) .header:has(.navigation.active) {
 
 .project-title {
     font-family: var(--font-primary);
-    font-size: 14px;
+    font-size: var(--text-paragraph);
     font-weight: 300;
     color: var(--color-primary) !important;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin: 0 0 5px 0;
-    line-height: 0.9;
+    line-height: 1.2;
 }
 
 .project-category {
     font-family: var(--font-primary);
-    font-size: 14px;
+    font-size: var(--text-paragraph);
     font-weight: 300;
     color: var(--color-primary) !important;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin: 0;
-    line-height: 0.9;
+    line-height: 1.2;
 }
 
 .work-page-container {
@@ -2229,10 +2246,10 @@ body:has(.hero) .header:has(.navigation.active) {
 
 .work-page-description p {
     font-family: var(--font-primary);
-    font-size: 18px;
+    font-size: var(--text-paragraph);
     font-weight: 400;
     color: var(--color-primary);
-    line-height: 1.6;
+    line-height: 1.5;
     margin: 0;
     text-align: left;
     max-width: 600px;
@@ -2325,15 +2342,15 @@ body:has(.hero) .header:has(.navigation.active) {
     }
 
     .project-title {
-        font-size: 12px;
+        font-size: var(--text-paragraph);
     }
 
     .project-category {
-        font-size: 11px;
+        font-size: var(--text-paragraph);
     }
 
     .project-number {
-        font-size: 10px;
+        font-size: var(--text-paragraph);
         top: 0;
         left: 0;
         width: 28px;
@@ -2357,10 +2374,6 @@ body:has(.hero) .header:has(.navigation.active) {
         letter-spacing: -1px;
     }
 
-    .work-page-description p {
-        font-family: var(--font-primary);
-        font-size: 14px;
-    }
 }
 
 /* Mobile Phone Styles - Added at the end to override all other styles */
@@ -2382,15 +2395,25 @@ body:has(.hero) .header:has(.navigation.active) {
         font-size: 28px;
     }
 
-    .about-text {
-        font-size: 16px;
-    }
 }
 
 @media (max-width: 600px) {
     .experience-section .experience-title {
         margin-top: -30px !important;
     }
+}
+
+/* Space between the home page's sections: clearly more than the space inside a section (the experience title to its
+   first job is 124-170px), so each section reads as its own group. About me → experience title about 260px on laptops and
+   200px on phones, last job → "my Work" the same, "View more" → footer about 250px / 190px. After the older rules, which
+   set these paddings to 0 or a fixed size */
+.experience-section {
+    padding-top: clamp(40px, 7vw, 90px);
+}
+
+.work-section {
+    padding-top: clamp(150px, 16vw, 210px);
+    padding-bottom: clamp(120px, 11.5vw, 150px);
 }
 
 /* Footer: a big name sign-off. Three small columns (menu, social, contact), the year and back to top, then "Kushtrim Arifi"
@@ -2410,10 +2433,27 @@ body:has(.hero) .header:has(.navigation.active) {
     container-type: inline-size;
 }
 
+/* "[a]" on the left, menu, social and contact grouped at the right end */
 .footer-columns {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 40px;
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(40px, 6vw, 96px);
+}
+
+.footer-logo {
+    margin-right: auto;
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 2px;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.footer-logo:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 4px;
 }
 
 .footer-column {
@@ -2422,13 +2462,13 @@ body:has(.hero) .header:has(.navigation.active) {
     align-items: flex-start;
     gap: 10px;
     font-family: var(--font-primary);
-    font-size: 15px;
+    font-size: var(--text-paragraph);
     line-height: 1.4;
 }
 
 .footer-label {
     margin: 0 0 6px;
-    font-size: 13px;
+    font-size: var(--text-paragraph);
     color: var(--color-grey-99);
 }
 
@@ -2444,7 +2484,7 @@ body:has(.hero) .header:has(.navigation.active) {
     gap: 24px;
     margin-top: clamp(56px, 9vh, 96px);
     font-family: var(--font-primary);
-    font-size: 14px;
+    font-size: var(--text-paragraph);
     line-height: 1.4;
 }
 
@@ -2472,15 +2512,21 @@ body:has(.hero) .header:has(.navigation.active) {
     outline-offset: 4px;
 }
 
-/* Phones: menu and social side by side, contact under them */
+/* Phones: "[a]" on top, menu and social side by side, contact under them */
 @media (max-width: 600px) {
     .modern-footer {
         margin-top: 72px;
     }
 
     .footer-columns {
+        display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 36px 24px;
+    }
+
+    .footer-logo {
+        grid-column: 1 / -1;
+        margin-right: 0;
     }
 
     .footer-column--contact {

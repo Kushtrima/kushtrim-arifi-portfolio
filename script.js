@@ -10,6 +10,15 @@ document.addEventListener('DOMContentLoaded', function () {
         gsap.registerPlugin(ScrollTrigger, CustomEase);
         // Less motion requested by the system: every animation jumps to its end
         if (reducedMotion) gsap.globalTimeline.timeScale(100);
+
+        // Smooth scrolling (GSAP ScrollSmoother) on pages that load it and wrap their content in #smooth-wrapper >
+        // #smooth-content: the page glides to the scroll position instead of jumping with each wheel step. Created
+        // before any ScrollTrigger, as the plugin requires, so pins and scroll-linked animations follow the smoothed
+        // position. Touch screens keep native scrolling, and it stays off when less motion is asked for
+        if (window.ScrollSmoother && document.querySelector('#smooth-wrapper') && !reducedMotion) {
+            gsap.registerPlugin(ScrollSmoother);
+            ScrollSmoother.create({ wrapper: '#smooth-wrapper', content: '#smooth-content', smooth: 1, smoothTouch: false, effects: false });
+        }
         EASE = {
             smooth: CustomEase.create('smooth', '0.01,0.01,0.5,1'), // --transition-smooth
             reveal: CustomEase.create('reveal', '0.25,0.46,0.45,0.94'),
@@ -326,31 +335,19 @@ document.addEventListener('DOMContentLoaded', function () {
         if (event.persisted && hasMotion) gsap.set(document.body, { opacity: 1 });
     });
 
-    // Home page colours: white while the about section is on screen, dark from an eighth of the way into it
+    // Home page colours: cream while you read About me, dark from the experience section on. One scroll-linked timeline
+    // changes the page background and About's text together while you leave About (its bottom moving from 70% to 30% of
+    // the screen), so a fast scroll can't leave a part behind and scrolling back up reverses it exactly. The text swaps
+    // colour in the middle fifth of that stretch, where the background is mid-grey, so it stays readable on both sides.
+    // "my Work" and the footer have their own dark backgrounds and are far below this stretch
     const aboutSection = document.querySelector('.about-section');
     if (aboutSection && hasMotion) {
-        const aboutTexts = document.querySelectorAll('.about-text');
-        const label = document.querySelector('.about-label');
-        const ctaLink = document.querySelector('.cta-link');
-        const setTheme = (dark) => {
-            const ground = cssVar(dark ? '--color-secondary' : '--color-primary');
-            const text = cssVar(dark ? '--color-primary' : '--color-text');
-            gsap.to(document.body, { backgroundColor: ground, duration: 0.8, ease: EASE.smooth, overwrite: 'auto' });
-            gsap.to(aboutTexts, { color: text, duration: 0.3, ease: EASE.easeInOut, overwrite: 'auto' });
-            if (label) gsap.to(label, { color: text, duration: 0.8, ease: EASE.easeInOut, overwrite: 'auto' });
-            if (ctaLink) {
-                gsap.to(ctaLink, { color: text, duration: 0.8, ease: EASE.easeInOut, overwrite: 'auto' });
-                gsap.set(ctaLink, { borderColor: text });
-            }
-        };
-        setTheme(false);
-        ScrollTrigger.create({
-            trigger: aboutSection,
-            start: () => `top+=${aboutSection.offsetHeight / 8} top`,
-            end: 'max',
-            onEnter: () => setTheme(true),
-            onLeaveBack: () => setTheme(false),
-        });
+        const light = { ground: cssVar('--color-primary'), ink: cssVar('--color-text') };
+        const dark = { ground: cssVar('--color-secondary'), ink: cssVar('--color-primary') };
+        const aboutInk = document.querySelectorAll('.about-text, .about-label, .cta-link');
+        gsap.timeline({ scrollTrigger: { trigger: aboutSection, start: 'bottom 70%', end: 'bottom 30%', scrub: true } })
+            .fromTo(document.body, { backgroundColor: light.ground }, { backgroundColor: dark.ground, ease: 'none', duration: 1 }, 0)
+            .fromTo(aboutInk, { color: light.ink }, { color: dark.ink, ease: 'none', duration: 0.2 }, 0.4);
     }
 
     // Intro on every load of the home page: empty brackets appear, the name writes itself out between them (the
@@ -399,15 +396,19 @@ document.addEventListener('DOMContentLoaded', function () {
         const [light, dark] = [channels('--color-primary'), channels('--color-secondary')];
         const landedColour = `rgb(${light.map((value, i) => Math.abs(value - dark[i])).join(', ')})`;
 
-        // Slow and soft, and straight: nothing moves up or down, the letters only grow and fade in place. The "a" grows
-        // in while the last letters leave, so the brackets close straight onto "[a]"; a short pause on it, then the glide
-        introLength = 3.4;
+        // Soft and straight: nothing moves up or down, the letters only grow and fade in place. The "a" grows in while the
+        // last letters leave, so the brackets close straight onto "[a]"; a short pause on it, then the glide. The steps are
+        // written at their original pace and the whole timeline plays INTRO_SPEED times faster (about 3.6s in all); the
+        // hero's entrance waits the same shortened time
+        const INTRO_SPEED = 1.3;
+        introLength = 3.4 / INTRO_SPEED;
         gsap.timeline({
             onComplete: () => {
                 document.documentElement.classList.remove('intro-on');
                 gsap.set(introHeaderLogo, { clearProps: 'opacity,transition,visibility' });
             },
         })
+            .timeScale(INTRO_SPEED)
             .set([introCover, introHeaderLogo], { animation: 'none' })
             .set(introLogo, { visibility: 'visible', transformOrigin: '0% 50%' })
             .fromTo(brackets, { opacity: 0 }, { opacity: 1, duration: 0.7, ease: 'power3.out' }, 0.15)
@@ -611,63 +612,63 @@ document.addEventListener('DOMContentLoaded', function () {
                 onEnter: () => gsap.to(experienceTitle.querySelectorAll('.title-word'), { color: cssVar('--color-primary'), duration: 0.8, ease: EASE.easeOut, stagger: 0.2 }),
             });
         }
-        // Experience list (its rows fade up with data-reveal). Reading focus: the row at
-        // the middle of the screen is at full light with its years orange, and the light passes to the next row over the
-        // distance between their middles (so a taller, wrapped row dims like the rest). The focus glides after the scroll
-        // rather than jumping, and past either end of the list the first or last row keeps it
+        // Experience list, set like film credits (it fades up as one with data-reveal). With a mouse, once the pointer rests
+        // on a job for a moment (so sweeping across the list doesn't open every job) its note takes the job's place, out of
+        // the flow so nothing moves. It stays while the pointer is anywhere over the section's content (moving aside to read
+        // doesn't close it) and closes a moment after the pointer leaves. While the page scrolls, the jobs sliding under a
+        // resting pointer don't open; the one under it opens once the scroll settles. Without a mouse (or on a narrow
+        // screen) a tap opens the note under the job and closes the one that was open; the jobs below move, so the scroll
+        // triggers are refreshed once they settle
+        const experienceContent = document.querySelector('.experience-content');
+        const experienceList = document.querySelector('.experience-list');
         const experienceRows = [...document.querySelectorAll('.experience-row')];
-        if (experienceRows.length) {
-            // Dimmed through the text colour (the row's --row-years and --row-text), not opacity, so the orange CV "+" stays at
-            // full colour and the white hover can take over
-            const [red, green, blue] = cssVar('--color-primary-rgb').split(',').map(Number);
-            const dimText = `rgba(${red}, ${green}, ${blue}, 0.5)`;
-            const lightToText = gsap.utils.interpolate(dimText, cssVar('--color-primary'));
-            const lightToYears = gsap.utils.interpolate(dimText, cssVar('--color-orange'));
-            let centres = [];
-            let remeasured = true;
-            // From the layout (offsetTop), so a row still moving in its fade-up isn't measured out of place
-            const pageTop = (element) => {
-                let top = 0;
-                for (let node = element; node; node = node.offsetParent) top += node.offsetTop;
-                return top;
-            };
-            const measureRows = () => {
-                centres = experienceRows.map((row) => pageTop(row) + row.offsetHeight / 2);
-                remeasured = true;
-            };
-            measureRows();
-            ScrollTrigger.addEventListener('refresh', measureRows);
-
-            let focus = null;
-            gsap.ticker.add(() => {
-                const list = experienceRows[0].parentElement.getBoundingClientRect();
-                if (list.bottom < -window.innerHeight || list.top > window.innerHeight * 2) return;
-                const target = gsap.utils.clamp(centres[0], centres[centres.length - 1], window.scrollY + window.innerHeight / 2);
-                const next = focus === null || reducedMotion ? target : focus + (target - focus) * 0.14;
-                if (!remeasured && focus !== null && Math.abs(next - focus) < 0.05) return;
-                remeasured = false;
-                focus = next;
-                experienceRows.forEach((row, i) => {
-                    const neighbour = focus >= centres[i] ? centres[i + 1] : centres[i - 1];
-                    const light = neighbour === undefined ? 1 : gsap.utils.clamp(0, 1, 1 - Math.abs(focus - centres[i]) / Math.abs(neighbour - centres[i]));
-                    row.style.setProperty('--row-years', lightToYears(light));
-                    row.style.setProperty('--row-text', lightToText(light));
-                });
-            });
-
-            // Clicking a row (anywhere but the open list itself, so its text can be selected and the CV link used) opens what
-            // was done there, turning its "+" into a "−", and closes the row that was open. The rows below move with it, so the focus is re-measured as it
-            // opens and the scroll triggers after it
+        if (experienceList && experienceRows.length) {
+            const inPlace = window.matchMedia('(hover: hover) and (min-width: 769px)');
+            const smoother = window.ScrollSmoother && ScrollSmoother.get();
+            let refreshCall = null;
+            let hoverCall = null;
+            let leaveCall = null;
+            let settleCall = null;
+            let pointerRow = null;
+            let scrolling = false;
             const setWorkOpen = (row, open) => {
+                if (row.classList.contains('is-open') === open) return;
                 const work = row.querySelector('.job-work');
+                const note = work.firstElementChild;
                 row.classList.toggle('is-open', open);
                 row.querySelector('.job-title').setAttribute('aria-expanded', String(open));
+                if (inPlace.matches) {
+                    // A crossfade (the job's own text fades by CSS): the note drifts up and comes into focus as it fades in
+                    // (from below when it was gone, from where it is when the pointer comes back mid-fade), and folds away
+                    // once it has faded out. The blur is removed when it's done so the text stays crisp
+                    if (open) {
+                        gsap.set(work, { height: 'auto' });
+                        if (Number(gsap.getProperty(note, 'opacity')) === 0) gsap.set(note, { y: 10, filter: 'blur(3px)' });
+                    } else if (getComputedStyle(note).filter === 'none') {
+                        gsap.set(note, { filter: 'blur(0px)' });
+                    }
+                    gsap.to(note, {
+                        autoAlpha: open ? 1 : 0, y: open ? 0 : -4, filter: open ? 'blur(0px)' : 'blur(3px)',
+                        duration: open ? 0.7 : 0.4, delay: open ? 0.08 : 0, ease: open ? 'power3.out' : 'power2.inOut', overwrite: true,
+                        onComplete: () => gsap.set(open ? note : work, open ? { filter: 'none' } : { height: 0 }),
+                    });
+                    return;
+                }
                 gsap.to(work, {
-                    height: open ? 'auto' : 0, duration: 0.5, ease: 'power3.inOut', overwrite: true, onUpdate: measureRows, onComplete: () => ScrollTrigger.refresh(),
+                    height: open ? 'auto' : 0, duration: 0.5, ease: 'power3.inOut', overwrite: true,
+                    onComplete: () => {
+                        refreshCall?.kill();
+                        refreshCall = gsap.delayedCall(0.05, () => ScrollTrigger.refresh());
+                    },
                 });
-                gsap.to(work.firstElementChild, {
-                    autoAlpha: open ? 1 : 0, y: open ? 0 : 8, duration: open ? 0.45 : 0.25, delay: open ? 0.15 : 0, ease: 'power2.out', overwrite: true,
+                gsap.to(note, {
+                    autoAlpha: open ? 1 : 0, y: open ? 0 : 8, filter: 'none', duration: open ? 0.45 : 0.2, delay: open ? 0.15 : 0, ease: 'power2.out', overwrite: true,
                 });
+            };
+            const openOnly = (row) => experienceRows.forEach((other) => setWorkOpen(other, other === row));
+            const openSoon = (row, delay) => {
+                hoverCall?.kill();
+                hoverCall = gsap.delayedCall(delay, () => openOnly(row));
             };
             experienceRows.forEach((row) => {
                 const work = row.querySelector('.job-work');
@@ -677,16 +678,144 @@ document.addEventListener('DOMContentLoaded', function () {
                 gsap.set(work.firstElementChild, { autoAlpha: 0, y: 8 });
                 toggle.setAttribute('aria-expanded', 'false');
                 row.classList.remove('is-open');
+                row.addEventListener('mouseenter', () => {
+                    pointerRow = row;
+                    if (!inPlace.matches) return;
+                    leaveCall?.kill();
+                    if (!scrolling) openSoon(row, 0.12);
+                });
+                row.addEventListener('mouseleave', () => {
+                    if (pointerRow === row) pointerRow = null;
+                    hoverCall?.kill();
+                });
+                toggle.addEventListener('focus', () => {
+                    if (inPlace.matches) openOnly(row);
+                });
+                // Anywhere on the job but its open note, so the note's text can be selected and the CV link used
                 row.addEventListener('click', (event) => {
                     if (event.target.closest('.job-work')) return;
-                    const open = toggle.getAttribute('aria-expanded') !== 'true';
-                    experienceRows.forEach((other) => {
-                        if (other !== row && other.querySelector('.job-title')?.getAttribute('aria-expanded') === 'true') setWorkOpen(other, false);
-                    });
-                    setWorkOpen(row, open);
+                    hoverCall?.kill();
+                    if (inPlace.matches) openOnly(row);
+                    else openOnly(row.classList.contains('is-open') ? null : row);
                 });
             });
+            const hoverArea = experienceContent || experienceList;
+            hoverArea.addEventListener('mouseenter', () => leaveCall?.kill());
+            hoverArea.addEventListener('mouseleave', () => {
+                hoverCall?.kill();
+                if (!inPlace.matches) return;
+                leaveCall?.kill();
+                leaveCall = gsap.delayedCall(0.2, () => openOnly(null));
+            });
+            experienceList.addEventListener('focusout', (event) => {
+                if (inPlace.matches && !experienceList.contains(event.relatedTarget)) openOnly(null);
+            });
+            // Scrolling: the page is moving while the native scroll changes or the smoothed scroll still glides
+            let pointer = null;
+            window.addEventListener('mousemove', (event) => {
+                pointer = { x: event.clientX, y: event.clientY };
+            }, { passive: true });
+            let lastScroll = window.scrollY;
+            gsap.ticker.add(() => {
+                if (!inPlace.matches) return;
+                const moving = window.scrollY !== lastScroll || (smoother ? Math.abs(smoother.getVelocity()) > 20 : false);
+                lastScroll = window.scrollY;
+                if (moving) {
+                    scrolling = true;
+                    hoverCall?.kill();
+                    settleCall?.kill();
+                    settleCall = null;
+                } else if (scrolling && !settleCall) {
+                    // The page moved under a still pointer, and the browser doesn't re-check what it's over until the mouse
+                    // moves: look at the pointer's last position instead
+                    settleCall = gsap.delayedCall(0.12, () => {
+                        scrolling = false;
+                        settleCall = null;
+                        // A keyboard focus in the list (tabbing scrolls the page too) keeps its note
+                        if (!pointer || experienceList.contains(document.activeElement)) return;
+                        const under = document.elementFromPoint(pointer.x, pointer.y);
+                        pointerRow = under ? under.closest('.experience-row') : null;
+                        if (pointerRow) openSoon(pointerRow, 0);
+                        else if (!under || !hoverArea.contains(under)) openOnly(null);
+                    });
+                }
+            });
+            inPlace.addEventListener('change', () => {
+                openOnly(null);
+                ScrollTrigger.refresh();
+            });
+            experienceList.classList.add('is-ready');
         }
+    }
+
+    // Experience title: as much empty space under it (down to the first job) as above it (up from "My story", the last
+    // line of About me). The space above depends on the screen's height (About me fills the screen with its text
+    // centred), so the space under the title is measured and matched, between the letters themselves (the actual first or
+    // last line, so a descender elsewhere doesn't count), whenever the layout is measured: on load, when the fonts arrive,
+    // and before every scroll-trigger refresh (e.g. on resize)
+    const aboutLink = document.querySelector('.about-cta a');
+    const experienceTitle = document.querySelector('.experience-title');
+    const experienceHeading = experienceTitle && experienceTitle.querySelector('h2');
+    const firstJob = document.querySelector('.experience-row');
+    if (aboutLink && experienceHeading && firstJob) {
+        const pageTop = (element) => {
+            let top = 0;
+            for (let node = element; node; node = node.offsetParent) top += node.offsetTop;
+            return top;
+        };
+        const ruler = document.createElement('canvas').getContext('2d');
+        // The top of the highest letter or the bottom of the lowest one, in page coordinates (from the layout, so a part
+        // still moving in its fade-up is measured where it will settle)
+        const letterEdge = (element, edge) => {
+            const box = element.getBoundingClientRect();
+            const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+            let result = edge === 'top' ? Infinity : -Infinity;
+            while (walker.nextNode()) {
+                const node = walker.currentNode;
+                if (!node.textContent.trim()) continue;
+                const style = getComputedStyle(node.parentElement);
+                if (style.display === 'none' || style.visibility === 'hidden' && node.parentElement.closest('.job-work')) continue;
+                const range = document.createRange();
+                range.selectNodeContents(node);
+                const lines = [...range.getClientRects()].filter((line) => line.height >= 1);
+                if (!lines.length) continue;
+                // The characters on this node's first (top) or last (bottom) line
+                const line = edge === 'top' ? lines[0] : lines[lines.length - 1];
+                const text = node.textContent;
+                let lineText = '';
+                for (let i = edge === 'top' ? 0 : text.length - 1; i >= 0 && i < text.length; i += edge === 'top' ? 1 : -1) {
+                    range.setStart(node, i);
+                    range.setEnd(node, i + 1);
+                    const character = range.getClientRects()[0];
+                    if (!character) continue;
+                    if (Math.abs(character.top - line.top) > 2) break;
+                    lineText = edge === 'top' ? lineText + text[i] : text[i] + lineText;
+                }
+                if (!lineText.trim()) continue;
+                ruler.font = `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+                const metrics = ruler.measureText(style.textTransform === 'uppercase' ? lineText.toUpperCase() : lineText);
+                const baseline = line.top + metrics.fontBoundingBoxAscent;
+                result = edge === 'top'
+                    ? Math.min(result, baseline - metrics.actualBoundingBoxAscent)
+                    : Math.max(result, baseline + metrics.actualBoundingBoxDescent);
+            }
+            return pageTop(element) + result - box.top;
+        };
+        const firstJobText = [firstJob.querySelector('.job-years'), firstJob.querySelector('.job-names')].filter(Boolean);
+        const matchTitleSpace = () => {
+            experienceTitle.style.marginBottom = '';
+            const above = letterEdge(experienceHeading, 'top') - letterEdge(aboutLink, 'bottom');
+            const below = Math.min(...firstJobText.map((part) => letterEdge(part, 'top'))) - letterEdge(experienceHeading, 'bottom');
+            if (!Number.isFinite(above) || !Number.isFinite(below)) return;
+            experienceTitle.style.marginBottom = `${Math.max(0, parseFloat(getComputedStyle(experienceTitle).marginBottom) + above - below)}px`;
+        };
+        matchTitleSpace();
+        document.fonts?.ready.then(() => {
+            matchTitleSpace();
+            if (window.ScrollTrigger) ScrollTrigger.refresh();
+        });
+        if (window.ScrollTrigger) ScrollTrigger.addEventListener('refreshInit', matchTitleSpace);
+        else window.addEventListener('resize', matchTitleSpace);
     }
 
     // Work page gallery: each card appears and slides up 30px, 600ms after the section shows and 200ms apart
@@ -860,6 +989,170 @@ document.addEventListener('DOMContentLoaded', function () {
             lastState = state;
             updatePositions();
         });
+    }
+
+    // Case study (Cityhotel pilot): a list of all the parts' names on the left (the headings stay for screen readers;
+    // project.css shows the list on a wide screen only). Every name and every part's text is dark grey; the part being
+    // read, from when its text passes the middle of the screen until the next one's does, turns light, name and text
+    // together. Each name links to its part
+    const caseStudy = document.querySelector('.case-study');
+    if (caseStudy) {
+        const caseSteps = [...caseStudy.querySelectorAll('.case-step')];
+        const caseList = document.createElement('nav');
+        caseList.className = 'case-study-labels';
+        caseList.setAttribute('aria-label', 'Parts of this case study');
+        const caseLabels = caseSteps.map((step) => {
+            const heading = step.querySelector('.case-step-title');
+            const label = document.createElement('a');
+            label.className = 'case-study-label';
+            label.href = `#${heading?.id || ''}`;
+            label.textContent = heading?.textContent || '';
+            caseList.appendChild(label);
+            return label;
+        });
+        caseStudy.prepend(caseList);
+        caseStudy.classList.add('has-labels');
+        let currentStep = -2;
+        const updateCaseStudy = () => {
+            const readingLine = window.innerHeight * 0.55;
+            let reading = -1;
+            caseSteps.forEach((step, i) => {
+                if (step.getBoundingClientRect().top <= readingLine) reading = i;
+            });
+            // Past the end of the last part, nothing is being read
+            if (reading === caseSteps.length - 1 && caseSteps[reading].getBoundingClientRect().bottom < readingLine * 0.25) reading = -1;
+            if (reading === currentStep) return;
+            currentStep = reading;
+            caseSteps.forEach((step, i) => step.classList.toggle('is-active', i === reading));
+            caseLabels.forEach((label, i) => {
+                label.classList.toggle('is-active', i === reading);
+                if (i === reading) label.setAttribute('aria-current', 'true');
+                else label.removeAttribute('aria-current');
+            });
+        };
+        updateCaseStudy();
+        window.addEventListener('scroll', updateCaseStudy, { passive: true });
+        window.addEventListener('resize', updateCaseStudy);
+    }
+
+    // Image navigator (Cityhotel pilot; project.css): on a wide screen, every image of the column small on the right with
+    // a frame over the part on screen. Positions come from the layout (offsetTop), not from the images' scroll reveal,
+    // and are mapped image by image, so the frame lines up with the thumbnails even though the gaps differ. The frame and
+    // the strip glide to their places; the navigator shows while the images fill the screen
+    const navigatorColumn = document.querySelector('.project-image-section--navigator');
+    if (navigatorColumn) {
+        const shots = [...navigatorColumn.querySelectorAll('.project-main-image')].filter((shot) => shot.querySelector('img'));
+        const wideScreen = window.matchMedia('(min-width: 900px)');
+        const layoutTop = (element) => {
+            let top = 0;
+            for (let node = element; node; node = node.offsetParent) top += node.offsetTop;
+            return top;
+        };
+        const imageNavigator = document.createElement('nav');
+        imageNavigator.className = 'image-navigator';
+        imageNavigator.setAttribute('aria-label', 'Project images');
+        const strip = document.createElement('div');
+        strip.className = 'image-navigator-strip';
+        const frame = document.createElement('div');
+        frame.className = 'image-navigator-frame';
+        frame.setAttribute('aria-hidden', 'true');
+        const thumbs = shots.map((shot, index) => {
+            const image = shot.querySelector('img');
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'image-navigator-thumb';
+            button.setAttribute('aria-label', `Image ${index + 1}: ${image.alt}`);
+            const thumb = document.createElement('img');
+            thumb.src = image.getAttribute('src');
+            thumb.alt = '';
+            if (image.getAttribute('width')) {
+                thumb.width = Number(image.getAttribute('width'));
+                thumb.height = Number(image.getAttribute('height'));
+            }
+            thumb.decoding = 'async';
+            button.appendChild(thumb);
+            button.addEventListener('click', () => {
+                window.scrollTo({ top: layoutTop(shot) - window.innerHeight * 0.1, behavior: reducedMotion ? 'auto' : 'smooth' });
+            });
+            strip.appendChild(button);
+            return button;
+        });
+        strip.appendChild(frame);
+        imageNavigator.appendChild(strip);
+        document.body.appendChild(imageNavigator);
+
+        let spans = [];
+        let thumbSpans = [];
+        let stripHeight = 0;
+        let windowHeight = 0;
+        let placed = false;
+        const measure = () => {
+            if (!wideScreen.matches) return;
+            // Thumbnails as wide as lets the whole strip fit the window, between 56 and 84px
+            const ratios = shots.map((shot) => shot.offsetHeight / Math.max(1, shot.offsetWidth));
+            const room = window.innerHeight - 140 - 8 * (shots.length - 1);
+            const fit = room / ratios.reduce((sum, ratio) => sum + ratio, 0);
+            imageNavigator.style.setProperty('--thumb-width', `${Math.round(Math.min(84, Math.max(56, fit)))}px`);
+            spans = shots.map((shot) => ({ top: layoutTop(shot), bottom: layoutTop(shot) + shot.offsetHeight }));
+            thumbSpans = thumbs.map((thumb) => ({ top: thumb.offsetTop, bottom: thumb.offsetTop + thumb.offsetHeight }));
+            stripHeight = strip.offsetHeight;
+            windowHeight = imageNavigator.clientHeight - 16;
+        };
+        // A page position in the column to the same place in the strip: within an image, in proportion to that image;
+        // within a gap, in proportion to that gap
+        const toStrip = (y) => {
+            const scaleOf = (i) => (thumbSpans[i].bottom - thumbSpans[i].top) / Math.max(1, spans[i].bottom - spans[i].top);
+            for (let i = 0; i < spans.length; i += 1) {
+                if (y < spans[i].top) {
+                    if (i === 0) return thumbSpans[0].top - (spans[0].top - y) * scaleOf(0);
+                    const gap = spans[i].top - spans[i - 1].bottom;
+                    return thumbSpans[i - 1].bottom + ((y - spans[i - 1].bottom) / Math.max(1, gap)) * (thumbSpans[i].top - thumbSpans[i - 1].bottom);
+                }
+                if (y <= spans[i].bottom) return thumbSpans[i].top + (y - spans[i].top) * scaleOf(i);
+            }
+            const last = spans.length - 1;
+            return thumbSpans[last].bottom + (y - spans[last].bottom) * scaleOf(last);
+        };
+        const glide = (target, property) => (hasMotion
+            ? gsap.quickTo(target, property, { duration: reducedMotion ? 0.01 : 0.5, ease: 'power3.out' })
+            : (value) => { target.style[property === 'y' ? 'transform' : property] = property === 'y' ? `translateY(${value}px)` : `${value}px`; });
+        const frameY = glide(frame, 'y');
+        const frameHeight = glide(frame, 'height');
+        const stripY = glide(strip, 'y');
+        const update = () => {
+            if (!wideScreen.matches || !spans.length) {
+                imageNavigator.classList.remove('is-visible');
+                return;
+            }
+            const top = window.scrollY;
+            const bottom = top + window.innerHeight;
+            const visible = bottom - window.innerHeight * 0.25 > spans[0].top && top + window.innerHeight * 0.25 < spans[spans.length - 1].bottom;
+            imageNavigator.classList.toggle('is-visible', visible);
+            const frameTop = Math.max(-2, Math.min(stripHeight - 8, toStrip(top)));
+            const frameBottom = Math.max(frameTop + 8, Math.min(stripHeight + 2, toStrip(bottom)));
+            const shift = Math.max(0, Math.min(stripHeight - windowHeight, (frameTop + frameBottom) / 2 - windowHeight / 2));
+            if (!placed && hasMotion) {
+                gsap.set(frame, { y: frameTop, height: frameBottom - frameTop });
+                gsap.set(strip, { y: -shift });
+                placed = true;
+            }
+            frameY(frameTop);
+            frameHeight(frameBottom - frameTop);
+            stripY(-shift);
+            thumbs.forEach((thumb, i) => thumb.classList.toggle('is-in-view', spans[i].bottom > top && spans[i].top < bottom));
+        };
+        const refresh = () => {
+            measure();
+            update();
+        };
+        refresh();
+        window.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', refresh);
+        wideScreen.addEventListener('change', refresh);
+        [...navigatorColumn.querySelectorAll('img'), ...strip.querySelectorAll('img')].forEach((image) => {
+            if (!image.complete) image.addEventListener('load', refresh, { once: true });
+        });
+        document.fonts?.ready.then(refresh);
     }
 
     // Apply the reveal effect to all project images
