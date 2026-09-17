@@ -1,6 +1,19 @@
 // Site interactions and motion. Motion runs on GSAP (vendor/gsap: gsap, ScrollTrigger, CustomEase) and keeps
 // the durations, delays and easing curves of the CSS transitions and timers it replaced.
+
+// A reload starts at the top of the page, not where the browser last was (nor at a case-study part left in the address)
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
 document.addEventListener('DOMContentLoaded', function () {
+    const reloaded = performance.getEntriesByType?.('navigation')[0]?.type === 'reload';
+    const caseAnchor = /^#case-/.test(location.hash);
+    if (caseAnchor) history.replaceState(null, '', location.pathname + location.search);
+    if (reloaded || caseAnchor) {
+        window.scrollTo(0, 0);
+        // Some browsers restore the old position once the page has loaded, whatever the setting says
+        window.addEventListener('load', () => requestAnimationFrame(() => window.scrollTo(0, 0)), { once: true });
+    }
+
     const hasMotion = Boolean(window.gsap && window.ScrollTrigger && window.CustomEase);
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const cssVar = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -107,16 +120,41 @@ document.addEventListener('DOMContentLoaded', function () {
         const glide = CustomEase.create('header-glide', '0.65,0,0.35,1');
 
         let open = false;
+        const phoneHeader = window.matchMedia('(max-width: 768px)');
         const setOpen = (state) => {
             if (open === state) return;
             open = state;
             toggle.setAttribute('aria-expanded', String(state));
             toggle.setAttribute('aria-label', state ? 'Close menu' : 'Open menu');
             links.querySelectorAll('a').forEach((link) => { link.tabIndex = state ? 0 : -1; });
-            if (state) {
+            if (state && phoneHeader.matches && window.scrollY < 80) {
+                // On a phone at the top of the page: the bar itself opens, widening from its right edge and growing down,
+                // the "+" keeping its corner and the links arriving one under another inside it
+                const closedWidth = bar.offsetWidth;
+                bar.classList.add('is-dropdown');
+                gsap.set(links, { width: 'auto', height: 0, autoAlpha: 1 });
+                gsap.set(links.children, { x: 0 });
+                gsap.fromTo(bar, { width: closedWidth }, { width: 170, duration: 0.6, ease: glide, overwrite: 'auto' });
+                gsap.to(links, { height: links.scrollHeight, duration: 0.6, ease: glide, overwrite: 'auto' });
+                gsap.fromTo(links.children, { opacity: 0, y: -8 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', stagger: 0.07, delay: 0.2, overwrite: 'auto' });
+            } else if (state) {
                 // Opening: the bar widens evenly both ways while the links drift in one after another
                 gsap.to(links, { width: links.scrollWidth, duration: 0.8, ease: glide, overwrite: 'auto' });
                 gsap.fromTo(links.children, { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.6, ease: 'power2.out', stagger: 0.08, delay: 0.25, overwrite: 'auto' });
+            } else if (bar.classList.contains('is-dropdown')) {
+                // Closing the open bar: the links fade from the bottom up, then it folds back up and in to just the "+"
+                gsap.to(links.children, { opacity: 0, y: -6, duration: 0.2, ease: 'power1.in', stagger: { each: 0.03, from: 'end' }, overwrite: 'auto' });
+                gsap.to(links, { height: 0, duration: 0.45, ease: glide, delay: 0.1, overwrite: 'auto' });
+                gsap.to(bar, {
+                    width: 44, duration: 0.45, ease: glide, delay: 0.1, overwrite: 'auto',
+                    onComplete: () => {
+                        if (open) return;
+                        bar.classList.remove('is-dropdown');
+                        gsap.set(bar, { clearProps: 'width' });
+                        gsap.set(links, { clearProps: 'height,opacity,visibility', width: 0 });
+                        gsap.set(links.children, { clearProps: 'y' });
+                    },
+                });
             } else {
                 // Closing: the links fade first, then the bar narrows back to "[a]" and "+"
                 gsap.to(links.children, { opacity: 0, x: -6, duration: 0.25, ease: 'power1.in', stagger: { each: 0.04, from: 'end' }, overwrite: 'auto' });
@@ -130,19 +168,76 @@ document.addEventListener('DOMContentLoaded', function () {
         // is open)
         const [logoPart, ...rightParts] = [siteHeader.querySelector('.logo'), siteHeader.querySelector('.navigation'), siteHeader.querySelector('.burger-menu')];
         const headerParts = [logoPart, ...rightParts].filter(Boolean);
-        const setCompact = (state) => {
+        // The header in four states. Wide screen: the full header at the top, the bar alone in the middle below it. Phone
+        // (the burger is gone, styles.css): at the top the logo stays on the left and the bar waits on the right as just
+        // its "+", level with the logo; below the top the logo drifts out and the bar glides to the middle, "[a]" opening
+        // inside it. Scrolling back reverses it. An open menu closes when the page crosses the top (a phone opens it down
+        // at the top and sideways in the middle); on the home page the bar waits for the intro to land the logo
+        let compact = null;
+        // Level with the logo's edge on the other side (measured without the logo's own drift, which may be mid-way)
+        const dockedLeft = () => window.innerWidth - (logoPart ? Math.max(12, logoPart.getBoundingClientRect().left - Number(gsap.getProperty(logoPart, 'x'))) : 16);
+        const setCompact = (state, instant = false) => {
+            if (state === compact && !instant) return;
             if (state && siteHeader.querySelector('.navigation.active')) return;
-            if (!state) setOpen(false);
+            compact = state;
+            setOpen(false);
+            const phone = phoneHeader.matches;
+            const move = (target, vars) => (instant ? gsap.set(target, vars) : gsap.to(target, { ...vars, overwrite: 'auto' }));
+            bar.classList.toggle('is-docked', phone && !state);
             if (state) {
-                if (logoPart) gsap.to(logoPart, { x: 40, autoAlpha: 0, duration: 0.6, ease: 'power2.inOut', overwrite: 'auto' });
-                gsap.to(rightParts.filter(Boolean), { x: -40, autoAlpha: 0, duration: 0.6, ease: 'power2.inOut', overwrite: 'auto' });
-                gsap.fromTo(bar, { autoAlpha: 0, y: -14, scale: 0.92 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.8, ease: 'power3.out', delay: 0.2, overwrite: 'auto' });
+                if (logoPart) move(logoPart, { x: 40, autoAlpha: 0, duration: 0.6, ease: 'power2.inOut' });
+                move(rightParts.filter(Boolean), { x: -40, autoAlpha: 0, duration: 0.6, ease: 'power2.inOut' });
+                if (phone) {
+                    move(bar, { left: '50%', xPercent: -50, paddingLeft: 8, autoAlpha: 1, y: 0, scale: 1, duration: 0.8, ease: glide });
+                    move(toggle, { marginLeft: 4, duration: 0.6, ease: glide });
+                    move(home, { width: 'auto', paddingLeft: 4, paddingRight: 4, autoAlpha: 1, duration: 0.6, ease: glide, delay: instant ? 0 : 0.1 });
+                } else if (instant) {
+                    gsap.set(bar, { left: '50%', xPercent: -50, autoAlpha: 1, y: 0, scale: 1 });
+                    gsap.set(home, { clearProps: 'width,paddingLeft,paddingRight,opacity,visibility' });
+                } else {
+                    gsap.set(bar, { left: '50%', xPercent: -50 });
+                    gsap.set(home, { clearProps: 'width,paddingLeft,paddingRight,opacity,visibility' });
+                    gsap.fromTo(bar, { autoAlpha: 0, y: -14, scale: 0.92 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.8, ease: 'power3.out', delay: 0.2, overwrite: 'auto' });
+                }
+            } else if (phone) {
+                // Just the "+", with even room on both sides of it
+                move(bar, { left: dockedLeft(), xPercent: -100, paddingLeft: 4, autoAlpha: 1, y: 0, scale: 1, duration: 0.8, ease: glide });
+                move(toggle, { marginLeft: 0, duration: 0.45, ease: glide });
+                move(home, { width: 0, paddingLeft: 0, paddingRight: 0, autoAlpha: 0, duration: 0.45, ease: glide });
+                if (logoPart) move(logoPart, { x: 0, autoAlpha: 1, duration: 0.7, ease: 'power3.out', delay: instant ? 0 : 0.15 });
             } else {
-                gsap.to(bar, { autoAlpha: 0, y: -10, scale: 0.95, duration: 0.4, ease: 'power2.in', overwrite: 'auto' });
-                gsap.to(headerParts, { x: 0, autoAlpha: 1, duration: 0.7, ease: 'power3.out', delay: 0.15, overwrite: 'auto' });
+                move(bar, { autoAlpha: 0, y: -10, scale: 0.95, duration: 0.4, ease: 'power2.in' });
+                if (instant) gsap.set(bar, { left: '50%', xPercent: -50 });
+                gsap.set(home, { clearProps: 'width,paddingLeft,paddingRight,opacity,visibility' });
+                gsap.set(bar, { clearProps: 'paddingLeft' });
+                gsap.set(toggle, { clearProps: 'marginLeft' });
+                move(headerParts, { x: 0, autoAlpha: 1, duration: 0.7, ease: 'power3.out', delay: instant ? 0 : 0.15 });
             }
         };
-        ScrollTrigger.create({ start: 80, end: 'max', onEnter: () => setCompact(true), onLeaveBack: () => setCompact(false) });
+        let headerReady = !(document.documentElement.classList.contains('intro-on') && document.querySelector('.intro'));
+        ScrollTrigger.create({
+            start: 80,
+            end: 'max',
+            onEnter: () => { if (headerReady) setCompact(true); },
+            onLeaveBack: () => { if (headerReady) setCompact(false); },
+        });
+        const fitHeaderToScreen = () => {
+            if (!headerReady) return;
+            setCompact(window.scrollY >= 80, true);
+        };
+        if (headerReady) {
+            fitHeaderToScreen();
+        } else {
+            window.addEventListener('introend', () => {
+                headerReady = true;
+                setCompact(window.scrollY >= 80);
+            }, { once: true });
+        }
+        phoneHeader.addEventListener('change', fitHeaderToScreen);
+        // A docked bar is placed in pixels from the left edge, so it follows the window's width
+        window.addEventListener('resize', () => {
+            if (headerReady && compact === false && phoneHeader.matches) gsap.set(bar, { left: dockedLeft() });
+        });
 
         toggle.addEventListener('click', () => setOpen(!open));
         document.addEventListener('keydown', (event) => {
@@ -406,6 +501,7 @@ document.addEventListener('DOMContentLoaded', function () {
             onComplete: () => {
                 document.documentElement.classList.remove('intro-on');
                 gsap.set(introHeaderLogo, { clearProps: 'opacity,transition,visibility' });
+                window.dispatchEvent(new Event('introend'));
             },
         })
             .timeScale(INTRO_SPEED)
@@ -583,8 +679,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 for (let node = element; node; node = node.offsetParent) top += node.offsetTop;
                 return top;
             };
+            // On a phone the Cityhotel case study moves as slides instead (see the case study below)
+            const phoneSlides = window.matchMedia('(max-width: 768px)').matches;
             gsap.utils.toArray('[data-reveal]').forEach((part) => {
                 if (pageTop(part) < window.innerHeight * 0.95) return;
+                if (phoneSlides && part.closest('.case-study')) return;
                 gsap.fromTo(part, { autoAlpha: 0, y: 40 }, {
                     autoAlpha: 1,
                     y: 0,
@@ -922,8 +1021,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 const imageTop = rect.top;
                 const imageCenter = imageTop + (rect.height / 2);
 
-                // MOBILE: Center spotlight effect - only centered image is fully visible
-                if (isMobile) {
+                // MOBILE: Center spotlight effect - only centered image is fully visible. Not on the pilot's image column
+                // (Cityhotel), where the images rise into place on a phone as on a wide screen, only a shorter way
+                if (isMobile && !image.closest('.project-image-section--navigator')) {
                     const distanceFromCenter = Math.abs(imageCenter - viewportCenter);
                     const fadeZone = windowHeight * 0.3; // Images fade over 30% of viewport height
 
@@ -948,7 +1048,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const scrolledPast = scrollY - layoutTop;
                     const gradientOpacity = scrolledPast > 200 ? Math.min((scrolledPast - 200) / 300, 1) : 0;
 
-                    gsap.set(image, { y: (1 - easedProgress) * 80, scale: 1, opacity: easedProgress });
+                    gsap.set(image, { y: (1 - easedProgress) * (isMobile ? 40 : 80), scale: 1, opacity: easedProgress });
                     setGradient(image, gradientOpacity);
                 }
             });
@@ -967,6 +1067,33 @@ document.addEventListener('DOMContentLoaded', function () {
             updatePositions();
         });
     }
+
+    // The page glides to a place with GSAP rather than the browser's smooth scroll, which stops short when a second click
+    // starts before the first scroll ends; a new click takes over from where the glide is, and a wheel, touch or key press
+    // (outside the controls that glide) hands the scroll back at once. Used by the case study's part links and the image
+    // navigators
+    let pageGlide = null;
+    const glideTo = (top) => {
+        if (!hasMotion || reducedMotion) {
+            window.scrollTo(0, top);
+            return;
+        }
+        pageGlide?.kill();
+        const position = { y: window.scrollY };
+        pageGlide = gsap.to(position, {
+            y: top,
+            duration: Math.min(1.4, 0.6 + Math.abs(top - position.y) / 4000),
+            ease: 'power3.inOut',
+            onUpdate: () => window.scrollTo(0, position.y),
+            onComplete: () => { pageGlide = null; },
+        });
+    };
+    const handBack = (event) => {
+        if (!pageGlide || event.target.closest?.('.image-navigator, .image-strip, .case-study-labels, .case-study-bar')) return;
+        pageGlide.kill();
+        pageGlide = null;
+    };
+    ['wheel', 'touchstart', 'keydown'].forEach((type) => window.addEventListener(type, handBack, { passive: true }));
 
     // Case study (Cityhotel pilot): a list of all the parts' names on the left (the headings stay for screen readers;
     // project.css shows the list on a wide screen only). Every name and every part's text is dark grey; the part being
@@ -988,16 +1115,46 @@ document.addEventListener('DOMContentLoaded', function () {
             return label;
         });
         caseStudy.prepend(caseList);
+        // On a phone the same names ride in a bar along the bottom of the screen while the case study is on screen, the
+        // part being read light and slid into view (project.css shows it on a phone only)
+        const caseBar = document.createElement('nav');
+        caseBar.className = 'case-study-bar';
+        caseBar.setAttribute('aria-label', 'Parts of this case study');
+        const caseBarLinks = caseSteps.map((step) => {
+            const heading = step.querySelector('.case-step-title');
+            const link = document.createElement('a');
+            link.className = 'case-study-bar-link';
+            link.href = `#${heading?.id || ''}`;
+            link.textContent = heading?.textContent || '';
+            caseBar.appendChild(link);
+            return link;
+        });
+        document.body.appendChild(caseBar);
+        // A name glides the page to its part (the part's top just past where it counts as being read on a wide screen,
+        // its heading below the top bar on a phone) and leaves the address as it is, so a reload doesn't jump there
+        const partTop = (element) => {
+            let top = 0;
+            for (let node = element; node; node = node.offsetParent) top += node.offsetTop;
+            return top;
+        };
+        // Set up below for a phone: the parts as slides held on the screen
+        let slider = null;
+        [...caseLabels, ...caseBarLinks].forEach((link, index) => {
+            const stepIndex = index % caseSteps.length;
+            const step = caseSteps[stepIndex];
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                if (slider) {
+                    glideTo(Math.round(slider.trigger.start + slider.starts[stepIndex] + (stepIndex ? slider.settle : 0)));
+                    return;
+                }
+                const offset = window.matchMedia('(max-width: 768px)').matches ? 90 : window.innerHeight * 0.4;
+                glideTo(Math.max(0, Math.round(partTop(step) - offset)));
+            });
+        });
         caseStudy.classList.add('has-labels');
         let currentStep = -2;
-        const updateCaseStudy = () => {
-            const readingLine = window.innerHeight * 0.55;
-            let reading = -1;
-            caseSteps.forEach((step, i) => {
-                if (step.getBoundingClientRect().top <= readingLine) reading = i;
-            });
-            // Past the end of the last part, nothing is being read
-            if (reading === caseSteps.length - 1 && caseSteps[reading].getBoundingClientRect().bottom < readingLine * 0.25) reading = -1;
+        const showReading = (reading) => {
             if (reading === currentStep) return;
             currentStep = reading;
             caseSteps.forEach((step, i) => step.classList.toggle('is-active', i === reading));
@@ -1006,7 +1163,109 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (i === reading) label.setAttribute('aria-current', 'true');
                 else label.removeAttribute('aria-current');
             });
+            caseBarLinks.forEach((link, i) => {
+                link.classList.toggle('is-active', i === reading);
+                if (i === reading) link.setAttribute('aria-current', 'true');
+                else link.removeAttribute('aria-current');
+            });
+            const barLink = caseBarLinks[reading];
+            if (barLink && caseBar.scrollWidth > caseBar.clientWidth) {
+                caseBar.scrollTo({ left: barLink.offsetLeft - (caseBar.clientWidth - barLink.offsetWidth) / 2, behavior: reducedMotion ? 'auto' : 'smooth' });
+            }
         };
+        const updateCaseStudy = () => {
+            if (slider) return;
+            const readingLine = window.innerHeight * 0.55;
+            const studyBox = caseStudy.getBoundingClientRect();
+            caseBar.classList.toggle('is-visible', studyBox.top < window.innerHeight * 0.5 && studyBox.bottom > window.innerHeight * 0.5);
+            let reading = -1;
+            caseSteps.forEach((step, i) => {
+                if (step.getBoundingClientRect().top <= readingLine) reading = i;
+            });
+            // Past the end of the last part, nothing is being read
+            if (reading === caseSteps.length - 1 && caseSteps[reading].getBoundingClientRect().bottom < readingLine * 0.25) reading = -1;
+            showReading(reading);
+        };
+
+        // Phone: the parts become slides. Once the case study reaches the top the page holds it on the screen while the
+        // scroll goes on: the part being read stays in the middle (one taller than the space rolls up through it first),
+        // then the next part comes in from the right as this one moves out to the left. After the last part the page
+        // moves on. Every step of it follows the scroll, back and forth; the bar at the bottom follows the part in the middle
+        if (hasMotion && !reducedMotion) {
+            gsap.matchMedia().add('(max-width: 768px)', () => {
+                caseStudy.classList.add('is-slider');
+                const viewport = caseStudy.querySelector('.case-study-steps');
+                const room = viewport.clientHeight;
+                const width = viewport.clientWidth;
+                const hold = Math.round(room * 0.35);
+                const swap = Math.round(room * 0.9);
+                const timeline = gsap.timeline({ defaults: { ease: 'none' } });
+                const starts = [];
+                const switches = [0];
+                let time = 0;
+                // The pieces of a part (its name, headline and paragraphs) move one after another, so a part leaves and
+                // arrives in layers: out to the left from the top down, then in from the right from the top down
+                const piecesOf = (step) => [step.querySelector('.case-step-title'), ...step.querySelectorAll('.case-step-text > *')].filter(Boolean);
+                caseSteps.forEach((step, i) => {
+                    const extra = step.offsetHeight - room;
+                    // A short part sits in the middle of the space, a long one starts at its top
+                    gsap.set(step, { x: 0, y: extra > 0 ? 0 : Math.round(-extra / 2), autoAlpha: 1 });
+                    gsap.set(piecesOf(step), i ? { x: width * 0.7, autoAlpha: 0 } : { x: 0, autoAlpha: 1 });
+                    starts.push(time);
+                    if (extra > 0) {
+                        timeline.to(step, { y: -extra, duration: extra }, time);
+                        time += extra;
+                    }
+                    time += hold;
+                    const next = caseSteps[i + 1];
+                    if (next) {
+                        // The two never share the space: the leaving pieces fade quickly as they go and are gone by the middle
+                        // of the swap, just as the arriving ones begin
+                        const leaving = piecesOf(step);
+                        const arriving = piecesOf(next);
+                        const leaveTime = swap * 0.32;
+                        const arriveTime = swap * 0.34;
+                        const leaveGap = (swap * 0.16) / Math.max(1, leaving.length - 1);
+                        const arriveGap = (swap * 0.16) / Math.max(1, arriving.length - 1);
+                        leaving.forEach((piece, k) => {
+                            timeline.to(piece, { x: -width * 0.5, duration: leaveTime, ease: 'power2.in' }, time + k * leaveGap);
+                            timeline.to(piece, { autoAlpha: 0, duration: leaveTime * 0.8, ease: 'power2.out' }, time + k * leaveGap);
+                        });
+                        arriving.forEach((piece, k) => {
+                            timeline.fromTo(piece, { x: width * 0.6 }, { x: 0, duration: arriveTime, ease: 'power3.out', immediateRender: false }, time + swap * 0.36 + k * arriveGap);
+                            timeline.fromTo(piece, { autoAlpha: 0 }, { autoAlpha: 1, duration: arriveTime * 0.8, ease: 'power2.out', immediateRender: false }, time + swap * 0.36 + k * arriveGap);
+                        });
+                        switches.push(time + swap / 2);
+                        time += swap;
+                    }
+                });
+                const trigger = ScrollTrigger.create({
+                    trigger: caseStudy,
+                    start: 'top top',
+                    end: `+=${time}`,
+                    pin: true,
+                    scrub: 0.3,
+                    animation: timeline,
+                    onToggle: (self) => caseBar.classList.toggle('is-visible', self.isActive),
+                    onUpdate: (self) => {
+                        const at = self.progress * time;
+                        showReading(switches.filter((point) => point <= at).length - 1);
+                    },
+                });
+                slider = { trigger, starts, settle: Math.round(hold * 0.4) };
+                showReading(0);
+                ScrollTrigger.refresh();
+                return () => {
+                    slider = null;
+                    caseStudy.classList.remove('is-slider');
+                    caseBar.classList.remove('is-visible');
+                    gsap.set(caseSteps, { clearProps: 'x,y,opacity,visibility' });
+                    gsap.set(caseSteps.flatMap(piecesOf), { clearProps: 'x,opacity,visibility' });
+                    currentStep = -2;
+                    updateCaseStudy();
+                };
+            });
+        }
         updateCaseStudy();
         window.addEventListener('scroll', updateCaseStudy, { passive: true });
         window.addEventListener('resize', updateCaseStudy);
@@ -1025,32 +1284,6 @@ document.addEventListener('DOMContentLoaded', function () {
             for (let node = element; node; node = node.offsetParent) top += node.offsetTop;
             return top;
         };
-        // The page glides to an image with GSAP rather than the browser's smooth scroll, which stops short when a second
-        // click starts before the first scroll ends; a new click takes over from where the glide is, and a wheel, touch
-        // or key press (outside the navigator) hands the scroll back at once
-        let pageGlide = null;
-        const glideTo = (top) => {
-            if (!hasMotion || reducedMotion) {
-                window.scrollTo(0, top);
-                return;
-            }
-            pageGlide?.kill();
-            const position = { y: window.scrollY };
-            pageGlide = gsap.to(position, {
-                y: top,
-                duration: Math.min(1.4, 0.6 + Math.abs(top - position.y) / 4000),
-                ease: 'power3.inOut',
-                onUpdate: () => window.scrollTo(0, position.y),
-                onComplete: () => { pageGlide = null; },
-            });
-        };
-        const handBack = (event) => {
-            if (!pageGlide || event.target.closest?.('.image-navigator')) return;
-            pageGlide.kill();
-            pageGlide = null;
-        };
-        ['wheel', 'touchstart', 'keydown'].forEach((type) => window.addEventListener(type, handBack, { passive: true }));
-
         const imageNavigator = document.createElement('nav');
         imageNavigator.className = 'image-navigator';
         imageNavigator.setAttribute('aria-label', 'Project images');
@@ -1081,6 +1314,35 @@ document.addEventListener('DOMContentLoaded', function () {
         strip.appendChild(frame);
         imageNavigator.appendChild(strip);
         document.body.appendChild(imageNavigator);
+
+        // On a phone: the images as small squares in a strip along the bottom of the screen, with the same frame over the
+        // part on screen, mapped across instead of down; the strip slides to keep the frame in view (project.css)
+        const phoneStrip = document.createElement('nav');
+        phoneStrip.className = 'image-strip';
+        phoneStrip.setAttribute('aria-label', 'Project images');
+        const stripTrack = document.createElement('div');
+        stripTrack.className = 'image-strip-track';
+        const stripFrame = document.createElement('div');
+        stripFrame.className = 'image-strip-frame';
+        stripFrame.setAttribute('aria-hidden', 'true');
+        const stripThumbs = shots.map((shot, index) => {
+            const image = shot.querySelector('img');
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'image-strip-thumb';
+            button.setAttribute('aria-label', `Image ${index + 1}: ${image.alt}`);
+            const thumb = document.createElement('img');
+            thumb.src = image.getAttribute('src');
+            thumb.alt = '';
+            thumb.decoding = 'async';
+            button.appendChild(thumb);
+            button.addEventListener('click', () => glideTo(Math.max(0, Math.round(layoutTop(shot) - 72))));
+            stripTrack.appendChild(button);
+            return button;
+        });
+        stripTrack.appendChild(stripFrame);
+        phoneStrip.appendChild(stripTrack);
+        document.body.appendChild(phoneStrip);
 
         let spans = [];
         let thumbSpans = [];
@@ -1120,7 +1382,51 @@ document.addEventListener('DOMContentLoaded', function () {
         const frameY = glide(frame, 'y');
         const frameHeight = glide(frame, 'height');
         const stripY = glide(strip, 'y');
+        const stripX = glide(stripFrame, 'x');
+        const stripWidth = glide(stripFrame, 'width');
+        const trackX = glide(stripTrack, 'x');
+        let stripPlaced = false;
+        const updatePhoneStrip = () => {
+            if (wideScreen.matches) {
+                phoneStrip.classList.remove('is-visible');
+                return;
+            }
+            const columns = shots.map((shot) => ({ top: layoutTop(shot), bottom: layoutTop(shot) + shot.offsetHeight }));
+            const marks = stripThumbs.map((thumb) => ({ top: thumb.offsetLeft, bottom: thumb.offsetLeft + thumb.offsetWidth }));
+            const top = window.scrollY;
+            const bottom = top + window.innerHeight;
+            phoneStrip.classList.toggle('is-visible', columns[0].top < top + window.innerHeight * 0.5 && columns[columns.length - 1].bottom > top + window.innerHeight * 0.35);
+            // A page position to the same place across the strip: in proportion within an image, or within a gap
+            const across = (y) => {
+                const scaleOf = (i) => (marks[i].bottom - marks[i].top) / Math.max(1, columns[i].bottom - columns[i].top);
+                for (let i = 0; i < columns.length; i += 1) {
+                    if (y < columns[i].top) {
+                        if (i === 0) return marks[0].top - (columns[0].top - y) * scaleOf(0);
+                        const gap = columns[i].top - columns[i - 1].bottom;
+                        return marks[i - 1].bottom + ((y - columns[i - 1].bottom) / Math.max(1, gap)) * (marks[i].top - marks[i - 1].bottom);
+                    }
+                    if (y <= columns[i].bottom) return marks[i].top + (y - columns[i].top) * scaleOf(i);
+                }
+                const last = columns.length - 1;
+                return marks[last].bottom + (y - columns[last].bottom) * scaleOf(last);
+            };
+            const trackEnd = marks[marks.length - 1].bottom;
+            const frameLeft = Math.max(marks[0].top - 3, Math.min(trackEnd - 6, across(top)));
+            const frameRight = Math.max(frameLeft + 6, Math.min(trackEnd + 3, across(bottom)));
+            const view = phoneStrip.clientWidth;
+            const shift = Math.max(0, Math.min(stripTrack.scrollWidth + 16 - view, (frameLeft + frameRight) / 2 - view / 2));
+            if (!stripPlaced && hasMotion) {
+                gsap.set(stripFrame, { x: frameLeft, width: frameRight - frameLeft });
+                gsap.set(stripTrack, { x: -shift });
+                stripPlaced = true;
+            }
+            stripX(frameLeft);
+            stripWidth(frameRight - frameLeft);
+            trackX(-shift);
+            stripThumbs.forEach((thumb, i) => thumb.classList.toggle('is-in-view', columns[i].bottom > top && columns[i].top < bottom));
+        };
         const update = () => {
+            updatePhoneStrip();
             if (!wideScreen.matches || !spans.length) {
                 imageNavigator.classList.remove('is-visible');
                 return;

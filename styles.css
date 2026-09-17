@@ -350,6 +350,8 @@ button:hover {
     color: inherit;
     text-decoration: none;
     white-space: nowrap;
+    /* Folds away on a phone at the top of the page, where the bar is only its "+" (script.js) */
+    overflow: hidden;
 }
 
 /* The page links, folded to nothing until the "+" opens them */
@@ -370,6 +372,38 @@ button:hover {
 
 .header-bar-link:first-child {
     padding-left: 18px;
+}
+
+/* On a phone at the top of the page the menu opens down inside the bar itself instead of sideways (script.js adds
+   .is-dropdown while it's open): the "+" keeps its corner and the links stack under it in the same box */
+.header-bar.is-dropdown {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-end;
+    height: auto;
+}
+
+.header-bar.is-dropdown .header-bar-toggle {
+    order: 1;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.header-bar.is-dropdown .header-bar-links {
+    order: 2;
+    flex: 0 0 100%;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.header-bar.is-dropdown .header-bar-link,
+.header-bar.is-dropdown .header-bar-link:first-child {
+    padding: 10px 16px;
+    text-align: center;
+}
+
+.header-bar.is-dropdown .header-bar-link:last-child {
+    padding-bottom: 16px;
 }
 
 /* Orange like the "+" on hover, and for the page you're on */
@@ -1222,6 +1256,16 @@ body:has(.hero) .header:has(.navigation.active) {
 
     .job-work {
         grid-column: 1;
+    }
+}
+
+/* Phones: the compact bar ("[a]" and "+") is the menu, so the burger and its full-screen menu aren't used. Hidden for
+   good, not just faded: back at the top script.js fades the full header in again, and that fade used to bring the
+   full-screen menu's dark layer over the whole page */
+@media (max-width: 768px) {
+    .burger-menu,
+    .navigation {
+        display: none !important;
     }
 }
 

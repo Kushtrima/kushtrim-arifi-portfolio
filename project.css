@@ -414,8 +414,112 @@
     margin-top: 0;
 }
 
-.case-study-labels {
+/* Cityhotel pilot on a phone: the website link stays in one row with the name, on its baseline at the right (other
+   project pages stack them), wrapping under the name only if the screen is too narrow for both */
+@media (max-width: 768px) {
+    .project-title-section.project-title-section--inline {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 8px 16px;
+    }
+}
+
+.case-study-labels,
+.case-study-bar {
     display: none;
+}
+
+/* Phone: the parts' names in a bar along the bottom of the screen while the case study is on screen (script.js), the
+   part being read light; a jump from it lands the heading below the site's top bar */
+@media (max-width: 768px) {
+    .case-step-title {
+        scroll-margin-top: 90px;
+    }
+
+    .case-study-bar {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 900;
+        display: flex;
+        gap: 22px;
+        /* Tall enough to sit clear of a phone's home indicator at the bottom edge */
+        padding: 30px 20px max(46px, calc(24px + env(safe-area-inset-bottom)));
+        overflow-x: auto;
+        scrollbar-width: none;
+        background-color: rgba(var(--color-secondary-rgb), 0.94);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(var(--color-primary-rgb), 0.12);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(100%);
+        transition: opacity 0.5s cubic-bezier(0.33, 1, 0.68, 1), transform 0.5s cubic-bezier(0.33, 1, 0.68, 1), visibility 0s linear 0.5s;
+    }
+
+    /* The parts as slides (script.js adds .is-slider): the case study fills the screen while it is held; the parts sit
+       on top of each other in the space between the site's bar at the top and the parts bar at the bottom, clipped at
+       the screen's edges so a part moving in or out slides past them */
+    .case-study.is-slider {
+        position: relative;
+        height: 100vh;
+        height: 100svh;
+        margin-bottom: 0;
+    }
+
+    .case-study.is-slider .case-study-steps {
+        position: absolute;
+        top: 84px;
+        right: calc(50% - 50vw);
+        bottom: 120px;
+        left: calc(50% - 50vw);
+        display: block;
+        overflow: hidden;
+    }
+
+    .case-study.is-slider .case-step {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        /* The page's side margins, inside the full-width space */
+        padding: 0 20px;
+    }
+
+    @media (max-width: 480px) {
+        .case-study.is-slider .case-step {
+            padding: 0 15px;
+        }
+    }
+
+    .case-study-bar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .case-study-bar.is-visible {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition-delay: 0s;
+    }
+
+    .case-study-bar-link {
+        flex: 0 0 auto;
+        font-family: var(--font-display);
+        font-size: 17px;
+        line-height: 1;
+        white-space: nowrap;
+        color: var(--color-grey-88);
+        text-decoration: none;
+        transition: color 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .case-study-bar-link.is-active {
+        color: var(--color-primary);
+    }
 }
 
 @media (min-width: 769px) {
@@ -492,6 +596,13 @@
 
     .project-fact--stack {
         grid-column: 1 / -1;
+    }
+
+    /* The right-hand column (Service, Location) sits at the right edge, like the website link above it */
+    .project-fact:nth-child(2),
+    .project-fact:nth-child(4) {
+        justify-self: end;
+        text-align: right;
     }
 
     .project-fact--stack dd {
@@ -711,10 +822,128 @@
     transform: translateX(6px);
 }
 
+.image-strip {
+    display: none;
+}
+
 @media (max-width: 899px) {
-    .image-navigator,
-    .project-pager-rail {
+    .image-navigator {
         display: none;
+    }
+
+    /* Phone: the images as small squares in a strip along the bottom of the screen while the images are on screen, a
+       frame over the part on screen (script.js) */
+    .image-strip {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 900;
+        display: block;
+        /* Tall enough to sit clear of a phone's home indicator at the bottom edge */
+        padding: 22px 0 max(42px, calc(20px + env(safe-area-inset-bottom)));
+        overflow: hidden;
+        background-color: rgba(var(--color-secondary-rgb), 0.94);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(var(--color-primary-rgb), 0.12);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(100%);
+        transition: opacity 0.5s cubic-bezier(0.33, 1, 0.68, 1), transform 0.5s cubic-bezier(0.33, 1, 0.68, 1), visibility 0s linear 0.5s;
+    }
+
+    .image-strip.is-visible {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition-delay: 0s;
+    }
+
+    .image-strip-track {
+        position: relative;
+        display: flex;
+        gap: 8px;
+        width: max-content;
+        padding: 0 16px;
+    }
+
+    .image-strip-thumb {
+        flex: 0 0 auto;
+        width: 52px;
+        height: 52px;
+        padding: 0;
+        border: 0;
+        border-radius: 3px;
+        overflow: hidden;
+        background-color: var(--color-grey-22);
+        opacity: 0.4;
+        cursor: pointer;
+        transition: opacity 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .image-strip-thumb:hover {
+        transform: none;
+    }
+
+    .image-strip-thumb.is-in-view {
+        opacity: 1;
+    }
+
+    .image-strip-thumb img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    .image-strip-frame {
+        position: absolute;
+        top: -5px;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        border: 1px solid rgba(var(--color-primary-rgb), 0.9);
+        border-radius: 4px;
+        pointer-events: none;
+    }
+
+    /* On a phone the previous/next pair comes after the last image, across the width: "Previous" at the left edge,
+       "Next" at the right */
+    .project-image-section--navigator {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .project-image-section--navigator > .project-pager-rail {
+        order: 1;
+    }
+
+    .project-pager {
+        --pager-arrow: 64px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+}
+
+/* Cityhotel pilot: the first image keeps the same distance to the next one as the images below keep between them (their
+   own margin plus the gallery's gap: 80px; 70px up to 768px, where the gap is 30px; 30px up to 600px, where the images
+   lose their margins) */
+.project-image-section.project-image-section--navigator > .cityhotel-first-image {
+    margin-bottom: 80px;
+}
+
+@media (max-width: 768px) {
+    .project-image-section.project-image-section--navigator > .cityhotel-first-image {
+        margin-bottom: 70px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .project-image-section.project-image-section--navigator > .cityhotel-first-image {
+        margin-bottom: 30px !important;
     }
 }
 
