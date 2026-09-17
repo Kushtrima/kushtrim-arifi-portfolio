@@ -509,10 +509,27 @@
    dim, and a click on one scrolls to it. When the images are too many to fit the window, the strip slides to keep the
    frame in view */
 @media (min-width: 900px) {
+    /* The section spans the content width (the previous/next pair sits at its start); the images inside are the narrower
+       centred column, kept narrow enough to leave the pair its room on a wide screen */
     .project-image-section--navigator {
-        width: min(100%, 58vw);
+        --pager-arrow: clamp(36px, calc(5.5vw - 7px), 78px);
+        --pager-gap: 28px;
+        --pager-room: calc(2 * var(--pager-arrow) + var(--pager-gap) + 40px);
+        position: relative;
+    }
+
+    .project-image-section--navigator > .project-main-image,
+    .project-image-section--navigator > .project-gallery-layout {
+        width: min(max(50vw, 560px), calc(100% - 2 * var(--pager-room)));
         margin-right: auto;
         margin-left: auto;
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1119px) {
+    .project-image-section--navigator {
+        --pager-arrow: clamp(32px, calc(13.5vw - 92px), 58px);
+        --pager-gap: 20px;
     }
 }
 
@@ -589,8 +606,114 @@
     pointer-events: none;
 }
 
+/* Previous and next project, beside the images (Cityhotel pilot). The rail spans the height of the images at the start of
+   the content width (where the title and the facts start); the pair inside is sticky, so it arrives with the first
+   image, stays level with the middle of the screen while the images pass, and leaves with the last one. "Previous" and
+   "Next" side by side, each over a thin arrow of the same length reaching outward: the previous arrow ends under the end
+   of its word and runs on to the left, the next arrow starts under the start of its word and runs on to the right; on
+   hover the arrow slides the way it points */
+@media (min-width: 900px) {
+    .project-pager-rail {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: flex-start;
+        pointer-events: none;
+    }
+
+    .project-pager {
+        position: sticky;
+        top: calc(50vh - 26px);
+        display: flex;
+        align-items: flex-start;
+        gap: var(--pager-gap);
+        pointer-events: auto;
+    }
+}
+
+.project-pager-link {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 6px 0;
+    font-family: var(--font-primary);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.project-pager-link--previous {
+    align-items: flex-end;
+}
+
+.project-pager-link--next {
+    align-items: flex-start;
+}
+
+.project-pager-link:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 8px;
+}
+
+/* The arrow: a 1px line with the site's open arrowhead at its pointing end */
+.project-pager-arrow {
+    position: relative;
+    display: block;
+    width: var(--pager-arrow);
+    height: 10px;
+    transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.project-pager-arrow::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    height: 1px;
+    margin-top: -0.5px;
+    background-color: currentColor;
+}
+
+.project-pager-link--previous .project-pager-arrow::before {
+    left: 1px;
+}
+
+.project-pager-link--next .project-pager-arrow::before {
+    right: 1px;
+}
+
+.project-pager-head {
+    position: absolute;
+    top: 0;
+    width: 6px;
+    height: 10px;
+    overflow: visible;
+}
+
+.project-pager-link--previous .project-pager-head {
+    left: 0;
+}
+
+.project-pager-link--next .project-pager-head {
+    right: 0;
+}
+
+.project-pager-link--previous:hover .project-pager-arrow {
+    transform: translateX(-6px);
+}
+
+.project-pager-link--next:hover .project-pager-arrow {
+    transform: translateX(6px);
+}
+
 @media (max-width: 899px) {
-    .image-navigator {
+    .image-navigator,
+    .project-pager-rail {
         display: none;
     }
 }

@@ -897,6 +897,11 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
+        const pageTopOf = (element) => {
+            let top = 0;
+            for (let node = element; node; node = node.offsetParent) top += node.offsetTop;
+            return top;
+        };
         const gradientTargets = new Map();
         // The gradient over a scrolled-past image eases towards its new value over 0.3s. overwrite 'auto' only
         // replaces an earlier gradient tween: the same image can be running its gallery curtain at the same time.
@@ -932,47 +937,19 @@ document.addEventListener('DOMContentLoaded', function () {
                     gsap.set(image, { y: 0, scale: 1, opacity });
                     setGradient(image, 0);
                 } else {
-                    // DESKTOP: Original effect - images appear from bottom
-                    const imageAbsoluteTop = scrollY + imageTop;
-                    const animationDistance = windowHeight * 0.15;
-                    const animationStart = imageAbsoluteTop - animationDistance - (windowHeight * 0.4);
-                    const animationEnd = imageAbsoluteTop + animationDistance;
-
-                    let progress = 0;
-                    if (scrollY < animationStart) {
-                        progress = 0;
-                    } else if (scrollY >= animationStart && scrollY < animationEnd) {
-                        progress = (scrollY - animationStart) / (animationEnd - animationStart);
-                        progress = Math.min(Math.max(progress, 0), 1);
-                    } else {
-                        progress = 1;
-                    }
-
-                    const imageBottomPos = imageTop + rect.height;
-                    const imageInFullView = imageTop >= scrollY && imageBottomPos <= (scrollY + windowHeight);
-                    const imageCenterY = imageTop + (rect.height / 2);
-                    const viewportCenterY = scrollY + (windowHeight / 2);
-                    const isNearCenter = Math.abs(imageCenterY - viewportCenterY) < windowHeight * 0.3;
-
-                    if ((imageInFullView || isNearCenter) && progress > 0.5) {
-                        progress = 1;
-                    }
-
+                    // DESKTOP: the image rises 80px into place and fades in, in step with the scroll, while its top travels
+                    // from the bottom of the screen to 65% of the way up. Measured from the layout (offsetTop), not from the
+                    // image's own box, which this effect moves: reading that box fed the animation back into itself and
+                    // made it flicker. Once scrolled well past its top, a soft gradient settles over the image's top edge
+                    const layoutTop = pageTopOf(image);
+                    const risen = scrollY + windowHeight - layoutTop;
+                    const progress = Math.min(Math.max(risen / (windowHeight * 0.35), 0), 1);
                     const easedProgress = progress * progress * (3 - 2 * progress);
-                    const translateY = (1 - easedProgress) * 80;
-                    const opacity = easedProgress;
+                    const scrolledPast = scrollY - layoutTop;
+                    const gradientOpacity = scrolledPast > 200 ? Math.min((scrolledPast - 200) / 300, 1) : 0;
 
-                    let gradientOpacity = 0;
-                    if (easedProgress >= 0.5) {
-                        if (imageTop < -200) {
-                            const distanceOutOfView = Math.abs(imageTop) - 200;
-                            const fadeDistance = 300;
-                            gradientOpacity = Math.min(distanceOutOfView / fadeDistance, 1);
-                        }
-                    }
-
-                    gsap.set(image, { y: translateY, scale: 1, opacity });
-                    setGradient(image, Math.min(Math.max(gradientOpacity, 0), 1));
+                    gsap.set(image, { y: (1 - easedProgress) * 80, scale: 1, opacity: easedProgress });
+                    setGradient(image, gradientOpacity);
                 }
             });
         }
@@ -1048,6 +1025,32 @@ document.addEventListener('DOMContentLoaded', function () {
             for (let node = element; node; node = node.offsetParent) top += node.offsetTop;
             return top;
         };
+        // The page glides to an image with GSAP rather than the browser's smooth scroll, which stops short when a second
+        // click starts before the first scroll ends; a new click takes over from where the glide is, and a wheel, touch
+        // or key press (outside the navigator) hands the scroll back at once
+        let pageGlide = null;
+        const glideTo = (top) => {
+            if (!hasMotion || reducedMotion) {
+                window.scrollTo(0, top);
+                return;
+            }
+            pageGlide?.kill();
+            const position = { y: window.scrollY };
+            pageGlide = gsap.to(position, {
+                y: top,
+                duration: Math.min(1.4, 0.6 + Math.abs(top - position.y) / 4000),
+                ease: 'power3.inOut',
+                onUpdate: () => window.scrollTo(0, position.y),
+                onComplete: () => { pageGlide = null; },
+            });
+        };
+        const handBack = (event) => {
+            if (!pageGlide || event.target.closest?.('.image-navigator')) return;
+            pageGlide.kill();
+            pageGlide = null;
+        };
+        ['wheel', 'touchstart', 'keydown'].forEach((type) => window.addEventListener(type, handBack, { passive: true }));
+
         const imageNavigator = document.createElement('nav');
         imageNavigator.className = 'image-navigator';
         imageNavigator.setAttribute('aria-label', 'Project images');
@@ -1071,9 +1074,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             thumb.decoding = 'async';
             button.appendChild(thumb);
-            button.addEventListener('click', () => {
-                window.scrollTo({ top: layoutTop(shot) - window.innerHeight * 0.1, behavior: reducedMotion ? 'auto' : 'smooth' });
-            });
+            button.addEventListener('click', () => glideTo(Math.max(0, Math.round(layoutTop(shot) - window.innerHeight * 0.1))));
             strip.appendChild(button);
             return button;
         });

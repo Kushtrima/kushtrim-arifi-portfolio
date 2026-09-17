@@ -44,7 +44,7 @@
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
 
     <link rel="stylesheet" href="/styles.css?v=20260917-22">
-    <link rel="stylesheet" href="/project.css?v=20260917-11">
+    <link rel="stylesheet" href="/project.css?v=20260917-19">
 
     <!-- Structured Data: CreativeWork -->
     <script type="application/ld+json">
@@ -273,6 +273,16 @@
                 <!-- Images in a narrower column; on a wide screen script.js adds a navigator on the right: every image small,
                      with a frame showing which part is on screen -->
                 <div class="project-image-section project-image-section--navigator">
+                    <!-- Previous and next project beside the images: they arrive with the first image, stay level with the middle
+                         of the screen while the images pass, and leave with the last one (the same projects as the links at
+                         the end of the page) -->
+                    <div class="project-pager-rail">
+                        <nav class="project-pager" aria-label="More projects">
+                            <a class="project-pager-link project-pager-link--previous" href="/work/baren.html" rel="prev" aria-label="Previous project: Bären Gruppe AG"><span>Previous</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 1 1 5l4.5 4"/></svg></span></a>
+                            <a class="project-pager-link project-pager-link--next" href="/work/hbs-website.html" rel="next" aria-label="Next project: HBS"><span>Next</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M.5 1 5 5 .5 9"/></svg></span></a>
+                        </nav>
+                    </div>
+
                     <!-- First image -->
                     <div class="project-main-image cityhotel-image-reveal cityhotel-first-image">
                         <img src="/work/cityhotel/city-01.jpg" width="1500" height="880" alt="Cityhotel Website Hero" loading="lazy">
@@ -318,16 +328,6 @@
         </section>
     </main>
 
-        <!-- Project Pagination -->
-    <nav class="project-pagination" aria-label="Project navigation">
-        <!-- One quiet line between hairlines: previous project, all projects, next project -->
-        <div class="container project-pagination-row">
-            <a href="/work/baren.html" class="arrow-link arrow-link--back project-pagination-prev" rel="prev"><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 3.2 3.2 12.8"/><path d="M9.8 12.8H3.2V6.2"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 3.2 3.2 12.8"/><path d="M9.8 12.8H3.2V6.2"/></svg></span><span class="arrow-link-label"><span class="project-pagination-label">Previous</span> <span class="project-pagination-dot" aria-hidden="true">·</span> Bären Gruppe AG</span></a>
-            <a href="/work.html" class="arrow-link project-pagination-all"><span class="arrow-link-label">All projects</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
-            <a href="/work/hbs-website.html" class="arrow-link project-pagination-next" rel="next"><span class="arrow-link-label"><span class="project-pagination-label">Next</span> <span class="project-pagination-dot" aria-hidden="true">·</span> HBS</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
-        </div>
-    </nav>
-
     <!-- Modern Footer Section -->
     <footer class="modern-footer">
         <!-- Big name sign-off: three small columns (menu, social, contact), the year and back to top, then the name huge across
@@ -365,7 +365,7 @@
     <script src="/vendor/gsap/gsap.min.js" defer></script>
     <script src="/vendor/gsap/ScrollTrigger.min.js" defer></script>
     <script src="/vendor/gsap/CustomEase.min.js" defer></script>
-    <script src="/script.js?v=20260917-21" defer></script>
+    <script src="/script.js?v=20260917-28" defer></script>
 </body>
 
 </html>
