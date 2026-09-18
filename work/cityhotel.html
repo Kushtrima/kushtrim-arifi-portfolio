@@ -185,10 +185,13 @@
                             <div class="case-step-text">
                                 <h3 class="case-step-subtitle" data-reveal>A four-star hotel that also runs a
                                     restaurant</h3>
-                                <p data-reveal>Cityhotel sits in Näfels, in the canton of Glarus. Alongside the hotel
-                                    it runs Glaré, a restaurant with its own name, its own regulars and its own reasons to
-                                    visit. The project came through Monun AG in 2026, where I work as a product designer
-                                    and developer. I took it from the first Figma screen through to the deployed site.</p>
+                                <p data-reveal>Cityhotel sits in Näfels, in the canton of Glarus. Under the same roof
+                                    it runs Glaré, a restaurant with its own name, its own regulars and its own
+                                    reasons to visit. Cityhotel is the parent business and Glaré operates inside it.
+                                    The project came through Monun AG in 2026, where I work as a product designer and
+                                    developer. The client supplied the content and the business requirements.
+                                    Structure, interaction and the front-end build were mine, from the first Figma
+                                    screen through to deployment.</p>
                             </div>
                         </section>
                         <section class="case-step" aria-labelledby="case-problem">
@@ -198,62 +201,126 @@
                                     a subsection of the other</h3>
                                 <p data-reveal>Hotel guests and restaurant guests are not the same people. Guests book
                                     rooms weeks ahead, often from outside Switzerland, comparing rates against other
-                                    options. Glaré guests are local, deciding within the week, and want a table, a menu
-                                    and an address.</p>
+                                    options. Glaré guests are local, deciding within the week, and want a table, a
+                                    menu and an address.</p>
                                 <p data-reveal>Building Glaré a separate site would have split a small business across
                                     two builds, two hosting bills and two things to keep updated. Folding it into the
-                                    hotel site as another page would have made a restaurant with its own name look like a
-                                    hotel amenity. Neither was acceptable to the client.</p>
+                                    hotel site as another page would have made a restaurant with its own name look
+                                    like a hotel amenity. Neither was acceptable to the client.</p>
                             </div>
                         </section>
                         <section class="case-step" aria-labelledby="case-research">
                             <h2 class="case-step-title" data-reveal id="case-research">Research</h2>
                             <div class="case-step-text">
-                                <h3 class="case-step-subtitle" data-reveal>These are not sites people browse, they are
-                                    sites people use</h3>
-                                <p data-reveal>Before designing anything I went through how comparable Swiss hotels
-                                    structure their websites. The pattern that stood out is that almost nobody arrives
-                                    without a task. They come to check a rate, find an address, look at a menu or make a
-                                    booking, and everything that is not that task is standing in the way of it.</p>
-                                <p data-reveal>That set the priority for the whole project. Function carries the site,
-                                    and atmosphere is carried by photography and spacing rather than by anything the guest
-                                    has to click through.</p>
+                                <h3 class="case-step-subtitle" data-reveal>Twenty hotels, then the people who answer
+                                    the phone</h3>
+                                <p data-reveal>I started by going through more than twenty Swiss hotel websites. For
+                                    each one I looked at how the booking system actually works, how many steps it
+                                    takes to get from landing to a confirmed reservation, where practical information
+                                    sits, and how the site is structured overall. I paid particular attention to the
+                                    small number of cases where two businesses share one website, since that was the
+                                    problem in front of me.</p>
+                                <p data-reveal>These were among the best hotel websites in Switzerland, and the point
+                                    of looking at them was to learn what already works. A few things were consistent
+                                    across almost all of them. Booking is never more than a click or two from wherever
+                                    you are on the site. Practical information that guests actually ask for is easy to
+                                    reach rather than buried in an About page. And the visual language is restrained,
+                                    with photography carrying the atmosphere instead of decoration.</p>
+                                <p data-reveal>The one thing none of them solved was the problem in front of me. Where
+                                    a hotel also runs a restaurant, the restaurant is almost always a subpage. It
+                                    carries the hotel's identity, sits behind the hotel's navigation, and reads as a
+                                    facility rather than as a place with its own name. For Cityhotel that would not
+                                    work, because Glaré is somewhere locals go on its own terms.</p>
+                                <p data-reveal>Desk research only tells you what other designers built, so I also
+                                    spoke to the hotel's staff and manager. They deal with guests every day and
+                                    already knew what a website was failing to do. I asked what guests call and email
+                                    about, what they complain about most when making a reservation, and what people
+                                    struggle to find. I also asked the manager how the existing website worked from
+                                    their side, what was easy and what wasn't.</p>
+                                <p data-reveal>Two things came up repeatedly. Guests could not find the restaurant
+                                    reservation or the event enquiry, and calls came through to reception for both.
+                                    The booking process itself was doing too much at once, asking people to work out
+                                    which kind of reservation they wanted before it would let them start. The
+                                    manager's problem was on the other side of the same site: updating it meant
+                                    working through a back end that made simple changes, swapping an image or changing
+                                    a seasonal detail, harder than they should have been.</p>
+                                <p data-reveal>Both findings pointed the same way. Guests needed the four reservation
+                                    paths separated and visible rather than merged behind one button, and the hotel
+                                    needed a back end where content could be changed without touching layout.</p>
+                                <p data-reveal>That set one rule for the project: function comes first. If a guest has
+                                    to hunt for a booking or for an answer they arrived with, the site has failed,
+                                    regardless of how it looks.</p>
                             </div>
                         </section>
                         <section class="case-step" aria-labelledby="case-solution">
                             <h2 class="case-step-title" data-reveal id="case-solution">Solution</h2>
                             <div class="case-step-text">
-                                <h3 class="case-step-subtitle" data-reveal>Shared structure, switching identity</h3>
-                                <p data-reveal>The header carries the brand, not the page. Move into the restaurant
-                                    section and the logo switches from Cityhotel to Glaré, while navigation, layout and
-                                    behaviour stay identical. Guests keep one mental model of how the site works, and they
-                                    are told which business they are dealing with in the one place they are always
-                                    looking. Glaré reads as its own name rather than a page inside a hotel, without a
-                                    second domain behind it.</p>
-                                <p data-reveal>Booking a room and reserving a table stay separate. The two
-                                    transactions carry different urgency, different lead times and different information.
-                                    One generic Book button would have forced every visitor through a decision they had
-                                    already made before they arrived, so each path stays visible and distinct, positioned
-                                    where its audience is already looking.</p>
-                                <p data-reveal>Nothing gets buried to make room. A hotel carries more pages than a top
-                                    bar can hold: rooms, restaurant, seminars, events, contact, and everything beneath
-                                    those. Keeping the header minimal and moving the full structure into a large menu
-                                    meant the header stays quiet while guests read, and the whole site is one click away
-                                    when they are ready to move.</p>
+                                <h3 class="case-step-subtitle" data-reveal>One host, two identities, four ways in</h3>
+                                <p data-reveal>Cityhotel is the host, and the site opens as Cityhotel. Arriving at the
+                                    site, you are at the hotel. That reflects how the business actually works:
+                                    Cityhotel is the parent and Glaré operates inside it. Pretending they are two
+                                    equal front doors would have misrepresented the company and given a first-time
+                                    visitor no idea where they had landed.</p>
+                                <p data-reveal>The menu presents them as equals. Open the main menu and Hotel and
+                                    Restaurant sit side by side as two columns, each with its own contents. Hotel
+                                    holds rooms, seminars, events, fitness and about. Restaurant holds the food, the
+                                    philosophy and the menu. Nothing is nested inside anything else at this level, so
+                                    a guest looking for Glaré finds it in one move rather than hunting through the
+                                    hotel's pages.</p>
+                                <p data-reveal>Inside Glaré, the identity switches completely. Click into any
+                                    restaurant page and the logo in the header becomes Glaré. Navigation, layout and
+                                    behaviour stay identical, so nothing has to be relearned, but the guest is told in
+                                    the one place they are always looking which business they are now dealing with.
+                                    Glaré reads as its own name rather than a page inside a hotel, and it needs no
+                                    second domain to do it.</p>
+                                <p data-reveal>Four reservation paths, kept separate. Booking a stay, requesting a
+                                    seminar, requesting an event and reserving a table are four different
+                                    transactions, with different urgency, different lead times and different
+                                    information required. One generic Book button would have forced every visitor
+                                    through a choice they had already made before they arrived. Each stays visible and
+                                    distinct in the menu, so the guest picks the one they came for rather than working
+                                    out which path leads where.</p>
+                                <p data-reveal>Nothing gets buried to make room. A hotel of this size carries more
+                                    pages than a top bar can hold. Keeping the header minimal and moving the full
+                                    structure into a large menu meant the header stays quiet while guests read, and
+                                    the whole site, both businesses and all four booking paths, is one click away when
+                                    they are ready to move.</p>
                             </div>
                         </section>
-                        <section class="case-step" aria-labelledby="case-build">
-                            <h2 class="case-step-title" data-reveal id="case-build">Build</h2>
+                        <section class="case-step" aria-labelledby="case-design">
+                            <h2 class="case-step-title" data-reveal id="case-design">Design</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Structure first, surface last</h3>
+                                <p data-reveal>Wireframes in Figma before anything visual existed. Only once the
+                                    structure held did I move to surface.</p>
+                                <p data-reveal>The palette is a cream ground with muted bronze text, warm instead of
+                                    white and black, because a hotel sells rest. Two tones carry the whole site, so
+                                    the photography is the only place colour enters unplanned. Headings use a
+                                    high-contrast display serif set large with room around it, body text a plain sans,
+                                    and the contrast between them carries the character so nothing decorative has to.
+                                    Buttons are thin outlines with no fill, uppercase, sitting quietly until you look
+                                    for them.</p>
+                                <p data-reveal>The header holds the logo, the menu and Buchen. It sits transparent
+                                    over the hero so the photograph arrives whole, then turns solid on scroll once
+                                    there is text behind it. Below that, full-width images alternate with generous
+                                    space, nothing animated for its own sake, everything on one spacing scale. A small
+                                    set of decisions repeated rather than a new idea on every page.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-development">
+                            <h2 class="case-step-title" data-reveal id="case-development">Development</h2>
                             <div class="case-step-text">
                                 <h3 class="case-step-subtitle" data-reveal>Handed over so the hotel can run it
                                     themselves</h3>
-                                <p data-reveal>Designed in Figma, then built as a custom WordPress theme rather than a
-                                    page builder, so the hotel's team can manage seasonal content through structured
-                                    fields without touching layout. Interaction behaviour is written in vanilla JavaScript
-                                    with no framework dependency, including the header transition between the two brands.
-                                    Styling is a single global system of design tokens and shared components rather than
-                                    per-page CSS, so both identities inherit the same spacing, type scale and colour
-                                    logic, and new pages stay consistent without additional styling work.</p>
+                                <p data-reveal>Built as a custom WordPress theme rather than a page builder, so the
+                                    team can manage seasonal content through structured fields without touching
+                                    layout. This came directly out of the manager's complaint: changing an image or a
+                                    seasonal detail is now a single field, not a layout problem. Interaction behaviour
+                                    is written in vanilla JavaScript with no framework dependency, including the
+                                    identity switch between the two brands. Styling is a single global system of
+                                    tokens and shared components rather than per-page CSS, so both identities inherit
+                                    the same spacing, type scale and colour logic, and new pages stay consistent
+                                    without extra styling work.</p>
                             </div>
                         </section>
                         <section class="case-step" aria-labelledby="case-outcome">
@@ -261,13 +328,15 @@
                             <div class="case-step-text">
                                 <h3 class="case-step-subtitle" data-reveal>One site, two brands, one thing to
                                     maintain</h3>
-                                <p data-reveal>Glaré has a distinct identity and its own reservation path without a
-                                    second website behind it. The hotel manages both from a single admin, with seasonal
-                                    content going in through structured fields rather than a developer.</p>
-                                <p data-reveal>Guests who arrive for a room and guests who arrive for a table reach
-                                    what they came for without passing through the other business first. The structure
-                                    holds as pages are added, which matters for a hotel that changes its offering with the
-                                    season and runs seminars and events alongside the rooms.</p>
+                                <p data-reveal>The two problems the research surfaced are both addressed. The four
+                                    reservation paths are visible and separate, so guests reach the one they came for
+                                    instead of calling reception. And the hotel updates its own content through
+                                    structured fields rather than going back to a developer.</p>
+                                <p data-reveal>Glaré has a distinct identity without a second website behind it, and
+                                    guests who arrive for a room and guests who arrive for a table reach what they
+                                    came for without passing through the other business first. The structure holds as
+                                    pages are added, which matters for a hotel that runs seminars, events and a
+                                    fitness facility alongside the rooms.</p>
                             </div>
                         </section>
                     </div>
