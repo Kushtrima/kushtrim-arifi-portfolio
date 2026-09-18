@@ -43,8 +43,8 @@
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
 
-    <link rel="stylesheet" href="/styles.css?v=20260918-1">
-    <link rel="stylesheet" href="/project.css?v=20260917-3">
+    <link rel="stylesheet" href="/styles.css?v=20260918-3">
+    <link rel="stylesheet" href="/project.css?v=20260918-1">
 
     <!-- Structured Data: CreativeWork -->
     <script type="application/ld+json">
@@ -140,7 +140,7 @@
         <section class="project-hero">
             <div class="container">
                 <div class="project-header-content">
-                    <div class="project-title-section">
+                    <div class="project-title-section project-title-section--inline">
                         <div class="text-reveal-wrapper">
                             <h1 class="project-title">HBS</h1>
                         </div>
@@ -151,123 +151,196 @@
                     <div class="project-header-divider"></div>
                 </div>
 
-                <!-- Three Column Layout -->
-                <div class="project-info-layout">
-                    <!-- Left Column -->
-                    <div class="project-info-left">
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Industry</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Construction</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Service</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Web Design & Development</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Location</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Switzerland</span>
-                            </div>
-                        </div>
+                <!-- The project in one row under the name -->
+                <dl class="project-facts">
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Industry</dt>
+                        <dd class="project-info-value">Construction</dd>
                     </div>
-
-                    <!-- Middle Column -->
-                    <div class="project-info-middle">
-                        <div class="project-info-item project-info-year">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Year</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">2026</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item project-info-stack">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Stack</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Figma · WordPress · Custom JavaScript · Custom
-                                    CSS</span>
-                            </div>
-                        </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Service</dt>
+                        <dd class="project-info-value">Product Design &amp;<br>Development</dd>
                     </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Agency</dt>
+                        <dd class="project-info-value">Monun AG</dd>
+                    </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Location</dt>
+                        <dd class="project-info-value">Switzerland</dd>
+                    </div>
+                    <div class="project-fact project-fact--stack text-reveal-wrapper">
+                        <dt class="project-info-label">Stack</dt>
+                        <dd class="project-info-value">Figma · WordPress · PHP · Vanilla&nbsp;JavaScript · SCSS · Git</dd>
+                    </div>
+                </dl>
 
-                    <!-- Right Column: Project Description -->
-                    <div class="project-info-right">
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Project Description</span>
+                <!-- Case study, one part after another: a heading and its text. On a wide screen script.js lists every part's
+                     name on the left, held in view as the texts pass: dark grey, and light for the part being read; on a
+                     phone (or without script.js) each heading sits with its text. A new part is one more .case-step -->
+                <div class="case-study">
+                    <div class="case-study-steps">
+                        <section class="case-step" aria-labelledby="case-company">
+                            <h2 class="case-step-title" data-reveal id="case-company">Company</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>A construction firm with no website at
+                                    all</h3>
+                                <p data-reveal>HBS Swiss AG runs construction projects across planning, project
+                                    management and site supervision. The project came through Monun AG, where I work
+                                    as a product designer and developer.</p>
+                                <p data-reveal>I had already rebuilt their identity, so the visual language was
+                                    settled before a single screen existed. The site's job was to carry it into
+                                    something people could use.</p>
                             </div>
-                            <div class="project-description-content">
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">This project involved the design and development
-                                        of a modern construction website commissioned by MONUN AG on behalf of their
-                                        client. My role focused exclusively on UX design and front-end development,
-                                        translating business requirements into a clear, functional, and visually refined
-                                        digital experience.</p>
-                                </div>
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">The process began with structured UX research to
-                                        understand the company's positioning, target audience, and service flow. Based
-                                        on these insights, I created wireframes and high-fidelity prototypes in Figma,
-                                        defining layout structure, content hierarchy, and interaction patterns before
-                                        moving into implementation.</p>
-                                </div>
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">The website was then developed using WordPress,
-                                        enhanced with custom JavaScript and CSS to deliver tailored interactions,
-                                        performance optimizations, and a responsive layout across all devices.
-                                        Particular attention was given to usability, readability, and visual
-                                        consistency, ensuring the platform communicates professionalism while remaining
-                                        intuitive for visitors.</p>
-                                </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-problem">
+                            <h2 class="case-step-title" data-reveal id="case-problem">The problem</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Starting from nothing, with no reference
+                                    point</h3>
+                                <p data-reveal>HBS had no website. Not an outdated one, none at all. That removed the
+                                    usual starting points: nothing to audit, no analytics, no existing structure to
+                                    argue with, and no evidence of what visitors already struggled to find.</p>
+                                <p data-reveal>It also meant every decision was permanent in a way a redesign never
+                                    is. The first version sets what the company looks like online, how it explains its
+                                    work, and what people expect when they arrive. There was no previous version to
+                                    blame and nothing to fall back on.</p>
+                                <p data-reveal>The brief itself was short. The company had to look premium, and it had
+                                    to explain what it does properly. Both were open questions rather than answers,
+                                    because HBS coordinates construction projects across planning, management and
+                                    execution, and that is harder to communicate than a single trade.</p>
                             </div>
-                        </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-research">
+                            <h2 class="case-step-title" data-reveal id="case-research">Research</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Looking at the market, then asking who
+                                    actually calls</h3>
+                                <p data-reveal>I went through comparable Swiss construction websites, looking at how
+                                    services are structured, how work is presented, and how quickly a visitor can
+                                    reach a person. Most fall into one of two shapes: a thin brochure with a phone
+                                    number and no evidence of work, or a dense corporate site that buries what the
+                                    company does behind company history.</p>
+                                <p data-reveal>Neither suited HBS. With no existing site, this one had to prove the
+                                    company is real, careful and worth calling.</p>
+                                <p data-reveal>I also went through the company's positioning and service flow with the
+                                    client: who contacts them, what they ask, and where HBS actually enters a project.
+                                    The site had to explain the work in a way someone outside the industry would
+                                    follow.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-solution">
+                            <h2 class="case-step-title" data-reveal id="case-solution">Solution</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Show the work, explain the process, make
+                                    contact unmissable</h3>
+                                <p data-reveal>Projects get their own place, not a mention. Construction is a trust
+                                    purchase. With no website and no reviews to point at, completed work is the only
+                                    argument available, so Projekte sits at the top level rather than inside an About
+                                    page.</p>
+                                <p data-reveal>Services are explained rather than listed. Planning, realisation and
+                                    the stages around them are laid out so a visitor can see where HBS fits into their
+                                    own project, instead of reading a list of capabilities and working it out
+                                    themselves.</p>
+                                <p data-reveal>One persistent action, visually separated. Kontakt is the only filled
+                                    button in the header, distinct from the navigation beside it. For a business whose
+                                    entire digital presence starts here, the one thing that must never be more than a
+                                    click away is reaching a person.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-design">
+                            <h2 class="case-step-title" data-reveal id="case-design">Design</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Confident, not decorative</h3>
+                                <p data-reveal>Blue carries the site: strong and saturated, used in full-bleed
+                                    sections rather than as an accent, with white type on top. It reads as engineering
+                                    rather than luxury, which is the right register for a company whose promise is
+                                    that things get built properly. White sections between the blue ones give the eye
+                                    somewhere to rest and keep long pages from becoming heavy.</p>
+                                <p data-reveal>Type is a single clean grotesque throughout, set large for headings and
+                                    plainly for body copy. No display face, no second family. In a sector where
+                                    credibility comes from precision, restraint in the typography does more than
+                                    character would.</p>
+                                <p data-reveal>The interface is built from one repeated form: a softened rectangle.
+                                    The navigation floats in a rounded bar rather than a full-width strip, buttons are
+                                    pills, secondary actions are circles, and service panels and the hero share the
+                                    same corner radius. One shape, one spacing scale, repeated everywhere instead of a
+                                    new treatment on every section.</p>
+                                <p data-reveal>Photography got a blue gradient laid over it, which solves a practical
+                                    problem. Construction images arrive inconsistent, shot on different days in
+                                    different light by different people. The overlay pulls a varied set into one
+                                    family, so the site holds together regardless of what gets added later.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-development">
+                            <h2 class="case-step-title" data-reveal id="case-development">Development</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>A site the company can grow itself</h3>
+                                <p data-reveal>Built as a custom WordPress theme rather than a page builder, so HBS
+                                    can add projects and update services through structured fields without touching
+                                    layout. Interaction behaviour is written in vanilla JavaScript with no framework
+                                    dependency. Styling is a single global system of tokens and shared components
+                                    rather than per-page CSS, so new project pages inherit the spacing, type scale and
+                                    colour logic and stay consistent as the portfolio grows.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-outcome">
+                            <h2 class="case-step-title" data-reveal id="case-outcome">Outcome</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>From invisible to findable</h3>
+                                <p data-reveal>Anyone who searches for HBS now finds the company rather than nothing.
+                                    Visitors reach a clear explanation of what HBS does and where it fits in their
+                                    project, with completed work as evidence and a way to reach a person from any
+                                    page. The client adds new projects themselves through structured fields, so the
+                                    site grows with the company.</p>
+                            </div>
+                        </section>
                     </div>
                 </div>
 
-                <div class="project-image-section">
-                    <!-- First big image - full width -->
+                <!-- Images in a narrower column; on a wide screen script.js adds a navigator on the right: every image small,
+                     with a frame showing which part is on screen -->
+                <div class="project-image-section project-image-section--navigator">
+                    <!-- Previous and next project beside the images: they arrive with the first image, stay level with the middle
+                         of the screen while the images pass, and leave with the last one -->
+                    <div class="project-pager-rail">
+                        <nav class="project-pager" aria-label="More projects">
+                            <a class="project-pager-link project-pager-link--previous" href="/work/cityhotel.html" rel="prev" aria-label="Previous project: Cityhotel"><span>Previous</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 1 1 5l4.5 4"/></svg></span></a>
+                            <a class="project-pager-link project-pager-link--next" href="/work/jetonikeramika.html" rel="next" aria-label="Next project: Jetonikeramika"><span>Next</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M.5 1 5 5 .5 9"/></svg></span></a>
+                        </nav>
+                    </div>
+
+                    <!-- First image -->
                     <div class="project-main-image hbs-website-image-reveal hbs-website-first-image">
-                        <img src="/work/hbs-website/hbs-01.jpg" alt="HBS Website Hero" loading="lazy">
+                        <img src="/work/hbs-website/hbs-01.jpg" width="1500" height="880" alt="HBS Website Hero" loading="lazy">
                     </div>
 
                     <!-- Gallery: the smaller images, one under another -->
                     <div class="project-gallery-layout">
                         <div class="project-gallery-images">
                             <div class="project-main-image hbs-website-image-reveal">
-                                <img src="/work/hbs-website/hbs-02.jpg" alt="HBS Website 2" loading="lazy">
+                                <img src="/work/hbs-website/hbs-02.jpg" width="1500" height="987" alt="HBS Website 2" loading="lazy">
                             </div>
                             <div class="project-main-image hbs-website-image-reveal">
-                                <img src="/work/hbs-website/hbs-03.jpg" alt="HBS Website 3" loading="lazy">
+                                <img src="/work/hbs-website/hbs-03.jpg" width="1500" height="987" alt="HBS Website 3" loading="lazy">
                             </div>
                             <div class="project-main-image hbs-website-image-reveal">
-                                <img src="/work/hbs-website/hbs-04.jpg" alt="HBS Website 4" loading="lazy">
+                                <img src="/work/hbs-website/hbs-04.jpg" width="1500" height="987" alt="HBS Website 4" loading="lazy">
                             </div>
                             <div class="project-main-image hbs-website-image-reveal">
-                                <img src="/work/hbs-website/hbs-05.jpg" alt="HBS Website 5" loading="lazy">
+                                <img src="/work/hbs-website/hbs-05.jpg" width="1500" height="987" alt="HBS Website 5" loading="lazy">
                             </div>
                             <div class="project-main-image hbs-website-image-reveal">
-                                <img src="/work/hbs-website/hbs-06.jpg" alt="HBS Website 6" loading="lazy">
+                                <img src="/work/hbs-website/hbs-06.jpg" width="1500" height="987" alt="HBS Website 6" loading="lazy">
                             </div>
                             <div class="project-main-image hbs-website-image-reveal">
-                                <img src="/work/hbs-website/hbs-07.jpg" alt="HBS Website 7" loading="lazy">
+                                <img src="/work/hbs-website/hbs-07.jpg" width="1500" height="987" alt="HBS Website 7" loading="lazy">
                             </div>
                             <div class="project-main-image hbs-website-image-reveal">
-                                <img src="/work/hbs-website/hbs-08.jpg" alt="HBS Website 8" loading="lazy">
+                                <img src="/work/hbs-website/hbs-08.jpg" width="1500" height="987" alt="HBS Website 8" loading="lazy">
                             </div>
                             <div class="project-main-image hbs-website-image-reveal">
-                                <img src="/work/hbs-website/hbs-09.jpg" alt="HBS Website 9" loading="lazy">
+                                <img src="/work/hbs-website/hbs-09.jpg" width="1500" height="987" alt="HBS Website 9" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -275,16 +348,6 @@
             </div>
         </section>
     </main>
-
-        <!-- Project Pagination -->
-    <nav class="project-pagination" aria-label="Project navigation">
-        <!-- One quiet line between hairlines: previous project, all projects, next project -->
-        <div class="container project-pagination-row">
-            <a href="/work/cityhotel.html" class="arrow-link arrow-link--back project-pagination-prev" rel="prev"><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 3.2 3.2 12.8"/><path d="M9.8 12.8H3.2V6.2"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 3.2 3.2 12.8"/><path d="M9.8 12.8H3.2V6.2"/></svg></span><span class="arrow-link-label"><span class="project-pagination-label">Previous</span> <span class="project-pagination-dot" aria-hidden="true">·</span> Cityhotel</span></a>
-            <a href="/work.html" class="arrow-link project-pagination-all"><span class="arrow-link-label">All projects</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
-            <a href="/work/jetonikeramika.html" class="arrow-link project-pagination-next" rel="next"><span class="arrow-link-label"><span class="project-pagination-label">Next</span> <span class="project-pagination-dot" aria-hidden="true">·</span> Jetonikeramika</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
-        </div>
-    </nav>
 
     <!-- Modern Footer Section -->
     <footer class="modern-footer">
@@ -323,7 +386,7 @@
     <script src="/vendor/gsap/gsap.min.js" defer></script>
     <script src="/vendor/gsap/ScrollTrigger.min.js" defer></script>
     <script src="/vendor/gsap/CustomEase.min.js" defer></script>
-    <script src="/script.js?v=20260918-1" defer></script>
+    <script src="/script.js?v=20260918-3" defer></script>
 </body>
 
 </html>

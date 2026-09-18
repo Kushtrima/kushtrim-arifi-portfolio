@@ -928,21 +928,24 @@
     }
 }
 
-/* Cityhotel pilot: the first image keeps the same distance to the next one as the images below keep between them (their
+/* Case-study pages: the first image keeps the same distance to the next one as the images below keep between them (their
    own margin plus the gallery's gap: 80px; 70px up to 768px, where the gap is 30px; 30px up to 600px, where the images
    lose their margins) */
-.project-image-section.project-image-section--navigator > .cityhotel-first-image {
+.project-image-section.project-image-section--navigator > .cityhotel-first-image,
+.project-image-section.project-image-section--navigator > .hbs-website-first-image {
     margin-bottom: 80px;
 }
 
 @media (max-width: 768px) {
-    .project-image-section.project-image-section--navigator > .cityhotel-first-image {
+    .project-image-section.project-image-section--navigator > .cityhotel-first-image,
+    .project-image-section.project-image-section--navigator > .hbs-website-first-image {
         margin-bottom: 70px !important;
     }
 }
 
 @media (max-width: 600px) {
-    .project-image-section.project-image-section--navigator > .cityhotel-first-image {
+    .project-image-section.project-image-section--navigator > .cityhotel-first-image,
+    .project-image-section.project-image-section--navigator > .hbs-website-first-image {
         margin-bottom: 30px !important;
     }
 }
