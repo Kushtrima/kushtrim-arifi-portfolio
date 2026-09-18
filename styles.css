@@ -731,27 +731,43 @@ body:has(.hero) .header:has(.navigation.active) {
 
 /* Phones and portrait tablets: "Kushtrim" across the top with its feet on the photo, "Arifi" at the right standing on
    the photo's bottom edge, then the job title and "Creating since 2012" one under the other. Sizes in vw keep the arrangement the same at
-   every width; the hero is as tall as its content */
+   every width; the hero fills the screen, as it does on a wide one */
 @media (max-width: 699px), (max-width: 1023px) and (orientation: portrait) {
     .hero {
         --cx: 50%;
-        height: calc(96px + 80vw + 5 * clamp(16px, 4.6vw, 24px) + 32px);
-        min-height: 0;
+        /* The middle group scales off the photo: the name is 0.283 of it, "Kushtrim" starts 0.076 down plus 170px,
+           the photo 0.164 down less 60px, "Arifi" 0.986 down, and the whole group is 1.43 photos tall. The width cap keeps
+           "Kushtrim" inside the screen; the height cap lets the group grow on a tall phone */
+        --pic: min(66vw, 34svh);
+        --photo: var(--pic);
+        --group: calc(var(--pic) * 1.4286);
+        --cap-line: clamp(16px, 4.6vw, 24px);
+        --cap-bottom: calc(84px + env(safe-area-inset-bottom));
+        /* The captions' block: the job title's two lines, the gap, and "Creating since 2012". Measured from the old
+           24px foot, so raising the captions doesn't drag the name and the photo up with them */
+        --cap-space: calc(5 * var(--cap-line) + 24px + env(safe-area-inset-bottom));
+        /* The name and the photo sit in the middle of what is left between the header and the captions */
+        --stack-top: max(96px, calc(96px + (100svh - 96px - var(--cap-space) - var(--group)) / 2));
+        height: 100vh;
+        height: 100svh;
+        min-height: calc(96px + var(--group) + 5 * var(--cap-line) + 32px);
     }
 
     .hero-word {
-        font-size: 19vw;
+        font-size: calc(var(--pic) * 0.283);
     }
 
     .hero-word--first {
         right: auto;
         left: 0;
-        top: calc(96px + 2vw);
+        /* 170px below where it rests, but never closer than 8px above "Arifi" (a word's box is 0.294 of the photo tall) */
+        top: min(calc(var(--stack-top) + var(--pic) * 0.076 + 170px), calc(var(--stack-top) + var(--pic) * 0.692 - 8px));
     }
 
     .hero-image-section {
-        top: calc(96px + 12vw);
-        width: 56vw;
+        /* Never higher than the header, on a very short screen */
+        top: max(96px, calc(var(--stack-top) + var(--pic) * 0.164 - 60px));
+        width: var(--pic);
         translate: -50% 0;
     }
 
@@ -763,22 +779,23 @@ body:has(.hero) .header:has(.navigation.active) {
     .hero-word--last {
         left: auto;
         right: 0;
-        top: calc(96px + 68vw - 19vw * 0.79);
+        top: calc(var(--stack-top) + var(--pic) * 0.986);
     }
 
     .hero-caption {
-        bottom: auto;
-        font-size: clamp(16px, 4.6vw, 24px);
+        font-size: var(--cap-line);
     }
 
     .hero-caption--left {
         left: 0;
-        top: calc(96px + 80vw);
+        top: auto;
+        bottom: calc(var(--cap-bottom) + 2.5em);
     }
 
     /* Under the job title's two lines */
     .hero-caption--right {
-        top: calc(96px + 80vw + 2.5em);
+        top: auto;
+        bottom: var(--cap-bottom);
     }
 }
 

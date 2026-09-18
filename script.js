@@ -654,9 +654,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 ScrollTrigger.create({ trigger: hero, start: 'top top', end: '+=15%', pin: true, scrub: 1, animation, refreshPriority: 1, onRefresh: buildDots });
                 ScrollTrigger.sort();
             } else {
-                // Stacked (shorter than the screen): the name bursts as the hero scrolls away, the photo slower than the page
+                // Stacked: the name starts breaking up with the first touch of the scroll, over a third of a screen, so the
+                // dots are already in the air while the hero is still on screen; the photo drifts slower than the page for
+                // the whole hero
                 const scroll = { trigger: hero, start: 'top top', end: 'bottom top', scrub: true };
-                ScrollTrigger.create({ ...scroll, animation, onRefresh: buildDots });
+                ScrollTrigger.create({ trigger: hero, start: 'top top', end: '+=33%', scrub: true, animation, onRefresh: buildDots });
                 gsap.to(photos, { yPercent: 12, ease: 'none', scrollTrigger: { ...scroll } });
             }
             return () => {
