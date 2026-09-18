@@ -735,7 +735,7 @@ body:has(.hero) .header:has(.navigation.active) {
 @media (max-width: 699px), (max-width: 1023px) and (orientation: portrait) {
     .hero {
         --cx: 50%;
-        /* The middle group scales off the photo: the name is 0.283 of it, "Kushtrim" starts 0.076 down plus 170px,
+        /* The middle group scales off the photo: the name is 0.181 of it, "Kushtrim" starts 0.076 down plus 210px,
            the photo 0.164 down less 60px, "Arifi" 0.986 down, and the whole group is 1.43 photos tall. The width cap keeps
            "Kushtrim" inside the screen; the height cap lets the group grow on a tall phone */
         --pic: min(66vw, 34svh);
@@ -754,14 +754,14 @@ body:has(.hero) .header:has(.navigation.active) {
     }
 
     .hero-word {
-        font-size: calc(var(--pic) * 0.283);
+        font-size: calc(var(--pic) * 0.181);
     }
 
     .hero-word--first {
         right: auto;
-        left: 0;
-        /* 170px below where it rests, but never closer than 8px above "Arifi" (a word's box is 0.294 of the photo tall) */
-        top: min(calc(var(--stack-top) + var(--pic) * 0.076 + 170px), calc(var(--stack-top) + var(--pic) * 0.692 - 8px));
+        left: 60px;
+        /* 210px below where it rests, but never closer than 8px above "Arifi" (a word's box is 0.188 of the photo tall) */
+        top: min(calc(var(--stack-top) + var(--pic) * 0.076 + 210px), calc(var(--stack-top) + var(--pic) * 0.798 - 8px));
     }
 
     .hero-image-section {
@@ -778,7 +778,7 @@ body:has(.hero) .header:has(.navigation.active) {
 
     .hero-word--last {
         left: auto;
-        right: 0;
+        right: 60px;
         top: calc(var(--stack-top) + var(--pic) * 0.986);
     }
 
@@ -1255,16 +1255,31 @@ body:has(.hero) .header:has(.navigation.active) {
     }
 }
 
-/* Phones: one column, the years over the role and company, the note under them */
+/* Phones: the same two columns as a wide screen, the years on the left and the job on the right, at a size that fits
+   the width; a long company name wraps inside its own column instead of pushing the years out */
 @media (max-width: 600px) {
+    /* The section holds a whole screen and its title and jobs sit in the middle of it, with the leftover space shared
+       above and below them */
+    .experience-section {
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-bottom: clamp(40px, 7vw, 90px);
+    }
+
     .experience-list {
-        grid-template-columns: minmax(0, 1fr);
+        grid-template-columns: max-content minmax(0, 1fr);
+        column-gap: 14px;
         row-gap: 36px;
-        width: auto;
+        /* Full width until script.js measures the longest line and narrows the list to it, which lets it centre */
+        width: 100%;
+        margin-inline: auto;
     }
 
     .experience-row {
-        row-gap: 6px;
+        font-size: 13px;
+        row-gap: 4px;
     }
 
     .job-years {
@@ -1272,7 +1287,7 @@ body:has(.hero) .header:has(.navigation.active) {
     }
 
     .job-work {
-        grid-column: 1;
+        grid-column: 2;
     }
 }
 

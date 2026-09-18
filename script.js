@@ -800,6 +800,51 @@ document.addEventListener('DOMContentLoaded', function () {
                     else openOnly(row.classList.contains('is-open') ? null : row);
                 });
             });
+            // On a phone the jobs column takes whatever width is left, but the lines inside it wrap shorter than that, so
+            // the list reads as if it were pushed to the left. Measure the longest line actually drawn (Range gives one
+            // rectangle per line) and make the list exactly that wide, so its own auto margins centre it in the page
+            const phoneList = window.matchMedia('(max-width: 600px)');
+            const lineWidths = (element) => {
+                const range = document.createRange();
+                range.selectNodeContents(element);
+                return [...range.getClientRects()].map((box) => box.width);
+            };
+            const fitListWidth = () => {
+                experienceList.style.width = '';
+                if (!phoneList.matches) return;
+                let years = 0;
+                let job = 0;
+                experienceRows.forEach((row) => {
+                    years = Math.max(years, ...lineWidths(row.querySelector('.job-years')));
+                    row.querySelectorAll('.job-title, .job-where').forEach((part) => {
+                        job = Math.max(job, ...lineWidths(part));
+                    });
+                });
+                const gap = parseFloat(getComputedStyle(experienceList).columnGap) || 0;
+                if (years && job) experienceList.style.width = `${Math.ceil(years + gap + job)}px`;
+            };
+            fitListWidth();
+            if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitListWidth);
+            let fitCall = null;
+            window.addEventListener('resize', () => {
+                fitCall?.kill();
+                fitCall = gsap.delayedCall(0.2, () => {
+                    fitListWidth();
+                    ScrollTrigger.refresh();
+                });
+            });
+            phoneList.addEventListener('change', fitListWidth);
+
+            // Without a mouse the note stays until it is dismissed: a tap anywhere off the jobs closes it, as does the
+            // Escape key. A tap on a job is handled by the row itself
+            document.addEventListener('click', (event) => {
+                if (inPlace.matches || event.target.closest('.experience-row')) return;
+                hoverCall?.kill();
+                openOnly(null);
+            });
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') openOnly(null);
+            });
             const hoverArea = experienceContent || experienceList;
             hoverArea.addEventListener('mouseenter', () => leaveCall?.kill());
             hoverArea.addEventListener('mouseleave', () => {
