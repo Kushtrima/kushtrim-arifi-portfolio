@@ -932,20 +932,23 @@
    own margin plus the gallery's gap: 80px; 70px up to 768px, where the gap is 30px; 30px up to 600px, where the images
    lose their margins) */
 .project-image-section.project-image-section--navigator > .cityhotel-first-image,
-.project-image-section.project-image-section--navigator > .hbs-website-first-image {
+.project-image-section.project-image-section--navigator > .hbs-website-first-image,
+.project-image-section.project-image-section--navigator > .jetonikeramika-first-image {
     margin-bottom: 80px;
 }
 
 @media (max-width: 768px) {
     .project-image-section.project-image-section--navigator > .cityhotel-first-image,
-    .project-image-section.project-image-section--navigator > .hbs-website-first-image {
+    .project-image-section.project-image-section--navigator > .hbs-website-first-image,
+    .project-image-section.project-image-section--navigator > .jetonikeramika-first-image {
         margin-bottom: 70px !important;
     }
 }
 
 @media (max-width: 600px) {
     .project-image-section.project-image-section--navigator > .cityhotel-first-image,
-    .project-image-section.project-image-section--navigator > .hbs-website-first-image {
+    .project-image-section.project-image-section--navigator > .hbs-website-first-image,
+    .project-image-section.project-image-section--navigator > .jetonikeramika-first-image {
         margin-bottom: 30px !important;
     }
 }
@@ -1903,18 +1906,6 @@
         transform: none !important;
     }
 
-    /* Jetonikeramika images - override fixed heights for natural display */
-    .project-image-section .jetonikeramika-image-reveal {
-        height: auto !important;
-        min-height: auto !important;
-        margin-bottom: 25px !important;
-    }
-
-    .project-image-section .jetonikeramika-image-reveal img {
-        height: auto !important;
-        transform: none !important;
-    }
-
     /* Mardal images - override fixed heights for natural display */
     .project-image-section .mardal-image-reveal {
         height: auto !important;
@@ -2262,27 +2253,6 @@
     }
 
     .project-image-section .spitex-image-reveal img {
-        border-radius: 12px;
-        height: auto;
-        object-fit: contain;
-    }
-
-    /* Jetonikeramika First Image - Mobile */
-    .project-image-section .jetonikeramika-first-image {
-        margin-bottom: 40px;
-    }
-
-    /* Jetonikeramika images on mobile */
-    .project-image-section .jetonikeramika-image-reveal {
-        margin-bottom: 30px;
-        border-radius: 12px;
-    }
-
-    .project-image-section .jetonikeramika-image-reveal::before {
-        border-radius: 12px 12px 0 0;
-    }
-
-    .project-image-section .jetonikeramika-image-reveal img {
         border-radius: 12px;
         height: auto;
         object-fit: contain;

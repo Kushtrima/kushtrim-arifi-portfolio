@@ -44,7 +44,7 @@
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
 
     <link rel="stylesheet" href="/styles.css?v=20260918-3">
-    <link rel="stylesheet" href="/project.css?v=20260918-1">
+    <link rel="stylesheet" href="/project.css?v=20260921-1">
 
     <!-- Structured Data: CreativeWork -->
     <script type="application/ld+json">
@@ -140,7 +140,7 @@
         <section class="project-hero">
             <div class="container">
                 <div class="project-header-content">
-                    <div class="project-title-section">
+                    <div class="project-title-section project-title-section--inline">
                         <div class="text-reveal-wrapper">
                             <h1 class="project-title">Jetonikeramika</h1>
                         </div>
@@ -151,121 +151,179 @@
                     <div class="project-header-divider"></div>
                 </div>
 
-                <!-- Three Column Layout -->
-                <div class="project-info-layout">
-                    <!-- Left Column -->
-                    <div class="project-info-left">
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Industry</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Tiles industry</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Service</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Research · UX UI · Web development</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Location</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Kosova</span>
-                            </div>
-                        </div>
+                <!-- The project in one row under the name -->
+                <dl class="project-facts">
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Industry</dt>
+                        <dd class="project-info-value">Ceramics &amp;<br>Tiles</dd>
                     </div>
-
-                    <!-- Middle Column -->
-                    <div class="project-info-middle">
-                        <div class="project-info-item project-info-year">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Year</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">2025</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item project-info-stack">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Stack</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Figma · WordPress · HTML · CSS · JS</span>
-                            </div>
-                        </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Service</dt>
+                        <dd class="project-info-value">Product Design &amp;<br>Development</dd>
                     </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Agency</dt>
+                        <dd class="project-info-value">Mardal</dd>
+                    </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Location</dt>
+                        <dd class="project-info-value">Kosovo</dd>
+                    </div>
+                    <div class="project-fact project-fact--stack text-reveal-wrapper">
+                        <dt class="project-info-label">Stack</dt>
+                        <dd class="project-info-value">Figma · WordPress · PHP · Vanilla&nbsp;JavaScript · SCSS · GA4</dd>
+                    </div>
+                </dl>
 
-                    <!-- Right Column: Project Description -->
-                    <div class="project-info-right">
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Project Description</span>
+                <!-- Case study, one part after another: a heading and its text. On a wide screen script.js lists every part's
+                     name on the left, held in view as the texts pass: dark grey, and light for the part being read; on a
+                     phone (or without script.js) each heading sits with its text. A new part is one more .case-step -->
+                <div class="case-study">
+                    <div class="case-study-steps">
+                        <section class="case-step" aria-labelledby="case-company">
+                            <h2 class="case-step-title" data-reveal id="case-company">Company</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>A premium ceramics brand with a
+                                    2,500&nbsp;m² showroom</h3>
+                                <p data-reveal>Jetonikeramika sells premium ceramics and tiles for homes, from
+                                    bathrooms to living spaces, to private clients and contractors alike. Its centre of
+                                    gravity is a 2,500&nbsp;m² showroom where customers see, touch and choose the
+                                    product in person. The project came through Mardal in 2026, and I took it from
+                                    research and Figma through to the deployed site.</p>
                             </div>
-                            <div class="project-description-content">
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">This project was approached with a focus on
-                                        minimalism and functionality, using a dark visual foundation with white
-                                        typography and subtle yellow accents derived from the brand identity.</p>
-                                </div>
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">The interface was designed in Figma using a
-                                        human-centered approach, prioritizing clarity, hierarchy, and ease of use. After
-                                        client approval, the design was implemented as a custom WordPress build,
-                                        utilizing HTML, CSS, and JavaScript to support tailored interactions and refined
-                                        motion.</p>
-                                </div>
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">A key element of the experience is the use of
-                                        smooth, scroll-triggered animations that introduce content progressively,
-                                        enhancing visual rhythm while maintaining clarity and usability.</p>
-                                </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-problem">
+                            <h2 class="case-step-title" data-reveal id="case-problem">The problem</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>A company with a clear philosophy and no
+                                    way to show it online</h3>
+                                <p data-reveal>Jetonikeramika had no website. Everything had to be built from the
+                                    start, which meant there was no existing structure to inherit and no precedent for
+                                    how the brand should look or behave online.</p>
+                                <p data-reveal>The harder question was what the site was for. A premium ceramics brand
+                                    could easily become an online catalogue competing on product specs, but that isn't
+                                    how this company sells. The website had to express the company's philosophy, the
+                                    brands it carries and the range it offers, in a way that matched the premium
+                                    experience a customer gets on arrival at the showroom.</p>
                             </div>
-                        </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-research">
+                            <h2 class="case-step-title" data-reveal id="case-research">Research</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>The sale happens in the showroom</h3>
+                                <p data-reveal>I researched how ceramics and interior brands present themselves in the
+                                    Kosovo market, and worked through with the client how their customers actually come
+                                    to buy.</p>
+                                <p data-reveal>The conclusion shaped everything that followed. Sales happen through the
+                                    showroom and through advertising, not online. The website's role is not to close a
+                                    sale but to tell the company's story well enough that someone wants to visit. That
+                                    made it a brand site first and a catalogue second.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-solution">
+                            <h2 class="case-step-title" data-reveal id="case-solution">Solution</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Story first, catalogue second, showroom as
+                                    the destination</h3>
+                                <p data-reveal>The philosophy leads. The first thing a visitor meets is what the
+                                    company stands for, not a product grid. For a premium brand competing on quality
+                                    rather than price, that story is the reason to choose it.</p>
+                                <p data-reveal>The catalogue supports, it doesn't sell. Brands and ranges are presented
+                                    so visitors can understand the breadth of what's available and arrive at the
+                                    showroom already knowing what interests them. The final choice is made in person,
+                                    under real light, with the product in hand.</p>
+                                <p data-reveal>Every path leads to the showroom. Location, opening hours and how to get
+                                    there are never far away, because a visit is the outcome the site exists to
+                                    produce.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-design">
+                            <h2 class="case-step-title" data-reveal id="case-design">Design</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Dark, restrained, and built from the
+                                    brand</h3>
+                                <p data-reveal>The palette comes straight from the identity: a dark background with
+                                    white type and yellow accents drawn from the logo. Dark gives the brand the premium
+                                    weight the client wanted and lets product photography stand out against it rather
+                                    than competing with a bright page. Yellow is used sparingly, for emphasis and
+                                    actions, so it keeps its strength.</p>
+                                <p data-reveal>Typography is clean and set with generous space, so the story reads
+                                    easily against the dark ground. Content is introduced progressively as you scroll,
+                                    with smooth animations that give the pages a sense of rhythm without getting in the
+                                    way of reading. Images are large and given room, closer to a printed brand book
+                                    than a product listing.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-development">
+                            <h2 class="case-step-title" data-reveal id="case-development">Development</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>A custom build the company can update</h3>
+                                <p data-reveal>Designed in Figma, then built as a custom WordPress theme rather than a
+                                    page builder, so the team can update ranges, brands and content through structured
+                                    fields without touching layout. Scroll-triggered animation is written in vanilla
+                                    JavaScript using the Intersection Observer API, so content is revealed as it enters
+                                    the viewport without the performance cost of listening to every scroll event.
+                                    Styling is a single SCSS system of tokens and shared components, so every page
+                                    inherits the same spacing, type scale and colour logic. Google Analytics 4 was
+                                    configured from launch to measure how visitors use the site.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-outcome">
+                            <h2 class="case-step-title" data-reveal id="case-outcome">Outcome</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Five times the monthly traffic, and still
+                                    growing</h3>
+                                <p data-reveal>Jetonikeramika now has a website that tells its story rather than
+                                    competing as a catalogue. Visitors understand the company's philosophy, the brands
+                                    it carries and the range it offers, and every page points them toward the place
+                                    where the sale actually happens.</p>
+                                <p data-reveal>Monthly views have grown from around 100 after launch to more than 500,
+                                    and continue to rise.</p>
+                            </div>
+                        </section>
                     </div>
                 </div>
 
-                <div class="project-image-section">
-                    <!-- First big image - full width -->
+                <!-- Images in a narrower column; on a wide screen script.js adds a navigator on the right: every image small,
+                     with a frame showing which part is on screen -->
+                <div class="project-image-section project-image-section--navigator">
+                    <!-- Previous and next project beside the images: they arrive with the first image, stay level with the middle
+                         of the screen while the images pass, and leave with the last one -->
+                    <div class="project-pager-rail">
+                        <nav class="project-pager" aria-label="More projects">
+                            <a class="project-pager-link project-pager-link--previous" href="/work/hbs-website.html" rel="prev" aria-label="Previous project: HBS"><span>Previous</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 1 1 5l4.5 4"/></svg></span></a>
+                            <a class="project-pager-link project-pager-link--next" href="/work/ennur.html" rel="next" aria-label="Next project: En-Nur"><span>Next</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M.5 1 5 5 .5 9"/></svg></span></a>
+                        </nav>
+                    </div>
+
+                    <!-- First image -->
                     <div class="project-main-image jetonikeramika-image-reveal jetonikeramika-first-image">
-                        <img src="/work/jetonikeramika/jetoni1.jpg" alt="Jetonikeramika Project 1" loading="lazy">
+                        <img src="/work/jetonikeramika/jetoni1.jpg" width="1916" height="1124" alt="Jetonikeramika Project 1" loading="lazy">
                     </div>
 
                     <!-- Gallery: the smaller images, one under another -->
                     <div class="project-gallery-layout">
                         <div class="project-gallery-images">
                             <div class="project-main-image jetonikeramika-image-reveal">
-                                <img src="/work/jetonikeramika/jetoni2.jpg" alt="Jetonikeramika Project 2"
-                                    loading="lazy">
+                                <img src="/work/jetonikeramika/jetoni2.jpg" width="1500" height="987" alt="Jetonikeramika Project 2" loading="lazy">
                             </div>
                             <div class="project-main-image jetonikeramika-image-reveal">
-                                <img src="/work/jetonikeramika/jetoni3.jpg" alt="Jetonikeramika Project 3"
-                                    loading="lazy">
+                                <img src="/work/jetonikeramika/jetoni3.jpg" width="1500" height="987" alt="Jetonikeramika Project 3" loading="lazy">
                             </div>
                             <div class="project-main-image jetonikeramika-image-reveal">
-                                <img src="/work/jetonikeramika/jetoni4.jpg" alt="Jetonikeramika Project 4"
-                                    loading="lazy">
+                                <img src="/work/jetonikeramika/jetoni4.jpg" width="1500" height="987" alt="Jetonikeramika Project 4" loading="lazy">
                             </div>
                             <div class="project-main-image jetonikeramika-image-reveal">
-                                <img src="/work/jetonikeramika/jetoni5.jpg" alt="Jetonikeramika Project 5"
-                                    loading="lazy">
+                                <img src="/work/jetonikeramika/jetoni5.jpg" width="1500" height="987" alt="Jetonikeramika Project 5" loading="lazy">
                             </div>
                             <div class="project-main-image jetonikeramika-image-reveal">
-                                <img src="/work/jetonikeramika/jetoni6.jpg" alt="Jetonikeramika Project 6"
-                                    loading="lazy">
+                                <img src="/work/jetonikeramika/jetoni6.jpg" width="1300" height="855" alt="Jetonikeramika Project 6" loading="lazy">
                             </div>
                             <div class="project-main-image jetonikeramika-image-reveal">
-                                <img src="/work/jetonikeramika/jetoni7.jpg" alt="Jetonikeramika Project 7"
-                                    loading="lazy">
+                                <img src="/work/jetonikeramika/jetoni7.jpg" width="1300" height="855" alt="Jetonikeramika Project 7" loading="lazy">
                             </div>
                             <div class="project-main-image jetonikeramika-image-reveal">
-                                <img src="/work/jetonikeramika/jetoni8.jpg" alt="Jetonikeramika Project 8"
-                                    loading="lazy">
+                                <img src="/work/jetonikeramika/jetoni8.jpg" width="1500" height="987" alt="Jetonikeramika Project 8" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -273,16 +331,6 @@
             </div>
         </section>
     </main>
-
-        <!-- Project Pagination -->
-    <nav class="project-pagination" aria-label="Project navigation">
-        <!-- One quiet line between hairlines: previous project, all projects, next project -->
-        <div class="container project-pagination-row">
-            <a href="/work/hbs-website.html" class="arrow-link arrow-link--back project-pagination-prev" rel="prev"><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 3.2 3.2 12.8"/><path d="M9.8 12.8H3.2V6.2"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 3.2 3.2 12.8"/><path d="M9.8 12.8H3.2V6.2"/></svg></span><span class="arrow-link-label"><span class="project-pagination-label">Previous</span> <span class="project-pagination-dot" aria-hidden="true">·</span> HBS</span></a>
-            <a href="/work.html" class="arrow-link project-pagination-all"><span class="arrow-link-label">All projects</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
-            <a href="/work/ennur.html" class="arrow-link project-pagination-next" rel="next"><span class="arrow-link-label"><span class="project-pagination-label">Next</span> <span class="project-pagination-dot" aria-hidden="true">·</span> EN-NUR</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
-        </div>
-    </nav>
 
     <!-- Modern Footer Section -->
     <footer class="modern-footer">
