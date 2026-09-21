@@ -157,9 +157,9 @@
                         <dt class="project-info-label">Industry</dt>
                         <dd class="project-info-value">Religious<br>Community</dd>
                     </div>
-                    <div class="project-fact text-reveal-wrapper">
+                    <div class="project-fact project-fact--service text-reveal-wrapper">
                         <dt class="project-info-label">Service</dt>
-                        <dd class="project-info-value">Product Design &amp;<br>Development</dd>
+                        <dd class="project-info-value"><span class="fact-item">Product Design</span>&nbsp;· <span class="fact-item">Full-Stack Development</span>&nbsp;·<br><span class="fact-item">Payments</span></dd>
                     </div>
                     <div class="project-fact text-reveal-wrapper">
                         <dt class="project-info-label">Location</dt>
@@ -167,7 +167,7 @@
                     </div>
                     <div class="project-fact project-fact--stack text-reveal-wrapper">
                         <dt class="project-info-label">Stack</dt>
-                        <dd class="project-info-value">Figma · Laravel · PHP · MySQL · Blade · Render</dd>
+                        <dd class="project-info-value"><span class="fact-item">Figma</span>&nbsp;· <span class="fact-item">Laravel</span>&nbsp;· <span class="fact-item">PHP</span>&nbsp;· <span class="fact-item">Eloquent ORM</span>&nbsp;· <span class="fact-item">Blade</span>&nbsp;· <span class="fact-item">MySQL</span>&nbsp;· <span class="fact-item">Stripe</span>&nbsp;· <span class="fact-item">PHPMailer</span>&nbsp;· <span class="fact-item">Render</span></dd>
                     </div>
                 </dl>
 
@@ -179,16 +179,13 @@
                         <section class="case-step" aria-labelledby="case-company">
                             <h2 class="case-step-title" data-reveal id="case-company">Company</h2>
                             <div class="case-step-text">
-                                <h3 class="case-step-subtitle" data-reveal>A community that runs on monthly
-                                    memberships</h3>
+                                <h3 class="case-step-subtitle" data-reveal>A community funded month by month</h3>
                                 <p data-reveal>En-Nur is a mosque community in Switzerland. Its members, people of every
                                     age who live in the community, pay a monthly membership fee and also give donations,
                                     and the community depends on both to operate. Membership is not a one-off sign-up
-                                    but an ongoing relationship, renewed every month, which means the system behind it
-                                    is used constantly rather than occasionally.</p>
-                                <p data-reveal>In 2025 I designed and built the platform that now manages that
-                                    relationship, from the first system flow through Figma to the deployed
-                                    application.</p>
+                                    but an ongoing relationship, which means the system behind it is used constantly
+                                    rather than occasionally.</p>
+                                <p data-reveal>I designed and built that system in 2025.</p>
                             </div>
                         </section>
                         <section class="case-step" aria-labelledby="case-problem">
@@ -207,9 +204,9 @@
                                     working around rather than with. Work the software should have done still happened
                                     by hand, and every month they paid a subscription for a system that didn't match how
                                     they operate.</p>
-                                <p data-reveal>What they needed was not a better subscription. It was a system built
-                                    around their own requirements, at a cost that made sense for a community
-                                    organisation, and one they would own rather than rent.</p>
+                                <p data-reveal>They needed a system built around their own requirements, at a cost that
+                                    made sense for a community organisation, and one they would own rather than
+                                    rent.</p>
                             </div>
                         </section>
                         <section class="case-step" aria-labelledby="case-discovery">
@@ -217,15 +214,13 @@
                             <div class="case-step-text">
                                 <h3 class="case-step-subtitle" data-reveal>Starting from the business logic, not the
                                     screens</h3>
-                                <p data-reveal>The client walked me through how the community actually operates, and I
-                                    worked through the questions any system has to answer before it can be designed. Who
-                                    can become a member and how they register. When a monthly payment falls due and what
-                                    happens if it's missed. How donations differ from membership fees and how each needs
-                                    to be recorded. What the people running the community need to see at the end of
-                                    every month.</p>
-                                <p data-reveal>Before designing a single screen, I turned those answers into a framework
-                                    of the system flow. Every screen that followed had a clear place in it, and anything
-                                    that didn't serve the flow didn't get built.</p>
+                                <p data-reveal>Discovery meant working through, with the people who run the community,
+                                    the questions any system has to answer before it can be designed. Who can become a
+                                    member and how they register. When a monthly payment falls due and what happens if
+                                    it's missed. How donations differ from membership fees and how each needs to be
+                                    recorded. What the admins need to see at the end of every month.</p>
+                                <p data-reveal>Those answers became the brief, and anything that didn't serve them
+                                    didn't get built.</p>
                             </div>
                         </section>
                         <section class="case-step" aria-labelledby="case-users">
@@ -268,14 +263,13 @@
                                 <p data-reveal>The admin dashboard carries the complexity. Members, payments, donations
                                     and reporting all live here, because this is where the work of running the community
                                     happens. Payment status is visible across the whole membership, so the question of
-                                    who is up to date has an immediate answer instead of a spreadsheet.</p>
+                                    who is up to date has an immediate answer.</p>
                                 <p data-reveal>The member dashboard stays simple. Three things: your details, your
                                     payments, your status. A member can update their information and see exactly where
-                                    they stand without having to ask anyone, which also removes a whole category of
-                                    questions the admins used to field.</p>
-                                <p data-reveal>Reminders are automated. Instead of admins chasing missed payments one by
-                                    one, the system sends reminders on its own as payments fall due. The follow-up work
-                                    that used to be manual now happens in the background, consistently, every month.</p>
+                                    they stand without having to ask anyone, which also spares the admins a whole
+                                    category of questions.</p>
+                                <p data-reveal>Reminders are automated. When a payment falls due, the system sends the
+                                    reminder itself. Admins no longer have to work out each month who needs one.</p>
                                 <p data-reveal>Donations are kept separate from membership fees. They are different
                                     kinds of money with different meanings, so they are recorded separately and reported
                                     separately. Admins get clear donation reporting without having to untangle it from
@@ -285,17 +279,17 @@
                         <section class="case-step" aria-labelledby="case-design">
                             <h2 class="case-step-title" data-reveal id="case-design">Design</h2>
                             <div class="case-step-text">
-                                <h3 class="case-step-subtitle" data-reveal>Refined through feedback, built for every
-                                    age</h3>
-                                <p data-reveal>I designed the interface in Figma and refined it through rounds of
-                                    feedback and iteration with the client, testing each screen against the system flow
-                                    before moving on.</p>
-                                <p data-reveal>Because the member side had to work for every age, clarity came before
-                                    anything decorative. Plain language instead of technical terms, obvious actions with
-                                    nothing hidden behind menus, and the information a member cares about most, whether
-                                    they're up to date, visible the moment they log in. The admin side could carry more
-                                    density, because it's used by the same few people regularly, but it follows the same
-                                    principle of showing the answer first and the detail on demand.</p>
+                                <h3 class="case-step-subtitle" data-reveal>Clarity for members, density for admins</h3>
+                                <p data-reveal>The member side turns the every-age rule into three concrete choices:
+                                    plain language rather than technical terms, obvious actions with nothing hidden
+                                    behind menus, and a clear hierarchy in which the one thing a member cares about
+                                    most, whether they are up to date, is visible the moment they log in.</p>
+                                <p data-reveal>The admin side carries more density, because it is used regularly by the
+                                    same few people who know it well. It follows the principle of progressive
+                                    disclosure, the answer first and the detail on demand, so a full view of the
+                                    membership never becomes a wall of data.</p>
+                                <p data-reveal>Both sides were designed in Figma and refined through rounds of feedback
+                                    with the client, each screen tested against the system flow before moving on.</p>
                             </div>
                         </section>
                         <section class="case-step" aria-labelledby="case-development">
@@ -322,13 +316,11 @@
                             <h2 class="case-step-title" data-reveal id="case-outcome">Outcome</h2>
                             <div class="case-step-text">
                                 <h3 class="case-step-subtitle" data-reveal>A system the community owns</h3>
-                                <p data-reveal>The community now runs memberships, monthly payments and donations on its
-                                    own platform instead of a paid subscription that never fit. Members register, pay
-                                    and check their status themselves. Admins no longer chase payments by hand, and
-                                    donation reporting is available without assembling it manually.</p>
-                                <p data-reveal>Because the system is theirs, it can grow with them. New requirements
-                                    become features to add, rather than limitations to work around in someone else's
-                                    product.</p>
+                                <p data-reveal>No more monthly subscription for software that never fit. Memberships,
+                                    payments and donations now run on a platform the community owns outright, and the
+                                    routine work of each month happens on its own.</p>
+                                <p data-reveal>Ownership also changes what happens next. When the community needs
+                                    something new, it becomes a feature to build, not a limitation to work around.</p>
                             </div>
                         </section>
                     </div>

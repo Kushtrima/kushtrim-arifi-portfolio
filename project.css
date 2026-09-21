@@ -260,7 +260,13 @@
 }
 
 .project-fact--stack dd {
-    max-width: 15em;
+    max-width: 17em;
+}
+
+/* Service as a list ("Research · Product Design · …"): an item never splits across lines; each page breaks its list into
+   two lines with a <br>, so the column is exactly as wide as its longer line */
+.fact-item {
+    white-space: nowrap;
 }
 
 /* Wide enough for one row: the four short facts at their own width, the stack taking what is left (wrapping inside
@@ -268,14 +274,14 @@
 @media (min-width: 1061px) {
     .project-facts {
         display: grid;
-        grid-template-columns: repeat(4, max-content) minmax(180px, 320px);
+        grid-template-columns: repeat(4, max-content) minmax(180px, 340px);
         justify-content: space-between;
         column-gap: 32px;
     }
 
     /* A page without Agency has three short facts before the stack */
     .project-facts:has(> .project-fact--stack:nth-child(4)) {
-        grid-template-columns: repeat(3, max-content) minmax(180px, 320px);
+        grid-template-columns: repeat(3, max-content) minmax(180px, 340px);
     }
 
     .project-fact--stack dd {
