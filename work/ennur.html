@@ -44,7 +44,7 @@
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
 
     <link rel="stylesheet" href="/styles.css?v=20260921-1">
-    <link rel="stylesheet" href="/project.css?v=20260921-1">
+    <link rel="stylesheet" href="/project.css?v=20260921-2">
 
     <!-- Structured Data: CreativeWork -->
     <script type="application/ld+json">
@@ -140,7 +140,7 @@
         <section class="project-hero">
             <div class="container">
                 <div class="project-header-content">
-                    <div class="project-title-section">
+                    <div class="project-title-section project-title-section--inline">
                         <div class="text-reveal-wrapper">
                             <h1 class="project-title">En-Nur</h1>
                         </div>
@@ -151,133 +151,229 @@
                     <div class="project-header-divider"></div>
                 </div>
 
-                <!-- Three Column Layout -->
-                <div class="project-info-layout">
-                    <!-- Left Column -->
-                    <div class="project-info-left">
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Industry</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Religious Community</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Service</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Software Development · Web Application · UI/UX
-                                    Design</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Location</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Switzerland</span>
-                            </div>
-                        </div>
+                <!-- The project in one row under the name -->
+                <dl class="project-facts">
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Industry</dt>
+                        <dd class="project-info-value">Religious<br>Community</dd>
                     </div>
-
-                    <!-- Middle Column -->
-                    <div class="project-info-middle">
-                        <div class="project-info-item project-info-year">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Year</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">2025</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item project-info-stack">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Stack</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">PHP · Laravel · MySQL · Figma · Render</span>
-                            </div>
-                        </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Service</dt>
+                        <dd class="project-info-value">Product Design &amp;<br>Development</dd>
                     </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Location</dt>
+                        <dd class="project-info-value">Switzerland</dd>
+                    </div>
+                    <div class="project-fact project-fact--stack text-reveal-wrapper">
+                        <dt class="project-info-label">Stack</dt>
+                        <dd class="project-info-value">Figma · Laravel · PHP · MySQL · Blade · Render</dd>
+                    </div>
+                </dl>
 
-                    <!-- Right Column: Project Description -->
-                    <div class="project-info-right">
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Project Description</span>
+                <!-- Case study, one part after another: a heading and its text. On a wide screen script.js lists every part's
+                     name on the left, held in view as the texts pass: dark grey, and light for the part being read; on a
+                     phone (or without script.js) each heading sits with its text. A new part is one more .case-step -->
+                <div class="case-study">
+                    <div class="case-study-steps">
+                        <section class="case-step" aria-labelledby="case-company">
+                            <h2 class="case-step-title" data-reveal id="case-company">Company</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>A community that runs on monthly
+                                    memberships</h3>
+                                <p data-reveal>En-Nur is a mosque community in Switzerland. Its members, people of every
+                                    age who live in the community, pay a monthly membership fee and also give donations,
+                                    and the community depends on both to operate. Membership is not a one-off sign-up
+                                    but an ongoing relationship, renewed every month, which means the system behind it
+                                    is used constantly rather than occasionally.</p>
+                                <p data-reveal>In 2025 I designed and built the platform that now manages that
+                                    relationship, from the first system flow through Figma to the deployed
+                                    application.</p>
                             </div>
-                            <div class="project-description-content">
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text"><strong>The Challenge</strong></p>
-                                    <p class="project-description-text">The client managed donations and memberships
-                                        with third-party software but faced high costs and limited flexibility. The
-                                        system wasn't aligned with their workflows, so they needed a cost-effective,
-                                        fully customized solution.</p>
-                                </div>
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text"><strong>My Approach</strong></p>
-                                    <p class="project-description-text">After the client shared their business logic, I
-                                        first created a framework of the system flow. From there, I designed the UX in
-                                        Figma, refining the interface through feedback and iteration. During this stage,
-                                        we also agreed on PHP as the programming language, ensuring a reliable and
-                                        scalable foundation for development.</p>
-                                </div>
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text"><strong>The Solution</strong></p>
-                                    <p class="project-description-text">The result is a custom-built platform with a
-                                        powerful admin dashboard to manage members, track payments with automated
-                                        reminders, and handle donations with clear reporting. Each member has a personal
-                                        dashboard to update details, view payments, and manage their status. The
-                                        platform removes manual work and costly subscriptions, giving the client a fast,
-                                        reliable solution tailored exactly to their needs.</p>
-                                </div>
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text"><strong>Technology</strong></p>
-                                    <p class="project-description-text">The application was developed in PHP, using
-                                        leading libraries such as Composer for dependency management, Carbon for
-                                        date/time handling, and PHPMailer for secure email integration. It is built on
-                                        the Laravel framework, leveraging Eloquent ORM, Blade templating engine, and
-                                        Artisan CLI to streamline development and maintain clean architecture. Data is
-                                        managed through a MySQL database for stability and structure. For deployment,
-                                        the platform is hosted on Render, providing a modern and scalable environment.
-                                    </p>
-                                </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-problem">
+                            <h2 class="case-step-title" data-reveal id="case-problem">The problem</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Off-the-shelf software built for someone
+                                    else's workflow</h3>
+                                <p data-reveal>The community managed memberships and donations through third-party
+                                    software. It was expensive and inflexible, but the core issue was that it had never
+                                    been built for a mosque. Generic membership tools are designed around the average
+                                    association, so they arrive with their own assumptions about how members register,
+                                    how fees are collected and how money is reported. The community's actual
+                                    requirements had to be squeezed into fields and processes designed for someone else,
+                                    and the ones that didn't fit simply weren't supported.</p>
+                                <p data-reveal>The result was a tool the people running the community spent their time
+                                    working around rather than with. Work the software should have done still happened
+                                    by hand, and every month they paid a subscription for a system that didn't match how
+                                    they operate.</p>
+                                <p data-reveal>What they needed was not a better subscription. It was a system built
+                                    around their own requirements, at a cost that made sense for a community
+                                    organisation, and one they would own rather than rent.</p>
                             </div>
-                        </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-discovery">
+                            <h2 class="case-step-title" data-reveal id="case-discovery">Discovery</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Starting from the business logic, not the
+                                    screens</h3>
+                                <p data-reveal>The client walked me through how the community actually operates, and I
+                                    worked through the questions any system has to answer before it can be designed. Who
+                                    can become a member and how they register. When a monthly payment falls due and what
+                                    happens if it's missed. How donations differ from membership fees and how each needs
+                                    to be recorded. What the people running the community need to see at the end of
+                                    every month.</p>
+                                <p data-reveal>Before designing a single screen, I turned those answers into a framework
+                                    of the system flow. Every screen that followed had a clear place in it, and anything
+                                    that didn't serve the flow didn't get built.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-users">
+                            <h2 class="case-step-title" data-reveal id="case-users">Users</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Every age, one system</h3>
+                                <p data-reveal>The platform serves two kinds of users with very different jobs.</p>
+                                <p data-reveal>Admins run the community's side of things. They need to see every member,
+                                    know at a glance who has paid and who hasn't, follow up on what's missing, and
+                                    report on donations. Their work is detailed and recurring, and the system has to
+                                    carry as much of it as possible.</p>
+                                <p data-reveal>Members need very little from the system, but they need it to be
+                                    effortless. They register themselves, log in, pay their monthly fee, see their
+                                    payment history and check their status. And because members are everyone who lives
+                                    in the community, of every age, the same member dashboard has to work just as well
+                                    for a student as for a grandparent. That set the rule for the member side: it does
+                                    only what a member needs, and nothing else.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-system-design">
+                            <h2 class="case-step-title" data-reveal id="case-system-design">System design</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Mapping the flow before the interface</h3>
+                                <p data-reveal>The system flow came first. A person registers and a member record is
+                                    created. The monthly payment cycle begins. When a payment falls due, a reminder goes
+                                    out. When the payment arrives, it's recorded and the member's status updates.
+                                    Donations run as their own flow alongside, and both feed into the reporting that
+                                    admins rely on.</p>
+                                <p data-reveal>Designing the flow before the interface meant the admin and member
+                                    dashboards are two windows onto the same logic and the same data, rather than two
+                                    separate tools that have to be kept in agreement. When a member pays, the admin sees
+                                    it immediately, because there is only one record to change.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-solution">
+                            <h2 class="case-step-title" data-reveal id="case-solution">Solution</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Two dashboards built for two different
+                                    jobs</h3>
+                                <p data-reveal>The admin dashboard carries the complexity. Members, payments, donations
+                                    and reporting all live here, because this is where the work of running the community
+                                    happens. Payment status is visible across the whole membership, so the question of
+                                    who is up to date has an immediate answer instead of a spreadsheet.</p>
+                                <p data-reveal>The member dashboard stays simple. Three things: your details, your
+                                    payments, your status. A member can update their information and see exactly where
+                                    they stand without having to ask anyone, which also removes a whole category of
+                                    questions the admins used to field.</p>
+                                <p data-reveal>Reminders are automated. Instead of admins chasing missed payments one by
+                                    one, the system sends reminders on its own as payments fall due. The follow-up work
+                                    that used to be manual now happens in the background, consistently, every month.</p>
+                                <p data-reveal>Donations are kept separate from membership fees. They are different
+                                    kinds of money with different meanings, so they are recorded separately and reported
+                                    separately. Admins get clear donation reporting without having to untangle it from
+                                    membership payments first.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-design">
+                            <h2 class="case-step-title" data-reveal id="case-design">Design</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Refined through feedback, built for every
+                                    age</h3>
+                                <p data-reveal>I designed the interface in Figma and refined it through rounds of
+                                    feedback and iteration with the client, testing each screen against the system flow
+                                    before moving on.</p>
+                                <p data-reveal>Because the member side had to work for every age, clarity came before
+                                    anything decorative. Plain language instead of technical terms, obvious actions with
+                                    nothing hidden behind menus, and the information a member cares about most, whether
+                                    they're up to date, visible the moment they log in. The admin side could carry more
+                                    density, because it's used by the same few people regularly, but it follows the same
+                                    principle of showing the answer first and the detail on demand.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-development">
+                            <h2 class="case-step-title" data-reveal id="case-development">Development</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>A custom Laravel application</h3>
+                                <p data-reveal>The platform is a custom application built on Laravel. Registration and
+                                    login run on Laravel's authentication, member and payment data lives in a MySQL
+                                    database accessed through Eloquent ORM, and the interfaces are rendered with Blade.
+                                    A relational database suits this system naturally, since members, payments and
+                                    donations are records that belong to one another.</p>
+                                <p data-reveal>Payments are processed through Stripe, so members can pay their monthly
+                                    fee and give donations online, and card details are handled by Stripe rather than
+                                    stored on the platform. Each successful payment is recorded against the member and
+                                    updates their status automatically.</p>
+                                <p data-reveal>The date logic behind the monthly billing cycle and due-date calculations
+                                    is handled with Carbon. Reminders run as scheduled jobs and are delivered by email
+                                    through PHPMailer, so the follow-up work happens without anyone triggering it. The
+                                    application is deployed on Render, which keeps hosting simple and costs predictable
+                                    for a community organisation.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-outcome">
+                            <h2 class="case-step-title" data-reveal id="case-outcome">Outcome</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>A system the community owns</h3>
+                                <p data-reveal>The community now runs memberships, monthly payments and donations on its
+                                    own platform instead of a paid subscription that never fit. Members register, pay
+                                    and check their status themselves. Admins no longer chase payments by hand, and
+                                    donation reporting is available without assembling it manually.</p>
+                                <p data-reveal>Because the system is theirs, it can grow with them. New requirements
+                                    become features to add, rather than limitations to work around in someone else's
+                                    product.</p>
+                            </div>
+                        </section>
                     </div>
                 </div>
 
-                <div class="project-image-section">
-                    <!-- First big image - full width -->
+                <!-- Images in a narrower column; on a wide screen script.js adds a navigator on the right: every image small,
+                     with a frame showing which part is on screen -->
+                <div class="project-image-section project-image-section--navigator">
+                    <!-- Previous and next project beside the images: they arrive with the first image, stay level with the middle
+                         of the screen while the images pass, and leave with the last one -->
+                    <div class="project-pager-rail">
+                        <nav class="project-pager" aria-label="More projects">
+                            <a class="project-pager-link project-pager-link--previous" href="/work/jetonikeramika.html" rel="prev" aria-label="Previous project: Jetonikeramika"><span>Previous</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 1 1 5l4.5 4"/></svg></span></a>
+                            <a class="project-pager-link project-pager-link--next" href="/work/doratec.html" rel="next" aria-label="Next project: Doratec GmbH"><span>Next</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M.5 1 5 5 .5 9"/></svg></span></a>
+                        </nav>
+                    </div>
+
+                    <!-- First image -->
                     <div class="project-main-image ennur-image-reveal ennur-first-image">
-                        <img src="/work/ennur/en1.jpg" alt="En-Nur Project Hero" loading="lazy">
+                        <img src="/work/ennur/en1.jpg" width="1300" height="855" alt="En-Nur Project Hero" loading="lazy">
                     </div>
 
                     <!-- Gallery: the smaller images, one under another -->
                     <div class="project-gallery-layout">
                         <div class="project-gallery-images">
                             <div class="project-main-image ennur-image-reveal">
-                                <img src="/work/ennur/en2.jpg" alt="En-Nur Feature 1" loading="lazy">
+                                <img src="/work/ennur/en2.jpg" width="1300" height="855" alt="En-Nur Feature 1" loading="lazy">
                             </div>
                             <div class="project-main-image ennur-image-reveal">
-                                <img src="/work/ennur/en3.jpg" alt="En-Nur Feature 2" loading="lazy">
+                                <img src="/work/ennur/en3.jpg" width="1300" height="855" alt="En-Nur Feature 2" loading="lazy">
                             </div>
                             <div class="project-main-image ennur-image-reveal">
-                                <img src="/work/ennur/en4.jpg" alt="En-Nur Feature 3" loading="lazy">
+                                <img src="/work/ennur/en4.jpg" width="1300" height="855" alt="En-Nur Feature 3" loading="lazy">
                             </div>
                             <div class="project-main-image ennur-image-reveal">
-                                <img src="/work/ennur/en5.jpg" alt="En-Nur Feature 4" loading="lazy">
+                                <img src="/work/ennur/en5.jpg" width="1300" height="855" alt="En-Nur Feature 4" loading="lazy">
                             </div>
                             <div class="project-main-image ennur-image-reveal">
-                                <img src="/work/ennur/en6.jpg" alt="En-Nur Feature 5" loading="lazy">
+                                <img src="/work/ennur/en6.jpg" width="1300" height="855" alt="En-Nur Feature 5" loading="lazy">
                             </div>
                             <div class="project-main-image ennur-image-reveal">
-                                <img src="/work/ennur/en7.jpg" alt="En-Nur Feature 6" loading="lazy">
+                                <img src="/work/ennur/en7.jpg" width="1300" height="855" alt="En-Nur Feature 6" loading="lazy">
                             </div>
                             <div class="project-main-image ennur-image-reveal">
-                                <img src="/work/ennur/en8.jpg" alt="En-Nur Feature 7" loading="lazy">
+                                <img src="/work/ennur/en8.jpg" width="1300" height="855" alt="En-Nur Feature 7" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -285,16 +381,6 @@
             </div>
         </section>
     </main>
-
-        <!-- Project Pagination -->
-    <nav class="project-pagination" aria-label="Project navigation">
-        <!-- One quiet line between hairlines: previous project, all projects, next project -->
-        <div class="container project-pagination-row">
-            <a href="/work/jetonikeramika.html" class="arrow-link arrow-link--back project-pagination-prev" rel="prev"><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 3.2 3.2 12.8"/><path d="M9.8 12.8H3.2V6.2"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 3.2 3.2 12.8"/><path d="M9.8 12.8H3.2V6.2"/></svg></span><span class="arrow-link-label"><span class="project-pagination-label">Previous</span> <span class="project-pagination-dot" aria-hidden="true">·</span> Jetonikeramika</span></a>
-            <a href="/work.html" class="arrow-link project-pagination-all"><span class="arrow-link-label">All projects</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
-            <a href="/work/doratec.html" class="arrow-link project-pagination-next" rel="next"><span class="arrow-link-label"><span class="project-pagination-label">Next</span> <span class="project-pagination-dot" aria-hidden="true">·</span> Doratec GmbH</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
-        </div>
-    </nav>
 
     <!-- Modern Footer Section -->
     <footer class="modern-footer">

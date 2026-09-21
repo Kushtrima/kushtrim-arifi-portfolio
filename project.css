@@ -273,6 +273,11 @@
         column-gap: 32px;
     }
 
+    /* A page without Agency has three short facts before the stack */
+    .project-facts:has(> .project-fact--stack:nth-child(4)) {
+        grid-template-columns: repeat(3, max-content) minmax(180px, 320px);
+    }
+
     .project-fact--stack dd {
         max-width: none;
     }
@@ -544,9 +549,10 @@
         grid-column: 1 / -1;
     }
 
-    /* The right-hand column (Service, Location) sits at the right edge, like the website link above it */
+    /* The right-hand column (Service, Location) sits at the right edge, like the website link above it; the stack keeps
+       the full row even when it is the fourth fact (a page without Agency) */
     .project-fact:nth-child(2),
-    .project-fact:nth-child(4) {
+    .project-fact:nth-child(4):not(.project-fact--stack) {
         justify-self: end;
         text-align: right;
     }
@@ -879,14 +885,16 @@
    lose their margins) */
 .project-image-section.project-image-section--navigator > .cityhotel-first-image,
 .project-image-section.project-image-section--navigator > .hbs-website-first-image,
-.project-image-section.project-image-section--navigator > .jetonikeramika-first-image {
+.project-image-section.project-image-section--navigator > .jetonikeramika-first-image,
+.project-image-section.project-image-section--navigator > .ennur-first-image {
     margin-bottom: 80px;
 }
 
 @media (max-width: 768px) {
     .project-image-section.project-image-section--navigator > .cityhotel-first-image,
     .project-image-section.project-image-section--navigator > .hbs-website-first-image,
-    .project-image-section.project-image-section--navigator > .jetonikeramika-first-image {
+    .project-image-section.project-image-section--navigator > .jetonikeramika-first-image,
+    .project-image-section.project-image-section--navigator > .ennur-first-image {
         margin-bottom: 70px !important;
     }
 }
@@ -894,7 +902,8 @@
 @media (max-width: 600px) {
     .project-image-section.project-image-section--navigator > .cityhotel-first-image,
     .project-image-section.project-image-section--navigator > .hbs-website-first-image,
-    .project-image-section.project-image-section--navigator > .jetonikeramika-first-image {
+    .project-image-section.project-image-section--navigator > .jetonikeramika-first-image,
+    .project-image-section.project-image-section--navigator > .ennur-first-image {
         margin-bottom: 30px !important;
     }
 }
