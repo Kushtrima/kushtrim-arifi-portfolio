@@ -44,7 +44,7 @@
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
 
     <link rel="stylesheet" href="/styles.css?v=20260921-1">
-    <link rel="stylesheet" href="/project.css?v=20260921-2">
+    <link rel="stylesheet" href="/project.css?v=20260921-3">
 
     <!-- Structured Data: CreativeWork -->
     <script type="application/ld+json">
@@ -140,7 +140,7 @@
         <section class="project-hero">
             <div class="container">
                 <div class="project-header-content">
-                    <div class="project-title-section">
+                    <div class="project-title-section project-title-section--inline">
                         <div class="text-reveal-wrapper">
                             <h1 class="project-title">Doratec AG</h1>
                         </div>
@@ -151,137 +151,175 @@
                     <div class="project-header-divider"></div>
                 </div>
 
-                <!-- Three Column Layout (same as Monun): Left | Middle | Right -->
-                <div class="project-info-layout">
-                    <!-- Left Column -->
-                    <div class="project-info-left">
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Industry</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Windows & Doors</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Service</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Web Design · Web Development</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Location</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Switzerland</span>
-                            </div>
-                        </div>
+                <!-- The project in one row under the name -->
+                <dl class="project-facts">
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Industry</dt>
+                        <dd class="project-info-value">Windows &amp;<br>Doors</dd>
                     </div>
-
-                    <!-- Middle Column -->
-                    <div class="project-info-middle">
-                        <div class="project-info-item project-info-year">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Year</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">2025</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item project-info-stack">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Stack</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Figma · HTML · CSS · JavaScript · PHP ·
-                                    WordPress</span>
-                            </div>
-                        </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Service</dt>
+                        <dd class="project-info-value">Product Design &amp;<br>Development</dd>
                     </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Location</dt>
+                        <dd class="project-info-value">Switzerland</dd>
+                    </div>
+                    <div class="project-fact project-fact--stack text-reveal-wrapper">
+                        <dt class="project-info-label">Stack</dt>
+                        <dd class="project-info-value">Figma · WordPress · PHP · ACF · Vanilla&nbsp;JavaScript</dd>
+                    </div>
+                </dl>
 
-                    <!-- Right Column -->
-                    <div class="project-info-right">
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Project Description</span>
+                <!-- Case study, one part after another: a heading and its text. On a wide screen script.js lists every part's
+                     name on the left, held in view as the texts pass: dark grey, and light for the part being read; on a
+                     phone (or without script.js) each heading sits with its text. A new part is one more .case-step -->
+                <div class="case-study">
+                    <div class="case-study-steps">
+                        <section class="case-step" aria-labelledby="case-company">
+                            <h2 class="case-step-title" data-reveal id="case-company">Company</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Windows and doors, sold, installed and shown
+                                    in person</h3>
+                                <p data-reveal>Doratec AG sells and installs PVC windows and doors in Switzerland, with
+                                    an office and a showroom where customers can see the products for themselves. Its
+                                    customers range from homeowners renovating to builders and architects working on
+                                    larger projects. I worked with Doratec directly in 2025.</p>
                             </div>
-                            <div class="project-description-content">
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">I began by understanding Doratec’s brand,
-                                        customers, and how people search for PVC doors and windows. This guided a
-                                        human-centric UX approach focused on clarity and ease of use. In Figma, I
-                                        designed the full interface system—clean layouts, balanced spacing, and a
-                                        readable hierarchy built with the Montserrat font.</p>
-                                </div>
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">The final site was developed as a lightweight,
-                                        responsive platform using Doratec’s red, black, and white color palette. A
-                                        modern glassy header adds visual depth, while interactive product views,
-                                        technical specs, and a simple contact flow help users quickly find what they
-                                        need.</p>
-                                </div>
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">Throughout the project, the goal was to create a
-                                        human-centric experience: a website that doesn’t overwhelm, speaks in a friendly
-                                        tone, and guides users step by step toward the information they need.</p>
-                                </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-problem">
+                            <h2 class="case-step-title" data-reveal id="case-problem">The problem</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>A technical product that has to make sense to
+                                    everyone</h3>
+                                <p data-reveal>Windows and doors are technical, made-to-measure purchases. Each model
+                                    comes with profiles, materials, glazing and dimensions, and the people buying them
+                                    range from a homeowner choosing for one house to an architect specifying for a whole
+                                    building. They want different things from the same product: one asks how it will
+                                    look, the other asks how it performs.</p>
+                                <p data-reveal>Doratec had no website at all, so none of this existed online. A
+                                    potential customer had no way to see the range, compare models or judge the company
+                                    before picking up the phone.</p>
                             </div>
-                        </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-research">
+                            <h2 class="case-step-title" data-reveal id="case-research">Research</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>How people look for windows and doors</h3>
+                                <p data-reveal>I started with the brand, its customers, and the way people search for
+                                    PVC windows and doors, following the path a buyer takes from a first search to a
+                                    shortlist of suppliers.</p>
+                                <p data-reveal>What stood out is how differently people approach the same product. Some
+                                    start from appearance, browsing for a style that suits their house. Others arrive
+                                    already knowing what they need and look for the technical detail to confirm it. A
+                                    single flat product page serves neither well, so product information had to work in
+                                    layers.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-solution">
+                            <h2 class="case-step-title" data-reveal id="case-solution">Solution</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Appearance on top, specification
+                                    underneath</h3>
+                                <p data-reveal>Models are presented visually first. A visitor sees the product before
+                                    reading about it, because for most buyers the first question is how it will look on
+                                    their house.</p>
+                                <p data-reveal>Technical detail sits one level down. Profiles and specifications are
+                                    there for architects and builders, without dominating the page for everyone
+                                    else.</p>
+                                <p data-reveal>The company is part of the product. Doratec installs what it sells, which
+                                    means its people working in your home. Showing who the company is matters as much as
+                                    showing the windows.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-design">
+                            <h2 class="case-step-title" data-reveal id="case-design">Design</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Red, black and white, with precision in the
+                                    type</h3>
+                                <p data-reveal>Black and white hold the structure of every page, framing the product
+                                    photography cleanly and keeping technical information easy to read. Red, taken from
+                                    Doratec's identity, marks the few things that ask for action, so a visitor always
+                                    knows where the next step is. Montserrat sets the typography, its geometric forms
+                                    matching a product defined by precise frames and profiles. A translucent header
+                                    stays in place while scrolling, keeping navigation and contact within reach without
+                                    covering the content beneath.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-development">
+                            <h2 class="case-step-title" data-reveal id="case-development">Development</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Products as structured data</h3>
+                                <p data-reveal>Most of the engineering went into how products are stored. Each window
+                                    and door model is a structured entry in WordPress with its own fields for profile
+                                    and technical specifications, and the same data drives both layers of a product
+                                    page: the visual view that leads, and the technical detail beneath it. A new model
+                                    goes live with exactly the same structure as every other. The interactive product
+                                    views are written in vanilla JavaScript and kept deliberately light, so they load
+                                    quickly on a phone as well as a desktop.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-outcome">
+                            <h2 class="case-step-title" data-reveal id="case-outcome">Outcome</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>The range, explained before the first
+                                    call</h3>
+                                <p data-reveal>The first phone call to Doratec starts further along. Customers can
+                                    arrive having already seen the models, compared the profiles and learned who will be
+                                    installing them, so the conversation begins with what they want, not with an
+                                    introduction.</p>
+                            </div>
+                        </section>
                     </div>
                 </div>
 
-                <div class="project-image-section">
-                    <!-- First big image - full width -->
+                <!-- Images in a narrower column; on a wide screen script.js adds a navigator on the right: every image small,
+                     with a frame showing which part is on screen -->
+                <div class="project-image-section project-image-section--navigator">
+                    <!-- Previous and next project beside the images: they arrive with the first image, stay level with the middle
+                         of the screen while the images pass, and leave with the last one -->
+                    <div class="project-pager-rail">
+                        <nav class="project-pager" aria-label="More projects">
+                            <a class="project-pager-link project-pager-link--previous" href="/work/ennur.html" rel="prev" aria-label="Previous project: En-Nur"><span>Previous</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 1 1 5l4.5 4"/></svg></span></a>
+                            <a class="project-pager-link project-pager-link--next" href="/work/spitex.html" rel="next" aria-label="Next project: Spitex Schwab AG"><span>Next</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M.5 1 5 5 .5 9"/></svg></span></a>
+                        </nav>
+                    </div>
+
+                    <!-- First image -->
                     <div class="project-main-image doratec-image-reveal doratec-first-image">
-                        <img src="/work/doratec/dora1.jpg" alt="Doratec Project 1" loading="lazy">
+                        <img src="/work/doratec/dora1.jpg" width="1500" height="987" alt="Doratec Project 1" loading="lazy">
                     </div>
 
                     <!-- Gallery: the smaller images, one under another -->
                     <div class="project-gallery-layout">
                         <div class="project-gallery-images">
                             <div class="project-main-image doratec-image-reveal">
-                                <img src="/work/doratec/dora2.jpg" alt="Doratec Project 2" loading="lazy">
+                                <img src="/work/doratec/dora2.jpg" width="1500" height="987" alt="Doratec Project 2" loading="lazy">
                             </div>
                             <div class="project-main-image doratec-image-reveal">
-                                <img src="/work/doratec/dora3.jpg" alt="Doratec Project 3" loading="lazy">
+                                <img src="/work/doratec/dora3.jpg" width="1500" height="990" alt="Doratec Project 3" loading="lazy">
                             </div>
                             <div class="project-main-image doratec-image-reveal">
-                                <img src="/work/doratec/dora4.jpg" alt="Doratec Project 4" loading="lazy">
+                                <img src="/work/doratec/dora4.jpg" width="1500" height="990" alt="Doratec Project 4" loading="lazy">
                             </div>
                             <div class="project-main-image doratec-image-reveal">
-                                <img src="/work/doratec/dora5.jpg" alt="Doratec Project 5" loading="lazy">
-                            </div>
-
-                            <div class="project-main-image doratec-image-reveal">
-                                <img src="/work/doratec/dora7.jpg" alt="Doratec Project 7" loading="lazy">
+                                <img src="/work/doratec/dora5.jpg" width="1300" height="855" alt="Doratec Project 5" loading="lazy">
                             </div>
                             <div class="project-main-image doratec-image-reveal">
-                                <img src="/work/doratec/dora8.jpg" alt="Doratec Project 8" loading="lazy">
+                                <img src="/work/doratec/dora7.jpg" width="1500" height="990" alt="Doratec Project 7" loading="lazy">
                             </div>
                             <div class="project-main-image doratec-image-reveal">
-                                <img src="/work/doratec/dora9.jpg" alt="Doratec Project 9" loading="lazy">
+                                <img src="/work/doratec/dora8.jpg" width="1500" height="990" alt="Doratec Project 8" loading="lazy">
+                            </div>
+                            <div class="project-main-image doratec-image-reveal">
+                                <img src="/work/doratec/dora9.jpg" width="1500" height="990" alt="Doratec Project 9" loading="lazy">
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </section>
     </main>
-
-        <!-- Project Pagination -->
-    <nav class="project-pagination" aria-label="Project navigation">
-        <!-- One quiet line between hairlines: previous project, all projects, next project -->
-        <div class="container project-pagination-row">
-            <a href="/work/ennur.html" class="arrow-link arrow-link--back project-pagination-prev" rel="prev"><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 3.2 3.2 12.8"/><path d="M9.8 12.8H3.2V6.2"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 3.2 3.2 12.8"/><path d="M9.8 12.8H3.2V6.2"/></svg></span><span class="arrow-link-label"><span class="project-pagination-label">Previous</span> <span class="project-pagination-dot" aria-hidden="true">·</span> EN-NUR</span></a>
-            <a href="/work.html" class="arrow-link project-pagination-all"><span class="arrow-link-label">All projects</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
-            <a href="/work/spitex.html" class="arrow-link project-pagination-next" rel="next"><span class="arrow-link-label"><span class="project-pagination-label">Next</span> <span class="project-pagination-dot" aria-hidden="true">·</span> Spitex Schwab AG</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
-        </div>
-    </nav>
 
     <!-- Modern Footer Section -->
     <footer class="modern-footer">

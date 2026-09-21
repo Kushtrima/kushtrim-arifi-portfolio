@@ -886,7 +886,8 @@
 .project-image-section.project-image-section--navigator > .cityhotel-first-image,
 .project-image-section.project-image-section--navigator > .hbs-website-first-image,
 .project-image-section.project-image-section--navigator > .jetonikeramika-first-image,
-.project-image-section.project-image-section--navigator > .ennur-first-image {
+.project-image-section.project-image-section--navigator > .ennur-first-image,
+.project-image-section.project-image-section--navigator > .doratec-first-image {
     margin-bottom: 80px;
 }
 
@@ -894,7 +895,8 @@
     .project-image-section.project-image-section--navigator > .cityhotel-first-image,
     .project-image-section.project-image-section--navigator > .hbs-website-first-image,
     .project-image-section.project-image-section--navigator > .jetonikeramika-first-image,
-    .project-image-section.project-image-section--navigator > .ennur-first-image {
+    .project-image-section.project-image-section--navigator > .ennur-first-image,
+    .project-image-section.project-image-section--navigator > .doratec-first-image {
         margin-bottom: 70px !important;
     }
 }
@@ -903,7 +905,8 @@
     .project-image-section.project-image-section--navigator > .cityhotel-first-image,
     .project-image-section.project-image-section--navigator > .hbs-website-first-image,
     .project-image-section.project-image-section--navigator > .jetonikeramika-first-image,
-    .project-image-section.project-image-section--navigator > .ennur-first-image {
+    .project-image-section.project-image-section--navigator > .ennur-first-image,
+    .project-image-section.project-image-section--navigator > .doratec-first-image {
         margin-bottom: 30px !important;
     }
 }
@@ -1748,18 +1751,6 @@
         transform: none !important;
     }
 
-    /* Doratec images - override fixed heights for natural display */
-    .project-image-section .doratec-image-reveal {
-        height: auto !important;
-        min-height: auto !important;
-        margin-bottom: 25px !important;
-    }
-
-    .project-image-section .doratec-image-reveal img {
-        height: auto !important;
-        transform: none !important;
-    }
-
     /* Spitex images - override fixed heights for natural display */
     .project-image-section .spitex-image-reveal {
         height: auto !important;
@@ -2056,22 +2047,6 @@
         /* Show naturally in full */
     }
 
-    /* Doratec images on mobile - same effect */
-    .project-image-section .doratec-image-reveal {
-        margin-bottom: 30px;
-        border-radius: 12px;
-    }
-
-    .project-image-section .doratec-image-reveal::before {
-        border-radius: 12px 12px 0 0;
-    }
-
-    .project-image-section .doratec-image-reveal img {
-        border-radius: 12px;
-        height: auto;
-        object-fit: contain;
-    }
-
     /* Spitex images on mobile */
     .project-image-section .spitex-image-reveal {
         margin-bottom: 30px;
@@ -2090,7 +2065,6 @@
 
     /* Standardize First Image Margins for others */
     .project-image-section .monun-first-image,
-    .project-image-section .doratec-first-image,
     .project-image-section .spitex-first-image {
         margin-bottom: 40px;
     }
