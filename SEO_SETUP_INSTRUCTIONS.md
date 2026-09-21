@@ -136,11 +136,11 @@ All 17 project detail pages have been moved from root-level to a `/work/` subdir
      ```
    - Then add `<picture>` tags with WebP source + JPG fallback. Can be a follow-up task.
 
-7. **Verify projects.json data** — some entries had thin descriptions ("Software application project for EN-NUR.", "Marketing agency website project."). The new meta descriptions are more substantive but please verify the SEO-friendly descriptions in each project page's `<head>` match reality.
+7. **Verify projects.json data** — some entries had thin descriptions ("Software application project for EN-NUR."). The new meta descriptions are more substantive but please verify the SEO-friendly descriptions in each project page's `<head>` match reality.
 
 8. **Project case-study text expansion** (optional but valuable)
    - Pages under 250 body words could use one more short paragraph each:
-     - riesen.html (184), baren.html (190), stplaner.html (190), alba.html (193), doratec.html (222), mardal.html (225), hbs-website.html (226), monun.html (231)
+     - riesen.html (184), baren.html (190), alba.html (193), doratec.html (222), hbs-website.html (226), monun.html (231)
    - Target: a short "Process" or "Outcome" paragraph (~80-100 words) per page in the existing `.project-description-text` block.
 
 9. **Resume PDF**

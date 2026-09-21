@@ -46,15 +46,6 @@
       "description": "Website design and development for Doratec GmbH."
     },
     {
-      "id": "mardal",
-      "name": "MARDAL",
-      "category": "MARKETING AGENCY",
-      "year": "2025",
-      "image": "work/mardal/mardal-cover.jpg",
-      "link": "work/mardal.html",
-      "description": "Marketing agency website project."
-    },
-    {
       "id": "spitex",
       "name": "SPITEX SCHWAB AG",
       "category": "HEALTHCARE PLATFORM",
@@ -62,15 +53,6 @@
       "image": "work/spitex/spitex-cover.jpg",
       "link": "work/spitex.html",
       "description": "Healthcare platform for Spitex Schwab AG."
-    },
-    {
-      "id": "stplaner",
-      "name": "STPLANER",
-      "category": "SWITZERLAND",
-      "year": "2025",
-      "image": "work/stplaner/stplaner-cover.jpg",
-      "link": "work/stplaner.html",
-      "description": "I designed and developed the Stplaner website, creating a professional platform for planning and architectural services with comprehensive UX/UI design and clean, responsive development."
     },
     {
       "id": "monun",

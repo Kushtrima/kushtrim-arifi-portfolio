@@ -64,16 +64,6 @@
   </url>
 
   <url>
-    <loc>https://kushtrimarifi.com/work/stplaner.html</loc>
-    <lastmod>2026-05-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://kushtrimarifi.com/work/stplaner/stplaner-cover.jpg</image:loc>
-    </image:image>
-  </url>
-
-  <url>
     <loc>https://kushtrimarifi.com/work/spitex.html</loc>
     <lastmod>2026-05-13</lastmod>
     <changefreq>yearly</changefreq>
@@ -120,16 +110,6 @@
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://kushtrimarifi.com/work/jetonikeramika/jetoni-cover.jpg</image:loc>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://kushtrimarifi.com/work/mardal.html</loc>
-    <lastmod>2026-05-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://kushtrimarifi.com/work/mardal/mardal-cover.jpg</image:loc>
     </image:image>
   </url>
 

@@ -1673,11 +1673,6 @@ body:has(.hero) .header:has(.navigation.active) {
 }
 
 /* Unique Project Colors for Homepage Work Items */
-.work-item[href*="stplaner"] {
-    --project-hover-color: #ffcfcf;
-}
-
-/* Red */
 .work-item[href*="cityhotel"] {
     --project-hover-color: #dcdcdc;
 }
@@ -1703,11 +1698,6 @@ body:has(.hero) .header:has(.navigation.active) {
 }
 
 /* Purple */
-.work-item[href*="mardal"] {
-    --project-hover-color: #c2f2ed;
-}
-
-/* Teal */
 .work-item[href*="alba"] {
     --project-hover-color: #fffbcc;
 }
@@ -2091,11 +2081,6 @@ body:has(.hero) .header:has(.navigation.active) {
 }
 
 /* Unique Project Colors for Hover - More distinct palette */
-.gallery-item[data-project="stplaner"] {
-    --project-hover-color: #ffcfcf;
-}
-
-/* Red */
 .gallery-item[data-project="cityhotel"] {
     --project-hover-color: #dcdcdc;
 }
@@ -2120,11 +2105,6 @@ body:has(.hero) .header:has(.navigation.active) {
 }
 
 /* Purple */
-.gallery-item[data-project="mardal"] {
-    --project-hover-color: #c2f2ed;
-}
-
-/* Teal */
 .gallery-item[data-project="alba"] {
     --project-hover-color: #fffbcc;
 }

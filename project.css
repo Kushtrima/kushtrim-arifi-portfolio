@@ -215,60 +215,6 @@
     object-fit: contain;
 }
 
-/* Stplaner Image Scroll Reveal Effect - Scroll Linked */
-.project-image-section .stplaner-image-reveal {
-    position: relative;
-    overflow: hidden;
-    will-change: transform, opacity;
-    margin-bottom: 40px;
-    border-radius: 8px;
-    /* Adjusted desktop radius */
-    background: var(--color-grey-8a);
-    /* Updated to requested grey to avoid white bleed */
-}
-
-.project-image-section .stplaner-image-reveal:last-child {
-    margin-bottom: 0;
-}
-
-/* Subtle transparency gradient at top of image as it scrolls */
-.project-image-section .stplaner-image-reveal::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 150px;
-    background: linear-gradient(to bottom, rgba(var(--color-grey-8a-rgb), 0.3), transparent);
-    /* Match grey tone */
-    pointer-events: none;
-    z-index: 2;
-    opacity: var(--gradient-opacity, 0);
-    /* Controlled by JavaScript with delay */
-    border-radius: 8px 8px 0 0;
-    /* Match desktop rounded corners on top */
-}
-
-.project-image-section .stplaner-image-reveal img {
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    /* Show images naturally in full */
-    border-radius: 8px;
-    /* Match desktop rounded corners */
-    background-color: var(--color-grey-8a);
-    /* Ensure behind transparent pixels is grey */
-}
-
-/* Stplaner First Image - Full Width */
-/* Stplaner First Image - Full Width */
-.project-image-section .stplaner-first-image {
-    width: 100%;
-    margin-bottom: 40px;
-    /* Reduced from 80px to match Monun/others standard spacing */
-}
-
 /* HBS Website First Image - Full Width */
 .project-image-section .hbs-website-first-image {
     width: 100%;
@@ -966,44 +912,7 @@
     gap: 40px;
 }
 
-/* Stplaner Gallery Layout - Two Column */
-.stplaner-gallery-layout {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 60px;
-    align-items: start;
-    margin-bottom: 80px;
-}
-
-/* Text Column - Left Side (Sticky) */
-.stplaner-gallery-text {
-    align-self: start;
-    position: sticky;
-    top: 120px;
-    /* Adjust based on header height */
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    z-index: 100;
-    /* High z-index to stay on top */
-    height: fit-content;
-    /* Ensure it doesn't expand to full height */
-}
-
-.stplaner-info-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.stplaner-info-label {
-    font-family: var(--font-display);
-    font-size: 16px;
-    color: rgba(var(--color-primary-rgb), 0.5);
-    margin-bottom: 5px;
-}
-
-/* Monun Image Scroll Reveal Effect - Same as Stplaner */
+/* Monun Image Scroll Reveal Effect - Same as others */
 .project-image-section .monun-image-reveal {
     position: relative;
     overflow: hidden;
@@ -1049,7 +958,7 @@
     /* Ensure behind transparent pixels is grey */
 }
 
-/* Doratec Image Scroll Reveal Effect - Same as Monun/Stplaner */
+/* Doratec Image Scroll Reveal Effect - Same as Monun */
 .project-image-section .doratec-image-reveal {
     position: relative;
     overflow: hidden;
@@ -1132,46 +1041,6 @@
 /* Jetonikeramika Specific: Dark Grey Outline on Gallery Images (Main image excluded) */
 .project-gallery-images .jetonikeramika-image-reveal img {
     border: 1px solid var(--color-grey-55);
-}
-
-/* Mardal Image Scroll Reveal Effect - Same as others */
-.project-image-section .mardal-image-reveal {
-    position: relative;
-    overflow: hidden;
-    will-change: transform, opacity;
-    margin-bottom: 40px;
-    border-radius: 8px;
-    /* Desktop radius */
-    background: var(--color-grey-8a);
-    /* Grey to avoid white bleed */
-}
-
-.project-image-section .mardal-image-reveal:last-child {
-    margin-bottom: 0;
-}
-
-/* Subtle transparency gradient at top of image as it scrolls */
-.project-image-section .mardal-image-reveal::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 150px;
-    background: linear-gradient(to bottom, rgba(var(--color-grey-8a-rgb), 0.3), transparent);
-    pointer-events: none;
-    z-index: 2;
-    opacity: var(--gradient-opacity, 0);
-    border-radius: 8px 8px 0 0;
-}
-
-.project-image-section .mardal-image-reveal img {
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    border-radius: 8px;
-    background-color: var(--color-grey-8a);
 }
 
 /* Alba Image Scroll Reveal Effect - Same as others */
@@ -1858,18 +1727,6 @@
         transform-origin: center center !important;
     }
 
-    /* Stplaner images - override fixed heights for natural display */
-    .project-image-section .stplaner-image-reveal {
-        height: auto !important;
-        min-height: auto !important;
-        margin-bottom: 25px !important;
-    }
-
-    .project-image-section .stplaner-image-reveal img {
-        height: auto !important;
-        transform: none !important;
-    }
-
     /* Monun images - override fixed heights for natural display */
     .project-image-section .monun-image-reveal {
         height: auto !important;
@@ -1902,18 +1759,6 @@
     }
 
     .project-image-section .spitex-image-reveal img {
-        height: auto !important;
-        transform: none !important;
-    }
-
-    /* Mardal images - override fixed heights for natural display */
-    .project-image-section .mardal-image-reveal {
-        height: auto !important;
-        min-height: auto !important;
-        margin-bottom: 25px !important;
-    }
-
-    .project-image-section .mardal-image-reveal img {
         height: auto !important;
         transform: none !important;
     }
@@ -2178,36 +2023,12 @@
         font-size: var(--text-paragraph);
     }
 
-    /* Stplaner images on mobile - same effect as desktop */
-    .project-image-section .stplaner-image-reveal {
-        margin-bottom: 30px;
-        /* Close to each other like desktop */
-        border-radius: 12px;
-        /* Reduced radius for mobile */
-    }
-
-    .project-image-section .stplaner-image-reveal::before {
-        border-radius: 12px 12px 0 0;
-    }
-
-    .project-image-section .stplaner-image-reveal img {
-        border-radius: 12px;
-        height: auto;
-        object-fit: contain;
-        /* Show naturally in full */
-    }
-
-    /* Stplaner First Image - Mobile */
-    .project-image-section .stplaner-first-image {
-        margin-bottom: 40px;
-    }
-
     /* Shared gallery - mobile */
     .project-gallery-images {
         gap: 30px;
     }
 
-    /* Monun images on mobile - same effect as Stplaner */
+    /* Monun images on mobile - same effect as desktop */
     .project-image-section .monun-image-reveal {
         margin-bottom: 30px;
         /* Close to each other like desktop */
@@ -2253,27 +2074,6 @@
     }
 
     .project-image-section .spitex-image-reveal img {
-        border-radius: 12px;
-        height: auto;
-        object-fit: contain;
-    }
-
-    /* Mardal First Image - Mobile */
-    .project-image-section .mardal-first-image {
-        margin-bottom: 40px;
-    }
-
-    /* Mardal images on mobile */
-    .project-image-section .mardal-image-reveal {
-        margin-bottom: 30px;
-        border-radius: 12px;
-    }
-
-    .project-image-section .mardal-image-reveal::before {
-        border-radius: 12px 12px 0 0;
-    }
-
-    .project-image-section .mardal-image-reveal img {
         border-radius: 12px;
         height: auto;
         object-fit: contain;
