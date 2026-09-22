@@ -140,7 +140,7 @@
         <section class="project-hero">
             <div class="container">
                 <div class="project-header-content">
-                    <div class="project-title-section">
+                    <div class="project-title-section project-title-section--inline">
                         <div class="text-reveal-wrapper">
                             <h1 class="project-title">HBS</h1>
                         </div>
@@ -151,183 +151,215 @@
                     <div class="project-header-divider"></div>
                 </div>
 
-                <!-- Three Column Layout -->
-                <div class="project-info-layout">
-                    <!-- Left Column -->
-                    <div class="project-info-left">
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Industry</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Construction</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Service</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Logo</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Location</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Switzerland</span>
-                            </div>
-                        </div>
+                <!-- The project in one row under the name -->
+                <dl class="project-facts">
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Industry</dt>
+                        <dd class="project-info-value">Construction</dd>
                     </div>
-
-                    <!-- Middle Column -->
-                    <div class="project-info-middle">
-                        <div class="project-info-item project-info-year">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Year</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">2025</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item project-info-stack">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Scope of Work</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Brand Workbook · Branding positioning · Brand Identity
-                                    · Printing Content</span>
-                            </div>
-                        </div>
+                    <div class="project-fact project-fact--service text-reveal-wrapper">
+                        <dt class="project-info-label">Service</dt>
+                        <dd class="project-info-value"><span class="fact-item">Brand Identity</span>&nbsp;· <span class="fact-item">Logotype</span>&nbsp;·<br><span class="fact-item">Brand Guidelines</span></dd>
                     </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Agency</dt>
+                        <dd class="project-info-value">Monun AG</dd>
+                    </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Location</dt>
+                        <dd class="project-info-value">Switzerland</dd>
+                    </div>
+                    <div class="project-fact project-fact--stack text-reveal-wrapper">
+                        <dt class="project-info-label">Deliverables</dt>
+                        <dd class="project-info-value"><span class="fact-item">Brand positioning</span>&nbsp;· <span class="fact-item">Logotype</span>&nbsp;· <span class="fact-item">Colour palette</span>&nbsp;· <span class="fact-item">Typography</span>&nbsp;· <span class="fact-item">Brand pattern</span>&nbsp;· <span class="fact-item">Brand workbook</span>&nbsp;· <span class="fact-item">Business cards</span>&nbsp;· <span class="fact-item">Letterhead</span>&nbsp;· <span class="fact-item">Brochure</span></dd>
+                    </div>
+                </dl>
 
-                    <!-- Right Column -->
-                    <div class="project-info-right">
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Project Description</span>
+                <!-- Case study, one part after another: a heading and its text. On a wide screen script.js lists every part's
+                     name on the left, held in view as the texts pass: dark grey, and light for the part being read; on a
+                     phone (or without script.js) each heading sits with its text. A new part is one more .case-step -->
+                <div class="case-study">
+                    <div class="case-study-steps">
+                        <section class="case-step" aria-labelledby="case-company">
+                            <h2 class="case-step-title" data-reveal id="case-company">Company</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>The identity came first</h3>
+                                <p data-reveal>HBS Swiss AG is a Swiss construction company that plans, manages and
+                                    supervises building projects. The work came through Monun AG in 2025, and this
+                                    identity was the first of two projects I did for HBS.</p>
                             </div>
-                            <div class="project-description-content">
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">This project was commissioned by MONUN AG from
-                                        HBS, a construction company that had relied on the same logo for nearly 25 years
-                                        and was seeking a renewed identity aligned with its current standards and future
-                                        direction. As an employee at monun, I was responsible for leading the logo
-                                        redevelopment and was given full creative freedom to rethink the identity from
-                                        the ground up. This allowed the new logo to be developed through clear strategic
-                                        reasoning and design logic, rather than incremental visual changes.</p>
-                                </div>
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">The logo is built on a structural frame inspired
-                                        by construction principles and building walls. Strong geometric forms express
-                                        stability, precision, and structural integrity, forming an architectural grid
-                                        that underpins the entire identity system. This framework ensures consistency
-                                        and logical construction across all brand elements, directly reflecting the
-                                        nature of the construction industry.</p>
-                                </div>
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">A bold, highly legible base typeface was
-                                        selected to convey strength, durability, and trust. From this foundation, custom
-                                        letterforms were developed directly from the structural frame, translating
-                                        architectural logic into a distinctive and cohesive logotype. The result is a
-                                        logo that is structurally grounded rather than decorative, reinforcing a clear
-                                        connection to construction, craftsmanship, and long-term reliability while
-                                        remaining adaptable across physical and digital applications.</p>
-                                </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-brief">
+                            <h2 class="case-step-title" data-reveal id="case-brief">The brief</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Twenty-five years on one logo</h3>
+                                <p data-reveal>HBS had used the same logo for nearly 25 years. It had dated badly: hard
+                                    to read, poorly constructed, and out of step with the company HBS had become. The
+                                    brief was a renewed identity that matched the company's current standards and where
+                                    it was heading.</p>
+                                <p data-reveal>I led the redevelopment and was given full creative freedom, which meant
+                                    the identity could be rebuilt from first principles rather than adjusted piece by
+                                    piece.</p>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <!-- hbs1 big image -->
-                <div class="project-image-section">
-                    <div class="project-main-image project-rounded-image hbs-image-reveal">
-                        <img src="/work/hbs/hbs1.jpg" alt="HBS Project Main" loading="lazy">
-                    </div>
-                </div>
-
-                <!-- Row of 2: hbs2 & hbs3 -->
-                <div class="project-gallery-section">
-                    <div class="project-gallery-grid">
-                        <div class="project-gallery-item">
-                            <div class="work-image project-rounded-image hbs-image-reveal">
-                                <img src="/work/hbs/hbs2.jpg" alt="HBS Variation 2" loading="lazy">
+                        </section>
+                        <section class="case-step" aria-labelledby="case-exploration">
+                            <h2 class="case-step-title" data-reveal id="case-exploration">Exploration</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>The direction that won</h3>
+                                <p data-reveal>I developed four directions for the new mark and presented all of them to
+                                    the client. The one built on a structural frame was chosen, and it became the
+                                    definitive identity. The rest of this case study follows that direction from concept
+                                    to system.</p>
                             </div>
-                        </div>
-                        <div class="project-gallery-item">
-                            <div class="work-image project-rounded-image hbs-image-reveal">
-                                <img src="/work/hbs/hbs3.jpg" alt="HBS Variation 3" loading="lazy">
+                        </section>
+                        <section class="case-step" aria-labelledby="case-concept">
+                            <h2 class="case-step-title" data-reveal id="case-concept">Concept</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>A frame to build inside</h3>
+                                <p data-reveal>The idea comes from how buildings are made: the structure goes up before
+                                    anything is fitted inside it. The mark starts as a frame of three connected cells,
+                                    drawn with strong geometric lines and chamfered corners, inspired by building walls
+                                    and the structural logic of construction. It works like a foundation. The letters H,
+                                    B and S are fitted into it, one per cell, each sitting exactly within the space the
+                                    frame gives it.</p>
+                                <p data-reveal>Nothing in the mark is ornamental. The frame carries the meaning,
+                                    stability, precision and structural integrity, and the letters sit within it the way
+                                    a building's elements sit within its structure.</p>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- hbs4 big image -->
-                <div class="project-image-section">
-                    <div class="project-main-image project-rounded-image hbs-image-reveal">
-                        <img src="/work/hbs/hbs4.jpg" alt="HBS Presentation 4" loading="lazy">
-                    </div>
-                </div>
-
-                <!-- hbs5 big image -->
-                <div class="project-image-section">
-                    <div class="project-main-image project-rounded-image hbs-image-reveal">
-                        <img src="/work/hbs/hbs5.jpg" alt="HBS Presentation 5" loading="lazy">
-                    </div>
-                </div>
-
-                <!-- Row of 2: hbs6 & hbs7 -->
-                <div class="project-gallery-section">
-                    <div class="project-gallery-grid">
-                        <div class="project-gallery-item">
-                            <div class="work-image project-rounded-image hbs-image-reveal">
-                                <img src="/work/hbs/hbs6.jpg" alt="HBS Variation 6" loading="lazy">
+                        </section>
+                        <section class="case-step" aria-labelledby="case-construction">
+                            <h2 class="case-step-title" data-reveal id="case-construction">Construction</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Frame, typeface, letterform</h3>
+                                <p data-reveal>The logo was built in three steps, and each one is still visible in the
+                                    final mark.</p>
+                                <p data-reveal>First, the structural frame: three cells joined into one outline, with
+                                    angled cuts where they meet and at the outer corners. It is the grid every other
+                                    element of the identity is drawn from.</p>
+                                <p data-reveal>Second, a base typeface, chosen for its bold structure and high
+                                    legibility, exactly the qualities the old logo lacked. It gave the letters strength
+                                    and readability across technical documents, screens and print.</p>
+                                <p data-reveal>Third, custom letterforms. Starting from the base typeface, each letter
+                                    was redrawn to fit its cell, with its corners cut to echo the frame's chamfers, so
+                                    frame and letters read as one construction rather than a typeface placed inside a
+                                    box.</p>
                             </div>
-                        </div>
-                        <div class="project-gallery-item">
-                            <div class="work-image project-rounded-image hbs-image-reveal">
-                                <img src="/work/hbs/hbs7.jpg" alt="HBS Variation 7" loading="lazy">
+                        </section>
+                        <section class="case-step" aria-labelledby="case-system">
+                            <h2 class="case-step-title" data-reveal id="case-system">The system</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>One blue in four tones, one typeface, one
+                                    pattern</h3>
+                                <p data-reveal>Colour is a single blue in four tones, from #084E9E to #2466B2, used with
+                                    black and white. Keeping the palette to one hue gives HBS a colour it can own, and
+                                    the tonal range gives enough depth for print, screens and signage without
+                                    introducing a second colour.</p>
+                                <p data-reveal>Typography is Inter throughout, in three weights: 200 for light use, 400
+                                    for text and 600 for emphasis. It stays legible at every size and is neutral enough
+                                    to leave the logotype as the only expressive typographic element.</p>
+                                <p data-reveal>The logo comes in four versions: the full-colour primary mark with a blue
+                                    frame, white cells and black letters; two transparent versions with a blue frame and
+                                    either white or black letters; and an all-white version.</p>
+                                <p data-reveal>A brand pattern completes the system: the logomark repeated in a
+                                    rhythmic, angled composition. It lets HBS fill large surfaces with the brand without
+                                    repeating the logo at full size, adding recognition and movement in the background
+                                    of print and digital layouts while the logo itself stays the focal point.</p>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- hbs8 big image -->
-                <div class="project-image-section">
-                    <div class="project-main-image project-rounded-image hbs-image-reveal">
-                        <img src="/work/hbs/hbs8.jpg" alt="HBS Presentation 8" loading="lazy">
-                    </div>
-                </div>
-
-                <!-- hbs9 big image -->
-                <div class="project-image-section">
-                    <div class="project-main-image project-rounded-image hbs-image-reveal">
-                        <img src="/work/hbs/hbs9.jpg" alt="HBS Presentation 9" loading="lazy">
+                        </section>
+                        <section class="case-step" aria-labelledby="case-applications">
+                            <h2 class="case-step-title" data-reveal id="case-applications">Applications</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>From concrete to screen</h3>
+                                <p data-reveal>The identity was designed to hold up wherever HBS appears, and each logo
+                                    version has its ground. The full-colour mark works on white paper and documents, the
+                                    transparent versions on blue and light backgrounds, and the all-white version on
+                                    dark surfaces and photography. There is always a correct version, so the logo never
+                                    ends up somewhere it cannot be read, a problem the old mark had everywhere.</p>
+                                <p data-reveal>In the workbook the identity is shown against concrete walls and slabs,
+                                    with the pattern running along a raw wall and the mark sitting on poured concrete.
+                                    The point is to show it stays legible and strong on the materials of a building
+                                    site, not only on a white page.</p>
+                                <p data-reveal>In print, the system became a full set of company stationery: business
+                                    cards, letterhead and a brochure. Each uses the same blue, Inter for all text and
+                                    the logo version suited to its background, so a card handed over on site and a
+                                    brochure sent to a client read as the same company.</p>
+                                <p data-reveal>When I built the HBS website, the system carried straight over: the
+                                    four-tone blue became full-bleed sections, Inter became the single typeface of the
+                                    interface, and the logo sits at the top of every page.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-outcome">
+                            <h2 class="case-step-title" data-reveal id="case-outcome">Outcome</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Accepted at first sight</h3>
+                                <p data-reveal>Of the four directions presented, the client chose this one immediately
+                                    and accepted it on the spot. After almost 25 years on a logo that was hard to read,
+                                    HBS now has an identity built on reasoning it can explain: a frame drawn from
+                                    construction, letters fitted inside it, and a system that keeps them consistent
+                                    wherever they appear.</p>
+                                <p data-reveal>The workbook keeps it that way. Colours, typeface, logo versions and
+                                    pattern are documented in one place, so anyone producing material for HBS, whether a
+                                    printer or a web developer, works from the same rules rather than from guesswork.
+                                    The stationery and the website were the first proof of that: both were produced
+                                    entirely from the system, and nothing about the brand had to be decided twice.</p>
+                            </div>
+                        </section>
                     </div>
                 </div>
 
-                <!-- hbs10 big image -->
-                <div class="project-image-section">
-                    <div class="project-main-image project-rounded-image hbs-image-reveal">
-                        <img src="/work/hbs/hbs10.jpg" alt="HBS Presentation 10" loading="lazy">
+                <!-- Images in a narrower column; on a wide screen script.js adds a navigator on the right: every image small,
+                     with a frame showing which part is on screen -->
+                <div class="project-image-section project-image-section--navigator">
+                    <!-- Previous and next project beside the images: they arrive with the first image, stay level with the middle
+                         of the screen while the images pass, and leave with the last one -->
+                    <div class="project-pager-rail">
+                        <nav class="project-pager" aria-label="More projects">
+                            <a class="project-pager-link project-pager-link--previous" href="/work/monun.html" rel="prev" aria-label="Previous project: MONUN AG"><span>Previous</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 1 1 5l4.5 4"/></svg></span></a>
+                            <a class="project-pager-link project-pager-link--next" href="/work/wmk.html" rel="next" aria-label="Next project: WMK"><span>Next</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M.5 1 5 5 .5 9"/></svg></span></a>
+                        </nav>
+                    </div>
+
+                    <!-- First image -->
+                    <div class="project-main-image hbs-image-reveal hbs-first-image">
+                        <img src="/work/hbs/hbs1.jpg" width="1700" height="995" alt="HBS Project Main" loading="lazy">
+                    </div>
+
+                    <!-- Gallery: the smaller images, one under another -->
+                    <div class="project-gallery-layout">
+                        <div class="project-gallery-images">
+                            <div class="project-main-image hbs-image-reveal">
+                                <img src="/work/hbs/hbs2.jpg" width="1000" height="1000" alt="HBS Variation 2" loading="lazy">
+                            </div>
+                            <div class="project-main-image hbs-image-reveal">
+                                <img src="/work/hbs/hbs3.jpg" width="1000" height="1000" alt="HBS Variation 3" loading="lazy">
+                            </div>
+                            <div class="project-main-image hbs-image-reveal">
+                                <img src="/work/hbs/hbs4.jpg" width="1500" height="877" alt="HBS Presentation 4" loading="lazy">
+                            </div>
+                            <div class="project-main-image hbs-image-reveal">
+                                <img src="/work/hbs/hbs5.jpg" width="1500" height="877" alt="HBS Presentation 5" loading="lazy">
+                            </div>
+                            <div class="project-main-image hbs-image-reveal">
+                                <img src="/work/hbs/hbs6.jpg" width="1000" height="1000" alt="HBS Variation 6" loading="lazy">
+                            </div>
+                            <div class="project-main-image hbs-image-reveal">
+                                <img src="/work/hbs/hbs7.jpg" width="1000" height="1000" alt="HBS Variation 7" loading="lazy">
+                            </div>
+                            <div class="project-main-image hbs-image-reveal">
+                                <img src="/work/hbs/hbs8.jpg" width="1500" height="877" alt="HBS Presentation 8" loading="lazy">
+                            </div>
+                            <div class="project-main-image hbs-image-reveal">
+                                <img src="/work/hbs/hbs9.jpg" width="1500" height="877" alt="HBS Presentation 9" loading="lazy">
+                            </div>
+                            <div class="project-main-image hbs-image-reveal">
+                                <img src="/work/hbs/hbs10.jpg" width="1500" height="877" alt="HBS Presentation 10" loading="lazy">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-
-        <!-- Project Pagination -->
-    <nav class="project-pagination" aria-label="Project navigation">
-        <!-- One quiet line between hairlines: previous project, all projects, next project -->
-        <div class="container project-pagination-row">
-            <a href="/work/monun.html" class="arrow-link arrow-link--back project-pagination-prev" rel="prev"><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 3.2 3.2 12.8"/><path d="M9.8 12.8H3.2V6.2"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 3.2 3.2 12.8"/><path d="M9.8 12.8H3.2V6.2"/></svg></span><span class="arrow-link-label"><span class="project-pagination-label">Previous</span> <span class="project-pagination-dot" aria-hidden="true">·</span> MONUN AG</span></a>
-            <a href="/work.html" class="arrow-link project-pagination-all"><span class="arrow-link-label">All projects</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
-            <a href="/work/wmk.html" class="arrow-link project-pagination-next" rel="next"><span class="arrow-link-label"><span class="project-pagination-label">Next</span> <span class="project-pagination-dot" aria-hidden="true">·</span> WMK</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
-        </div>
-    </nav>
 
     <!-- Modern Footer Section -->
     <footer class="modern-footer">

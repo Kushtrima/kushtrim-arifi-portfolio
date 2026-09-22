@@ -895,7 +895,8 @@
 .project-image-section.project-image-section--navigator > .ennur-first-image,
 .project-image-section.project-image-section--navigator > .doratec-first-image,
 .project-image-section.project-image-section--navigator > .monun-first-image,
-.project-image-section.project-image-section--navigator > .spitex-first-image {
+.project-image-section.project-image-section--navigator > .spitex-first-image,
+.project-image-section.project-image-section--navigator > .hbs-first-image {
     margin-bottom: 80px;
 }
 
@@ -906,7 +907,8 @@
     .project-image-section.project-image-section--navigator > .ennur-first-image,
     .project-image-section.project-image-section--navigator > .doratec-first-image,
     .project-image-section.project-image-section--navigator > .monun-first-image,
-    .project-image-section.project-image-section--navigator > .spitex-first-image {
+    .project-image-section.project-image-section--navigator > .spitex-first-image,
+    .project-image-section.project-image-section--navigator > .hbs-first-image {
         margin-bottom: 70px !important;
     }
 }
@@ -918,7 +920,8 @@
     .project-image-section.project-image-section--navigator > .ennur-first-image,
     .project-image-section.project-image-section--navigator > .doratec-first-image,
     .project-image-section.project-image-section--navigator > .monun-first-image,
-    .project-image-section.project-image-section--navigator > .spitex-first-image {
+    .project-image-section.project-image-section--navigator > .spitex-first-image,
+    .project-image-section.project-image-section--navigator > .hbs-first-image {
         margin-bottom: 30px !important;
     }
 }
