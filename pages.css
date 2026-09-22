@@ -1029,3 +1029,178 @@
     .projects-note {
     }
 }
+/* ---------------------------------------------------------------------------
+   CV page (cv.html): the résumé as a page, on the same dark ground as About.
+   The years sit in their own column, as they do in the experience list on the
+   home page; everything else reuses the type and greys already in use here.
+   --------------------------------------------------------------------------- */
+.cv-section {
+    padding: 40px 0 60px;
+    background-color: var(--color-secondary);
+}
+
+.cv-section--facts {
+    padding-top: 0;
+}
+
+/* Where he is, how to reach him: a short row of labelled facts */
+.cv-facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 28px 40px;
+    margin: 0 0 36px 0;
+}
+
+.cv-fact dt {
+    margin-bottom: 8px;
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-grey-88);
+}
+
+.cv-fact dd {
+    margin: 0;
+    font-family: var(--font-primary);
+    font-size: var(--text-paragraph);
+    line-height: 1.5;
+    color: var(--color-primary);
+}
+
+.cv-fact a,
+.cv-projects a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.cv-fact a:focus-visible,
+.cv-projects a:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 4px;
+}
+
+.cv-download {
+    margin: 0;
+}
+
+/* One entry per role: the years on the left, the role, the company and what it involved on the right */
+.cv-list {
+    display: grid;
+    row-gap: clamp(40px, 4.5vw, 60px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.cv-entry,
+.cv-skill {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    column-gap: clamp(24px, 4vw, 64px);
+    align-items: start;
+}
+
+.cv-entry-years,
+.cv-skill-name {
+    margin: 0;
+    font-family: var(--font-primary);
+    font-size: var(--text-paragraph);
+    line-height: 1.3;
+    text-transform: uppercase;
+    color: var(--color-grey-88);
+    white-space: nowrap;
+}
+
+.cv-entry-title {
+    margin: 0 0 4px 0;
+    font-family: var(--font-primary);
+    font-size: var(--text-paragraph);
+    font-weight: 700;
+    line-height: 1.3;
+    text-transform: uppercase;
+    color: var(--color-primary);
+}
+
+.cv-entry-where {
+    margin: 0 0 16px 0;
+    font-family: var(--font-primary);
+    font-size: var(--text-paragraph);
+    line-height: 1.3;
+    text-transform: uppercase;
+    color: var(--color-grey-cc);
+}
+
+.cv-entry-list,
+.cv-skills,
+.cv-projects {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.cv-entry-list li {
+    position: relative;
+    margin-bottom: 10px;
+    padding-left: 18px;
+    font-family: var(--font-primary);
+    font-size: var(--text-paragraph);
+    line-height: 1.5;
+    color: var(--color-grey-cc);
+}
+
+/* A short rule instead of a bullet, in the same grey as the text around it */
+.cv-entry-list li::before {
+    content: '';
+    position: absolute;
+    top: 0.72em;
+    left: 0;
+    width: 7px;
+    height: 1px;
+    background-color: var(--color-grey-88);
+}
+
+.cv-skills {
+    display: grid;
+    row-gap: 18px;
+}
+
+.cv-skill-items {
+    font-family: var(--font-primary);
+    font-size: var(--text-paragraph);
+    line-height: 1.5;
+    color: var(--color-primary);
+}
+
+/* The case studies, two columns on a wide screen */
+.cv-projects {
+    columns: 2;
+    column-gap: clamp(32px, 5vw, 80px);
+}
+
+.cv-projects li {
+    margin-bottom: 12px;
+    font-family: var(--font-primary);
+    font-size: var(--text-paragraph);
+    line-height: 1.5;
+    color: var(--color-grey-cc);
+    break-inside: avoid;
+}
+
+/* Phones: the years sit above the role, and the case studies run in one column */
+@media (max-width: 768px) {
+    .cv-section {
+        padding: 30px 0 40px;
+    }
+
+    .cv-entry,
+    .cv-skill {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 8px;
+    }
+
+    .cv-projects {
+        columns: 1;
+    }
+}
