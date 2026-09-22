@@ -898,7 +898,8 @@
 .project-image-section.project-image-section--navigator > .spitex-first-image,
 .project-image-section.project-image-section--navigator > .hbs-first-image,
 .project-image-section.project-image-section--navigator > .wmk-first-image,
-.project-image-section.project-image-section--navigator > .riesen-first-image {
+.project-image-section.project-image-section--navigator > .riesen-first-image,
+.project-image-section.project-image-section--navigator > .baren-first-image {
     margin-bottom: 80px;
 }
 
@@ -912,7 +913,8 @@
     .project-image-section.project-image-section--navigator > .spitex-first-image,
     .project-image-section.project-image-section--navigator > .hbs-first-image,
     .project-image-section.project-image-section--navigator > .wmk-first-image,
-    .project-image-section.project-image-section--navigator > .riesen-first-image {
+    .project-image-section.project-image-section--navigator > .riesen-first-image,
+    .project-image-section.project-image-section--navigator > .baren-first-image {
         margin-bottom: 70px !important;
     }
 }
@@ -927,7 +929,8 @@
     .project-image-section.project-image-section--navigator > .spitex-first-image,
     .project-image-section.project-image-section--navigator > .hbs-first-image,
     .project-image-section.project-image-section--navigator > .wmk-first-image,
-    .project-image-section.project-image-section--navigator > .riesen-first-image {
+    .project-image-section.project-image-section--navigator > .riesen-first-image,
+    .project-image-section.project-image-section--navigator > .baren-first-image {
         margin-bottom: 30px !important;
     }
 }
@@ -1108,6 +1111,46 @@
 }
 
 .project-image-section .hbs-website-image-reveal img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    background-color: var(--color-grey-8a);
+}
+
+/* Bären Image Scroll Reveal Effect - Same as others */
+.project-image-section .baren-image-reveal {
+    position: relative;
+    overflow: hidden;
+    will-change: transform, opacity;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    /* Desktop radius */
+    background: var(--color-grey-8a);
+    /* Grey to avoid white bleed */
+}
+
+.project-image-section .baren-image-reveal:last-child {
+    margin-bottom: 0;
+}
+
+/* Subtle transparency gradient at top of image as it scrolls */
+.project-image-section .baren-image-reveal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: linear-gradient(to bottom, rgba(var(--color-grey-8a-rgb), 0.3), transparent);
+    pointer-events: none;
+    z-index: 2;
+    opacity: var(--gradient-opacity, 0);
+    border-radius: 8px 8px 0 0;
+}
+
+.project-image-section .baren-image-reveal img {
     display: block;
     width: 100%;
     height: auto;

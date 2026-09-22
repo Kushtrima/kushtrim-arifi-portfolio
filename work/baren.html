@@ -140,9 +140,9 @@
         <section class="project-hero">
             <div class="container">
                 <div class="project-header-content">
-                    <div class="project-title-section">
+                    <div class="project-title-section project-title-section--inline">
                         <div class="text-reveal-wrapper">
-                            <h1 class="project-title">Bären Gruppe AG</h1>
+                            <h1 class="project-title">Bären Gruppe&nbsp;AG</h1>
                         </div>
                         <div class="text-reveal-wrapper">
                             <a href="https://baeren-baugruppe-ag.ch/" target="_blank" rel="noopener noreferrer" class="project-website-link arrow-link"><span class="arrow-link-label">baeren-baugruppe-ag.ch</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
@@ -151,142 +151,192 @@
                     <div class="project-header-divider"></div>
                 </div>
 
-                <!-- Three Column Layout: Left (Industry/Service/Location) | Middle (Year/Stack) | Right (Project Description) -->
-                <div class="project-info-layout">
-                    <!-- Left Column -->
-                    <div class="project-info-left">
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Industry</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Construction</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Service</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Logo</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Location</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Switzerland</span>
-                            </div>
-                        </div>
+                <!-- The project in one row under the name -->
+                <dl class="project-facts">
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Industry</dt>
+                        <dd class="project-info-value">Construction &amp;<br>Roofing</dd>
                     </div>
-
-                    <!-- Middle Column -->
-                    <div class="project-info-middle">
-                        <div class="project-info-item project-info-year">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Year</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">2024</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item project-info-stack">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Scope of Work</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Brand Workbook · Branding positioning · Brand Identity
-                                    · Printing Content</span>
-                            </div>
-                        </div>
+                    <div class="project-fact project-fact--service text-reveal-wrapper">
+                        <dt class="project-info-label">Service</dt>
+                        <dd class="project-info-value"><span class="fact-item">Logo Design</span>&nbsp;· <span class="fact-item">Lettering</span>&nbsp;·<br><span class="fact-item">Brand Identity</span></dd>
                     </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Agency</dt>
+                        <dd class="project-info-value">Business<br>Leaders AG</dd>
+                    </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Location</dt>
+                        <dd class="project-info-value">Urtenen-Schönbühl,<br>Switzerland</dd>
+                    </div>
+                    <div class="project-fact project-fact--stack text-reveal-wrapper">
+                        <dt class="project-info-label">Deliverables</dt>
+                        <dd class="project-info-value">Logo and lettering&nbsp;· <span class="fact-item">Bear symbol</span>&nbsp;· <span class="fact-item">Colour palette</span>&nbsp;· <span class="fact-item">Typography</span>&nbsp;· <span class="fact-item">Identity pattern</span>&nbsp;· <span class="fact-item">Photography direction</span>&nbsp;· <span class="fact-item">Brand workbook</span>&nbsp;· Site and sponsorship applications</dd>
+                    </div>
+                </dl>
 
-                    <!-- Right Column: Project Description -->
-                    <div class="project-info-right">
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Project Description</span>
+                <!-- Case study, one part after another: a heading and its text. On a wide screen script.js lists every part's
+                     name on the left, held in view as the texts pass: dark grey, and light for the part being read; on a
+                     phone (or without script.js) each heading sits with its text. A new part is one more .case-step -->
+                <div class="case-study">
+                    <div class="case-study-steps">
+                        <section class="case-step" aria-labelledby="case-who-they-are">
+                            <h2 class="case-step-title" data-reveal id="case-who-they-are">Who they are</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>From a roofing firm to a building group</h3>
+                                <p data-reveal>Bären Baugruppe AG is a Swiss construction company based in
+                                    Urtenen-Schönbühl, near Bern. It started out as a roofing contractor and has grown
+                                    into a building group covering roofing and sheet-metal work, flat roofs, façades,
+                                    building protection, coatings, painting and renovation, and even drone inspections
+                                    of tall buildings. It is also a major sponsor in Swiss sport, above all football.
+                                    The project came to me through Business Leaders AG in 2024.</p>
                             </div>
-                            <div class="project-description-content">
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">Bären Baugruppe AG is one of the major
-                                        construction companies in Switzerland with many years of experience in the
-                                        market. The company is well known for high-quality work and reliability in
-                                        roofing, plumbing, painting, and building protection. Beyond construction, Bären
-                                        Baugruppe is also a top sponsor in Swiss sports, especially football, showing
-                                        its strong connection to community, teamwork, and long-term commitment.</p>
-                                </div>
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">Drawing inspiration from the powerful
-                                        symbolism of the bear, this emblem embodies strength, resilience, and forward
-                                        momentum. Our collaboration with BÄRENB BAUGROUPE AG was marked by a shared
-                                        vision for a bold and memorable brand identity. With a focus on clean lines and
-                                        modern aesthetics, we've created a logo that speaks volumes about the company's
-                                        values and aspirations.</p>
-                                </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-before">
+                            <h2 class="case-step-title" data-reveal id="case-before">Before</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>A name written out, and nothing more</h3>
+                                <p data-reveal>The previous logo was simply the word Bären, set in type with nothing
+                                    else. It named the company but gave it no mark of its own: nothing to recognise at a
+                                    distance, nothing that could stand alone on a helmet or a hoarding, and no sign of
+                                    the animal the name refers to. The client wanted something new and distinctive, a
+                                    self-contained mark that holds more of the company than a word alone could.</p>
                             </div>
-                        </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-the-lettering">
+                            <h2 class="case-step-title" data-reveal id="case-the-lettering">The lettering</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>The bear moves into the name</h3>
+                                <p data-reveal>I started with the type. The plain lettering was replaced with a heavy,
+                                    forward-leaning italic that gives the word real weight. Then, instead of placing a
+                                    bear beside the name, I built it into the letters. A red bear walks through the
+                                    middle of the word, taking the place of parts of the Ä and the R, with its legs
+                                    standing in for their strokes and the umlaut dots still sitting above it.</p>
+                                <p data-reveal>The name and the animal are now one shape. Bären means bears, and the
+                                    logo says it twice at once, in words and in image, without needing a symbol next to
+                                    it. The italic slant and the bear's direction of travel point the same way, forward
+                                    in the reading direction, which gives the mark its momentum. Below it, Baugruppe AG
+                                    is set light and widely spaced, a calm counterweight to the heavy name.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-four-states">
+                            <h2 class="case-step-title" data-reveal id="case-four-states">Four states</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>One bear, four ways to appear</h3>
+                                <p data-reveal>In the word. The primary logo: black letters with the red bear walking
+                                    through them. This is the version for white grounds, print and anywhere full colour
+                                    can be reproduced.</p>
+                                <p data-reveal>Carved into the letters. In one colour, white on black or black on white,
+                                    the bear is not drawn at all. Its outline stays cut into the Ä and the R, so the
+                                    animal is still there as negative space. The idea survives even when the colour
+                                    can't.</p>
+                                <p data-reveal>On its own. The red bear works as a standalone symbol, small enough for
+                                    the brim of a hard hat and other spaces where the full name would be too wide.</p>
+                                <p data-reveal>As a pattern. The letter fragments that frame the bear are repeated in
+                                    white on red to form the identity pattern. The bear itself is left out, implied by
+                                    the shapes around it, so the pattern belongs to Bären even though the logo never
+                                    appears in it.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-the-palette">
+                            <h2 class="case-step-title" data-reveal id="case-the-palette">The palette</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Red from the roof</h3>
+                                <p data-reveal>The red has a history. Bären started as a roofing contractor, and the
+                                    colour comes from the roofs it built: the red of the tiles it laid. #E40625 is the
+                                    primary red, with a lighter #F0484A for larger accents, set against black, a dark
+                                    grey #4D4D4D and white.</p>
+                                <p data-reveal>The palette also holds up on legibility. White text on the main red
+                                    reaches a contrast ratio of 4.8:1, enough to pass the WCAG AA standard, so the red
+                                    can carry text on signage and print. The lighter red reaches 3.7:1, which only suits
+                                    large type, so it is kept for big shapes and accents. White on the grey reaches
+                                    8.5:1.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-voice-and-imagery">
+                            <h2 class="case-step-title" data-reveal id="case-voice-and-imagery">Voice and imagery</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>A humanist face and real people at work</h3>
+                                <p data-reveal>Typography is Humanist 777 in light, regular and bold. As a humanist sans
+                                    it has more warmth and openness than a geometric face, which suits a company built
+                                    on hands-on work, and it stays clear from a site banner down to small print.</p>
+                                <p data-reveal>Photography follows the same principle. The images show real
+                                    professionals at work, like a roofer carrying tiles up a roof, with the logo applied
+                                    sparingly so the people and the craft come first and the brand stays in a supporting
+                                    role.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-in-the-field">
+                            <h2 class="case-step-title" data-reveal id="case-in-the-field">In the field</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>From the hard hat to the football pitch</h3>
+                                <p data-reveal>The identity runs across all of the company's applications, and it was
+                                    built for where Bären is seen. On site, the full logo sits on the side of the hard
+                                    hats with the red bear alone on the brim, and the site fences carry black banners
+                                    with the white logo, the address and the full list of services, turning every
+                                    building site into a sign for the company.</p>
+                                <p data-reveal>It also appears in the company's football sponsorship, where a logo is
+                                    seen from the stands and on the move. A heavy italic wordmark in high-contrast red
+                                    and black holds up there, readable at a distance and at a glance.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-after">
+                            <h2 class="case-step-title" data-reveal id="case-after">After</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>From a word to a mark</h3>
+                                <p data-reveal>Bären went from a name written in type to a mark that holds the company
+                                    in one shape: the bear from its name, the red from its roofing roots, and a forward
+                                    lean that fits a group still growing. And because the same bear works in full
+                                    colour, in one colour, as a symbol and as a pattern, there is nowhere the company
+                                    appears without it.</p>
+                            </div>
+                        </section>
                     </div>
                 </div>
 
-                <div class="project-image-section">
-                    <div class="project-main-image project-rounded-image">
-                        <img src="/work/baren/baren1.jpg" alt="Bären Gruppe AG Presentation 1" loading="lazy">
+                <!-- Images in a narrower column; on a wide screen script.js adds a navigator on the right: every image small,
+                     with a frame showing which part is on screen -->
+                <div class="project-image-section project-image-section--navigator">
+                    <!-- Previous and next project beside the images: they arrive with the first image, stay level with the middle
+                         of the screen while the images pass, and leave with the last one -->
+                    <div class="project-pager-rail">
+                        <nav class="project-pager" aria-label="More projects">
+                            <a class="project-pager-link project-pager-link--previous" href="/work/riesen.html" rel="prev" aria-label="Previous project: Riesen Holzbau"><span>Previous</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 1 1 5l4.5 4"/></svg></span></a>
+                            <a class="project-pager-link project-pager-link--next" href="/work/cityhotel.html" rel="next" aria-label="Next project: Cityhotel"><span>Next</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M.5 1 5 5 .5 9"/></svg></span></a>
+                        </nav>
                     </div>
-                </div>
 
-                <!-- Row of 2: baren2 & baren3 -->
-                <div class="project-gallery-section">
-                    <div class="project-gallery-grid">
-                        <div class="project-gallery-item">
-                            <div class="work-image project-rounded-image">
-                                <img src="/work/baren/baren2.jpg" alt="Bären Gruppe AG Variation 2" loading="lazy">
+                    <!-- First image -->
+                    <div class="project-main-image baren-image-reveal baren-first-image">
+                        <img src="/work/baren/baren1.jpg" width="3069" height="1797" alt="Bären Gruppe AG Presentation 1" loading="lazy">
+                    </div>
+
+                    <!-- Gallery: the smaller images, one under another -->
+                    <div class="project-gallery-layout">
+                        <div class="project-gallery-images">
+                            <div class="project-main-image baren-image-reveal">
+                                <img src="/work/baren/baren2.jpg" width="1587" height="1587" alt="Bären Gruppe AG Variation 2" loading="lazy">
                             </div>
-                        </div>
-                        <div class="project-gallery-item">
-                            <div class="work-image project-rounded-image">
-                                <img src="/work/baren/baren3.jpg" alt="Bären Gruppe AG Variation 3" loading="lazy">
+                            <div class="project-main-image baren-image-reveal">
+                                <img src="/work/baren/baren3.jpg" width="2039" height="2039" alt="Bären Gruppe AG Variation 3" loading="lazy">
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-image-section">
-                    <div class="project-main-image project-rounded-image">
-                        <img src="/work/baren/baren4.jpg" alt="Bären Gruppe AG Presentation 4" loading="lazy">
-                    </div>
-                </div>
-
-                <div class="project-image-section">
-                    <div class="project-main-image project-rounded-image">
-                        <img src="/work/baren/baren5.jpg" alt="Bären Gruppe AG Presentation 5" loading="lazy">
-                    </div>
-                </div>
-
-                <div class="project-image-section">
-                    <div class="project-main-image project-rounded-image">
-                        <img src="/work/baren/baren6.jpg" alt="Bären Gruppe AG Presentation 6" loading="lazy">
-                    </div>
-                </div>
-
-                <div class="project-image-section">
-                    <div class="project-main-image project-rounded-image">
-                        <img src="/work/baren/baren7.jpg" alt="Bären Gruppe AG Presentation 7" loading="lazy">
-                    </div>
-                </div>
-
-                <!-- Row of 2: baren8 & baren9 -->
-                <div class="project-gallery-section">
-                    <div class="project-gallery-grid">
-                        <div class="project-gallery-item">
-                            <div class="work-image project-rounded-image">
-                                <img src="/work/baren/baren8.jpg" alt="Bären Gruppe AG Variation 8" loading="lazy">
+                            <div class="project-main-image baren-image-reveal">
+                                <img src="/work/baren/baren4.jpg" width="1500" height="877" alt="Bären Gruppe AG Presentation 4" loading="lazy">
                             </div>
-                        </div>
-                        <div class="project-gallery-item">
-                            <div class="work-image project-rounded-image">
-                                <img src="/work/baren/baren9.jpg" alt="Bären Gruppe AG Variation 9" loading="lazy">
+                            <div class="project-main-image baren-image-reveal">
+                                <img src="/work/baren/baren5.jpg" width="1500" height="877" alt="Bären Gruppe AG Presentation 5" loading="lazy">
+                            </div>
+                            <div class="project-main-image baren-image-reveal">
+                                <img src="/work/baren/baren6.jpg" width="1500" height="877" alt="Bären Gruppe AG Presentation 6" loading="lazy">
+                            </div>
+                            <div class="project-main-image baren-image-reveal">
+                                <img src="/work/baren/baren7.jpg" width="1500" height="877" alt="Bären Gruppe AG Presentation 7" loading="lazy">
+                            </div>
+                            <div class="project-main-image baren-image-reveal">
+                                <img src="/work/baren/baren8.jpg" width="1200" height="1200" alt="Bären Gruppe AG Variation 8" loading="lazy">
+                            </div>
+                            <div class="project-main-image baren-image-reveal">
+                                <img src="/work/baren/baren9.jpg" width="1200" height="1200" alt="Bären Gruppe AG Variation 9" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -294,16 +344,6 @@
             </div>
         </section>
     </main>
-
-        <!-- Project Pagination -->
-    <nav class="project-pagination" aria-label="Project navigation">
-        <!-- One quiet line between hairlines: previous project, all projects, next project -->
-        <div class="container project-pagination-row">
-            <a href="/work/riesen.html" class="arrow-link arrow-link--back project-pagination-prev" rel="prev"><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 3.2 3.2 12.8"/><path d="M9.8 12.8H3.2V6.2"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 3.2 3.2 12.8"/><path d="M9.8 12.8H3.2V6.2"/></svg></span><span class="arrow-link-label"><span class="project-pagination-label">Previous</span> <span class="project-pagination-dot" aria-hidden="true">·</span> Riesen Holzbau</span></a>
-            <a href="/work.html" class="arrow-link project-pagination-all"><span class="arrow-link-label">All projects</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
-            <a href="/work/cityhotel.html" class="arrow-link project-pagination-next" rel="next"><span class="arrow-link-label"><span class="project-pagination-label">Next</span> <span class="project-pagination-dot" aria-hidden="true">·</span> Cityhotel</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
-        </div>
-    </nav>
 
     <!-- Modern Footer Section -->
     <footer class="modern-footer">
