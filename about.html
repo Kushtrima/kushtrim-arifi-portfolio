@@ -38,11 +38,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
 
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <!-- Analytics hosts looked up early; the tag itself loads after the page -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
 
-    <link rel="stylesheet" href="styles.css?v=20260922-1">
+    <link rel="stylesheet" href="styles.css?v=20260922-2">
     <link rel="stylesheet" href="pages.css?v=20260917-3">
 
     <!-- Structured Data: AboutPage + Person -->
@@ -94,13 +94,18 @@
     }
     </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YC4X711JLJ"></script>
+    <!-- Google tag (gtag.js): the page view is queued at once, the tag itself is fetched only after the page has loaded -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-YC4X711JLJ');
+        window.addEventListener('load', () => {
+            const tag = document.createElement('script');
+            tag.async = true;
+            tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-YC4X711JLJ';
+            document.head.appendChild(tag);
+        }, { once: true });
     </script>
 </head>
 
@@ -248,7 +253,11 @@
 
         <!-- Bottom Right Image -->
         <div class="bottom-right-image">
-            <img src="img/kaimage.jpg" alt="Kushtrim Arifi — portrait photo" />
+            <picture>
+                <source srcset="img/kaimage.avif" type="image/avif">
+                <source srcset="img/kaimage.webp" type="image/webp">
+                <img src="img/kaimage.jpg" alt="Kushtrim Arifi — portrait photo" />
+            </picture>
         </div>
 
         <!-- Modern Footer Section -->

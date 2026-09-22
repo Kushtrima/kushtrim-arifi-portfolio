@@ -38,11 +38,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
 
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <!-- Analytics hosts looked up early; the tag itself loads after the page -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
 
-    <link rel="stylesheet" href="/styles.css?v=20260922-1">
+    <link rel="stylesheet" href="/styles.css?v=20260922-2">
     <link rel="stylesheet" href="/project.css?v=20260922-3">
 
     <!-- Structured Data: CreativeWork -->
@@ -79,13 +79,18 @@
     }
     </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YC4X711JLJ"></script>
+    <!-- Google tag (gtag.js): the page view is queued at once, the tag itself is fetched only after the page has loaded -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-YC4X711JLJ');
+        window.addEventListener('load', () => {
+            const tag = document.createElement('script');
+            tag.async = true;
+            tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-YC4X711JLJ';
+            document.head.appendChild(tag);
+        }, { once: true });
     </script>
 </head>
 
@@ -320,38 +325,78 @@
 
                     <!-- First image -->
                     <div class="project-main-image hbs-image-reveal hbs-first-image">
-                        <img src="/work/hbs/hbs1.jpg" width="1700" height="995" alt="HBS Project Main" loading="lazy">
+                        <picture>
+                            <source srcset="/work/hbs/hbs1.avif" type="image/avif">
+                            <source srcset="/work/hbs/hbs1.webp" type="image/webp">
+                            <img src="/work/hbs/hbs1.jpg" width="1700" height="995" alt="HBS Project Main" loading="lazy" data-thumb="/work/hbs/thumbs/hbs1.webp">
+                        </picture>
                     </div>
 
                     <!-- Gallery: the smaller images, one under another -->
                     <div class="project-gallery-layout">
                         <div class="project-gallery-images">
                             <div class="project-main-image hbs-image-reveal">
-                                <img src="/work/hbs/hbs2.jpg" width="1000" height="1000" alt="HBS Variation 2" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/hbs/hbs2.avif" type="image/avif">
+                                    <source srcset="/work/hbs/hbs2.webp" type="image/webp">
+                                    <img src="/work/hbs/hbs2.jpg" width="1000" height="1000" alt="HBS Variation 2" loading="lazy" data-thumb="/work/hbs/thumbs/hbs2.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image hbs-image-reveal">
-                                <img src="/work/hbs/hbs3.jpg" width="1000" height="1000" alt="HBS Variation 3" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/hbs/hbs3.avif" type="image/avif">
+                                    <source srcset="/work/hbs/hbs3.webp" type="image/webp">
+                                    <img src="/work/hbs/hbs3.jpg" width="1000" height="1000" alt="HBS Variation 3" loading="lazy" data-thumb="/work/hbs/thumbs/hbs3.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image hbs-image-reveal">
-                                <img src="/work/hbs/hbs4.jpg" width="1500" height="877" alt="HBS Presentation 4" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/hbs/hbs4.avif" type="image/avif">
+                                    <source srcset="/work/hbs/hbs4.webp" type="image/webp">
+                                    <img src="/work/hbs/hbs4.jpg" width="1500" height="877" alt="HBS Presentation 4" loading="lazy" data-thumb="/work/hbs/thumbs/hbs4.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image hbs-image-reveal">
-                                <img src="/work/hbs/hbs5.jpg" width="1500" height="877" alt="HBS Presentation 5" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/hbs/hbs5.avif" type="image/avif">
+                                    <source srcset="/work/hbs/hbs5.webp" type="image/webp">
+                                    <img src="/work/hbs/hbs5.jpg" width="1500" height="877" alt="HBS Presentation 5" loading="lazy" data-thumb="/work/hbs/thumbs/hbs5.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image hbs-image-reveal">
-                                <img src="/work/hbs/hbs6.jpg" width="1000" height="1000" alt="HBS Variation 6" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/hbs/hbs6.avif" type="image/avif">
+                                    <source srcset="/work/hbs/hbs6.webp" type="image/webp">
+                                    <img src="/work/hbs/hbs6.jpg" width="1000" height="1000" alt="HBS Variation 6" loading="lazy" data-thumb="/work/hbs/thumbs/hbs6.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image hbs-image-reveal">
-                                <img src="/work/hbs/hbs7.jpg" width="1000" height="1000" alt="HBS Variation 7" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/hbs/hbs7.avif" type="image/avif">
+                                    <source srcset="/work/hbs/hbs7.webp" type="image/webp">
+                                    <img src="/work/hbs/hbs7.jpg" width="1000" height="1000" alt="HBS Variation 7" loading="lazy" data-thumb="/work/hbs/thumbs/hbs7.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image hbs-image-reveal">
-                                <img src="/work/hbs/hbs8.jpg" width="1500" height="877" alt="HBS Presentation 8" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/hbs/hbs8.avif" type="image/avif">
+                                    <source srcset="/work/hbs/hbs8.webp" type="image/webp">
+                                    <img src="/work/hbs/hbs8.jpg" width="1500" height="877" alt="HBS Presentation 8" loading="lazy" data-thumb="/work/hbs/thumbs/hbs8.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image hbs-image-reveal">
-                                <img src="/work/hbs/hbs9.jpg" width="1500" height="877" alt="HBS Presentation 9" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/hbs/hbs9.avif" type="image/avif">
+                                    <source srcset="/work/hbs/hbs9.webp" type="image/webp">
+                                    <img src="/work/hbs/hbs9.jpg" width="1500" height="877" alt="HBS Presentation 9" loading="lazy" data-thumb="/work/hbs/thumbs/hbs9.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image hbs-image-reveal">
-                                <img src="/work/hbs/hbs10.jpg" width="1500" height="877" alt="HBS Presentation 10" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/hbs/hbs10.avif" type="image/avif">
+                                    <source srcset="/work/hbs/hbs10.webp" type="image/webp">
+                                    <img src="/work/hbs/hbs10.jpg" width="1500" height="877" alt="HBS Presentation 10" loading="lazy" data-thumb="/work/hbs/thumbs/hbs10.webp">
+                                </picture>
                             </div>
                         </div>
                     </div>

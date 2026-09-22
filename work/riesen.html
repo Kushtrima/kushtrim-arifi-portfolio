@@ -38,11 +38,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
 
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <!-- Analytics hosts looked up early; the tag itself loads after the page -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
 
-    <link rel="stylesheet" href="/styles.css?v=20260922-1">
+    <link rel="stylesheet" href="/styles.css?v=20260922-2">
     <link rel="stylesheet" href="/project.css?v=20260922-3">
 
     <!-- Structured Data: CreativeWork -->
@@ -79,13 +79,18 @@
     }
     </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YC4X711JLJ"></script>
+    <!-- Google tag (gtag.js): the page view is queued at once, the tag itself is fetched only after the page has loaded -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-YC4X711JLJ');
+        window.addEventListener('load', () => {
+            const tag = document.createElement('script');
+            tag.async = true;
+            tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-YC4X711JLJ';
+            document.head.appendChild(tag);
+        }, { once: true });
     </script>
 </head>
 
@@ -286,32 +291,64 @@
 
                     <!-- First image -->
                     <div class="project-main-image riesen-image-reveal riesen-first-image">
-                        <img src="/work/riesen/riesen1.jpg" width="2563" height="1500" alt="Riesen Project" loading="lazy">
+                        <picture>
+                            <source srcset="/work/riesen/riesen1.avif" type="image/avif">
+                            <source srcset="/work/riesen/riesen1.webp" type="image/webp">
+                            <img src="/work/riesen/riesen1.jpg" width="2563" height="1500" alt="Riesen Project" loading="lazy" data-thumb="/work/riesen/thumbs/riesen1.webp">
+                        </picture>
                     </div>
 
                     <!-- Gallery: the smaller images, one under another -->
                     <div class="project-gallery-layout">
                         <div class="project-gallery-images">
                             <div class="project-main-image riesen-image-reveal">
-                                <img src="/work/riesen/riesen2.jpg" width="1300" height="1300" alt="Riesen Variation 1" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/riesen/riesen2.avif" type="image/avif">
+                                    <source srcset="/work/riesen/riesen2.webp" type="image/webp">
+                                    <img src="/work/riesen/riesen2.jpg" width="1300" height="1300" alt="Riesen Variation 1" loading="lazy" data-thumb="/work/riesen/thumbs/riesen2.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image riesen-image-reveal">
-                                <img src="/work/riesen/riesen3.jpg" width="1300" height="1300" alt="Riesen Variation 2" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/riesen/riesen3.avif" type="image/avif">
+                                    <source srcset="/work/riesen/riesen3.webp" type="image/webp">
+                                    <img src="/work/riesen/riesen3.jpg" width="1300" height="1300" alt="Riesen Variation 2" loading="lazy" data-thumb="/work/riesen/thumbs/riesen3.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image riesen-image-reveal">
-                                <img src="/work/riesen/riesen4.jpg" width="1300" height="1300" alt="Riesen Variation 3" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/riesen/riesen4.avif" type="image/avif">
+                                    <source srcset="/work/riesen/riesen4.webp" type="image/webp">
+                                    <img src="/work/riesen/riesen4.jpg" width="1300" height="1300" alt="Riesen Variation 3" loading="lazy" data-thumb="/work/riesen/thumbs/riesen4.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image riesen-image-reveal">
-                                <img src="/work/riesen/riesen5.jpg" width="1300" height="1300" alt="Riesen Variation 4" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/riesen/riesen5.avif" type="image/avif">
+                                    <source srcset="/work/riesen/riesen5.webp" type="image/webp">
+                                    <img src="/work/riesen/riesen5.jpg" width="1300" height="1300" alt="Riesen Variation 4" loading="lazy" data-thumb="/work/riesen/thumbs/riesen5.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image riesen-image-reveal">
-                                <img src="/work/riesen/riesen6.jpg" width="2221" height="1300" alt="Riesen Secondary Image" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/riesen/riesen6.avif" type="image/avif">
+                                    <source srcset="/work/riesen/riesen6.webp" type="image/webp">
+                                    <img src="/work/riesen/riesen6.jpg" width="2221" height="1300" alt="Riesen Secondary Image" loading="lazy" data-thumb="/work/riesen/thumbs/riesen6.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image riesen-image-reveal">
-                                <img src="/work/riesen/riesen7.jpg" width="1200" height="1200" alt="Riesen Variation 5" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/riesen/riesen7.avif" type="image/avif">
+                                    <source srcset="/work/riesen/riesen7.webp" type="image/webp">
+                                    <img src="/work/riesen/riesen7.jpg" width="1200" height="1200" alt="Riesen Variation 5" loading="lazy" data-thumb="/work/riesen/thumbs/riesen7.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image riesen-image-reveal">
-                                <img src="/work/riesen/riesen8.jpg" width="1200" height="1200" alt="Riesen Variation 6" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/riesen/riesen8.avif" type="image/avif">
+                                    <source srcset="/work/riesen/riesen8.webp" type="image/webp">
+                                    <img src="/work/riesen/riesen8.jpg" width="1200" height="1200" alt="Riesen Variation 6" loading="lazy" data-thumb="/work/riesen/thumbs/riesen8.webp">
+                                </picture>
                             </div>
                         </div>
                     </div>

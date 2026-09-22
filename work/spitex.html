@@ -38,11 +38,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
 
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <!-- Analytics hosts looked up early; the tag itself loads after the page -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
 
-    <link rel="stylesheet" href="/styles.css?v=20260922-1">
+    <link rel="stylesheet" href="/styles.css?v=20260922-2">
     <link rel="stylesheet" href="/project.css?v=20260922-3">
 
     <!-- Structured Data: CreativeWork -->
@@ -79,13 +79,18 @@
     }
     </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YC4X711JLJ"></script>
+    <!-- Google tag (gtag.js): the page view is queued at once, the tag itself is fetched only after the page has loaded -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-YC4X711JLJ');
+        window.addEventListener('load', () => {
+            const tag = document.createElement('script');
+            tag.async = true;
+            tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-YC4X711JLJ';
+            document.head.appendChild(tag);
+        }, { once: true });
     </script>
 </head>
 
@@ -331,32 +336,64 @@
 
                     <!-- First image -->
                     <div class="project-main-image spitex-image-reveal spitex-first-image">
-                        <img src="/work/spitex/spitex1.jpg" width="1916" height="1124" alt="Spitex Project 1" loading="lazy">
+                        <picture>
+                            <source srcset="/work/spitex/spitex1.avif" type="image/avif">
+                            <source srcset="/work/spitex/spitex1.webp" type="image/webp">
+                            <img src="/work/spitex/spitex1.jpg" width="1916" height="1124" alt="Spitex Project 1" loading="lazy" data-thumb="/work/spitex/thumbs/spitex1.webp">
+                        </picture>
                     </div>
 
                     <!-- Gallery: the smaller images, one under another -->
                     <div class="project-gallery-layout">
                         <div class="project-gallery-images">
                             <div class="project-main-image spitex-image-reveal">
-                                <img src="/work/spitex/spitex2.jpg" width="1300" height="855" alt="Spitex Project 2" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/spitex/spitex2.avif" type="image/avif">
+                                    <source srcset="/work/spitex/spitex2.webp" type="image/webp">
+                                    <img src="/work/spitex/spitex2.jpg" width="1300" height="855" alt="Spitex Project 2" loading="lazy" data-thumb="/work/spitex/thumbs/spitex2.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image spitex-image-reveal">
-                                <img src="/work/spitex/spitex3.jpg" width="1300" height="855" alt="Spitex Project 3" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/spitex/spitex3.avif" type="image/avif">
+                                    <source srcset="/work/spitex/spitex3.webp" type="image/webp">
+                                    <img src="/work/spitex/spitex3.jpg" width="1300" height="855" alt="Spitex Project 3" loading="lazy" data-thumb="/work/spitex/thumbs/spitex3.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image spitex-image-reveal">
-                                <img src="/work/spitex/spitex4.jpg" width="1500" height="990" alt="Spitex Project 4" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/spitex/spitex4.avif" type="image/avif">
+                                    <source srcset="/work/spitex/spitex4.webp" type="image/webp">
+                                    <img src="/work/spitex/spitex4.jpg" width="1500" height="990" alt="Spitex Project 4" loading="lazy" data-thumb="/work/spitex/thumbs/spitex4.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image spitex-image-reveal">
-                                <img src="/work/spitex/spitex5.jpg" width="1300" height="855" alt="Spitex Project 5" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/spitex/spitex5.avif" type="image/avif">
+                                    <source srcset="/work/spitex/spitex5.webp" type="image/webp">
+                                    <img src="/work/spitex/spitex5.jpg" width="1300" height="855" alt="Spitex Project 5" loading="lazy" data-thumb="/work/spitex/thumbs/spitex5.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image spitex-image-reveal">
-                                <img src="/work/spitex/spitex6.jpg" width="1500" height="990" alt="Spitex Project 6" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/spitex/spitex6.avif" type="image/avif">
+                                    <source srcset="/work/spitex/spitex6.webp" type="image/webp">
+                                    <img src="/work/spitex/spitex6.jpg" width="1500" height="990" alt="Spitex Project 6" loading="lazy" data-thumb="/work/spitex/thumbs/spitex6.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image spitex-image-reveal">
-                                <img src="/work/spitex/spitex7.jpg" width="1500" height="990" alt="Spitex Project 7" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/spitex/spitex7.avif" type="image/avif">
+                                    <source srcset="/work/spitex/spitex7.webp" type="image/webp">
+                                    <img src="/work/spitex/spitex7.jpg" width="1500" height="990" alt="Spitex Project 7" loading="lazy" data-thumb="/work/spitex/thumbs/spitex7.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image spitex-image-reveal">
-                                <img src="/work/spitex/spitex8.jpg" width="1300" height="855" alt="Spitex Project 8" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/spitex/spitex8.avif" type="image/avif">
+                                    <source srcset="/work/spitex/spitex8.webp" type="image/webp">
+                                    <img src="/work/spitex/spitex8.jpg" width="1300" height="855" alt="Spitex Project 8" loading="lazy" data-thumb="/work/spitex/thumbs/spitex8.webp">
+                                </picture>
                             </div>
                         </div>
                     </div>

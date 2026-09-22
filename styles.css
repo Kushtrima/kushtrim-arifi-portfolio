@@ -87,6 +87,12 @@ button {
     font-family: inherit;
 }
 
+/* <picture> only offers each image in lighter formats (AVIF, WebP; the JPEG stays the fallback) and adds no box of its
+   own: every image is laid out, sized and animated exactly as the <img> inside it */
+picture {
+    display: contents;
+}
+
 /* Custom Cursor */
 .custom-cursor {
     position: fixed;
@@ -461,7 +467,8 @@ button:hover {
     display: none;
 }
 
-/* Intro on every load of the home page (the head script in index.html adds .intro-on before the first paint): empty
+/* Intro once per visit, on the first load of the home page in a tab (the head script in index.html adds .intro-on
+   before the first paint): empty
    brackets, the name written out between them and taken back to "[a]", which moves to the header's logo while the
    dark ground opens from the middle. If script.js never runs, the cover gives way after 6s */
 .intro {

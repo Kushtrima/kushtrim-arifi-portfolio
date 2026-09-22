@@ -38,11 +38,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
 
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <!-- Analytics hosts looked up early; the tag itself loads after the page -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
 
-    <link rel="stylesheet" href="/styles.css?v=20260922-1">
+    <link rel="stylesheet" href="/styles.css?v=20260922-2">
     <link rel="stylesheet" href="/project.css?v=20260922-3">
 
     <!-- Structured Data: CreativeWork -->
@@ -79,13 +79,18 @@
     }
     </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YC4X711JLJ"></script>
+    <!-- Google tag (gtag.js): the page view is queued at once, the tag itself is fetched only after the page has loaded -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-YC4X711JLJ');
+        window.addEventListener('load', () => {
+            const tag = document.createElement('script');
+            tag.async = true;
+            tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-YC4X711JLJ';
+            document.head.appendChild(tag);
+        }, { once: true });
     </script>
 </head>
 
@@ -340,41 +345,85 @@
 
                     <!-- First image -->
                     <div class="project-main-image cityhotel-image-reveal cityhotel-first-image">
-                        <img src="/work/cityhotel/city-01.jpg" width="1500" height="880" alt="Cityhotel Website Hero" loading="lazy">
+                        <picture>
+                            <source srcset="/work/cityhotel/city-01.avif" type="image/avif">
+                            <source srcset="/work/cityhotel/city-01.webp" type="image/webp">
+                            <img src="/work/cityhotel/city-01.jpg" width="1500" height="880" alt="Cityhotel Website Hero" loading="lazy" data-thumb="/work/cityhotel/thumbs/city-01.webp">
+                        </picture>
                     </div>
 
                     <!-- Gallery: the smaller images, one under another -->
                     <div class="project-gallery-layout">
                         <div class="project-gallery-images">
                             <div class="project-main-image cityhotel-image-reveal">
-                                <img src="/work/cityhotel/city-2.jpg" width="1440" height="914" alt="Cityhotel Website 2" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/cityhotel/city-2.avif" type="image/avif">
+                                    <source srcset="/work/cityhotel/city-2.webp" type="image/webp">
+                                    <img src="/work/cityhotel/city-2.jpg" width="1440" height="914" alt="Cityhotel Website 2" loading="lazy" data-thumb="/work/cityhotel/thumbs/city-2.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image cityhotel-image-reveal">
-                                <img src="/work/cityhotel/city-3.jpg" width="1440" height="914" alt="Cityhotel Website 3" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/cityhotel/city-3.avif" type="image/avif">
+                                    <source srcset="/work/cityhotel/city-3.webp" type="image/webp">
+                                    <img src="/work/cityhotel/city-3.jpg" width="1440" height="914" alt="Cityhotel Website 3" loading="lazy" data-thumb="/work/cityhotel/thumbs/city-3.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image cityhotel-image-reveal">
-                                <img src="/work/cityhotel/city-4.jpg" width="1440" height="1649" alt="Cityhotel Website 4" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/cityhotel/city-4.avif" type="image/avif">
+                                    <source srcset="/work/cityhotel/city-4.webp" type="image/webp">
+                                    <img src="/work/cityhotel/city-4.jpg" width="1440" height="1649" alt="Cityhotel Website 4" loading="lazy" data-thumb="/work/cityhotel/thumbs/city-4.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image cityhotel-image-reveal">
-                                <img src="/work/cityhotel/city-5.jpg" width="1440" height="2080" alt="Cityhotel Website 5" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/cityhotel/city-5.avif" type="image/avif">
+                                    <source srcset="/work/cityhotel/city-5.webp" type="image/webp">
+                                    <img src="/work/cityhotel/city-5.jpg" width="1440" height="2080" alt="Cityhotel Website 5" loading="lazy" data-thumb="/work/cityhotel/thumbs/city-5.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image cityhotel-image-reveal">
-                                <img src="/work/cityhotel/city-6.jpg" width="1440" height="2075" alt="Cityhotel Website 6" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/cityhotel/city-6.avif" type="image/avif">
+                                    <source srcset="/work/cityhotel/city-6.webp" type="image/webp">
+                                    <img src="/work/cityhotel/city-6.jpg" width="1440" height="2075" alt="Cityhotel Website 6" loading="lazy" data-thumb="/work/cityhotel/thumbs/city-6.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image cityhotel-image-reveal">
-                                <img src="/work/cityhotel/city-7.jpg" width="816" height="1716" alt="Cityhotel Website 7" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/cityhotel/city-7.avif" type="image/avif">
+                                    <source srcset="/work/cityhotel/city-7.webp" type="image/webp">
+                                    <img src="/work/cityhotel/city-7.jpg" width="816" height="1716" alt="Cityhotel Website 7" loading="lazy" data-thumb="/work/cityhotel/thumbs/city-7.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image cityhotel-image-reveal">
-                                <img src="/work/cityhotel/city-8.jpg" width="1440" height="1130" alt="Cityhotel Website 8" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/cityhotel/city-8.avif" type="image/avif">
+                                    <source srcset="/work/cityhotel/city-8.webp" type="image/webp">
+                                    <img src="/work/cityhotel/city-8.jpg" width="1440" height="1130" alt="Cityhotel Website 8" loading="lazy" data-thumb="/work/cityhotel/thumbs/city-8.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image cityhotel-image-reveal">
-                                <img src="/work/cityhotel/city-9.jpg" width="1440" height="3585" alt="Cityhotel Website 9" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/cityhotel/city-9.avif" type="image/avif">
+                                    <source srcset="/work/cityhotel/city-9.webp" type="image/webp">
+                                    <img src="/work/cityhotel/city-9.jpg" width="1440" height="3585" alt="Cityhotel Website 9" loading="lazy" data-thumb="/work/cityhotel/thumbs/city-9.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image cityhotel-image-reveal">
-                                <img src="/work/cityhotel/city-10.jpg" width="1440" height="911" alt="Cityhotel Website 10" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/cityhotel/city-10.avif" type="image/avif">
+                                    <source srcset="/work/cityhotel/city-10.webp" type="image/webp">
+                                    <img src="/work/cityhotel/city-10.jpg" width="1440" height="911" alt="Cityhotel Website 10" loading="lazy" data-thumb="/work/cityhotel/thumbs/city-10.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image cityhotel-image-reveal">
-                                <img src="/work/cityhotel/city-11.jpg" width="1440" height="1097" alt="Cityhotel Website 11" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/cityhotel/city-11.avif" type="image/avif">
+                                    <source srcset="/work/cityhotel/city-11.webp" type="image/webp">
+                                    <img src="/work/cityhotel/city-11.jpg" width="1440" height="1097" alt="Cityhotel Website 11" loading="lazy" data-thumb="/work/cityhotel/thumbs/city-11.webp">
+                                </picture>
                             </div>
                         </div>
                     </div>

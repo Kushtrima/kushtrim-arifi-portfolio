@@ -38,11 +38,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
 
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <!-- Analytics hosts looked up early; the tag itself loads after the page -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
 
-    <link rel="stylesheet" href="styles.css?v=20260922-1">
+    <link rel="stylesheet" href="styles.css?v=20260922-2">
 
     <!-- Structured Data: CollectionPage + ItemList -->
     <script type="application/ld+json">
@@ -85,13 +85,18 @@
     }
     </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YC4X711JLJ"></script>
+    <!-- Google tag (gtag.js): the page view is queued at once, the tag itself is fetched only after the page has loaded -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-YC4X711JLJ');
+        window.addEventListener('load', () => {
+            const tag = document.createElement('script');
+            tag.async = true;
+            tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-YC4X711JLJ';
+            document.head.appendChild(tag);
+        }, { once: true });
     </script>
 </head>
 
@@ -179,7 +184,11 @@
                             <a href="work/cityhotel.html" style="text-decoration: none; color: inherit;">
                                 <div class="gallery-image">
                                     <div class="project-number">01</div>
-                                    <img src="work/cityhotel/city-cover.jpg" alt="Cityhotel — luxury hotel website UX/UI design">
+                                    <picture>
+                                        <source srcset="work/cityhotel/city-cover.avif" type="image/avif">
+                                        <source srcset="work/cityhotel/city-cover.webp" type="image/webp">
+                                        <img src="work/cityhotel/city-cover.jpg" alt="Cityhotel — luxury hotel website UX/UI design" fetchpriority="high">
+                                    </picture>
                                 </div>
                                 <div class="gallery-info">
                                     <h3 class="project-title">CITYHOTEL</h3>
@@ -192,7 +201,11 @@
                             <a href="work/hbs-website.html" style="text-decoration: none; color: inherit;">
                                 <div class="gallery-image">
                                     <div class="project-number">02</div>
-                                    <img src="work/hbs-website/hbswebsite-cover.jpg" alt="HBS — construction company website design">
+                                    <picture>
+                                        <source srcset="work/hbs-website/hbswebsite-cover.avif" type="image/avif">
+                                        <source srcset="work/hbs-website/hbswebsite-cover.webp" type="image/webp">
+                                        <img src="work/hbs-website/hbswebsite-cover.jpg" alt="HBS — construction company website design">
+                                    </picture>
                                 </div>
                                 <div class="gallery-info">
                                     <h3 class="project-title">HBS</h3>
@@ -205,7 +218,11 @@
                             <a href="work/jetonikeramika.html" style="text-decoration: none; color: inherit;">
                                 <div class="gallery-image">
                                     <div class="project-number">03</div>
-                                    <img src="work/jetonikeramika/jetoni-cover.jpg" alt="Jetonikeramika — tiles industry website minimalist design">
+                                    <picture>
+                                        <source srcset="work/jetonikeramika/jetoni-cover.avif" type="image/avif">
+                                        <source srcset="work/jetonikeramika/jetoni-cover.webp" type="image/webp">
+                                        <img src="work/jetonikeramika/jetoni-cover.jpg" alt="Jetonikeramika — tiles industry website minimalist design">
+                                    </picture>
                                 </div>
                                 <div class="gallery-info">
                                     <h3 class="project-title">JETONIKERAMIKA</h3>
@@ -218,7 +235,11 @@
                             <a href="work/ennur.html" style="text-decoration: none; color: inherit;">
                                 <div class="gallery-image">
                                     <div class="project-number">04</div>
-                                    <img src="work/ennur/en-cover.jpg" alt="EN-NUR — software application UX/UI design">
+                                    <picture>
+                                        <source srcset="work/ennur/en-cover.avif" type="image/avif">
+                                        <source srcset="work/ennur/en-cover.webp" type="image/webp">
+                                        <img src="work/ennur/en-cover.jpg" alt="EN-NUR — software application UX/UI design">
+                                    </picture>
                                 </div>
                                 <div class="gallery-info">
                                     <h3 class="project-title">EN-NUR</h3>
@@ -231,7 +252,11 @@
                             <a href="work/doratec.html" style="text-decoration: none; color: inherit;">
                                 <div class="gallery-image">
                                     <div class="project-number">05</div>
-                                    <img src="work/doratec/dora-cover.jpg" alt="Doratec AG — windows and doors company website">
+                                    <picture>
+                                        <source srcset="work/doratec/dora-cover.avif" type="image/avif">
+                                        <source srcset="work/doratec/dora-cover.webp" type="image/webp">
+                                        <img src="work/doratec/dora-cover.jpg" alt="Doratec AG — windows and doors company website" loading="lazy">
+                                    </picture>
                                 </div>
                                 <div class="gallery-info">
                                     <h3 class="project-title">DORATEC AG</h3>
@@ -244,7 +269,11 @@
                             <a href="work/spitex.html" style="text-decoration: none; color: inherit;">
                                 <div class="gallery-image">
                                     <div class="project-number">06</div>
-                                    <img src="work/spitex/spitex-cover.jpg" alt="Spitex Schwab AG — Swiss healthcare platform">
+                                    <picture>
+                                        <source srcset="work/spitex/spitex-cover.avif" type="image/avif">
+                                        <source srcset="work/spitex/spitex-cover.webp" type="image/webp">
+                                        <img src="work/spitex/spitex-cover.jpg" alt="Spitex Schwab AG — Swiss healthcare platform" loading="lazy">
+                                    </picture>
                                 </div>
                                 <div class="gallery-info">
                                     <h3 class="project-title">SPITEX SCHWAB AG</h3>
@@ -257,7 +286,11 @@
                             <a href="work/monun.html" style="text-decoration: none; color: inherit;">
                                 <div class="gallery-image">
                                     <div class="project-number">07</div>
-                                    <img src="work/monun/monun-cover.jpg" alt="MONUN AG — Swiss company website full-stack build">
+                                    <picture>
+                                        <source srcset="work/monun/monun-cover.avif" type="image/avif">
+                                        <source srcset="work/monun/monun-cover.webp" type="image/webp">
+                                        <img src="work/monun/monun-cover.jpg" alt="MONUN AG — Swiss company website full-stack build" loading="lazy">
+                                    </picture>
                                 </div>
                                 <div class="gallery-info">
                                     <h3 class="project-title">MONUN AG</h3>
@@ -282,7 +315,11 @@
                         <a href="work/hbs.html" style="text-decoration: none; color: inherit;">
                             <div class="gallery-image">
                                 <div class="project-number">01</div>
-                                <img src="work/hbs/hbs-cover.jpg" alt="HBS — construction company brand identity">
+                                <picture>
+                                    <source srcset="work/hbs/hbs-cover.avif" type="image/avif">
+                                    <source srcset="work/hbs/hbs-cover.webp" type="image/webp">
+                                    <img src="work/hbs/hbs-cover.jpg" alt="HBS — construction company brand identity" loading="lazy">
+                                </picture>
                             </div>
                             <div class="gallery-info">
                                 <h3 class="project-title">HBS</h3>
@@ -295,7 +332,11 @@
                         <a href="work/wmk.html" style="text-decoration: none; color: inherit;">
                             <div class="gallery-image">
                                 <div class="project-number">02</div>
-                                <img src="work/wmk/wmk-cover.jpg" alt="WMK — education academy brand identity">
+                                <picture>
+                                    <source srcset="work/wmk/wmk-cover.avif" type="image/avif">
+                                    <source srcset="work/wmk/wmk-cover.webp" type="image/webp">
+                                    <img src="work/wmk/wmk-cover.jpg" alt="WMK — education academy brand identity" loading="lazy">
+                                </picture>
                             </div>
                             <div class="gallery-info">
                                 <h3 class="project-title">WMK</h3>
@@ -308,7 +349,11 @@
                         <a href="work/riesen.html" style="text-decoration: none; color: inherit;">
                             <div class="gallery-image">
                                 <div class="project-number">03</div>
-                                <img src="work/riesen/riesen-cover.jpg" alt="Riesen Holzbau — wood construction brand identity">
+                                <picture>
+                                    <source srcset="work/riesen/riesen-cover.avif" type="image/avif">
+                                    <source srcset="work/riesen/riesen-cover.webp" type="image/webp">
+                                    <img src="work/riesen/riesen-cover.jpg" alt="Riesen Holzbau — wood construction brand identity" loading="lazy">
+                                </picture>
                             </div>
                             <div class="gallery-info">
                                 <h3 class="project-title">RIESEN HOLZBAU</h3>
@@ -321,7 +366,11 @@
                         <a href="work/baren.html" style="text-decoration: none; color: inherit;">
                             <div class="gallery-image">
                                 <div class="project-number">04</div>
-                                <img src="work/baren/baren-cover.jpg" alt="Bären Baugruppe AG — Swiss construction brand identity">
+                                <picture>
+                                    <source srcset="work/baren/baren-cover.avif" type="image/avif">
+                                    <source srcset="work/baren/baren-cover.webp" type="image/webp">
+                                    <img src="work/baren/baren-cover.jpg" alt="Bären Baugruppe AG — Swiss construction brand identity" loading="lazy">
+                                </picture>
                             </div>
                             <div class="gallery-info">
                                 <h3 class="project-title">BÄREN BAUGRUPPE AG</h3>

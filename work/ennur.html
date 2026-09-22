@@ -38,11 +38,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
 
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <!-- Analytics hosts looked up early; the tag itself loads after the page -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
 
-    <link rel="stylesheet" href="/styles.css?v=20260922-1">
+    <link rel="stylesheet" href="/styles.css?v=20260922-2">
     <link rel="stylesheet" href="/project.css?v=20260922-3">
 
     <!-- Structured Data: CreativeWork -->
@@ -79,13 +79,18 @@
     }
     </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YC4X711JLJ"></script>
+    <!-- Google tag (gtag.js): the page view is queued at once, the tag itself is fetched only after the page has loaded -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-YC4X711JLJ');
+        window.addEventListener('load', () => {
+            const tag = document.createElement('script');
+            tag.async = true;
+            tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-YC4X711JLJ';
+            document.head.appendChild(tag);
+        }, { once: true });
     </script>
 </head>
 
@@ -339,32 +344,64 @@
 
                     <!-- First image -->
                     <div class="project-main-image ennur-image-reveal ennur-first-image">
-                        <img src="/work/ennur/en1.jpg" width="1300" height="855" alt="En-Nur Project Hero" loading="lazy">
+                        <picture>
+                            <source srcset="/work/ennur/en1.avif" type="image/avif">
+                            <source srcset="/work/ennur/en1.webp" type="image/webp">
+                            <img src="/work/ennur/en1.jpg" width="1300" height="855" alt="En-Nur Project Hero" loading="lazy" data-thumb="/work/ennur/thumbs/en1.webp">
+                        </picture>
                     </div>
 
                     <!-- Gallery: the smaller images, one under another -->
                     <div class="project-gallery-layout">
                         <div class="project-gallery-images">
                             <div class="project-main-image ennur-image-reveal">
-                                <img src="/work/ennur/en2.jpg" width="1300" height="855" alt="En-Nur Feature 1" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/ennur/en2.avif" type="image/avif">
+                                    <source srcset="/work/ennur/en2.webp" type="image/webp">
+                                    <img src="/work/ennur/en2.jpg" width="1300" height="855" alt="En-Nur Feature 1" loading="lazy" data-thumb="/work/ennur/thumbs/en2.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image ennur-image-reveal">
-                                <img src="/work/ennur/en3.jpg" width="1300" height="855" alt="En-Nur Feature 2" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/ennur/en3.avif" type="image/avif">
+                                    <source srcset="/work/ennur/en3.webp" type="image/webp">
+                                    <img src="/work/ennur/en3.jpg" width="1300" height="855" alt="En-Nur Feature 2" loading="lazy" data-thumb="/work/ennur/thumbs/en3.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image ennur-image-reveal">
-                                <img src="/work/ennur/en4.jpg" width="1300" height="855" alt="En-Nur Feature 3" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/ennur/en4.avif" type="image/avif">
+                                    <source srcset="/work/ennur/en4.webp" type="image/webp">
+                                    <img src="/work/ennur/en4.jpg" width="1300" height="855" alt="En-Nur Feature 3" loading="lazy" data-thumb="/work/ennur/thumbs/en4.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image ennur-image-reveal">
-                                <img src="/work/ennur/en5.jpg" width="1300" height="855" alt="En-Nur Feature 4" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/ennur/en5.avif" type="image/avif">
+                                    <source srcset="/work/ennur/en5.webp" type="image/webp">
+                                    <img src="/work/ennur/en5.jpg" width="1300" height="855" alt="En-Nur Feature 4" loading="lazy" data-thumb="/work/ennur/thumbs/en5.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image ennur-image-reveal">
-                                <img src="/work/ennur/en6.jpg" width="1300" height="855" alt="En-Nur Feature 5" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/ennur/en6.avif" type="image/avif">
+                                    <source srcset="/work/ennur/en6.webp" type="image/webp">
+                                    <img src="/work/ennur/en6.jpg" width="1300" height="855" alt="En-Nur Feature 5" loading="lazy" data-thumb="/work/ennur/thumbs/en6.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image ennur-image-reveal">
-                                <img src="/work/ennur/en7.jpg" width="1300" height="855" alt="En-Nur Feature 6" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/ennur/en7.avif" type="image/avif">
+                                    <source srcset="/work/ennur/en7.webp" type="image/webp">
+                                    <img src="/work/ennur/en7.jpg" width="1300" height="855" alt="En-Nur Feature 6" loading="lazy" data-thumb="/work/ennur/thumbs/en7.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image ennur-image-reveal">
-                                <img src="/work/ennur/en8.jpg" width="1300" height="855" alt="En-Nur Feature 7" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/ennur/en8.avif" type="image/avif">
+                                    <source srcset="/work/ennur/en8.webp" type="image/webp">
+                                    <img src="/work/ennur/en8.jpg" width="1300" height="855" alt="En-Nur Feature 7" loading="lazy" data-thumb="/work/ennur/thumbs/en8.webp">
+                                </picture>
                             </div>
                         </div>
                     </div>

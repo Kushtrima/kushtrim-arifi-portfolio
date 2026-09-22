@@ -38,11 +38,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
 
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <!-- Analytics hosts looked up early; the tag itself loads after the page -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
 
-    <link rel="stylesheet" href="/styles.css?v=20260922-1">
+    <link rel="stylesheet" href="/styles.css?v=20260922-2">
     <link rel="stylesheet" href="/project.css?v=20260922-3">
 
     <!-- Structured Data: CreativeWork -->
@@ -79,13 +79,18 @@
     }
     </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YC4X711JLJ"></script>
+    <!-- Google tag (gtag.js): the page view is queued at once, the tag itself is fetched only after the page has loaded -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-YC4X711JLJ');
+        window.addEventListener('load', () => {
+            const tag = document.createElement('script');
+            tag.async = true;
+            tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-YC4X711JLJ';
+            document.head.appendChild(tag);
+        }, { once: true });
     </script>
 </head>
 
@@ -307,35 +312,71 @@
 
                     <!-- First image -->
                     <div class="project-main-image baren-image-reveal baren-first-image">
-                        <img src="/work/baren/baren1.jpg" width="3069" height="1797" alt="Bären Baugruppe AG Presentation 1" loading="lazy">
+                        <picture>
+                            <source srcset="/work/baren/baren1.avif" type="image/avif">
+                            <source srcset="/work/baren/baren1.webp" type="image/webp">
+                            <img src="/work/baren/baren1.jpg" width="3069" height="1797" alt="Bären Baugruppe AG Presentation 1" loading="lazy" data-thumb="/work/baren/thumbs/baren1.webp">
+                        </picture>
                     </div>
 
                     <!-- Gallery: the smaller images, one under another -->
                     <div class="project-gallery-layout">
                         <div class="project-gallery-images">
                             <div class="project-main-image baren-image-reveal">
-                                <img src="/work/baren/baren2.jpg" width="1587" height="1587" alt="Bären Baugruppe AG Variation 2" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/baren/baren2.avif" type="image/avif">
+                                    <source srcset="/work/baren/baren2.webp" type="image/webp">
+                                    <img src="/work/baren/baren2.jpg" width="1587" height="1587" alt="Bären Baugruppe AG Variation 2" loading="lazy" data-thumb="/work/baren/thumbs/baren2.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image baren-image-reveal">
-                                <img src="/work/baren/baren3.jpg" width="2039" height="2039" alt="Bären Baugruppe AG Variation 3" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/baren/baren3.avif" type="image/avif">
+                                    <source srcset="/work/baren/baren3.webp" type="image/webp">
+                                    <img src="/work/baren/baren3.jpg" width="2039" height="2039" alt="Bären Baugruppe AG Variation 3" loading="lazy" data-thumb="/work/baren/thumbs/baren3.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image baren-image-reveal">
-                                <img src="/work/baren/baren4.jpg" width="1500" height="877" alt="Bären Baugruppe AG Presentation 4" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/baren/baren4.avif" type="image/avif">
+                                    <source srcset="/work/baren/baren4.webp" type="image/webp">
+                                    <img src="/work/baren/baren4.jpg" width="1500" height="877" alt="Bären Baugruppe AG Presentation 4" loading="lazy" data-thumb="/work/baren/thumbs/baren4.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image baren-image-reveal">
-                                <img src="/work/baren/baren5.jpg" width="1500" height="877" alt="Bären Baugruppe AG Presentation 5" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/baren/baren5.avif" type="image/avif">
+                                    <source srcset="/work/baren/baren5.webp" type="image/webp">
+                                    <img src="/work/baren/baren5.jpg" width="1500" height="877" alt="Bären Baugruppe AG Presentation 5" loading="lazy" data-thumb="/work/baren/thumbs/baren5.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image baren-image-reveal">
-                                <img src="/work/baren/baren6.jpg" width="1500" height="877" alt="Bären Baugruppe AG Presentation 6" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/baren/baren6.avif" type="image/avif">
+                                    <source srcset="/work/baren/baren6.webp" type="image/webp">
+                                    <img src="/work/baren/baren6.jpg" width="1500" height="877" alt="Bären Baugruppe AG Presentation 6" loading="lazy" data-thumb="/work/baren/thumbs/baren6.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image baren-image-reveal">
-                                <img src="/work/baren/baren7.jpg" width="1500" height="877" alt="Bären Baugruppe AG Presentation 7" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/baren/baren7.avif" type="image/avif">
+                                    <source srcset="/work/baren/baren7.webp" type="image/webp">
+                                    <img src="/work/baren/baren7.jpg" width="1500" height="877" alt="Bären Baugruppe AG Presentation 7" loading="lazy" data-thumb="/work/baren/thumbs/baren7.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image baren-image-reveal">
-                                <img src="/work/baren/baren8.jpg" width="1200" height="1200" alt="Bären Baugruppe AG Variation 8" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/baren/baren8.avif" type="image/avif">
+                                    <source srcset="/work/baren/baren8.webp" type="image/webp">
+                                    <img src="/work/baren/baren8.jpg" width="1200" height="1200" alt="Bären Baugruppe AG Variation 8" loading="lazy" data-thumb="/work/baren/thumbs/baren8.webp">
+                                </picture>
                             </div>
                             <div class="project-main-image baren-image-reveal">
-                                <img src="/work/baren/baren9.jpg" width="1200" height="1200" alt="Bären Baugruppe AG Variation 9" loading="lazy">
+                                <picture>
+                                    <source srcset="/work/baren/baren9.avif" type="image/avif">
+                                    <source srcset="/work/baren/baren9.webp" type="image/webp">
+                                    <img src="/work/baren/baren9.jpg" width="1200" height="1200" alt="Bären Baugruppe AG Variation 9" loading="lazy" data-thumb="/work/baren/thumbs/baren9.webp">
+                                </picture>
                             </div>
                         </div>
                     </div>

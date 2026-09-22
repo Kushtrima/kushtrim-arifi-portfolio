@@ -445,7 +445,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .fromTo(aboutInk, { color: light.ink }, { color: dark.ink, ease: 'none', duration: 0.2 }, 0.4);
     }
 
-    // Intro on every load of the home page: empty brackets appear, the name writes itself out between them (the
+    // Intro once per visit (index.html decides): empty brackets appear, the name writes itself out between them (the
     // brackets moving apart as it grows), unwrites again, an "a" takes its place, and "[a]" moves to its place in the
     // header's logo while the dark ground opens from the middle; the header's logo fades in around it
     const introCover = document.documentElement.classList.contains('intro-on') ? document.querySelector('.intro') : null;
@@ -1346,7 +1346,7 @@ document.addEventListener('DOMContentLoaded', function () {
             button.className = 'image-navigator-thumb';
             button.setAttribute('aria-label', `Image ${index + 1}: ${image.alt}`);
             const thumb = document.createElement('img');
-            thumb.src = image.getAttribute('src');
+            thumb.src = image.dataset.thumb || image.getAttribute('src');
             thumb.alt = '';
             if (image.getAttribute('width')) {
                 thumb.width = Number(image.getAttribute('width'));
@@ -1379,7 +1379,7 @@ document.addEventListener('DOMContentLoaded', function () {
             button.className = 'image-strip-thumb';
             button.setAttribute('aria-label', `Image ${index + 1}: ${image.alt}`);
             const thumb = document.createElement('img');
-            thumb.src = image.getAttribute('src');
+            thumb.src = image.dataset.thumb || image.getAttribute('src');
             thumb.alt = '';
             thumb.decoding = 'async';
             button.appendChild(thumb);
