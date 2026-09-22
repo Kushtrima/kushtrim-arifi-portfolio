@@ -44,7 +44,7 @@
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
 
     <link rel="stylesheet" href="/styles.css?v=20260922-1">
-    <link rel="stylesheet" href="/project.css?v=20260922-1">
+    <link rel="stylesheet" href="/project.css?v=20260922-2">
 
     <!-- Structured Data: CreativeWork -->
     <script type="application/ld+json">
@@ -140,7 +140,7 @@
         <section class="project-hero">
             <div class="container">
                 <div class="project-header-content">
-                    <div class="project-title-section">
+                    <div class="project-title-section project-title-section--inline">
                         <div class="text-reveal-wrapper">
                             <h1 class="project-title">WMK</h1>
                         </div>
@@ -151,187 +151,229 @@
                     <div class="project-header-divider"></div>
                 </div>
 
-                <!-- Three Column Layout -->
-                <div class="project-info-layout">
-                    <!-- Left Column -->
-                    <div class="project-info-left">
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Industry</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Education, Academy</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Service</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Logo & Brand Identity</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Location</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Switzerland</span>
-                            </div>
-                        </div>
+                <!-- The project in one row under the name -->
+                <dl class="project-facts">
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Industry</dt>
+                        <dd class="project-info-value">Education</dd>
                     </div>
-
-                    <!-- Middle Column -->
-                    <div class="project-info-middle">
-                        <div class="project-info-item project-info-year">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Year</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">2026</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item project-info-stack">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Scope of Work</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Visual Identity · Brand Strategy · Brand Guidelines ·
-                                    Stationery · Digital Assets</span>
-                            </div>
-                        </div>
+                    <div class="project-fact project-fact--service text-reveal-wrapper">
+                        <dt class="project-info-label">Service</dt>
+                        <dd class="project-info-value"><span class="fact-item">Brand Identity</span>&nbsp;· <span class="fact-item">Brand System</span>&nbsp;·<br><span class="fact-item">Art Direction</span></dd>
                     </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Location</dt>
+                        <dd class="project-info-value">Zurich,<br>Switzerland</dd>
+                    </div>
+                    <div class="project-fact project-fact--stack text-reveal-wrapper">
+                        <dt class="project-info-label">Deliverables</dt>
+                        <dd class="project-info-value"><span class="fact-item">Brand strategy</span>&nbsp;· <span class="fact-item">Logotype</span>&nbsp;· <span class="fact-item">Colour palette</span>&nbsp;· <span class="fact-item">Typography</span>&nbsp;· <span class="fact-item">Graphic pattern</span>&nbsp;· <span class="fact-item">Photography style</span>&nbsp;· <span class="fact-item">Brand guidelines</span>&nbsp;· <span class="fact-item">Stationery</span>&nbsp;· <span class="fact-item">Digital and print assets</span></dd>
+                    </div>
+                </dl>
 
-                    <!-- Right Column: Project Description -->
-                    <div class="project-info-right">
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Project Description</span>
+                <!-- Case study, one part after another: a heading and its text. On a wide screen script.js lists every part's
+                     name on the left, held in view as the texts pass: dark grey, and light for the part being read; on a
+                     phone (or without script.js) each heading sits with its text. A new part is one more .case-step -->
+                <div class="case-study">
+                    <div class="case-study-steps">
+                        <section class="case-step" aria-labelledby="case-what-is-wmk">
+                            <h2 class="case-step-title" data-reveal id="case-what-is-wmk">What is WMK?</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>A new academy for people who work in
+                                    marketing</h3>
+                                <p data-reveal>WMK is a private academy in Zurich that teaches modern marketing and
+                                    communication, from building an online presence to performance marketing, content
+                                    strategy and consumer psychology. Its students are marketing professionals, career
+                                    changers and company employees building new skills. The name carries its subjects:
+                                    Wirtschaft, Marketing, Kommunikation.</p>
+                                <p data-reveal>The academy was new, so this was a brand built from nothing. I worked
+                                    with WMK directly in 2026.</p>
                             </div>
-                            <div class="project-description-content">
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">The WMK logo was developed as a clear and
-                                        contemporary
-                                        identity for a Zurich-based academy in Switzerland, dedicated to educating
-                                        professionals in modern digital disciplines, from building effective online
-                                        presence to performance-driven marketing such as Google Ads and digital
-                                        strategy. The logo is intentionally constructed from three simple letters—W, M,
-                                        and K—standing for Wirtschaft, Marketing, Kommunikation—and reflects the
-                                        academy’s core values of clarity, structure, and knowledge transfer. By
-                                        reducing the mark to its essential elements, the design communicates
-                                        accessibility and focus, aligning with WMK’s human-centered educational
-                                        philosophy.</p>
-                                </div>
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">The visual language is minimal and academic,
-                                        yet distinctly modern. Clean typography ensures legibility and authority, while
-                                        the restrained color palette—built around deep, sophisticated purple tones
-                                        (#31014B, #440566, #52097A, #5B0A87) combined with white—creates a sense of
-                                        professionalism, technological depth, and trust. This balance allows the brand
-                                        to feel both institutional and innovative, supporting its role as a
-                                        forward-thinking academy in the digital education space.</p>
-                                </div>
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">After exploring multiple early design
-                                        directions, this concept quickly emerged as the most authentic representation of
-                                        WMK’s vision and was accepted immediately. From this foundation, the entire
-                                        brand ecosystem was developed, extending from logo and color system to
-                                        typography, layout principles, and visual applications across digital and print
-                                        channels. The result is a coherent and scalable identity system in which the
-                                        logo serves as a central anchor—ensuring consistency, clarity, and a strong
-                                        academic-tech presence across all brand touchpoints.</p>
-                                </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-what-did-the-brand-have-to-do">
+                            <h2 class="case-step-title" data-reveal id="case-what-did-the-brand-have-to-do">What did the brand have to do?</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Look established on its first day</h3>
+                                <p data-reveal>A new academy has no reputation yet, so its brand has to supply the
+                                    credibility that years would normally provide. At the same time, WMK teaches the
+                                    newest parts of marketing, and a brand that looked like a traditional institution
+                                    would contradict what it teaches. It had to feel academic and current at once.</p>
+                                <p data-reveal>The client added one clear instruction: keep the logo simple, and put the
+                                    richness into the branding around it.</p>
                             </div>
-                        </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-what-were-other-academies-doing">
+                            <h2 class="case-step-title" data-reveal id="case-what-were-other-academies-doing">What were other academies doing?</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Clear, simple, and all alike</h3>
+                                <p data-reveal>Before designing anything, I went through a wide range of academies and
+                                    business schools. Almost all of them had the same kind of brand: a simple mark, a
+                                    simple concept, and nothing wrong with either. The problem was that simplicity had
+                                    made them similar. Few of them gave a reason to remember one over another.</p>
+                                <p data-reveal>The client had said the same thing in their own words: they wanted to be
+                                    different, above all in colour and in branding. The research showed where that
+                                    difference could come from. Simplicity in the logo was worth keeping, because it is
+                                    what makes an academy look clear and trustworthy. Colour and the system around the
+                                    mark were where the category had nothing to say, so that is where WMK would
+                                    speak.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-why-is-the-logo-so-simple">
+                            <h2 class="case-step-title" data-reveal id="case-why-is-the-logo-so-simple">Why is the logo so simple?</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Three letters, and what they stand for</h3>
+                                <p data-reveal>The mark is the three initials set in a heavy grotesque with tight
+                                    spacing, so they read as one solid block. A thin vertical rule separates them from
+                                    the three words they stand for, Wirtschaft, Marketing and Kommunikation, stacked in
+                                    a lighter weight.</p>
+                                <p data-reveal>The logo explains itself. An acronym on its own expects the reader to
+                                    already know the name. Here the meaning sits right beside it, so a first-time
+                                    visitor learns what WMK teaches in the same glance that shows them the name. For an
+                                    academy nobody had heard of yet, that did more work than a symbol could. Of the
+                                    early directions I explored, this one answered the brief most directly, and it was
+                                    accepted immediately.</p>
+                                <p data-reveal>The logo also steps down with the space it has. Where there is room, the
+                                    full lockup appears with all three words. In tighter spaces the initials stand
+                                    alone, and over photography the brand often signs off with just Akademie and WMK in
+                                    small type, leaving the images and the pattern to do the rest.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-why-purple">
+                            <h2 class="case-step-title" data-reveal id="case-why-purple">Why purple?</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Creative, but still serious</h3>
+                                <p data-reveal>Colour was the first place WMK could stand apart from the academies
+                                    around it, so it needed a colour with a point of view. WMK teaches creative
+                                    disciplines, so I proposed purple, and the client approved it. It signals creativity
+                                    without tipping into playfulness, and in its deeper tones it carries the weight an
+                                    academy needs.</p>
+                                <p data-reveal>The palette is a range of deep purples, #31014B, #440566, #52097A and
+                                    #5B0A87, used with white. The darkest tone is the main ground for type and pattern,
+                                    and the lighter purples carry the photography.</p>
+                                <p data-reveal>Every tone in the range also works with white text. Against white type,
+                                    the four purples reach contrast ratios between 11.4:1 and 17:1, well beyond the 7:1
+                                    that WCAG sets for its highest level, so text can sit on any purple in the palette
+                                    without a legibility problem.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-why-arial">
+                            <h2 class="case-step-title" data-reveal id="case-why-arial">Why Arial?</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>A typeface everyone already has</h3>
+                                <p data-reveal>For a brand system, Arial is an unusual choice, and a deliberate one. An
+                                    academy produces a constant stream of material, course documents, slides, emails and
+                                    social posts, much of it made by staff rather than designers. Arial is installed on
+                                    practically every computer and renders the same in office software and email, so the
+                                    brand holds together even in material I will never see.</p>
+                                <p data-reveal>Regular and bold cover everyday use, with a lighter weight kept for
+                                    larger display text.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-what-surrounds-the-logo">
+                            <h2 class="case-step-title" data-reveal id="case-what-surrounds-the-logo">What surrounds the logo?</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Everything the logo leaves out</h3>
+                                <p data-reveal>Because the logo stays simple, the character of the brand lives in three
+                                    elements around it.</p>
+                                <p data-reveal>The first is a pattern of vertical white bars in different lengths, set
+                                    in staggered rows. The bars stand for movement. Marketing and technology are fields
+                                    that never stand still, and the people learning them are moving too, from one skill
+                                    and one stage of their career to the next. Offset at different heights, the bars
+                                    read as momentum rather than as a fixed grid. The pattern can be packed densely to
+                                    fill a poster on its own, thinned out to sit behind a headline, or reduced to a
+                                    handful of strokes over a photograph.</p>
+                                <p data-reveal>The second is photography. The images show learners in real settings, and
+                                    every photograph is set in a purple duotone, so pictures from different sources
+                                    share one voice while the people in them stay the focus.</p>
+                                <p data-reveal>The third is the logo itself used as a supergraphic: the letters W, M and
+                                    K enlarged and cropped at the edge of the format, so even a fragment of a letter is
+                                    recognisably WMK. Headlines complete the voice with short, confident statements,
+                                    such as Good marketing tells a story, set in capitals and sometimes turned vertical
+                                    to run the full height of a poster.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-where-does-it-appear">
+                            <h2 class="case-step-title" data-reveal id="case-where-does-it-appear">Where does it appear?</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>From a phone screen to a wall-sized
+                                    display</h3>
+                                <p data-reveal>The foundation of the system is a set of three posters that show the same
+                                    ingredients at three levels of intensity: the bar pattern alone, the pattern with a
+                                    headline, and the pattern with a headline over photography. Every other format is
+                                    built from one of those three.</p>
+                                <p data-reveal>From there the system runs across WMK's media, from digital products to
+                                    print: square social formats, landscape layouts for screens and presentations,
+                                    printed materials, and large-format digital displays where the bars and cropped
+                                    letters work at architectural scale.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-how-did-it-land">
+                            <h2 class="case-step-title" data-reveal id="case-how-did-it-land">How did it land?</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Launched looking complete</h3>
+                                <p data-reveal>The concept was accepted immediately, and the full system went into use
+                                    across the academy's media. For an academy with no history, that meant launching
+                                    with a brand that already looked settled: recognisable from a fragment of the
+                                    pattern or a cropped letter, consistent across every format, and simple enough at
+                                    its core that the staff can keep it that way.</p>
+                            </div>
+                        </section>
                     </div>
                 </div>
 
-                <div class="project-image-section">
-                    <!-- Big Image wmk1 -->
-                    <div class="project-main-image project-rounded-image">
-                        <img src="/work/wmk/wmk1.jpg" alt="WMK Presentation 1" loading="lazy">
+                <!-- Images in a narrower column; on a wide screen script.js adds a navigator on the right: every image small,
+                     with a frame showing which part is on screen -->
+                <div class="project-image-section project-image-section--navigator">
+                    <!-- Previous and next project beside the images: they arrive with the first image, stay level with the middle
+                         of the screen while the images pass, and leave with the last one -->
+                    <div class="project-pager-rail">
+                        <nav class="project-pager" aria-label="More projects">
+                            <a class="project-pager-link project-pager-link--previous" href="/work/hbs.html" rel="prev" aria-label="Previous project: HBS — Brand"><span>Previous</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 1 1 5l4.5 4"/></svg></span></a>
+                            <a class="project-pager-link project-pager-link--next" href="/work/riesen.html" rel="next" aria-label="Next project: Riesen Holzbau"><span>Next</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M.5 1 5 5 .5 9"/></svg></span></a>
+                        </nav>
                     </div>
-                </div>
 
-                <!-- Row of 2: wmk2 & wmk3 -->
-                <div class="project-gallery-section">
-                    <div class="project-gallery-grid">
-                        <div class="project-gallery-item">
-                            <div class="work-image project-rounded-image">
-                                <img src="/work/wmk/wmk2.jpg" alt="WMK Variation 2" loading="lazy">
+                    <!-- First image -->
+                    <div class="project-main-image wmk-image-reveal wmk-first-image">
+                        <img src="/work/wmk/wmk1.jpg" width="1500" height="878" alt="WMK Presentation 1" loading="lazy">
+                    </div>
+
+                    <!-- Gallery: the smaller images, one under another -->
+                    <div class="project-gallery-layout">
+                        <div class="project-gallery-images">
+                            <div class="project-main-image wmk-image-reveal">
+                                <img src="/work/wmk/wmk2.jpg" width="2039" height="2039" alt="WMK Variation 2" loading="lazy">
+                            </div>
+                            <div class="project-main-image wmk-image-reveal">
+                                <img src="/work/wmk/wmk3.jpg" width="2039" height="2039" alt="WMK Variation 3" loading="lazy">
+                            </div>
+                            <div class="project-main-image wmk-image-reveal">
+                                <img src="/work/wmk/wmk4.jpg" width="1500" height="877" alt="WMK Presentation 4" loading="lazy">
+                            </div>
+                            <div class="project-main-image wmk-image-reveal">
+                                <img src="/work/wmk/wmk5.jpg" width="1500" height="877" alt="WMK Presentation 5" loading="lazy">
+                            </div>
+                            <div class="project-main-image wmk-image-reveal">
+                                <img src="/work/wmk/wmk6.jpg" width="1500" height="877" alt="WMK Presentation 6" loading="lazy">
+                            </div>
+                            <div class="project-main-image wmk-image-reveal">
+                                <img src="/work/wmk/wmk7.jpg" width="1000" height="1000" alt="WMK Variation 7" loading="lazy">
+                            </div>
+                            <div class="project-main-image wmk-image-reveal">
+                                <img src="/work/wmk/wmk8.jpg" width="1000" height="1000" alt="WMK Variation 8" loading="lazy">
+                            </div>
+                            <div class="project-main-image wmk-image-reveal">
+                                <img src="/work/wmk/wmk9.jpg" width="1500" height="877" alt="WMK Presentation 9" loading="lazy">
+                            </div>
+                            <div class="project-main-image wmk-image-reveal">
+                                <img src="/work/wmk/wmk10.jpg" width="1500" height="877" alt="WMK Presentation 10" loading="lazy">
                             </div>
                         </div>
-                        <div class="project-gallery-item">
-                            <div class="work-image project-rounded-image">
-                                <img src="/work/wmk/wmk3.jpg" alt="WMK Variation 3" loading="lazy">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-image-section">
-                    <!-- Big Image wmk4 -->
-                    <div class="project-main-image project-rounded-image">
-                        <img src="/work/wmk/wmk4.jpg" alt="WMK Presentation 4" loading="lazy">
-                    </div>
-                </div>
-
-                <div class="project-image-section">
-                    <!-- Big Image wmk5 -->
-                    <div class="project-main-image project-rounded-image">
-                        <img src="/work/wmk/wmk5.jpg" alt="WMK Presentation 5" loading="lazy">
-                    </div>
-                </div>
-
-                <div class="project-image-section">
-                    <!-- Big Image wmk6 -->
-                    <div class="project-main-image project-rounded-image">
-                        <img src="/work/wmk/wmk6.jpg" alt="WMK Presentation 6" loading="lazy">
-                    </div>
-                </div>
-
-                <!-- Row of 2: wmk7 & wmk8 -->
-                <div class="project-gallery-section">
-                    <div class="project-gallery-grid">
-                        <div class="project-gallery-item">
-                            <div class="work-image project-rounded-image">
-                                <img src="/work/wmk/wmk7.jpg" alt="WMK Variation 7" loading="lazy">
-                            </div>
-                        </div>
-                        <div class="project-gallery-item">
-                            <div class="work-image project-rounded-image">
-                                <img src="/work/wmk/wmk8.jpg" alt="WMK Variation 8" loading="lazy">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-image-section">
-                    <!-- Big Image wmk9 -->
-                    <div class="project-main-image project-rounded-image">
-                        <img src="/work/wmk/wmk9.jpg" alt="WMK Presentation 9" loading="lazy">
-                    </div>
-                </div>
-
-                <div class="project-image-section">
-                    <!-- Big Image wmk10 -->
-                    <div class="project-main-image project-rounded-image">
-                        <img src="/work/wmk/wmk10.jpg" alt="WMK Presentation 10" loading="lazy">
                     </div>
                 </div>
             </div>
         </section>
     </main>
-
-        <!-- Project Pagination -->
-    <nav class="project-pagination" aria-label="Project navigation">
-        <!-- One quiet line between hairlines: previous project, all projects, next project -->
-        <div class="container project-pagination-row">
-            <a href="/work/hbs.html" class="arrow-link arrow-link--back project-pagination-prev" rel="prev"><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 3.2 3.2 12.8"/><path d="M9.8 12.8H3.2V6.2"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 3.2 3.2 12.8"/><path d="M9.8 12.8H3.2V6.2"/></svg></span><span class="arrow-link-label"><span class="project-pagination-label">Previous</span> <span class="project-pagination-dot" aria-hidden="true">·</span> HBS — Brand</span></a>
-            <a href="/work.html" class="arrow-link project-pagination-all"><span class="arrow-link-label">All projects</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
-            <a href="/work/riesen.html" class="arrow-link project-pagination-next" rel="next"><span class="arrow-link-label"><span class="project-pagination-label">Next</span> <span class="project-pagination-dot" aria-hidden="true">·</span> Riesen Holzbau</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
-        </div>
-    </nav>
 
     <!-- Modern Footer Section -->
     <footer class="modern-footer">
@@ -370,7 +412,7 @@
     <script src="/vendor/gsap/gsap.min.js" defer></script>
     <script src="/vendor/gsap/ScrollTrigger.min.js" defer></script>
     <script src="/vendor/gsap/CustomEase.min.js" defer></script>
-    <script src="/script.js?v=20260922-1" defer></script>
+    <script src="/script.js?v=20260922-2" defer></script>
 </body>
 
 </html>

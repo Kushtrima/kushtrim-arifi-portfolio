@@ -1510,6 +1510,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Apply the reveal effect to all project images
-    ['monun', 'doratec', 'spitex', 'jetonikeramika', 'ennur', 'hbs', 'hbs-website', 'cityhotel']
+    ['monun', 'doratec', 'spitex', 'jetonikeramika', 'ennur', 'hbs', 'wmk', 'hbs-website', 'cityhotel']
         .forEach((project) => setupScrollLinkedReveal(`.${project}-image-reveal`));
 });
