@@ -1698,11 +1698,6 @@ body:has(.hero) .header:has(.navigation.active) {
 }
 
 /* Purple */
-.work-item[href*="alba"] {
-    --project-hover-color: #fffbcc;
-}
-
-/* Yellow */
 .work-item[href*="ennur"] {
     --project-hover-color: #ffe9cc;
 }
@@ -2105,11 +2100,6 @@ body:has(.hero) .header:has(.navigation.active) {
 }
 
 /* Purple */
-.gallery-item[data-project="alba"] {
-    --project-hover-color: #fffbcc;
-}
-
-/* Yellow */
 .gallery-item[data-project="ennur"] {
     --project-hover-color: #ffe9cc;
 }

@@ -140,7 +140,7 @@ All 17 project detail pages have been moved from root-level to a `/work/` subdir
 
 8. **Project case-study text expansion** (optional but valuable)
    - Pages under 250 body words could use one more short paragraph each:
-     - riesen.html (184), baren.html (190), alba.html (193), doratec.html (222), hbs-website.html (226), monun.html (231)
+     - riesen.html (184), baren.html (190), doratec.html (222), hbs-website.html (226), monun.html (231)
    - Target: a short "Process" or "Outcome" paragraph (~80-100 words) per page in the existing `.project-description-text` block.
 
 9. **Resume PDF**

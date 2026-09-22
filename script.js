@@ -998,7 +998,7 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(() => {
                 const knownProjects = [
                     'monun', 'doratec', 'spitex', 'jetonikeramika',
-                    'baren', 'riesen', 'ennur', 'alba', 'wmk', 'hbs',
+                    'baren', 'riesen', 'ennur', 'wmk', 'hbs',
                     'hbs-website', 'cityhotel', 'etno'
                 ];
                 if (knownProjects.includes(projectName)) {
@@ -1510,6 +1510,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Apply the reveal effect to all project images
-    ['monun', 'doratec', 'spitex', 'jetonikeramika', 'alba', 'ennur', 'hbs', 'hbs-website', 'cityhotel']
+    ['monun', 'doratec', 'spitex', 'jetonikeramika', 'ennur', 'hbs', 'hbs-website', 'cityhotel']
         .forEach((project) => setupScrollLinkedReveal(`.${project}-image-reveal`));
 });
