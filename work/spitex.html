@@ -140,7 +140,7 @@
         <section class="project-hero">
             <div class="container">
                 <div class="project-header-content">
-                    <div class="project-title-section">
+                    <div class="project-title-section project-title-section--inline">
                         <div class="text-reveal-wrapper">
                             <h1 class="project-title">Spitex GmbH</h1>
                         </div>
@@ -151,117 +151,220 @@
                     <div class="project-header-divider"></div>
                 </div>
 
-                <!-- Three Column Layout -->
-                <div class="project-info-layout">
-                    <!-- Left -->
-                    <div class="project-info-left">
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper"><span class="project-info-label">Industry</span></div>
-                            <div class="text-reveal-wrapper"><span class="project-info-value">Healthcare</span></div>
-                        </div>
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper"><span class="project-info-label">Service</span></div>
-                            <div class="text-reveal-wrapper"><span class="project-info-value">Research · UX/UI · Web
-                                    Development</span></div>
-                        </div>
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper"><span class="project-info-label">Location</span></div>
-                            <div class="text-reveal-wrapper"><span class="project-info-value">Switzerland</span></div>
-                        </div>
+                <!-- The project in one row under the name -->
+                <dl class="project-facts">
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Industry</dt>
+                        <dd class="project-info-value">Home<br>Care</dd>
                     </div>
-                    <!-- Middle -->
-                    <div class="project-info-middle">
-                        <div class="project-info-item project-info-year">
-                            <div class="text-reveal-wrapper"><span class="project-info-label">Year</span></div>
-                            <div class="text-reveal-wrapper"><span class="project-info-value">2025</span></div>
-                        </div>
-                        <div class="project-info-item project-info-stack">
-                            <div class="text-reveal-wrapper"><span class="project-info-label">Stack</span></div>
-                            <div class="text-reveal-wrapper"><span class="project-info-value">Figma · HTML · CSS ·
-                                    JavaScript · PHP · WordPress</span></div>
-                        </div>
+                    <div class="project-fact project-fact--service text-reveal-wrapper">
+                        <dt class="project-info-label">Service</dt>
+                        <dd class="project-info-value"><span class="fact-item">Research</span>&nbsp;· <span class="fact-item">Product Design</span>&nbsp;·<br><span class="fact-item">Accessibility</span>&nbsp;· <span class="fact-item">Development</span></dd>
                     </div>
-                    <!-- Right -->
-                    <div class="project-info-right">
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper"><span class="project-info-label">Project Description</span>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Location</dt>
+                        <dd class="project-info-value">Bern,<br>Switzerland</dd>
+                    </div>
+                    <div class="project-fact project-fact--stack text-reveal-wrapper">
+                        <dt class="project-info-label">Stack</dt>
+                        <dd class="project-info-value"><span class="fact-item">Figma</span>&nbsp;· <span class="fact-item">WordPress (custom theme)</span>&nbsp;· <span class="fact-item">PHP</span>&nbsp;· <span class="fact-item">Vanilla JavaScript</span>&nbsp;· <span class="fact-item">SCSS</span></dd>
+                    </div>
+                </dl>
+
+                <!-- Case study, one part after another: a heading and its text. On a wide screen script.js lists every part's
+                     name on the left, held in view as the texts pass: dark grey, and light for the part being read; on a
+                     phone (or without script.js) each heading sits with its text. A new part is one more .case-step -->
+                <div class="case-study">
+                    <div class="case-study-steps">
+                        <section class="case-step" aria-labelledby="case-company">
+                            <h2 class="case-step-title" data-reveal id="case-company">Company</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Care that comes to the home</h3>
+                                <p data-reveal>Spitex Schwab AG is an independent home-care provider based in Bern. Its
+                                    nurses and carers support people of all ages in their own homes, so they can keep
+                                    their independence there, with services ranging from basic and medical care to
+                                    psychiatric, palliative and oncology care, dementia support, a children's Spitex and
+                                    Spitexpress, a 24-hour emergency service. Spitex Schwab came to me directly in
+                                    2025.</p>
                             </div>
-                            <div class="project-description-content">
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">I began by researching how patients and
-                                        healthcare staff interact with Spitex services, focusing on moments where users
-                                        feel uncertain or rushed. This informed a calm, human-centric UX direction in
-                                        Figma, with clean layouts, generous spacing, and typography that supports
-                                        clarity and ease of use.</p>
-                                </div>
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">The visual design uses Spitex’s deep teal color
-                                        as the core identity, paired with white text and thin white borders to create a
-                                        clear, trustworthy interface. The main navigation adopts a subtle glass-style
-                                        effect with a teal gradient for a light, modern feel. When users scroll, the
-                                        header gently reduces in height, keeping only the essential navigation visible
-                                        so the page feels open, minimal, and distraction-free.</p>
-                                </div>
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">The build is fully responsive and lightweight,
-                                        with a transparent submenu that blends naturally into the header. Services are
-                                        easy to explore, key information is easy to reach, and the contact flow is
-                                        intentionally simple—helping users connect with support quickly and confidently.
-                                    </p>
-                                </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-problem">
+                            <h2 class="case-step-title" data-reveal id="case-problem">The problem</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Printed brochures, and nothing for the people
+                                    searching</h3>
+                                <p data-reveal>Before this project, everything Spitex Schwab had to say about itself was
+                                    in printed brochures. They worked for people already in contact with the company.
+                                    For anyone searching online, the company did not exist.</p>
+                                <p data-reveal>That gap matters more in home care than in most sectors. The need for
+                                    care often arrives suddenly, after a fall or a hospital stay, and people look for
+                                    help quickly and under pressure.</p>
                             </div>
-                        </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-research">
+                            <h2 class="case-step-title" data-reveal id="case-research">Research</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Simple pages, scattered information</h3>
+                                <p data-reveal>The work started with a content audit. Together with the client I went
+                                    through the brochures and every service Spitex Schwab offers, a long list written
+                                    for print and for people who already knew the company. The client also told me
+                                    something that shaped everything after it: in most cases, first contact comes from a
+                                    son or daughter arranging care for a parent, not from the person who needs it.</p>
+                                <p data-reveal>I then reviewed leading Spitex organisations across Switzerland, looking
+                                    at how they explain their services, how they handle first contact, and how quickly a
+                                    relative can find what they need. The review turned up one thing worth keeping and
+                                    one worth fixing. The design of the best sites was simple and uncluttered, with no
+                                    visual overload, and that became the benchmark for the look. The problem was the
+                                    information. Explaining care properly takes words, so the amount of text was not the
+                                    issue in itself. The issue was where it lived: information was scattered across the
+                                    site, and a relative had to piece answers together from several pages.</p>
+                                <p data-reveal>That set the priority for the information architecture. I reorganised
+                                    Spitex Schwab's services under five headings a relative can grasp at once, care,
+                                    household help, personal support, coordination and the 24-hour Spitexpress, with one
+                                    page per service, so every answer sits in one predictable place.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-users">
+                            <h2 class="case-step-title" data-reveal id="case-users">Users</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>The reader is rarely the patient</h3>
+                                <p data-reveal>That one fact from the client changed who the site was for. The reader is
+                                    arranging care for a parent, often at short notice, often while managing everything
+                                    else in their life, and making a decision on someone else's behalf. The site says so
+                                    in its first line: Pflege und Unterstützung für Seniorinnen und Familien, care and
+                                    support for seniors and families.</p>
+                                <p data-reveal>Stress narrows attention and reduces how much a person can hold in mind
+                                    at once, so a reader in that situation cannot be asked to decode care terminology,
+                                    hunt for a phone number or work through a long form. My background in clinical
+                                    psychology made this the starting point rather than an afterthought: the site had to
+                                    ask as little as possible of someone already stretched.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-solution">
+                            <h2 class="case-step-title" data-reveal id="case-solution">Solution</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Designed for the worst day, not the average
+                                    one</h3>
+                                <p data-reveal>Text large enough to read without effort. Body text is set larger than
+                                    usual, so nobody has to zoom in or lean closer, and a tired reader can take in a
+                                    page at a glance.</p>
+                                <p data-reveal>The phone number never leaves the screen. For many families the first
+                                    step is a conversation, not a form. The number stays in view throughout the site, so
+                                    calling is always the easiest thing to do.</p>
+                                <p data-reveal>Care described in everyday words. Services are explained the way a
+                                    relative would ask about them, not in the terminology of the care sector.</p>
+                                <p data-reveal>Fewer steps to contact. Getting in touch takes as few steps as possible,
+                                    and the contact form asks only for what Spitex needs to call back.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-design">
+                            <h2 class="case-step-title" data-reveal id="case-design">Design</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Deep teal, drawn with white</h3>
+                                <p data-reveal>Spitex's own deep teal carries the identity, with white type and thin
+                                    white lines drawing the structure on top of it. White on a teal that deep keeps
+                                    contrast strong, which matters to readers whose eyesight or attention is under
+                                    strain. On the first screen the photograph is washed in teal, so the page opens as
+                                    one calm field of colour with the headline standing out in heavy white. Further
+                                    down, photographs keep their natural warmth, and text sits in solid teal panels that
+                                    overlap them rather than being printed over the image, so it never has to be read
+                                    against a busy background.</p>
+                                <p data-reveal>The navigation is built from five equal boxes rather than a line of small
+                                    links. Each item is a wide, unmistakable target, easy to hit with an unsteady hand
+                                    or on a small screen, and a plus sign marks the ones that open a submenu. Over the
+                                    hero the boxes are outlined in white; once the visitor scrolls they turn into solid
+                                    teal tiles on white, with the current page marked by a darker tile and a heavy
+                                    underline.</p>
+                                <p data-reveal>Contact has its own place at the top right of every page: a teal button
+                                    carrying the phone number, labelled Beratung und Anmeldung (advice and
+                                    registration), so it says what a call is for before anyone has to wonder. The
+                                    24-hour Spitexpress service goes one step further, with its number written directly
+                                    into its description, because in an emergency nobody should have to go looking for a
+                                    number.</p>
+                                <p data-reveal>Services are laid out as a grid of square tiles, alternating filled teal
+                                    and white, each with a simple solid icon, a clear name and two or three lines of
+                                    plain description. Headlines are set large and heavy, body text in a clear geometric
+                                    sans with open line spacing, and the whole page reads as unhurried, which is exactly
+                                    what its readers are not.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-development">
+                            <h2 class="case-step-title" data-reveal id="case-development">Development</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Accessibility built in, not added on</h3>
+                                <p data-reveal>The site is a custom WordPress theme built around the five service
+                                    headings from the research.</p>
+                                <p data-reveal>The accessibility decisions live in the code rather than in a plugin.
+                                    Text is sized in relative units, so the larger default still respects each visitor's
+                                    own browser settings and scales cleanly from phone to desktop. Every phone number,
+                                    in the header button and in the Spitexpress description, is a live link, so on a
+                                    mobile device a single tap starts the call.</p>
+                                <p data-reveal>The build is deliberately lightweight, with vanilla JavaScript used only
+                                    for the header's change of state on scroll, so pages load quickly even on older
+                                    phones and slow connections.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-outcome">
+                            <h2 class="case-step-title" data-reveal id="case-outcome">Outcome</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>More calls, more emails, and a surprised
+                                    client</h3>
+                                <p data-reveal>Since launch, the client has seen more phone calls and more emails than
+                                    before, enough that the result surprised them. For a service that had previously
+                                    reached people only through printed brochures, that is exactly what the site was
+                                    built for: families finding Spitex Schwab and picking up the phone.</p>
+                            </div>
+                        </section>
                     </div>
                 </div>
 
-                <div class="project-image-section">
-                    <!-- First big image - full width -->
+                <!-- Images in a narrower column; on a wide screen script.js adds a navigator on the right: every image small,
+                     with a frame showing which part is on screen -->
+                <div class="project-image-section project-image-section--navigator">
+                    <!-- Previous and next project beside the images: they arrive with the first image, stay level with the middle
+                         of the screen while the images pass, and leave with the last one -->
+                    <div class="project-pager-rail">
+                        <nav class="project-pager" aria-label="More projects">
+                            <a class="project-pager-link project-pager-link--previous" href="/work/doratec.html" rel="prev" aria-label="Previous project: Doratec GmbH"><span>Previous</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 1 1 5l4.5 4"/></svg></span></a>
+                            <a class="project-pager-link project-pager-link--next" href="/work/monun.html" rel="next" aria-label="Next project: MONUN AG"><span>Next</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M.5 1 5 5 .5 9"/></svg></span></a>
+                        </nav>
+                    </div>
+
+                    <!-- First image -->
                     <div class="project-main-image spitex-image-reveal spitex-first-image">
-                        <img src="/work/spitex/spitex1.jpg" alt="Spitex Project 1" loading="lazy">
+                        <img src="/work/spitex/spitex1.jpg" width="1916" height="1124" alt="Spitex Project 1" loading="lazy">
                     </div>
 
                     <!-- Gallery: the smaller images, one under another -->
                     <div class="project-gallery-layout">
                         <div class="project-gallery-images">
                             <div class="project-main-image spitex-image-reveal">
-                                <img src="/work/spitex/spitex2.jpg" alt="Spitex Project 2" loading="lazy">
+                                <img src="/work/spitex/spitex2.jpg" width="1300" height="855" alt="Spitex Project 2" loading="lazy">
                             </div>
                             <div class="project-main-image spitex-image-reveal">
-                                <img src="/work/spitex/spitex3.jpg" alt="Spitex Project 3" loading="lazy">
+                                <img src="/work/spitex/spitex3.jpg" width="1300" height="855" alt="Spitex Project 3" loading="lazy">
                             </div>
                             <div class="project-main-image spitex-image-reveal">
-                                <img src="/work/spitex/spitex4.jpg" alt="Spitex Project 4" loading="lazy">
+                                <img src="/work/spitex/spitex4.jpg" width="1500" height="990" alt="Spitex Project 4" loading="lazy">
                             </div>
                             <div class="project-main-image spitex-image-reveal">
-                                <img src="/work/spitex/spitex5.jpg" alt="Spitex Project 5" loading="lazy">
+                                <img src="/work/spitex/spitex5.jpg" width="1300" height="855" alt="Spitex Project 5" loading="lazy">
                             </div>
                             <div class="project-main-image spitex-image-reveal">
-                                <img src="/work/spitex/spitex6.jpg" alt="Spitex Project 6" loading="lazy">
+                                <img src="/work/spitex/spitex6.jpg" width="1500" height="990" alt="Spitex Project 6" loading="lazy">
                             </div>
                             <div class="project-main-image spitex-image-reveal">
-                                <img src="/work/spitex/spitex7.jpg" alt="Spitex Project 7" loading="lazy">
+                                <img src="/work/spitex/spitex7.jpg" width="1500" height="990" alt="Spitex Project 7" loading="lazy">
                             </div>
                             <div class="project-main-image spitex-image-reveal">
-                                <img src="/work/spitex/spitex8.jpg" alt="Spitex Project 8" loading="lazy">
+                                <img src="/work/spitex/spitex8.jpg" width="1300" height="855" alt="Spitex Project 8" loading="lazy">
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </section>
     </main>
-
-        <!-- Project Pagination -->
-    <nav class="project-pagination" aria-label="Project navigation">
-        <!-- One quiet line between hairlines: previous project, all projects, next project -->
-        <div class="container project-pagination-row">
-            <a href="/work/doratec.html" class="arrow-link arrow-link--back project-pagination-prev" rel="prev"><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 3.2 3.2 12.8"/><path d="M9.8 12.8H3.2V6.2"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 3.2 3.2 12.8"/><path d="M9.8 12.8H3.2V6.2"/></svg></span><span class="arrow-link-label"><span class="project-pagination-label">Previous</span> <span class="project-pagination-dot" aria-hidden="true">·</span> Doratec GmbH</span></a>
-            <a href="/work.html" class="arrow-link project-pagination-all"><span class="arrow-link-label">All projects</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
-            <a href="/work/monun.html" class="arrow-link project-pagination-next" rel="next"><span class="arrow-link-label"><span class="project-pagination-label">Next</span> <span class="project-pagination-dot" aria-hidden="true">·</span> MONUN AG</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
-        </div>
-    </nav>
 
     <!-- Modern Footer Section -->
     <footer class="modern-footer">

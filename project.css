@@ -894,7 +894,8 @@
 .project-image-section.project-image-section--navigator > .jetonikeramika-first-image,
 .project-image-section.project-image-section--navigator > .ennur-first-image,
 .project-image-section.project-image-section--navigator > .doratec-first-image,
-.project-image-section.project-image-section--navigator > .monun-first-image {
+.project-image-section.project-image-section--navigator > .monun-first-image,
+.project-image-section.project-image-section--navigator > .spitex-first-image {
     margin-bottom: 80px;
 }
 
@@ -904,7 +905,8 @@
     .project-image-section.project-image-section--navigator > .jetonikeramika-first-image,
     .project-image-section.project-image-section--navigator > .ennur-first-image,
     .project-image-section.project-image-section--navigator > .doratec-first-image,
-    .project-image-section.project-image-section--navigator > .monun-first-image {
+    .project-image-section.project-image-section--navigator > .monun-first-image,
+    .project-image-section.project-image-section--navigator > .spitex-first-image {
         margin-bottom: 70px !important;
     }
 }
@@ -915,7 +917,8 @@
     .project-image-section.project-image-section--navigator > .jetonikeramika-first-image,
     .project-image-section.project-image-section--navigator > .ennur-first-image,
     .project-image-section.project-image-section--navigator > .doratec-first-image,
-    .project-image-section.project-image-section--navigator > .monun-first-image {
+    .project-image-section.project-image-section--navigator > .monun-first-image,
+    .project-image-section.project-image-section--navigator > .spitex-first-image {
         margin-bottom: 30px !important;
     }
 }
@@ -1708,18 +1711,6 @@
         transform-origin: center center !important;
     }
 
-    /* Spitex images - override fixed heights for natural display */
-    .project-image-section .spitex-image-reveal {
-        height: auto !important;
-        min-height: auto !important;
-        margin-bottom: 25px !important;
-    }
-
-    .project-image-section .spitex-image-reveal img {
-        height: auto !important;
-        transform: none !important;
-    }
-
     /* First description section - proper spacing from image */
     .project-description-section:first-of-type {
         margin-bottom: 20px !important;
@@ -1983,27 +1974,6 @@
     /* Shared gallery - mobile */
     .project-gallery-images {
         gap: 30px;
-    }
-
-    /* Spitex images on mobile */
-    .project-image-section .spitex-image-reveal {
-        margin-bottom: 30px;
-        border-radius: 12px;
-    }
-
-    .project-image-section .spitex-image-reveal::before {
-        border-radius: 12px 12px 0 0;
-    }
-
-    .project-image-section .spitex-image-reveal img {
-        border-radius: 12px;
-        height: auto;
-        object-fit: contain;
-    }
-
-    /* Standardize First Image Margins for others */
-    .project-image-section .spitex-first-image {
-        margin-bottom: 40px;
     }
 }
 
