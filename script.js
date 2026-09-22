@@ -999,7 +999,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const knownProjects = [
                     'monun', 'doratec', 'spitex', 'jetonikeramika',
                     'baren', 'riesen', 'ennur', 'wmk', 'hbs',
-                    'hbs-website', 'cityhotel', 'etno'
+                    'hbs-website', 'cityhotel'
                 ];
                 if (knownProjects.includes(projectName)) {
                     window.location.href = '/work/' + projectName + '.html';

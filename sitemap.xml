@@ -5,144 +5,171 @@
   <!-- Homepage -->
   <url>
     <loc>https://kushtrimarifi.com/</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://kushtrimarifi.com/img/kaimage.jpg</image:loc>
-      <image:title>Kushtrim Arifi — Product Designer &amp; Developer</image:title>
     </image:image>
   </url>
 
-  <!-- Main Pages -->
+  <!-- Main pages -->
   <url>
     <loc>https://kushtrimarifi.com/work.html</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://kushtrimarifi.com/about.html</loc>
-    <lastmod>2026-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Featured Projects (homepage hero) -->
-  <url>
-    <loc>https://kushtrimarifi.com/work/cityhotel.html</loc>
-    <lastmod>2026-05-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
     <image:image>
       <image:loc>https://kushtrimarifi.com/work/cityhotel/city-cover.jpg</image:loc>
-      <image:title>Cityhotel — Luxury Hotel Website UX/UI Case Study</image:title>
     </image:image>
-  </url>
-
-  <url>
-    <loc>https://kushtrimarifi.com/work/hbs-website.html</loc>
-    <lastmod>2026-05-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
     <image:image>
       <image:loc>https://kushtrimarifi.com/work/hbs-website/hbswebsite-cover.jpg</image:loc>
-      <image:title>HBS — Construction Company Website Design</image:title>
     </image:image>
-  </url>
-
-  <!-- Web / App Projects -->
-  <url>
-    <loc>https://kushtrimarifi.com/work/monun.html</loc>
-    <lastmod>2026-05-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://kushtrimarifi.com/work/monun/monun-cover.jpg</image:loc>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://kushtrimarifi.com/work/spitex.html</loc>
-    <lastmod>2026-05-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://kushtrimarifi.com/work/spitex/spitex-cover.jpg</image:loc>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://kushtrimarifi.com/work/doratec.html</loc>
-    <lastmod>2026-05-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://kushtrimarifi.com/work/doratec/dora-cover.jpg</image:loc>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://kushtrimarifi.com/work/ennur.html</loc>
-    <lastmod>2026-05-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://kushtrimarifi.com/work/ennur/en-cover.jpg</image:loc>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://kushtrimarifi.com/work/jetonikeramika.html</loc>
-    <lastmod>2026-05-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
     <image:image>
       <image:loc>https://kushtrimarifi.com/work/jetonikeramika/jetoni-cover.jpg</image:loc>
     </image:image>
-  </url>
-
-  <!-- Branding Projects -->
-  <url>
-    <loc>https://kushtrimarifi.com/work/hbs.html</loc>
-    <lastmod>2026-05-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://kushtrimarifi.com/work/ennur/en-cover.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://kushtrimarifi.com/work/doratec/dora-cover.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://kushtrimarifi.com/work/spitex/spitex-cover.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://kushtrimarifi.com/work/monun/monun-cover.jpg</image:loc>
+    </image:image>
     <image:image>
       <image:loc>https://kushtrimarifi.com/work/hbs/hbs-cover.jpg</image:loc>
     </image:image>
-  </url>
-
-  <url>
-    <loc>https://kushtrimarifi.com/work/wmk.html</loc>
-    <lastmod>2026-05-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
     <image:image>
       <image:loc>https://kushtrimarifi.com/work/wmk/wmk-cover.jpg</image:loc>
     </image:image>
-  </url>
-
-  <url>
-    <loc>https://kushtrimarifi.com/work/riesen.html</loc>
-    <lastmod>2026-05-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
     <image:image>
       <image:loc>https://kushtrimarifi.com/work/riesen/riesen-cover.jpg</image:loc>
     </image:image>
-  </url>
-
-  <url>
-    <loc>https://kushtrimarifi.com/work/baren.html</loc>
-    <lastmod>2026-05-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
     <image:image>
       <image:loc>https://kushtrimarifi.com/work/baren/baren-cover.jpg</image:loc>
     </image:image>
   </url>
 
+  <url>
+    <loc>https://kushtrimarifi.com/about.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Case studies: websites, then brand identities -->
+  <url>
+    <loc>https://kushtrimarifi.com/work/cityhotel.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kushtrimarifi.com/work/cityhotel/city-01.jpg</image:loc>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://kushtrimarifi.com/work/hbs-website.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kushtrimarifi.com/work/hbs-website/hbs-01.jpg</image:loc>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://kushtrimarifi.com/work/jetonikeramika.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://kushtrimarifi.com/work/jetonikeramika/jetoni1.jpg</image:loc>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://kushtrimarifi.com/work/ennur.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://kushtrimarifi.com/work/ennur/en1.jpg</image:loc>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://kushtrimarifi.com/work/doratec.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://kushtrimarifi.com/work/doratec/dora1.jpg</image:loc>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://kushtrimarifi.com/work/spitex.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://kushtrimarifi.com/work/spitex/spitex1.jpg</image:loc>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://kushtrimarifi.com/work/monun.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://kushtrimarifi.com/work/monun/monun1.jpg</image:loc>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://kushtrimarifi.com/work/hbs.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://kushtrimarifi.com/work/hbs/hbs1.jpg</image:loc>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://kushtrimarifi.com/work/wmk.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://kushtrimarifi.com/work/wmk/wmk1.jpg</image:loc>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://kushtrimarifi.com/work/riesen.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://kushtrimarifi.com/work/riesen/riesen1.jpg</image:loc>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://kushtrimarifi.com/work/baren.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://kushtrimarifi.com/work/baren/baren1.jpg</image:loc>
+    </image:image>
+  </url>
 
 </urlset>

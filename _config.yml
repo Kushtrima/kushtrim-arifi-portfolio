@@ -1,0 +1,6 @@
+# GitHub Pages builds this site with Jekyll. These files are notes, data or config for another host, not pages:
+# keep them out of the published site.
+exclude:
+  - SEO_SETUP_INSTRUCTIONS.md
+  - .htaccess
+  - projects.json
