@@ -597,6 +597,9 @@ body:has(.hero) .header:has(.navigation.active) {
 
 .hero-title-section {
     margin: 0;
+    /* The name is the page's h1. Its own size is only a basis for the em values below (the words set their own size in
+       .hero-word), so it is held at what a heading inherited before, and the spacing stays exactly as drawn */
+    font-size: 1.5em;
     font-family: var(--font-display);
     font-weight: 400;
     line-height: 0.9;

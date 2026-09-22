@@ -62,7 +62,7 @@
             if (!introSeen) document.documentElement.classList.add('intro-on');
         }
     </script>
-    <link rel="stylesheet" href="styles.css?v=20260922-2">
+    <link rel="stylesheet" href="styles.css?v=20260922-3">
 
     <!-- Structured Data: Person + ProfilePage -->
     <script type="application/ld+json">
@@ -71,6 +71,7 @@
       "@type": "ProfilePage",
       "mainEntity": {
         "@type": "Person",
+        "@id": "https://kushtrimarifi.com/#person",
         "name": "Kushtrim Arifi",
         "givenName": "Kushtrim",
         "familyName": "Arifi",
@@ -122,6 +123,19 @@
         "name": "Kushtrim Arifi"
       },
       "inLanguage": "en"
+    }
+    </script>
+
+    <!-- Structured Data: the site itself, by the same person -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://kushtrimarifi.com/#website",
+      "name": "Kushtrim Arifi",
+      "url": "https://kushtrimarifi.com/",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://kushtrimarifi.com/#person" }
     }
     </script>
 
@@ -209,13 +223,13 @@
         <div class="hero-stage container">
             <div class="hero-frame">
                 <div class="hero-caption hero-caption--left">
-                    <div class="hero-small-mask"><h1 class="hero-caption-text">Product Designer &amp;<br>Developer</h1></div>
+                    <div class="hero-small-mask"><p class="hero-caption-text">Product Designer &amp;<br>Developer</p></div>
                 </div>
 
-                <h2 class="hero-title-section" aria-label="Kushtrim Arifi">
+                <h1 class="hero-title-section" aria-label="Kushtrim Arifi">
                     <span class="hero-mask hero-word hero-word--first hero-drift-left"><span>Kushtrim</span></span>
                     <span class="hero-mask hero-word hero-word--last hero-drift-right"><span>Arifi</span></span>
-                </h2>
+                </h1>
 
                 <figure class="hero-image-section">
                     <picture>
