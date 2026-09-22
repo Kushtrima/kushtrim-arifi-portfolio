@@ -44,7 +44,7 @@
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
 
     <link rel="stylesheet" href="/styles.css?v=20260922-1">
-    <link rel="stylesheet" href="/project.css?v=20260922-2">
+    <link rel="stylesheet" href="/project.css?v=20260922-3">
 
     <!-- Structured Data: CreativeWork -->
     <script type="application/ld+json">
@@ -140,7 +140,7 @@
         <section class="project-hero">
             <div class="container">
                 <div class="project-header-content">
-                    <div class="project-title-section">
+                    <div class="project-title-section project-title-section--inline">
                         <div class="text-reveal-wrapper">
                             <h1 class="project-title">Riesen Holzbau</h1>
                         </div>
@@ -151,134 +151,168 @@
                     <div class="project-header-divider"></div>
                 </div>
 
-                <!-- Three Column Layout: Left (Industry/Service/Location) | Middle (Year/Stack) | Right (Project Description) -->
-                <div class="project-info-layout">
-                    <!-- Left Column -->
-                    <div class="project-info-left">
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Industry</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Wood</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Service</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Logo</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Location</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Switzerland</span>
-                            </div>
-                        </div>
+                <!-- The project in one row under the name -->
+                <dl class="project-facts">
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Industry</dt>
+                        <dd class="project-info-value">Timber<br>Construction</dd>
                     </div>
-
-                    <!-- Middle Column -->
-                    <div class="project-info-middle">
-                        <div class="project-info-item project-info-year">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Year</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">2025</span>
-                            </div>
-                        </div>
-                        <div class="project-info-item project-info-stack">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Scope of Work</span>
-                            </div>
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-value">Brand Workbook · Branding positioning · Brand Identity
-                                    · Printing Content</span>
-                            </div>
-                        </div>
+                    <div class="project-fact project-fact--service text-reveal-wrapper">
+                        <dt class="project-info-label">Service</dt>
+                        <dd class="project-info-value"><span class="fact-item">Logo Design</span>&nbsp;·<br><span class="fact-item">Brand Identity</span></dd>
                     </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Agency</dt>
+                        <dd class="project-info-value">Business Leaders AG</dd>
+                    </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Location</dt>
+                        <dd class="project-info-value">Switzerland</dd>
+                    </div>
+                    <div class="project-fact project-fact--stack text-reveal-wrapper">
+                        <dt class="project-info-label">Deliverables</dt>
+                        <dd class="project-info-value"><span class="fact-item">Brand positioning</span>&nbsp;· <span class="fact-item">Icon and wordmark</span>&nbsp;· <span class="fact-item">Colour palette</span>&nbsp;· <span class="fact-item">Brand workbook</span>&nbsp;· <span class="fact-item">Print applications</span>&nbsp;· <span class="fact-item">Workwear</span></dd>
+                    </div>
+                </dl>
 
-                    <!-- Right Column: Project Description -->
-                    <div class="project-info-right">
-                        <div class="project-info-item">
-                            <div class="text-reveal-wrapper">
-                                <span class="project-info-label">Project Description</span>
+                <!-- Case study, one part after another: a heading and its text. On a wide screen script.js lists every part's
+                     name on the left, held in view as the texts pass: dark grey, and light for the part being read; on a
+                     phone (or without script.js) each heading sits with its text. A new part is one more .case-step -->
+                <div class="case-study">
+                    <div class="case-study-steps">
+                        <section class="case-step" aria-labelledby="case-the-contest">
+                            <h2 class="case-step-title" data-reveal id="case-the-contest">The contest</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>One of five concepts, and the one they
+                                    chose</h3>
+                                <p data-reveal>Riesen Holzbau AG has built in timber since 1997: houses, cabins and
+                                    custom wooden projects. Its original logo had dated and no longer represented the
+                                    company Riesen had become, so it ran a small design contest to find a new identity.
+                                    The project came to me through Business Leaders AG, where I was working at the time.
+                                    Five concepts were presented, mine was chosen, and I then developed it into the full
+                                    identity.</p>
                             </div>
-                            <div class="project-description-content">
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">Riesen Holzbau AG has been active in the wood
-                                        industry since 1997, specializing in timber construction such as houses,
-                                        cabins, and custom wooden projects. After many years with its original logo, the
-                                        company decided to refresh its visual identity. Through a small design contest,
-                                        my concept was selected, and since then the new logo has become a central part
-                                        of the company's modern appearance.</p>
-                                </div>
-                                <div class="text-reveal-wrapper">
-                                    <p class="project-description-text">The logo combines the outline of a house with
-                                        the natural pattern of wood rings. The house shape represents construction,
-                                        protection, and living spaces, while the wood texture inside symbolizes
-                                        strength, durability, and craftsmanship. Together, they reflect the company's
-                                        focus on building with quality, tradition, and care for lasting value.</p>
-                                </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-the-idea">
+                            <h2 class="case-step-title" data-reveal id="case-the-idea">The idea</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>A house cut from a single log</h3>
+                                <p data-reveal>Holzbau means timber construction, and the icon says exactly that in one
+                                    shape: a house made of wood. Its outline is the plain silhouette of a house, a
+                                    pitched roof over straight walls. Inside it, instead of a door or windows, sits the
+                                    end grain of a tree trunk, its growth rings running across the facade.</p>
+                                <p data-reveal>The mark holds two kinds of form in balance. The house is geometric,
+                                    drawn on a strict grid with the roof pitch and the walls fixed by construction
+                                    lines. The wood is organic and uneven, grown rather than drawn. That meeting of the
+                                    built and the grown is what a timber construction company does every day, and it is
+                                    what makes the mark recognisably Riesen's rather than any builder's.</p>
                             </div>
-                        </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-anatomy-of-the-mark">
+                            <h2 class="case-step-title" data-reveal id="case-anatomy-of-the-mark">Anatomy of the mark</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Five parts, one mark</h3>
+                                <p data-reveal>The house. A pentagon set on a construction grid, with the roof angle and
+                                    wall lines fixed by guides that extend beyond the shape. It gives the mark a stable,
+                                    architectural base that reads instantly as a building.</p>
+                                <p data-reveal>The rings. The growth rings radiate from the bottom corner, where the
+                                    heart of the trunk would be, and widen as they move outward, so the house appears to
+                                    have been cut from the end of a log.</p>
+                                <p data-reveal>The outer edge. Toward the roofline the rings give way to a solid band
+                                    with an irregular edge, like the bark at the outside of a trunk, which carries the
+                                    organic character right up to the geometric outline.</p>
+                                <p data-reveal>The wordmark. Riesen Holzbau AG is set in wide, extended capitals with
+                                    larger initials, a steady horizontal line of type that echoes a timber beam. A rule
+                                    underneath runs the full width of the logo and grounds the whole composition like a
+                                    sill.</p>
+                                <p data-reveal>The tagline. Stolz auf Holz, proud of wood, is the only handwritten
+                                    element in the identity. Set in a loose script beneath the rule, it adds a human
+                                    voice to an otherwise engineered logo: the signature of people who work with their
+                                    hands.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-colour">
+                            <h2 class="case-step-title" data-reveal id="case-colour">Colour</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Wood, charcoal and fresh timber</h3>
+                                <p data-reveal>The colours come from the material itself, in three families. A warm wood
+                                    brown, #734C40, is the primary colour, with lighter tints for backgrounds and
+                                    secondary use. A charcoal range from #333333 to #8C8C8C covers dark grounds and
+                                    text. And a range of light timber tones, from #A68960 to #D9BB92, recalls freshly
+                                    cut wood and brings warmth to dark surfaces.</p>
+                                <p data-reveal>The logo works in two main versions: brown on white for paper and bright
+                                    surfaces, and timber tan on charcoal for dark ones. Both stay within natural,
+                                    material colours, so the brand looks like the same company wherever it appears.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-on-the-building-site">
+                            <h2 class="case-step-title" data-reveal id="case-on-the-building-site">On the building site</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Worn by the people who build</h3>
+                                <p data-reveal>A timber company's brand is seen most on the building site, so it had to
+                                    work where the work happens. The logo is embroidered on the team's brown workwear in
+                                    a tone-on-tone timber colour, and even at that size, stitched onto fabric, the house
+                                    and the rings still read. The same system runs through the company's printed
+                                    materials.</p>
+                                <p data-reveal>It is there at the moments that matter to clients, too. At a topping-out
+                                    ceremony, the Aufrichte, when the roof structure is complete and the traditional
+                                    small tree goes up, the team stands on the frame in branded shirts. The identity
+                                    travels on the people, and for a craft business, that is where trust is earned.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-since-then">
+                            <h2 class="case-step-title" data-reveal id="case-since-then">Since then</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Part of how Riesen looks today</h3>
+                                <p data-reveal>Since the contest, the logo has become a central part of the company's
+                                    modern appearance: on the team, on site and in print. For a business building in
+                                    timber since 1997, it is an identity designed around what Riesen is, a builder whose
+                                    material is also its signature.</p>
+                            </div>
+                        </section>
                     </div>
                 </div>
 
-                <div class="project-image-section">
-                    <div class="project-main-image project-rounded-image">
-                        <img src="/work/riesen/riesen1.jpg" alt="Riesen Project" loading="lazy">
+                <!-- Images in a narrower column; on a wide screen script.js adds a navigator on the right: every image small,
+                     with a frame showing which part is on screen -->
+                <div class="project-image-section project-image-section--navigator">
+                    <!-- Previous and next project beside the images: they arrive with the first image, stay level with the middle
+                         of the screen while the images pass, and leave with the last one -->
+                    <div class="project-pager-rail">
+                        <nav class="project-pager" aria-label="More projects">
+                            <a class="project-pager-link project-pager-link--previous" href="/work/wmk.html" rel="prev" aria-label="Previous project: WMK"><span>Previous</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 1 1 5l4.5 4"/></svg></span></a>
+                            <a class="project-pager-link project-pager-link--next" href="/work/baren.html" rel="next" aria-label="Next project: Bären Gruppe AG"><span>Next</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M.5 1 5 5 .5 9"/></svg></span></a>
+                        </nav>
                     </div>
-                </div>
 
-                <!-- Project Gallery Section -->
-                <div class="project-gallery-section">
-                    <div class="project-gallery-grid">
-                        <div class="project-gallery-item">
-                            <div class="work-image project-rounded-image">
-                                <img src="/work/riesen/riesen2.jpg" alt="Riesen Variation 1" loading="lazy">
-                            </div>
-                        </div>
-                        <div class="project-gallery-item">
-                            <div class="work-image project-rounded-image">
-                                <img src="/work/riesen/riesen3.jpg" alt="Riesen Variation 2" loading="lazy">
-                            </div>
-                        </div>
-                        <div class="project-gallery-item">
-                            <div class="work-image project-rounded-image">
-                                <img src="/work/riesen/riesen4.jpg" alt="Riesen Variation 3" loading="lazy">
-                            </div>
-                        </div>
-                        <div class="project-gallery-item">
-                            <div class="work-image project-rounded-image">
-                                <img src="/work/riesen/riesen5.jpg" alt="Riesen Variation 4" loading="lazy">
-                            </div>
-                        </div>
+                    <!-- First image -->
+                    <div class="project-main-image riesen-image-reveal riesen-first-image">
+                        <img src="/work/riesen/riesen1.jpg" width="2563" height="1500" alt="Riesen Project" loading="lazy">
                     </div>
-                </div>
 
-                <!-- Second Wide Image -->
-                <div class="project-image-section">
-                    <div class="project-main-image project-rounded-image">
-                        <img src="/work/riesen/riesen6.jpg" alt="Riesen Secondary Image" loading="lazy">
-                    </div>
-                </div>
-
-                <!-- Final Square Images Gallery Section -->
-                <div class="project-gallery-section">
-                    <div class="project-gallery-grid">
-                        <div class="project-gallery-item">
-                            <div class="work-image project-rounded-image">
-                                <img src="/work/riesen/riesen7.jpg" alt="Riesen Variation 5" loading="lazy">
+                    <!-- Gallery: the smaller images, one under another -->
+                    <div class="project-gallery-layout">
+                        <div class="project-gallery-images">
+                            <div class="project-main-image riesen-image-reveal">
+                                <img src="/work/riesen/riesen2.jpg" width="1300" height="1300" alt="Riesen Variation 1" loading="lazy">
                             </div>
-                        </div>
-                        <div class="project-gallery-item">
-                            <div class="work-image project-rounded-image">
-                                <img src="/work/riesen/riesen8.jpg" alt="Riesen Variation 6" loading="lazy">
+                            <div class="project-main-image riesen-image-reveal">
+                                <img src="/work/riesen/riesen3.jpg" width="1300" height="1300" alt="Riesen Variation 2" loading="lazy">
+                            </div>
+                            <div class="project-main-image riesen-image-reveal">
+                                <img src="/work/riesen/riesen4.jpg" width="1300" height="1300" alt="Riesen Variation 3" loading="lazy">
+                            </div>
+                            <div class="project-main-image riesen-image-reveal">
+                                <img src="/work/riesen/riesen5.jpg" width="1300" height="1300" alt="Riesen Variation 4" loading="lazy">
+                            </div>
+                            <div class="project-main-image riesen-image-reveal">
+                                <img src="/work/riesen/riesen6.jpg" width="2221" height="1300" alt="Riesen Secondary Image" loading="lazy">
+                            </div>
+                            <div class="project-main-image riesen-image-reveal">
+                                <img src="/work/riesen/riesen7.jpg" width="1200" height="1200" alt="Riesen Variation 5" loading="lazy">
+                            </div>
+                            <div class="project-main-image riesen-image-reveal">
+                                <img src="/work/riesen/riesen8.jpg" width="1200" height="1200" alt="Riesen Variation 6" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -286,16 +320,6 @@
             </div>
         </section>
     </main>
-
-        <!-- Project Pagination -->
-    <nav class="project-pagination" aria-label="Project navigation">
-        <!-- One quiet line between hairlines: previous project, all projects, next project -->
-        <div class="container project-pagination-row">
-            <a href="/work/wmk.html" class="arrow-link arrow-link--back project-pagination-prev" rel="prev"><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 3.2 3.2 12.8"/><path d="M9.8 12.8H3.2V6.2"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 3.2 3.2 12.8"/><path d="M9.8 12.8H3.2V6.2"/></svg></span><span class="arrow-link-label"><span class="project-pagination-label">Previous</span> <span class="project-pagination-dot" aria-hidden="true">·</span> WMK</span></a>
-            <a href="/work.html" class="arrow-link project-pagination-all"><span class="arrow-link-label">All projects</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
-            <a href="/work/baren.html" class="arrow-link project-pagination-next" rel="next"><span class="arrow-link-label"><span class="project-pagination-label">Next</span> <span class="project-pagination-dot" aria-hidden="true">·</span> Bären Gruppe AG</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
-        </div>
-    </nav>
 
     <!-- Modern Footer Section -->
     <footer class="modern-footer">
@@ -334,7 +358,7 @@
     <script src="/vendor/gsap/gsap.min.js" defer></script>
     <script src="/vendor/gsap/ScrollTrigger.min.js" defer></script>
     <script src="/vendor/gsap/CustomEase.min.js" defer></script>
-    <script src="/script.js?v=20260922-2" defer></script>
+    <script src="/script.js?v=20260922-3" defer></script>
 </body>
 
 </html>
