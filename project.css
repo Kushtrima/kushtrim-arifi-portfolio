@@ -893,7 +893,8 @@
 .project-image-section.project-image-section--navigator > .hbs-website-first-image,
 .project-image-section.project-image-section--navigator > .jetonikeramika-first-image,
 .project-image-section.project-image-section--navigator > .ennur-first-image,
-.project-image-section.project-image-section--navigator > .doratec-first-image {
+.project-image-section.project-image-section--navigator > .doratec-first-image,
+.project-image-section.project-image-section--navigator > .monun-first-image {
     margin-bottom: 80px;
 }
 
@@ -902,7 +903,8 @@
     .project-image-section.project-image-section--navigator > .hbs-website-first-image,
     .project-image-section.project-image-section--navigator > .jetonikeramika-first-image,
     .project-image-section.project-image-section--navigator > .ennur-first-image,
-    .project-image-section.project-image-section--navigator > .doratec-first-image {
+    .project-image-section.project-image-section--navigator > .doratec-first-image,
+    .project-image-section.project-image-section--navigator > .monun-first-image {
         margin-bottom: 70px !important;
     }
 }
@@ -912,7 +914,8 @@
     .project-image-section.project-image-section--navigator > .hbs-website-first-image,
     .project-image-section.project-image-section--navigator > .jetonikeramika-first-image,
     .project-image-section.project-image-section--navigator > .ennur-first-image,
-    .project-image-section.project-image-section--navigator > .doratec-first-image {
+    .project-image-section.project-image-section--navigator > .doratec-first-image,
+    .project-image-section.project-image-section--navigator > .monun-first-image {
         margin-bottom: 30px !important;
     }
 }
@@ -1705,18 +1708,6 @@
         transform-origin: center center !important;
     }
 
-    /* Monun images - override fixed heights for natural display */
-    .project-image-section .monun-image-reveal {
-        height: auto !important;
-        min-height: auto !important;
-        margin-bottom: 25px !important;
-    }
-
-    .project-image-section .monun-image-reveal img {
-        height: auto !important;
-        transform: none !important;
-    }
-
     /* Spitex images - override fixed heights for natural display */
     .project-image-section .spitex-image-reveal {
         height: auto !important;
@@ -1994,25 +1985,6 @@
         gap: 30px;
     }
 
-    /* Monun images on mobile - same effect as desktop */
-    .project-image-section .monun-image-reveal {
-        margin-bottom: 30px;
-        /* Close to each other like desktop */
-        border-radius: 12px;
-        /* Reduced radius for mobile */
-    }
-
-    .project-image-section .monun-image-reveal::before {
-        border-radius: 12px 12px 0 0;
-    }
-
-    .project-image-section .monun-image-reveal img {
-        border-radius: 12px;
-        height: auto;
-        object-fit: contain;
-        /* Show naturally in full */
-    }
-
     /* Spitex images on mobile */
     .project-image-section .spitex-image-reveal {
         margin-bottom: 30px;
@@ -2030,7 +2002,6 @@
     }
 
     /* Standardize First Image Margins for others */
-    .project-image-section .monun-first-image,
     .project-image-section .spitex-first-image {
         margin-bottom: 40px;
     }
