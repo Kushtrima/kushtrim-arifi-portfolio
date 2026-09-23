@@ -1187,12 +1187,12 @@
     filter: grayscale(100%);
 }
 
-/* The dark that gathers over the portrait as the text passes over it */
+/* The dark over the portrait: a quarter at rest, gathering as the text passes over it */
 .about-intro-shade {
     position: absolute;
     inset: 0;
     background-color: var(--color-secondary);
-    opacity: 0;
+    opacity: 0.25;
     pointer-events: none;
 }
 
@@ -1207,7 +1207,7 @@
 .about-intro-text p {
     margin: 0 0 1.4em 0;
     font-family: var(--font-primary);
-    font-size: var(--text-paragraph);
+    font-size: 24px;
     line-height: 1.6;
     color: var(--color-grey-99);
 }
@@ -1234,5 +1234,9 @@
 
     .about-intro-text {
         margin-top: 40px;
+    }
+
+    .about-intro-text p {
+        font-size: 18px;
     }
 }

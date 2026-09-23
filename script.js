@@ -1038,13 +1038,14 @@ document.addEventListener('DOMContentLoaded', function () {
             ease: 'none',
             scrollTrigger: { trigger: figure, start: () => `top ${hold()}px`, end: () => `+=${travel()}`, scrub: true, invalidateOnRefresh: true },
         });
-        gsap.to(shade, {
-            opacity: 0.8,
+        // from the resting dark set in the CSS to nine tenths by the time the text has covered half the portrait
+        gsap.fromTo(shade, { opacity: parseFloat(getComputedStyle(shade).opacity) || 0 }, {
+            opacity: 0.9,
             ease: 'none',
             scrollTrigger: {
                 trigger: text,
                 start: () => `top ${hold() + figure.offsetHeight}px`,
-                end: () => `top ${hold()}px`,
+                end: () => `top ${hold() + figure.offsetHeight / 2}px`,
                 scrub: 0.3,
                 invalidateOnRefresh: true,
             },
