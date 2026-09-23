@@ -1084,8 +1084,11 @@
 }
 
 /* One entry per role: the years on the left, the role, the company and what it involved on the right */
-.cv-list {
+.cv-list,
+.cv-skills {
     display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    column-gap: clamp(24px, 4vw, 64px);
     row-gap: clamp(40px, 4.5vw, 60px);
     margin: 0;
     padding: 0;
@@ -1095,8 +1098,8 @@
 .cv-entry,
 .cv-skill {
     display: grid;
-    grid-template-columns: max-content minmax(0, 1fr);
-    column-gap: clamp(24px, 4vw, 64px);
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
     align-items: start;
 }
 
@@ -1159,7 +1162,6 @@
 }
 
 .cv-skills {
-    display: grid;
     row-gap: 18px;
 }
 
@@ -1176,8 +1178,13 @@
         padding: 30px 0 40px;
     }
 
-    .cv-skill {
+    .cv-list,
+    .cv-skills {
         grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cv-entry,
+    .cv-skill {
         row-gap: 8px;
     }
 }
