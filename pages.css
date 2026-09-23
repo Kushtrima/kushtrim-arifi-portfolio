@@ -1216,8 +1216,12 @@
     margin-bottom: 0;
 }
 
-.about-intro-text strong {
-    font-weight: 700;
+/* The name and a few carrying words in each paragraph, in the serif and a little larger; line-height 1 keeps
+   the taller glyphs inside the paragraph's own line boxes, so the lines don't spread */
+.about-accent {
+    font-family: var(--font-display);
+    font-size: 1.2em;
+    line-height: 1;
 }
 
 @media (max-width: 768px) {
