@@ -68,6 +68,27 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://kushtrimarifi.com/services/wordpress-websites.html</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://kushtrimarifi.com/services/web-apps.html</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://kushtrimarifi.com/services/brand-identity.html</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Case studies: websites, then brand identities -->
   <url>
     <loc>https://kushtrimarifi.com/work/cityhotel.html</loc>
