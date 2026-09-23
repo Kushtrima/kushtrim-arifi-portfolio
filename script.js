@@ -1018,7 +1018,40 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // About page: title, statement and columns fade up on load
+    // About page: the portrait holds its place near the top while the statement scrolls up over it, and darkens
+    // to 80% as the text reaches it. position: sticky cannot do the holding here (html and body both clip overflow,
+    // which defeats it), so the portrait is moved with the scroll instead: from the moment its top reaches --hold
+    // (pages.css) until the text's bottom has passed, after which the page carries it away as if it had been sticky.
+    // The darkening runs from the text's top meeting the portrait's bottom edge to it meeting the top edge. Both
+    // stretches are measured from the layout on every refresh, so they follow the portrait's responsive size
+    const aboutIntro = document.querySelector('.about-intro');
+    if (aboutIntro && hasMotion && !reducedMotion) {
+        const figure = aboutIntro.querySelector('.about-intro-figure');
+        const shade = aboutIntro.querySelector('.about-intro-shade');
+        const text = aboutIntro.querySelector('.about-intro-text');
+        const hold = () => parseFloat(getComputedStyle(figure).getPropertyValue('--hold')) || 0;
+        const travel = () => text.offsetTop + text.offsetHeight - (figure.offsetTop + figure.offsetHeight);
+        gsap.from(figure.querySelector('img'), { opacity: 0, duration: 0.8, ease: EASE.easeOut, delay: 0.1 });
+        gsap.from(text, { opacity: 0, y: 20, duration: 0.8, ease: EASE.easeOut, delay: 0.25 });
+        gsap.to(figure, {
+            y: travel,
+            ease: 'none',
+            scrollTrigger: { trigger: figure, start: () => `top ${hold()}px`, end: () => `+=${travel()}`, scrub: true, invalidateOnRefresh: true },
+        });
+        gsap.to(shade, {
+            opacity: 0.8,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: text,
+                start: () => `top ${hold() + figure.offsetHeight}px`,
+                end: () => `top ${hold()}px`,
+                scrub: 0.3,
+                invalidateOnRefresh: true,
+            },
+        });
+    }
+
+    // About page: title, statement and columns fade up on load (the CV page shares this)
     if (hasMotion && document.body.classList.contains('about-main')) {
         const fadeUp = (element, delay) => gsap.to(element, { opacity: 1, x: 0, y: 0, duration: 0.8, ease: EASE.easeOut, delay });
         document.querySelectorAll('.about-title, .about-text-large').forEach((element) => fadeUp(element, 0.2));

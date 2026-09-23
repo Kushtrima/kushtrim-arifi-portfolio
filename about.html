@@ -43,7 +43,7 @@
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
 
     <link rel="stylesheet" href="styles.css?v=20260922-3">
-    <link rel="stylesheet" href="pages.css?v=20260923-3">
+    <link rel="stylesheet" href="pages.css?v=20260923-4">
 
     <!-- Structured Data: AboutPage + Person -->
     <script type="application/ld+json">
@@ -160,17 +160,26 @@
     </header>
 
     <main id="main-content">
-        <section class="about-hero">
+        <!-- The portrait, centred and held in place while the statement scrolls up over it; script.js darkens the
+             portrait as the text arrives (pages.css) -->
+        <section class="about-intro">
             <div class="container">
-                <div class="about-description">
-                    <h1 class="about-title">About Kushtrim Arifi</h1>
-                    <p class="about-text-large">I HAVE BEEN CREATING BRANDS, WEBSITES, CAMPAIGNS,
-                        AND DESIGN SYSTEMS FOR A GLOBAL AUDIENCE SINCE 2012. MY WORK SITS AT THE INTERSECTION OF CULTURE AND
-                        COMMERCE, BALANCING AESTHETICS WITH FUNCTION. I PARTNER WITH TEAMS AND FOUNDERS TO BUILD DESIGN
-                        THAT RESONATES AND DRIVES CONNECTION. EVERY PROJECT I TAKE ON IS GROUNDED IN STRATEGY, ENSURING
-                        THE CREATIVE IS BOTH PURPOSEFUL AND LASTING. FROM STARTUPS TO ESTABLISHED COMPANIES, MY APPROACH
-                        ADAPTS WITH CLARITY, IMPACT, AND INTENTION. MY BACKGROUND IN PSYCHOLOGY STRENGTHENS MY UX/UI
-                        PRACTICE, HELPING ME DESIGN WITH EMPATHY AND ALWAYS KEEP THE HUMAN EXPERIENCE AT THE CENTER.</p>
+                <h1 class="visually-hidden">About Kushtrim Arifi</h1>
+                <figure class="about-intro-figure">
+                    <picture>
+                        <source srcset="img/kaimage.avif" type="image/avif">
+                        <source srcset="img/kaimage.webp" type="image/webp">
+                        <img src="img/kaimage.jpg" alt="Kushtrim Arifi, Product Designer and Developer, in a black-and-white portrait" width="1236" height="1200" fetchpriority="high" decoding="async">
+                    </picture>
+                    <div class="about-intro-shade" aria-hidden="true"></div>
+                </figure>
+                <div class="about-intro-text">
+                    <p>I’m Kushtrim, a product designer based in Kosovo. I design websites and digital products, with a focus on usability and interaction design. I aim to <strong>reduce cognitive load</strong> through clear navigation, a strong visual hierarchy, and consistent interactions, helping people find what they need and understand what to do next.</p>
+                    <p>I started in graphic design and branding in 2012. Over time, my work grew into UX/UI and product design. Since 2021, I’ve worked almost exclusively with Swiss companies, alongside occasional projects in Kosovo.</p>
+                    <p>After completing two full-stack bootcamps, I also began working as a developer. I work mainly on the front end, and also handle back-end development. I enjoy being able to build what I design and work through the details as it takes shape.</p>
+                    <p>I also have a master’s degree in Clinical Psychology. Studying people’s behaviour has shaped how I approach user research and usability testing. I pay attention to where someone hesitates, what they expect to happen, and what makes a task confusing. Those observations help me question my assumptions and refine the design.</p>
+                    <p>Recently, I’ve been working on an AI mental health support tool with a clinical team—a project that draws on my experience in design, development, and psychology.</p>
+                    <p>If you’d like to work together, I’d be happy to hear about your project.</p>
                 </div>
             </div>
         </section>
@@ -254,14 +263,6 @@
             </div>
         </section>
 
-        <!-- Bottom Right Image -->
-        <div class="bottom-right-image">
-            <picture>
-                <source srcset="img/kaimage.avif" type="image/avif">
-                <source srcset="img/kaimage.webp" type="image/webp">
-                <img src="img/kaimage.jpg" alt="Kushtrim Arifi, Product Designer and Developer, in a black-and-white portrait" />
-            </picture>
-        </div>
 
     </main>
 
@@ -302,7 +303,7 @@
         <script src="/vendor/gsap/gsap.min.js" defer></script>
         <script src="/vendor/gsap/ScrollTrigger.min.js" defer></script>
         <script src="/vendor/gsap/CustomEase.min.js" defer></script>
-        <script src="script.js?v=20260922-4" defer></script>
+        <script src="script.js?v=20260923-1" defer></script>
 </body>
 
 </html>
