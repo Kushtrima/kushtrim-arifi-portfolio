@@ -1209,19 +1209,21 @@
     font-family: var(--font-primary);
     font-size: var(--text-paragraph);
     line-height: 1.6;
-    color: var(--color-primary);
+    color: var(--color-grey-99);
 }
 
 .about-intro-text p:last-child {
     margin-bottom: 0;
 }
 
-/* The name and a few carrying words in each paragraph, in the serif and a little larger; line-height 1 keeps
-   the taller glyphs inside the paragraph's own line boxes, so the lines don't spread */
+/* The name and a few carrying words in each paragraph: the serif, half again as large, in the off-white the
+   grey body gives up. The small line-height keeps the taller glyphs inside the paragraph's own line boxes,
+   so lines with an accent stay as far apart as the rest */
 .about-accent {
     font-family: var(--font-display);
-    font-size: 1.2em;
-    line-height: 1;
+    font-size: 1.5em;
+    line-height: 0.8;
+    color: var(--color-primary);
 }
 
 @media (max-width: 768px) {
