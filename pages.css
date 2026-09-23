@@ -1176,7 +1176,7 @@
     will-change: transform;
     width: clamp(260px, 36vw, 520px);
     margin: 0 auto;
-    border-radius: 8px;
+    border-radius: 0;
     overflow: hidden;
 }
 
@@ -1214,6 +1214,16 @@
 
 .about-intro-text p:last-child {
     margin-bottom: 0;
+}
+
+/* The About page's one Education block: centred, its text centred like the intro above it */
+.columns-grid.columns-grid--single {
+    grid-template-columns: minmax(0, max-content);
+    justify-content: center;
+}
+
+.columns-grid--single .column {
+    text-align: center;
 }
 
 @media (max-width: 768px) {
