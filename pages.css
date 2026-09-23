@@ -1092,10 +1092,7 @@
     list-style: none;
 }
 
-.cv-entry {
-    display: block;
-}
-
+.cv-entry,
 .cv-skill {
     display: grid;
     grid-template-columns: max-content minmax(0, 1fr);
