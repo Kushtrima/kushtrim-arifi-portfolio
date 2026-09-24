@@ -1133,6 +1133,11 @@
     }
 }
 
+/* The roles and their arrows together: this is what holds on screen while the scroll turns the roles over */
+.cv-stage {
+    position: relative;
+}
+
 /* One role at a time (script.js adds is-stage and sets the height to the tallest role): the roles share one cell */
 .cv-list.is-stage {
     align-content: start;
@@ -1450,7 +1455,15 @@ body:has(.about-intro) {
     /* on a phone the tight stage only takes space out of the margins, never out of the type: the lines keep their
        size and the years keep their room (30px above, 40px below) */
     .cv-section--narrow.is-tight {
-        padding: 50px 0 20px;
+        padding: 50px 0 8px;
+    }
+
+    .cv-section--narrow.is-tight .column-title {
+        margin-bottom: 18px;
+    }
+
+    .cv-section--narrow.is-tight .cv-entry-where {
+        margin-bottom: 14px;
     }
 
     .cv-section--narrow.is-tight .cv-entry-list li {
@@ -1458,7 +1471,7 @@ body:has(.about-intro) {
     }
 
     .cv-section--narrow.is-tight .cv-nav {
-        margin-top: 28px;
+        margin-top: 18px;
     }
 
     .about-ai-word {

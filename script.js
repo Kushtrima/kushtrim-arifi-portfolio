@@ -1059,16 +1059,17 @@ document.addEventListener('DOMContentLoaded', function () {
     if (aboutRoles.length > 1 && hasMotion && !reducedMotion) {
         const section = aboutRoles[0].closest('.cv-section');
         const list = aboutRoles[0].parentElement;
+        const stage = section.querySelector('.cv-stage') || list;
         const nav = section.querySelector('.cv-nav');
         const clearance = window.matchMedia('(max-width: 768px)').matches ? 40 : 80;
         if (nav) nav.hidden = false;
         const tallest = () => Math.max(...aboutRoles.map((role) => role.offsetHeight));
         const fits = () => {
             gsap.set(list, { height: tallest() });
-            return section.offsetHeight + clearance <= window.innerHeight;
+            return stage.offsetHeight + clearance <= window.innerHeight;
         };
         list.classList.add('is-stage');
-        // where the section is too tall for the screen (most phones) the tighter set usually brings it inside
+        // where even the roles and their arrows are too tall for the screen, the tighter set usually brings them in
         if (!fits()) section.classList.add('is-tight');
         if (fits()) {
             const count = aboutRoles.length;
@@ -1077,7 +1078,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let onTurn = () => {};
             const turns = gsap.timeline({
                 scrollTrigger: {
-                    trigger: section,
+                    trigger: stage,
                     start: `top ${clearance}px`,
                     end: () => `+=${(count - 1) * window.innerHeight}`,
                     pin: true,
