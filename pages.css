@@ -1207,6 +1207,11 @@
     margin-bottom: 0;
 }
 
+/* The name and a carrying phrase in each paragraph in the off-white; same font and size as the grey around them */
+.about-accent {
+    color: var(--color-primary);
+}
+
 /* The About page's one Education block: centred, its text centred like the intro above it */
 .columns-grid.columns-grid--single {
     grid-template-columns: minmax(0, max-content);
