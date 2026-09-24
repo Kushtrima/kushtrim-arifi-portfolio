@@ -1018,13 +1018,20 @@
     margin-bottom: 48px;
 }
 
-/* Tightened by script.js (is-compact) when the held section would not fit a shorter screen */
+/* Tightened by script.js (is-compact) when the held section would not fit a shorter screen: less space around the
+   title, and the bullets a size smaller and closer */
 .cv-section--narrow.is-compact {
     padding: 20px 0 40px;
 }
 
 .cv-section--narrow.is-compact .column-title {
     margin-bottom: 28px;
+}
+
+.cv-section--narrow.is-compact .cv-entry-list li {
+    font-size: 17px;
+    line-height: 1.5;
+    margin-bottom: 6px;
 }
 
 /* The strip for the scroll-driven pass (script.js adds is-strip and sets the height to the tallest role): the list

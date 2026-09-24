@@ -1069,6 +1069,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (section.offsetHeight + clearance > window.innerHeight) {
             section.classList.add('is-compact');
             clearance = 40;
+            gsap.set(list, { height: tallest() });
         }
         if (section.offsetHeight + clearance <= window.innerHeight) {
             const count = aboutRoles.length;
