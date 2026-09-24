@@ -1048,56 +1048,63 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // About page, Experience: the section holds on screen (pinned below the compact header) and the roles are written
-    // and cleared by the scroll itself: a role's years, title line and bullets rise into place one after another as the
-    // page scrolls, and scrolling on lifts them away line by line while the next role's lines rise in; scrolling back
-    // runs it all in reverse. Each role takes 0.8 of a screen of scrolling, and a rest mid-way settles on a whole role.
-    // The roles are stacked in one grid cell (is-stacked), so the section is as tall as the longest of them. On a
-    // shorter screen (a laptop window) the section tightens its own spacing (is-compact) to fit; where it still
-    // would not fit it stays a plain list with the same scroll-written lines: each role rises in line by line as it
-    // comes up the screen and dims and lifts away as it leaves at the top. The title plays in on its own
+    // About page, Experience: the section holds on screen (pinned below the compact header) and the roles pass through
+    // it like a strip: the scroll slides the list up, the role in view dimming into shadow as it leaves at the top
+    // while the next one rises in from below and brightens; scrolling back runs it in reverse. 0.8 of a screen of
+    // scrolling per role, and a rest mid-way settles on a whole role. The strip (is-strip) is as tall as the tallest
+    // role, so the section fits; on a shorter screen (a laptop window) it tightens its spacing (is-compact) first, and
+    // where it still would not fit it stays a plain list whose roles rise in and dim away with the scroll instead.
+    // The title plays in on its own
     const aboutRoles = gsap.utils.toArray('.cv-section--narrow .cv-entry');
-    const roleParts = (role) => [role.querySelector('.cv-entry-years'), role.querySelector('.cv-entry-title'), role.querySelector('.cv-entry-where'), ...role.querySelectorAll('.cv-entry-list li')].filter(Boolean);
     if (aboutRoles.length > 1 && hasMotion && !reducedMotion) {
         const section = aboutRoles[0].closest('.cv-section');
         const list = aboutRoles[0].parentElement;
         const title = section.querySelector('.column-title');
+        const shadow = 0.12;
         let clearance = 80;
         gsap.from(title, { autoAlpha: 0, y: 28, duration: 0.9, ease: EASE.easeOut, scrollTrigger: { trigger: title, start: 'top 85%', once: true } });
-        list.classList.add('is-stacked');
+        const tallest = () => Math.max(...aboutRoles.map((role) => role.offsetHeight));
+        list.classList.add('is-strip');
+        gsap.set(list, { height: tallest() });
         if (section.offsetHeight + clearance > window.innerHeight) {
             section.classList.add('is-compact');
             clearance = 40;
         }
         if (section.offsetHeight + clearance <= window.innerHeight) {
             const count = aboutRoles.length;
-            aboutRoles.forEach((role) => gsap.set(roleParts(role), { autoAlpha: 0, y: 60 }));
-            const turns = gsap.timeline({
+            // how far the strip has to rise for a role to sit at the top: the roles above it plus the gaps between
+            const rise = (index) => aboutRoles.slice(0, index).reduce((sum, role) => sum + role.offsetHeight + (parseFloat(getComputedStyle(list).rowGap) || 0), 0);
+            gsap.set(aboutRoles.slice(1), { opacity: shadow });
+            const strip = gsap.timeline({
                 scrollTrigger: {
                     trigger: section,
                     start: `top ${clearance}px`,
-                    end: () => `+=${count * window.innerHeight * 0.8}`,
+                    end: () => `+=${(count - 1) * window.innerHeight * 0.8}`,
                     pin: true,
                     scrub: 0.6,
-                    snap: { snapTo: 1 / count, duration: { min: 0.2, max: 0.6 }, delay: 0.05, ease: 'power1.inOut', inertia: false },
+                    snap: { snapTo: 1 / (count - 1), duration: { min: 0.2, max: 0.6 }, delay: 0.05, ease: 'power1.inOut', inertia: false },
                     invalidateOnRefresh: true,
                 },
             });
-            // one unit of the timeline per role: the last role's lines leave from the unit's start, the new role's
-            // lines rise from a third of the way in and are all in place by its end
             aboutRoles.forEach((role, i) => {
-                if (i) turns.to(roleParts(aboutRoles[i - 1]), { autoAlpha: 0, y: -60, duration: 0.3, stagger: 0.03, ease: 'power1.in' }, i);
-                turns.to(roleParts(role), { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.04, ease: 'power2.out' }, i ? i + 0.32 : 0);
+                if (!i) return;
+                strip.to(aboutRoles, { y: () => -rise(i), duration: 1, ease: 'power1.inOut' }, i - 1)
+                    .to(aboutRoles[i - 1], { opacity: shadow, duration: 0.6, ease: 'power1.in' }, i - 1)
+                    .to(role, { opacity: 1, duration: 0.6, ease: 'power1.out' }, i - 0.6);
             });
         } else {
-            list.classList.remove('is-stacked');
+            list.classList.remove('is-strip');
+            gsap.set(list, { clearProps: 'height' });
             section.classList.remove('is-compact');
+            // one scrubbed timeline per role, measured in pixels of scrolling: it rises in over the first 0.35 of a
+            // screen (its top from 90% to 55% of the screen) and dims away over the last 0.3 (its bottom from 45% to
+            // 15%); one timeline, so the two never fight over the same properties
             aboutRoles.forEach((role) => {
-                const parts = roleParts(role);
-                // set outright: a staggered from() only hides its first target before the scroll reaches it
-                gsap.set(parts, { autoAlpha: 0, y: 60 });
-                gsap.fromTo(parts, { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, stagger: 0.04, ease: 'power2.out', scrollTrigger: { trigger: role, start: 'top 90%', end: 'top 55%', scrub: 0.4, invalidateOnRefresh: true } });
-                gsap.to(parts, { autoAlpha: 0, y: -40, stagger: 0.03, ease: 'power1.in', immediateRender: false, scrollTrigger: { trigger: role, start: 'bottom 45%', end: 'bottom 15%', scrub: 0.4, invalidateOnRefresh: true } });
+                const screen = window.innerHeight;
+                const span = 0.75 * screen + role.offsetHeight;
+                gsap.timeline({ scrollTrigger: { trigger: role, start: 'top 90%', end: 'bottom 15%', scrub: 0.4, invalidateOnRefresh: true } })
+                    .fromTo(role, { autoAlpha: 0, y: 48 }, { autoAlpha: 1, y: 0, duration: 0.35 * screen, ease: 'power2.out' }, 0)
+                    .to(role, { autoAlpha: shadow, y: -24, duration: 0.3 * screen, ease: 'power1.in' }, span - 0.3 * screen);
             });
         }
     }
