@@ -1048,23 +1048,60 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // About page, Experience: the scroll itself lights the roles. A role rises the last few pixels into place and
-    // brightens as it comes up the screen, holds while it is the one being read, and dims back (staying in place) as
-    // it leaves at the top, so the page always has one role lit and the rest quiet. Scrolling back plays it in
-    // reverse; without motion every role simply stays lit
+    // About page, Experience: the section holds on screen and shows one role at a time. Each turn of the scroll
+    // carries the role's body in from the right as the one before it leaves to the left, while its years only fade in
+    // on their own; scrolling back runs it in reverse, and a rest mid-way settles on a whole role. The roles share one
+    // cell (is-stage), so the section is as tall as the tallest of them. Where the section cannot fit the screen it
+    // stays a plain list and each role's body arrives from the right as it scrolls into view
     const aboutRoles = gsap.utils.toArray('.cv-section--narrow .cv-entry');
-    if (aboutRoles.length && hasMotion && !reducedMotion) {
-        const quiet = 0.25;
-        aboutRoles.forEach((role) => {
-            gsap.fromTo(role, { autoAlpha: quiet, y: 24 }, {
-                autoAlpha: 1, y: 0, ease: 'power2.out',
-                scrollTrigger: { trigger: role, start: 'top 88%', end: 'top 58%', scrub: 0.8, invalidateOnRefresh: true },
+    const roleBody = (role) => role.querySelector('.cv-entry-body');
+    const roleYears = (role) => role.querySelector('.cv-entry-years');
+    if (aboutRoles.length > 1 && hasMotion && !reducedMotion) {
+        const section = aboutRoles[0].closest('.cv-section');
+        const list = aboutRoles[0].parentElement;
+        const clearance = 80;
+        const tallest = () => Math.max(...aboutRoles.map((role) => role.offsetHeight));
+        list.classList.add('is-stage');
+        gsap.set(list, { height: tallest() });
+        if (section.offsetHeight + clearance <= window.innerHeight) {
+            const count = aboutRoles.length;
+            const arrive = () => Math.min(180, window.innerWidth * 0.12);
+            gsap.set(aboutRoles.slice(1), { autoAlpha: 0 });
+            const turns = gsap.timeline({
+                scrollTrigger: {
+                    trigger: section,
+                    start: `top ${clearance}px`,
+                    end: () => `+=${(count - 1) * window.innerHeight}`,
+                    pin: true,
+                    scrub: 1.2,
+                    snap: { snapTo: 1 / (count - 1), duration: { min: 0.4, max: 1 }, delay: 0.1, ease: 'power2.inOut', inertia: false },
+                    invalidateOnRefresh: true,
+                },
             });
-            gsap.to(role, {
-                autoAlpha: quiet, ease: 'power1.in', immediateRender: false,
-                scrollTrigger: { trigger: role, start: 'bottom 55%', end: 'bottom 20%', scrub: 0.8, invalidateOnRefresh: true },
+            aboutRoles.forEach((role, i) => {
+                if (!i) return;
+                const previous = aboutRoles[i - 1];
+                turns.to(roleBody(previous), { x: () => -arrive(), autoAlpha: 0, duration: 0.55, ease: 'power2.in' }, i - 1)
+                    .to(roleYears(previous), { autoAlpha: 0, duration: 0.45, ease: 'power1.in' }, i - 1)
+                    .set(previous, { autoAlpha: 0 })
+                    .set(role, { autoAlpha: 1 }, i - 0.5)
+                    .fromTo(roleBody(role), { x: () => arrive(), autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.55, ease: 'power2.out', immediateRender: false }, i - 0.5)
+                    .fromTo(roleYears(role), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5, ease: 'power1.out', immediateRender: false }, i - 0.4);
             });
-        });
+        } else {
+            list.classList.remove('is-stage');
+            gsap.set(list, { clearProps: 'height' });
+            aboutRoles.forEach((role) => {
+                gsap.fromTo(roleBody(role), { x: () => Math.min(120, window.innerWidth * 0.2), autoAlpha: 0 }, {
+                    x: 0, autoAlpha: 1, ease: 'power2.out',
+                    scrollTrigger: { trigger: role, start: 'top 88%', end: 'top 58%', scrub: 0.8, invalidateOnRefresh: true },
+                });
+                gsap.fromTo(roleYears(role), { autoAlpha: 0 }, {
+                    autoAlpha: 1, ease: 'power1.out',
+                    scrollTrigger: { trigger: role, start: 'top 88%', end: 'top 62%', scrub: 0.8, invalidateOnRefresh: true },
+                });
+            });
+        }
     }
 
     // About page: title, statement and columns fade up on load (the CV page shares this)

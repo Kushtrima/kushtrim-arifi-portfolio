@@ -1027,9 +1027,13 @@
     margin-bottom: 2px;
 }
 
+.cv-section--narrow .cv-entry-years,
+.cv-section--narrow .cv-entry-where {
+    color: var(--color-primary);
+}
+
 .cv-section--narrow .cv-entry-where {
     margin-bottom: 20px;
-    color: var(--color-grey-88);
 }
 
 .cv-section--narrow .cv-entry-list li {
@@ -1050,7 +1054,18 @@
 
 .cv-section--narrow .cv-entry-list strong {
     font-weight: 400;
-    color: var(--color-primary);
+    color: inherit;
+}
+
+/* One role at a time (script.js adds is-stage and sets the height to the tallest role): the roles share one cell */
+.cv-list.is-stage {
+    align-content: start;
+}
+
+.cv-list.is-stage .cv-entry {
+    grid-row: 1;
+    grid-column: 1 / -1;
+    align-self: start;
 }
 
 .cv-section--narrow .column-title {
