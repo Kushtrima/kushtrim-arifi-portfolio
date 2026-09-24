@@ -1054,8 +1054,8 @@
 }
 
 .cv-section--narrow .column-title {
-    font-size: clamp(36px, 4vw, 56px);
-    margin-bottom: 48px;
+    font-size: clamp(26px, 2.4vw, 34px);
+    margin-bottom: 32px;
 }
 
 /* Where he is, how to reach him: a short row of labelled facts */
@@ -1370,8 +1370,8 @@ body:has(.about-intro) {
 }
 
 .columns-grid--pair .column-title {
-    font-size: clamp(36px, 4vw, 56px);
-    margin-bottom: 48px;
+    font-size: clamp(26px, 2.4vw, 34px);
+    margin-bottom: 32px;
 }
 
 .columns-grid--pair .column-list strong {
