@@ -1436,7 +1436,11 @@ body:has(.about-intro) {
     }
 
     .cv-section--narrow .cv-entry-years {
-        margin: 10px 0 40px 0;
+        margin: 30px 0 40px 0;
+    }
+
+    .cv-section--narrow .column-title {
+        margin-top: 10px;
     }
 
     .cv-section--narrow .cv-entry,
@@ -1451,7 +1455,7 @@ body:has(.about-intro) {
     }
 
     .cv-section--narrow.is-tight .cv-entry-years {
-        margin: 10px 0 40px 0;
+        margin: 30px 0 40px 0;
     }
 
     .cv-section--narrow.is-tight .column-title {
