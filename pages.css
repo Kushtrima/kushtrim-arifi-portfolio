@@ -1259,8 +1259,8 @@ body:has(.about-intro) {
 .about-ai-word {
     grid-column: 1;
     align-self: start;
-    /* the capitals would line up with the statement's first line at -0.025em; the owner wants the word 60px lower */
-    margin: calc(60px - 0.025em) 0 0 0;
+    /* the capitals would line up with the statement's first line at -0.025em; the owner wants the word 130px lower */
+    margin: calc(130px - 0.025em) 0 0 0;
     font-family: var(--font-display);
     font-weight: 400;
     font-size: clamp(160px, 26vw, 400px);
@@ -1274,8 +1274,8 @@ body:has(.about-intro) {
     max-width: 620px;
     margin: 0;
     font-family: var(--font-primary);
-    font-size: clamp(20px, 2vw, 30px);
-    line-height: 1.35;
+    font-size: var(--text-paragraph);
+    line-height: 1.6;
     color: var(--color-primary);
 }
 
