@@ -1242,10 +1242,10 @@ body:has(.about-intro) {
     color: var(--color-primary);
 }
 
-/* AI: the word huge at the bottom left of the block, cut a little by its bottom edge; the statement at the top right;
-   off-white on the dark ground. On the phone the statement comes first and the word sits under it */
+/* AI: the word huge in the roman on the left, its top on the statement's first line at the right; off-white on the
+   dark ground. On the phone the statement comes first and the word sits under it */
 .about-ai {
-    padding: 120px 0 0;
+    padding: 120px 0 60px;
     overflow: hidden;
     background-color: var(--color-secondary);
 }
@@ -1254,18 +1254,17 @@ body:has(.about-intro) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 40px;
-    min-height: min(720px, 85vh);
 }
 
 .about-ai-word {
     grid-column: 1;
-    align-self: end;
-    margin: 0 0 calc(60px - 0.04em) 0;
-    font-family: var(--font-primary);
-    font-weight: 700;
+    align-self: start;
+    /* the small negative top margin lines the capitals up with the statement's first line */
+    margin: -0.025em 0 0 0;
+    font-family: var(--font-display);
+    font-weight: 400;
     font-size: clamp(160px, 26vw, 400px);
     line-height: 0.75;
-    letter-spacing: -0.02em;
     color: var(--color-primary);
 }
 
@@ -1288,7 +1287,6 @@ body:has(.about-intro) {
     .about-ai-grid {
         grid-template-columns: 1fr;
         row-gap: 48px;
-        min-height: 0;
     }
 
     .about-ai-text {
@@ -1299,6 +1297,7 @@ body:has(.about-intro) {
     .about-ai-word {
         grid-column: 1;
         grid-row: 2;
+        margin-top: 0;
         font-size: clamp(120px, 42vw, 220px);
     }
 }
