@@ -1012,7 +1012,14 @@
     padding-top: 0;
 }
 
-/* On the About page the list runs the full width under a large title on the left */
+/* On the About page the list runs the full width under a large title on the left, its lines as written (no capitals) */
+.cv-section--narrow .cv-entry-years,
+.cv-section--narrow .cv-entry-title,
+.cv-section--narrow .cv-entry-where {
+    text-transform: none;
+    letter-spacing: normal;
+}
+
 .cv-section--narrow .column-title {
     font-size: clamp(36px, 4vw, 56px);
     margin-bottom: 48px;
