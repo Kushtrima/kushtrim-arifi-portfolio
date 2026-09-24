@@ -1012,12 +1012,18 @@
     padding-top: 0;
 }
 
-/* On the About page the list sits in the same 800px column as the statement above it */
+/* On the About page the list sits in the same 800px column as the statement above it, under a large centred title */
 .cv-section--narrow .column-title,
 .cv-section--narrow .cv-list {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.cv-section--narrow .column-title {
+    font-size: clamp(36px, 4vw, 56px);
+    text-align: center;
+    margin-bottom: 48px;
 }
 
 /* Where he is, how to reach him: a short row of labelled facts */

@@ -1048,6 +1048,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // About page, Experience: the title and then each role play in when they reach the screen, as timed tweens rather
+    // than the scroll-linked reveal: a role's years, title line and bullets rise one after another, once
+    const aboutRoles = gsap.utils.toArray('.cv-section--narrow .cv-entry');
+    if (aboutRoles.length && hasMotion && !reducedMotion) {
+        const playIn = (targets, trigger, stagger) => gsap.from(targets, {
+            autoAlpha: 0, y: 28, duration: 0.9, ease: EASE.easeOut, stagger,
+            scrollTrigger: { trigger, start: 'top 85%', once: true },
+        });
+        const experienceTitle = document.querySelector('.cv-section--narrow .column-title');
+        if (experienceTitle) playIn(experienceTitle, experienceTitle, 0);
+        aboutRoles.forEach((role) => {
+            playIn([role.querySelector('.cv-entry-years'), role.querySelector('.cv-entry-title'), role.querySelector('.cv-entry-where'), ...role.querySelectorAll('.cv-entry-list li')].filter(Boolean), role, 0.08);
+        });
+    }
+
     // About page: title, statement and columns fade up on load (the CV page shares this)
     if (hasMotion && document.body.classList.contains('about-main')) {
         const fadeUp = (element, delay) => gsap.to(element, { opacity: 1, x: 0, y: 0, duration: 0.8, ease: EASE.easeOut, delay });
