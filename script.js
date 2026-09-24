@@ -1048,19 +1048,44 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // About page, Experience: the title and then each role play in when they reach the screen, as timed tweens rather
-    // than the scroll-linked reveal: a role's years, title line and bullets rise one after another, once
+    // About page, Experience: the section holds on screen (pinned below the compact header) and the roles take turns as
+    // the page scrolls: one role in view, the next rising into its place as the last lifts away, a screen of scrolling
+    // per change, settling on whole roles. The roles are stacked in one grid cell (is-stacked), so the section is as
+    // tall as the longest of them. Where the section would not fit the screen (short phones) it stays a plain list and
+    // each role plays in as it arrives. The title plays in on its own as it reaches the screen
     const aboutRoles = gsap.utils.toArray('.cv-section--narrow .cv-entry');
-    if (aboutRoles.length && hasMotion && !reducedMotion) {
-        const playIn = (targets, trigger, stagger) => gsap.from(targets, {
-            autoAlpha: 0, y: 28, duration: 0.9, ease: EASE.easeOut, stagger,
-            scrollTrigger: { trigger, start: 'top 85%', once: true },
-        });
-        const experienceTitle = document.querySelector('.cv-section--narrow .column-title');
-        if (experienceTitle) playIn(experienceTitle, experienceTitle, 0);
-        aboutRoles.forEach((role) => {
-            playIn([role.querySelector('.cv-entry-years'), role.querySelector('.cv-entry-title'), role.querySelector('.cv-entry-where'), ...role.querySelectorAll('.cv-entry-list li')].filter(Boolean), role, 0.08);
-        });
+    if (aboutRoles.length > 1 && hasMotion && !reducedMotion) {
+        const section = aboutRoles[0].closest('.cv-section');
+        const list = aboutRoles[0].parentElement;
+        const title = section.querySelector('.column-title');
+        const clearance = 80;
+        gsap.from(title, { autoAlpha: 0, y: 28, duration: 0.9, ease: EASE.easeOut, scrollTrigger: { trigger: title, start: 'top 85%', once: true } });
+        list.classList.add('is-stacked');
+        if (section.offsetHeight + clearance <= window.innerHeight) {
+            gsap.set(aboutRoles.slice(1), { autoAlpha: 0 });
+            const turns = gsap.timeline({
+                scrollTrigger: {
+                    trigger: section,
+                    start: `top ${clearance}px`,
+                    end: () => `+=${(aboutRoles.length - 1) * window.innerHeight}`,
+                    pin: true,
+                    scrub: 0.5,
+                    snap: { snapTo: 1 / (aboutRoles.length - 1), duration: { min: 0.2, max: 0.6 }, delay: 0.05, ease: 'power1.inOut', inertia: false },
+                    invalidateOnRefresh: true,
+                },
+            });
+            aboutRoles.forEach((role, i) => {
+                if (!i) return;
+                turns.to(aboutRoles[i - 1], { autoAlpha: 0, y: -40, duration: 0.5, ease: 'power1.in' }, i - 1)
+                    .fromTo(role, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'power1.out', immediateRender: false }, i - 0.5);
+            });
+        } else {
+            list.classList.remove('is-stacked');
+            aboutRoles.forEach((role) => gsap.from(
+                [role.querySelector('.cv-entry-years'), role.querySelector('.cv-entry-title'), role.querySelector('.cv-entry-where'), ...role.querySelectorAll('.cv-entry-list li')].filter(Boolean),
+                { autoAlpha: 0, y: 28, duration: 0.9, ease: EASE.easeOut, stagger: 0.08, scrollTrigger: { trigger: role, start: 'top 85%', once: true } },
+            ));
+        }
     }
 
     // About page: title, statement and columns fade up on load (the CV page shares this)

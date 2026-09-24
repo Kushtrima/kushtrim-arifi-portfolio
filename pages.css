@@ -1026,6 +1026,13 @@
     margin-bottom: 48px;
 }
 
+/* Stacked for the scroll-driven turns (script.js adds is-stacked): every role in the same cell, the list as tall as
+   the longest of them */
+.cv-list.is-stacked .cv-entry {
+    grid-area: 1 / 1;
+    align-self: start;
+}
+
 /* Where he is, how to reach him: a short row of labelled facts */
 .cv-facts {
     display: grid;
