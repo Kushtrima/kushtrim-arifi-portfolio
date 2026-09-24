@@ -1073,20 +1073,26 @@ document.addEventListener('DOMContentLoaded', function () {
                     start: `top ${clearance}px`,
                     end: () => `+=${(count - 1) * window.innerHeight}`,
                     pin: true,
-                    scrub: 1.2,
-                    snap: { snapTo: 1 / (count - 1), duration: { min: 0.4, max: 1 }, delay: 0.1, ease: 'power2.inOut', inertia: false },
+                    scrub: 1.6,
+                    snap: { snapTo: 1 / (count - 1), duration: { min: 0.6, max: 1.4 }, delay: 0.15, ease: 'power2.inOut', inertia: false },
                     invalidateOnRefresh: true,
                 },
             });
+            const quiet = cssVar('--color-grey-55') || '#555555';
+            const lit = cssVar('--color-primary');
+            gsap.set(aboutRoles.slice(1).map(roleYears), { color: quiet });
+            // one turn per unit: the old role leaves over the first two thirds, the new one arrives over the last two
+            // thirds, so the two overlap in the middle and the stage is never empty; the years turn from grey to white
+            // across the whole turn, so they never blink
             aboutRoles.forEach((role, i) => {
                 if (!i) return;
                 const previous = aboutRoles[i - 1];
-                turns.to(roleBody(previous), { x: () => -arrive(), autoAlpha: 0, duration: 0.55, ease: 'power2.in' }, i - 1)
-                    .to(roleYears(previous), { autoAlpha: 0, duration: 0.45, ease: 'power1.in' }, i - 1)
+                turns.to(roleBody(previous), { x: () => -arrive(), autoAlpha: 0, duration: 0.65, ease: 'power2.inOut' }, i - 1)
+                    .to(roleYears(previous), { color: quiet, duration: 1, ease: 'none' }, i - 1)
                     .set(previous, { autoAlpha: 0 })
-                    .set(role, { autoAlpha: 1 }, i - 0.5)
-                    .fromTo(roleBody(role), { x: () => arrive(), autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.55, ease: 'power2.out', immediateRender: false }, i - 0.5)
-                    .fromTo(roleYears(role), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5, ease: 'power1.out', immediateRender: false }, i - 0.4);
+                    .set(role, { autoAlpha: 1 }, i - 0.65)
+                    .fromTo(roleBody(role), { x: () => arrive(), autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.65, ease: 'power2.inOut', immediateRender: false }, i - 0.65)
+                    .fromTo(roleYears(role), { color: quiet }, { color: lit, duration: 1, ease: 'none', immediateRender: false }, i - 1);
             });
         } else {
             list.classList.remove('is-stage');
@@ -1096,9 +1102,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     x: 0, autoAlpha: 1, ease: 'power2.out',
                     scrollTrigger: { trigger: role, start: 'top 88%', end: 'top 58%', scrub: 0.8, invalidateOnRefresh: true },
                 });
-                gsap.fromTo(roleYears(role), { autoAlpha: 0 }, {
-                    autoAlpha: 1, ease: 'power1.out',
-                    scrollTrigger: { trigger: role, start: 'top 88%', end: 'top 62%', scrub: 0.8, invalidateOnRefresh: true },
+                gsap.fromTo(roleYears(role), { color: cssVar('--color-grey-55') || '#555555' }, {
+                    color: cssVar('--color-primary'), ease: 'none',
+                    scrollTrigger: { trigger: role, start: 'top 92%', end: 'top 58%', scrub: 0.8, invalidateOnRefresh: true },
                 });
             });
         }
