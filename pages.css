@@ -1346,12 +1346,27 @@ body:has(.about-intro) {
     }
 }
 
-/* The About page's Education and Languages, side by side on the left half and the right, their headings set like
-   Experience; on the phone they stack */
+/* The About page's Education and Languages, side by side with their headings set like Experience. From 1200px the
+   pair starts where the AI statement above it starts (the right half of the content), which only leaves room for the
+   two lists at the Experience lines' size; narrower than that they spread over the full width, and on the phone they
+   stack */
 .columns-grid.columns-grid--pair {
     grid-template-columns: 1fr 1fr;
     column-gap: clamp(24px, 4vw, 64px);
     padding: 0;
+}
+
+@media (min-width: 1200px) {
+    .columns-grid.columns-grid--pair {
+        grid-template-columns: max-content max-content;
+        column-gap: 40px;
+        /* the AI statement starts one half of the content plus half the AI grid's 40px gap from the left */
+        padding-left: calc(50% + 20px);
+    }
+
+    .columns-grid--pair .column-list li {
+        font-size: 17px;
+    }
 }
 
 .columns-grid--pair .column-title {
