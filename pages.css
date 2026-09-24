@@ -1259,8 +1259,8 @@ body:has(.about-intro) {
 .about-ai-word {
     grid-column: 1;
     align-self: start;
-    /* the small negative top margin lines the capitals up with the statement's first line */
-    margin: -0.025em 0 0 0;
+    /* the capitals would line up with the statement's first line at -0.025em; the owner wants the word 60px lower */
+    margin: calc(60px - 0.025em) 0 0 0;
     font-family: var(--font-display);
     font-weight: 400;
     font-size: clamp(160px, 26vw, 400px);
