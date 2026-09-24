@@ -385,7 +385,7 @@
 
 /* Four Column Section */
 .four-column-section {
-    padding: 120px 0 80px;
+    padding: 200px 0 140px;
     background-color: var(--color-secondary);
     opacity: 0;
     transform: translateY(50px);
@@ -1281,7 +1281,7 @@ body:has(.about-intro) {
 /* AI: the word huge in the roman on the left, its top on the statement's first line at the right; off-white on the
    dark ground. On the phone the statement comes first and the word sits under it */
 .about-ai {
-    padding: 120px 0 0;
+    padding: 200px 0 0;
     overflow: hidden;
     background-color: var(--color-secondary);
 }
@@ -1317,11 +1317,11 @@ body:has(.about-intro) {
 
 @media (max-width: 768px) {
     .about-ai {
-        padding-top: 80px;
+        padding-top: 120px;
     }
 
     .four-column-section {
-        padding: 80px 0 50px;
+        padding: 120px 0 90px;
     }
 
     .about-ai-grid {
