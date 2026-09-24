@@ -1030,14 +1030,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const shade = aboutIntro.querySelector('.about-intro-shade');
         const text = aboutIntro.querySelector('.about-intro-text');
         const hold = () => parseFloat(getComputedStyle(figure).getPropertyValue('--hold')) || 0;
-        const travel = () => text.offsetTop + text.offsetHeight - (figure.offsetTop + figure.offsetHeight);
+        // the CSS holds the portrait (position: sticky, steady on every frame; a scroll-driven transform shook it)
+        aboutIntro.classList.add('is-held');
         gsap.from(figure.querySelector('img'), { opacity: 0, duration: 0.8, ease: EASE.easeOut, delay: 0.1 });
         gsap.from(text, { opacity: 0, y: 20, duration: 0.8, ease: EASE.easeOut, delay: 0.25 });
-        gsap.to(figure, {
-            y: travel,
-            ease: 'none',
-            scrollTrigger: { trigger: figure, start: () => `top ${hold()}px`, end: () => `+=${travel()}`, scrub: true, invalidateOnRefresh: true },
-        });
         // from the resting dark set in the CSS to nine tenths by the time the text has covered half the portrait
         gsap.fromTo(shade, { opacity: parseFloat(getComputedStyle(shade).opacity) || 0 }, {
             opacity: 0.9,
