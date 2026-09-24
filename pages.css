@@ -1242,6 +1242,67 @@ body:has(.about-intro) {
     color: var(--color-primary);
 }
 
+/* AI: the word huge at the bottom left of the block, cut a little by its bottom edge; the statement at the top right;
+   off-white on the dark ground. On the phone the statement comes first and the word sits under it */
+.about-ai {
+    padding: 120px 0 0;
+    overflow: hidden;
+    background-color: var(--color-secondary);
+}
+
+.about-ai-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
+    min-height: min(720px, 85vh);
+}
+
+.about-ai-word {
+    grid-column: 1;
+    align-self: end;
+    margin: 0 0 -0.04em -0.06em;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: clamp(160px, 26vw, 400px);
+    line-height: 0.75;
+    letter-spacing: -0.02em;
+    color: var(--color-primary);
+}
+
+.about-ai-text {
+    grid-column: 2;
+    align-self: start;
+    max-width: 620px;
+    margin: 0;
+    font-family: var(--font-primary);
+    font-size: clamp(20px, 2vw, 30px);
+    line-height: 1.35;
+    color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+    .about-ai {
+        padding-top: 72px;
+    }
+
+    .about-ai-grid {
+        grid-template-columns: 1fr;
+        row-gap: 48px;
+        min-height: 0;
+    }
+
+    .about-ai-text {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .about-ai-word {
+        grid-column: 1;
+        grid-row: 2;
+        font-size: clamp(120px, 42vw, 220px);
+    }
+}
+
 /* The About page's one Education block: centred, its text centred like the intro above it */
 .columns-grid.columns-grid--single {
     grid-template-columns: minmax(0, max-content);
