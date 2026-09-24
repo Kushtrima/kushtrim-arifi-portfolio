@@ -1012,12 +1012,45 @@
     padding-top: 0;
 }
 
-/* On the About page the list runs the full width under a large title on the left, its lines as written (no capitals) */
+/* On the About page the list runs the full width under a large title on the left, and is set quietly: the lines as
+   written (no capitals), the role in the ordinary weight, the years and the company grey, the bullets a size down
+   with no dashes and no bold, so only the big title and the role lines carry any weight */
 .cv-section--narrow .cv-entry-years,
 .cv-section--narrow .cv-entry-title,
 .cv-section--narrow .cv-entry-where {
     text-transform: none;
     letter-spacing: normal;
+}
+
+.cv-section--narrow .cv-entry-title {
+    font-weight: 400;
+    margin-bottom: 2px;
+}
+
+.cv-section--narrow .cv-entry-where {
+    margin-bottom: 20px;
+    color: var(--color-grey-88);
+}
+
+.cv-section--narrow .cv-entry-list li {
+    margin-bottom: 14px;
+    padding-left: 0;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--color-grey-99);
+}
+
+.cv-section--narrow .cv-entry-list li:last-child {
+    margin-bottom: 0;
+}
+
+.cv-section--narrow .cv-entry-list li::before {
+    content: none;
+}
+
+.cv-section--narrow .cv-entry-list strong {
+    font-weight: 400;
+    color: var(--color-primary);
 }
 
 .cv-section--narrow .column-title {
@@ -1299,6 +1332,10 @@ body:has(.about-intro) {
     .about-ai-text {
         grid-column: 1;
         grid-row: 1;
+    }
+
+    .cv-section--narrow .cv-entry-list li {
+        font-size: 15px;
     }
 
     .about-ai-word {
