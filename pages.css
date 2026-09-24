@@ -1057,6 +1057,65 @@
     color: inherit;
 }
 
+/* The two arrows under the roles, in the body's column; script.js unhides them where the section holds on screen */
+.cv-nav {
+    display: grid;
+    grid-template-columns: minmax(max-content, 1fr) 3fr;
+    column-gap: clamp(24px, 4vw, 64px);
+    margin-top: 40px;
+}
+
+.cv-nav[hidden] {
+    display: none;
+}
+
+.cv-nav-button {
+    grid-column: 2;
+    width: 40px;
+    padding: 8px 0;
+    border: 0;
+    background: none;
+    color: var(--color-grey-88);
+    cursor: pointer;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.cv-nav-button:first-child {
+    justify-self: start;
+}
+
+.cv-nav-button + .cv-nav-button {
+    grid-column: 2;
+    margin-left: 64px;
+}
+
+.cv-nav-button svg {
+    display: block;
+    width: 40px;
+    height: 16px;
+}
+
+.cv-nav-button:hover,
+.cv-nav-button:focus-visible {
+    color: var(--color-primary);
+}
+
+.cv-nav-button[disabled] {
+    opacity: 0.3;
+    cursor: default;
+}
+
+@media (max-width: 768px) {
+    .cv-nav {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .cv-nav-button,
+    .cv-nav-button + .cv-nav-button {
+        grid-column: 1;
+    }
+}
+
 /* One role at a time (script.js adds is-stage and sets the height to the tallest role): the roles share one cell */
 .cv-list.is-stage {
     align-content: start;

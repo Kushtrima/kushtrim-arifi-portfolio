@@ -1067,6 +1067,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const count = aboutRoles.length;
             const arrive = () => Math.min(180, window.innerWidth * 0.12);
             gsap.set(aboutRoles.slice(1), { autoAlpha: 0 });
+            let onTurn = () => {};
             const turns = gsap.timeline({
                 scrollTrigger: {
                     trigger: section,
@@ -1076,6 +1077,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     scrub: 1.6,
                     snap: { snapTo: 1 / (count - 1), duration: { min: 0.6, max: 1.4 }, delay: 0.15, ease: 'power2.inOut', inertia: false },
                     invalidateOnRefresh: true,
+                    onUpdate: () => onTurn(),
+                    onRefresh: () => onTurn(),
                 },
             });
             const quiet = cssVar('--color-grey-55') || '#555555';
@@ -1085,6 +1088,25 @@ document.addEventListener('DOMContentLoaded', function () {
             // down and go with it; the role arriving comes in over the last two thirds while its years come up from
             // grey to white. The two overlap in the middle, so the stage is never empty and nothing blinks — and since
             // every role sits in the same cell, the years have to cross over exactly like the bodies
+            // the two arrows step to the next or previous role by scrolling to that role's place in the pinned
+            // stretch, so a click and the wheel end up in exactly the same state
+            const nav = section.querySelector('.cv-nav');
+            if (nav) {
+                const buttons = [...nav.querySelectorAll('.cv-nav-button')];
+                const at = () => Math.round((turns.scrollTrigger.progress || 0) * (count - 1));
+                const mark = () => buttons.forEach((button) => {
+                    const next = at() + Number(button.dataset.step);
+                    button.disabled = next < 0 || next > count - 1;
+                });
+                nav.hidden = false;
+                buttons.forEach((button) => button.addEventListener('click', () => {
+                    const trigger = turns.scrollTrigger;
+                    const next = Math.min(count - 1, Math.max(0, at() + Number(button.dataset.step)));
+                    window.scrollTo({ top: trigger.start + (next / (count - 1)) * (trigger.end - trigger.start), behavior: 'smooth' });
+                }));
+                onTurn = mark;
+                mark();
+            }
             aboutRoles.forEach((role, i) => {
                 if (!i) return;
                 const previous = aboutRoles[i - 1];
