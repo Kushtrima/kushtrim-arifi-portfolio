@@ -1260,7 +1260,7 @@ body:has(.about-intro) {
 .about-ai-word {
     grid-column: 1;
     align-self: end;
-    margin: 0 0 -0.04em -0.06em;
+    margin: 0 0 calc(60px - 0.04em) 0;
     font-family: var(--font-primary);
     font-weight: 700;
     font-size: clamp(160px, 26vw, 400px);
@@ -1303,14 +1303,10 @@ body:has(.about-intro) {
     }
 }
 
-/* The About page's one Education block: centred, its text centred like the intro above it */
+/* The About page's one Education block, on the left like the AI word above it */
 .columns-grid.columns-grid--single {
     grid-template-columns: minmax(0, max-content);
-    justify-content: center;
-}
-
-.columns-grid--single .column {
-    text-align: center;
+    padding: 0;
 }
 
 @media (max-width: 768px) {
