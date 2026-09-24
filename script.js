@@ -1059,11 +1059,18 @@ document.addEventListener('DOMContentLoaded', function () {
     if (aboutRoles.length > 1 && hasMotion && !reducedMotion) {
         const section = aboutRoles[0].closest('.cv-section');
         const list = aboutRoles[0].parentElement;
-        const clearance = 80;
+        const nav = section.querySelector('.cv-nav');
+        const clearance = window.matchMedia('(max-width: 768px)').matches ? 40 : 80;
+        if (nav) nav.hidden = false;
         const tallest = () => Math.max(...aboutRoles.map((role) => role.offsetHeight));
+        const fits = () => {
+            gsap.set(list, { height: tallest() });
+            return section.offsetHeight + clearance <= window.innerHeight;
+        };
         list.classList.add('is-stage');
-        gsap.set(list, { height: tallest() });
-        if (section.offsetHeight + clearance <= window.innerHeight) {
+        // where the section is too tall for the screen (most phones) the tighter set usually brings it inside
+        if (!fits()) section.classList.add('is-tight');
+        if (fits()) {
             const count = aboutRoles.length;
             const arrive = () => Math.min(180, window.innerWidth * 0.12);
             gsap.set(aboutRoles.slice(1), { autoAlpha: 0 });
@@ -1090,7 +1097,6 @@ document.addEventListener('DOMContentLoaded', function () {
             // every role sits in the same cell, the years have to cross over exactly like the bodies
             // the two arrows step to the next or previous role by scrolling to that role's place in the pinned
             // stretch, so a click and the wheel end up in exactly the same state
-            const nav = section.querySelector('.cv-nav');
             if (nav) {
                 const buttons = [...nav.querySelectorAll('.cv-nav-button')];
                 const at = () => Math.round((turns.scrollTrigger.progress || 0) * (count - 1));
@@ -1098,7 +1104,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     const next = at() + Number(button.dataset.step);
                     button.disabled = next < 0 || next > count - 1;
                 });
-                nav.hidden = false;
                 buttons.forEach((button) => button.addEventListener('click', () => {
                     const trigger = turns.scrollTrigger;
                     const next = Math.min(count - 1, Math.max(0, at() + Number(button.dataset.step)));
@@ -1119,6 +1124,8 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         } else {
             list.classList.remove('is-stage');
+            section.classList.remove('is-tight');
+            if (nav) nav.hidden = true;
             gsap.set(list, { clearProps: 'height' });
             aboutRoles.forEach((role) => {
                 gsap.fromTo(roleBody(role), { x: () => Math.min(120, window.innerWidth * 0.2), autoAlpha: 0 }, {
