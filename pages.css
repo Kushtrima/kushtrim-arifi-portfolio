@@ -1073,7 +1073,6 @@
 
 .cv-section--narrow.is-tight .cv-entry-list li {
     margin-bottom: 10px;
-    line-height: 1.5;
 }
 
 .cv-section--narrow.is-tight .cv-nav {
@@ -1448,32 +1447,18 @@ body:has(.about-intro) {
         row-gap: 0;
     }
 
-    /* on a phone the tight stage goes further still, so a long role fits a short screen; the years keep their own
-       room (10px above, 40px below) and the rest gives way */
+    /* on a phone the tight stage only takes space out of the margins, never out of the type: the lines keep their
+       size and the years keep their room (30px above, 40px below) */
     .cv-section--narrow.is-tight {
-        padding: 20px 0 12px;
-    }
-
-    .cv-section--narrow.is-tight .cv-entry-years {
-        margin: 30px 0 40px 0;
-    }
-
-    .cv-section--narrow.is-tight .column-title {
-        margin-bottom: 10px;
-    }
-
-    .cv-section--narrow.is-tight .cv-entry-where {
-        margin-bottom: 12px;
+        padding: 50px 0 20px;
     }
 
     .cv-section--narrow.is-tight .cv-entry-list li {
-        font-size: 14px;
-        line-height: 1.45;
-        margin-bottom: 6px;
+        margin-bottom: 10px;
     }
 
     .cv-section--narrow.is-tight .cv-nav {
-        margin-top: 10px;
+        margin-top: 28px;
     }
 
     .about-ai-word {
