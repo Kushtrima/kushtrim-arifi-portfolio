@@ -1048,68 +1048,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // About page, Experience: the section holds on screen (pinned below the compact header) and the roles pass through
-    // it like a strip: the scroll slides the list up, the role in view dimming into shadow as it leaves at the top
-    // while the next one rises in from below and brightens; scrolling back runs it in reverse. A screen of scrolling
-    // per role, the strip trailing the scroll by about a second, and a rest mid-way settles softly on a whole role. The strip (is-strip) is as tall as the tallest
-    // role, so the section fits; on a shorter screen (a laptop window) it tightens its spacing (is-compact) first, and
-    // where it still would not fit it stays a plain list whose roles rise in and dim away with the scroll instead.
-    // The title plays in on its own
-    const aboutRoles = gsap.utils.toArray('.cv-section--narrow .cv-entry');
-    if (aboutRoles.length > 1 && hasMotion && !reducedMotion) {
-        const section = aboutRoles[0].closest('.cv-section');
-        const list = aboutRoles[0].parentElement;
-        const title = section.querySelector('.column-title');
-        const shadow = 0.12;
-        let clearance = 80;
-        gsap.from(title, { autoAlpha: 0, y: 28, duration: 0.9, ease: EASE.easeOut, scrollTrigger: { trigger: title, start: 'top 85%', once: true } });
-        const tallest = () => Math.max(...aboutRoles.map((role) => role.offsetHeight));
-        list.classList.add('is-strip');
-        gsap.set(list, { height: tallest() });
-        if (section.offsetHeight + clearance > window.innerHeight) {
-            section.classList.add('is-compact');
-            clearance = 40;
-            gsap.set(list, { height: tallest() });
-        }
-        if (section.offsetHeight + clearance <= window.innerHeight) {
-            const count = aboutRoles.length;
-            // how far the strip has to rise for a role to sit at the top: the roles above it plus the gaps between
-            const rise = (index) => aboutRoles.slice(0, index).reduce((sum, role) => sum + role.offsetHeight + (parseFloat(getComputedStyle(list).rowGap) || 0), 0);
-            gsap.set(aboutRoles.slice(1), { opacity: shadow });
-            const strip = gsap.timeline({
-                scrollTrigger: {
-                    trigger: section,
-                    start: `top ${clearance}px`,
-                    end: () => `+=${(count - 1) * window.innerHeight}`,
-                    pin: true,
-                    scrub: 1.2,
-                    snap: { snapTo: 1 / (count - 1), duration: { min: 0.4, max: 1 }, delay: 0.1, ease: 'power2.inOut', inertia: false },
-                    invalidateOnRefresh: true,
-                },
-            });
-            aboutRoles.forEach((role, i) => {
-                if (!i) return;
-                strip.to(aboutRoles, { y: () => -rise(i), duration: 1, ease: 'power1.inOut' }, i - 1)
-                    .to(aboutRoles[i - 1], { opacity: shadow, duration: 0.75, ease: 'power1.inOut' }, i - 1)
-                    .to(role, { opacity: 1, duration: 0.75, ease: 'power1.inOut' }, i - 0.75);
-            });
-        } else {
-            list.classList.remove('is-strip');
-            gsap.set(list, { clearProps: 'height' });
-            section.classList.remove('is-compact');
-            // one scrubbed timeline per role, measured in pixels of scrolling: it rises in over the first 0.35 of a
-            // screen (its top from 90% to 55% of the screen) and dims away over the last 0.3 (its bottom from 45% to
-            // 15%); one timeline, so the two never fight over the same properties
-            aboutRoles.forEach((role) => {
-                const screen = window.innerHeight;
-                const span = 0.75 * screen + role.offsetHeight;
-                gsap.timeline({ scrollTrigger: { trigger: role, start: 'top 90%', end: 'bottom 15%', scrub: 0.8, invalidateOnRefresh: true } })
-                    .fromTo(role, { autoAlpha: 0, y: 48 }, { autoAlpha: 1, y: 0, duration: 0.35 * screen, ease: 'power2.out' }, 0)
-                    .to(role, { autoAlpha: shadow, y: -24, duration: 0.3 * screen, ease: 'power1.in' }, span - 0.3 * screen);
-            });
-        }
-    }
-
     // About page: title, statement and columns fade up on load (the CV page shares this)
     if (hasMotion && document.body.classList.contains('about-main')) {
         const fadeUp = (element, delay) => gsap.to(element, { opacity: 1, x: 0, y: 0, duration: 0.8, ease: EASE.easeOut, delay });
