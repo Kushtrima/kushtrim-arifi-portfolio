@@ -1346,15 +1346,29 @@ body:has(.about-intro) {
     }
 }
 
-/* The About page's one Education block, on the left like the AI word above it, its heading set like Experience */
-.columns-grid.columns-grid--single {
-    grid-template-columns: minmax(0, max-content);
+/* The About page's Education and Languages, side by side on the left half and the right, their headings set like
+   Experience; on the phone they stack */
+.columns-grid.columns-grid--pair {
+    grid-template-columns: 1fr 1fr;
+    column-gap: clamp(24px, 4vw, 64px);
     padding: 0;
 }
 
-.columns-grid--single .column-title {
+.columns-grid--pair .column-title {
     font-size: clamp(36px, 4vw, 56px);
     margin-bottom: 48px;
+}
+
+.columns-grid--pair .column-list strong {
+    font-weight: 400;
+    color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+    .columns-grid.columns-grid--pair {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 72px;
+    }
 }
 
 @media (max-width: 768px) {
