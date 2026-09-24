@@ -1052,18 +1052,23 @@ document.addEventListener('DOMContentLoaded', function () {
     // and cleared by the scroll itself: a role's years, title line and bullets rise into place one after another as the
     // page scrolls, and scrolling on lifts them away line by line while the next role's lines rise in; scrolling back
     // runs it all in reverse. Each role takes 0.8 of a screen of scrolling, and a rest mid-way settles on a whole role.
-    // The roles are stacked in one grid cell (is-stacked), so the section is as tall as the longest of them. Where the
-    // section would not fit the screen (short phones) it stays a plain list and each role plays in as it arrives. The
-    // title plays in on its own as it reaches the screen
+    // The roles are stacked in one grid cell (is-stacked), so the section is as tall as the longest of them. On a
+    // shorter screen (a laptop window) the section tightens its own spacing (is-compact) to fit; where it still
+    // would not fit it stays a plain list with the same scroll-written lines: each role rises in line by line as it
+    // comes up the screen and dims and lifts away as it leaves at the top. The title plays in on its own
     const aboutRoles = gsap.utils.toArray('.cv-section--narrow .cv-entry');
     const roleParts = (role) => [role.querySelector('.cv-entry-years'), role.querySelector('.cv-entry-title'), role.querySelector('.cv-entry-where'), ...role.querySelectorAll('.cv-entry-list li')].filter(Boolean);
     if (aboutRoles.length > 1 && hasMotion && !reducedMotion) {
         const section = aboutRoles[0].closest('.cv-section');
         const list = aboutRoles[0].parentElement;
         const title = section.querySelector('.column-title');
-        const clearance = 80;
+        let clearance = 80;
         gsap.from(title, { autoAlpha: 0, y: 28, duration: 0.9, ease: EASE.easeOut, scrollTrigger: { trigger: title, start: 'top 85%', once: true } });
         list.classList.add('is-stacked');
+        if (section.offsetHeight + clearance > window.innerHeight) {
+            section.classList.add('is-compact');
+            clearance = 40;
+        }
         if (section.offsetHeight + clearance <= window.innerHeight) {
             const count = aboutRoles.length;
             aboutRoles.forEach((role) => gsap.set(roleParts(role), { autoAlpha: 0, y: 60 }));
@@ -1086,7 +1091,14 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         } else {
             list.classList.remove('is-stacked');
-            aboutRoles.forEach((role) => gsap.from(roleParts(role), { autoAlpha: 0, y: 28, duration: 0.9, ease: EASE.easeOut, stagger: 0.08, scrollTrigger: { trigger: role, start: 'top 85%', once: true } }));
+            section.classList.remove('is-compact');
+            aboutRoles.forEach((role) => {
+                const parts = roleParts(role);
+                // set outright: a staggered from() only hides its first target before the scroll reaches it
+                gsap.set(parts, { autoAlpha: 0, y: 60 });
+                gsap.fromTo(parts, { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, stagger: 0.04, ease: 'power2.out', scrollTrigger: { trigger: role, start: 'top 90%', end: 'top 55%', scrub: 0.4, invalidateOnRefresh: true } });
+                gsap.to(parts, { autoAlpha: 0, y: -40, stagger: 0.03, ease: 'power1.in', immediateRender: false, scrollTrigger: { trigger: role, start: 'bottom 45%', end: 'bottom 15%', scrub: 0.4, invalidateOnRefresh: true } });
+            });
         }
     }
 

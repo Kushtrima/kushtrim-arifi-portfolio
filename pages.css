@@ -1024,6 +1024,15 @@
     margin-bottom: 48px;
 }
 
+/* Tightened by script.js (is-compact) when the held section would not fit a shorter screen */
+.cv-section--narrow.is-compact {
+    padding: 20px 0 40px;
+}
+
+.cv-section--narrow.is-compact .column-title {
+    margin-bottom: 28px;
+}
+
 /* Stacked for the scroll-driven turns (script.js adds is-stacked): every role in the same cell, the list as tall as
    the longest of them */
 .cv-list.is-stacked .cv-entry {
