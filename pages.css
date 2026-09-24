@@ -1430,13 +1430,32 @@ body:has(.about-intro) {
         font-size: 15px;
     }
 
-    /* on a phone the tight stage goes further still, so a long role fits a short screen */
+    /* the years get room of their own, and the whole section sits 20px lower */
+    .cv-section--narrow {
+        padding-top: 50px;
+    }
+
+    .cv-section--narrow .cv-entry-years {
+        margin: 10px 0 40px 0;
+    }
+
+    .cv-section--narrow .cv-entry,
+    .cv-section--narrow .cv-skill {
+        row-gap: 0;
+    }
+
+    /* on a phone the tight stage goes further still, so a long role fits a short screen; the years keep their own
+       room (10px above, 40px below) and the rest gives way */
     .cv-section--narrow.is-tight {
-        padding: 16px 0 24px;
+        padding: 20px 0 12px;
+    }
+
+    .cv-section--narrow.is-tight .cv-entry-years {
+        margin: 10px 0 40px 0;
     }
 
     .cv-section--narrow.is-tight .column-title {
-        margin-bottom: 16px;
+        margin-bottom: 10px;
     }
 
     .cv-section--narrow.is-tight .cv-entry-where {
@@ -1445,11 +1464,12 @@ body:has(.about-intro) {
 
     .cv-section--narrow.is-tight .cv-entry-list li {
         font-size: 14px;
-        margin-bottom: 8px;
+        line-height: 1.45;
+        margin-bottom: 6px;
     }
 
     .cv-section--narrow.is-tight .cv-nav {
-        margin-top: 16px;
+        margin-top: 10px;
     }
 
     .about-ai-word {
