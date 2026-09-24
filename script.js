@@ -1048,12 +1048,15 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // About page, Experience: the section holds on screen (pinned below the compact header) and the roles take turns as
-    // the page scrolls: one role in view, the next rising into its place as the last lifts away, a screen of scrolling
-    // per change, settling on whole roles. The roles are stacked in one grid cell (is-stacked), so the section is as
-    // tall as the longest of them. Where the section would not fit the screen (short phones) it stays a plain list and
-    // each role plays in as it arrives. The title plays in on its own as it reaches the screen
+    // About page, Experience: the section holds on screen (pinned below the compact header) and the roles are written
+    // and cleared by the scroll itself: a role's years, title line and bullets rise into place one after another as the
+    // page scrolls, and scrolling on lifts them away line by line while the next role's lines rise in; scrolling back
+    // runs it all in reverse. Each role takes 0.8 of a screen of scrolling, and a rest mid-way settles on a whole role.
+    // The roles are stacked in one grid cell (is-stacked), so the section is as tall as the longest of them. Where the
+    // section would not fit the screen (short phones) it stays a plain list and each role plays in as it arrives. The
+    // title plays in on its own as it reaches the screen
     const aboutRoles = gsap.utils.toArray('.cv-section--narrow .cv-entry');
+    const roleParts = (role) => [role.querySelector('.cv-entry-years'), role.querySelector('.cv-entry-title'), role.querySelector('.cv-entry-where'), ...role.querySelectorAll('.cv-entry-list li')].filter(Boolean);
     if (aboutRoles.length > 1 && hasMotion && !reducedMotion) {
         const section = aboutRoles[0].closest('.cv-section');
         const list = aboutRoles[0].parentElement;
@@ -1062,29 +1065,28 @@ document.addEventListener('DOMContentLoaded', function () {
         gsap.from(title, { autoAlpha: 0, y: 28, duration: 0.9, ease: EASE.easeOut, scrollTrigger: { trigger: title, start: 'top 85%', once: true } });
         list.classList.add('is-stacked');
         if (section.offsetHeight + clearance <= window.innerHeight) {
-            gsap.set(aboutRoles.slice(1), { autoAlpha: 0 });
+            const count = aboutRoles.length;
+            aboutRoles.forEach((role) => gsap.set(roleParts(role), { autoAlpha: 0, y: 60 }));
             const turns = gsap.timeline({
                 scrollTrigger: {
                     trigger: section,
                     start: `top ${clearance}px`,
-                    end: () => `+=${(aboutRoles.length - 1) * window.innerHeight}`,
+                    end: () => `+=${count * window.innerHeight * 0.8}`,
                     pin: true,
-                    scrub: 0.5,
-                    snap: { snapTo: 1 / (aboutRoles.length - 1), duration: { min: 0.2, max: 0.6 }, delay: 0.05, ease: 'power1.inOut', inertia: false },
+                    scrub: 0.6,
+                    snap: { snapTo: 1 / count, duration: { min: 0.2, max: 0.6 }, delay: 0.05, ease: 'power1.inOut', inertia: false },
                     invalidateOnRefresh: true,
                 },
             });
+            // one unit of the timeline per role: the last role's lines leave from the unit's start, the new role's
+            // lines rise from a third of the way in and are all in place by its end
             aboutRoles.forEach((role, i) => {
-                if (!i) return;
-                turns.to(aboutRoles[i - 1], { autoAlpha: 0, y: -40, duration: 0.5, ease: 'power1.in' }, i - 1)
-                    .fromTo(role, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'power1.out', immediateRender: false }, i - 0.5);
+                if (i) turns.to(roleParts(aboutRoles[i - 1]), { autoAlpha: 0, y: -60, duration: 0.3, stagger: 0.03, ease: 'power1.in' }, i);
+                turns.to(roleParts(role), { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.04, ease: 'power2.out' }, i ? i + 0.32 : 0);
             });
         } else {
             list.classList.remove('is-stacked');
-            aboutRoles.forEach((role) => gsap.from(
-                [role.querySelector('.cv-entry-years'), role.querySelector('.cv-entry-title'), role.querySelector('.cv-entry-where'), ...role.querySelectorAll('.cv-entry-list li')].filter(Boolean),
-                { autoAlpha: 0, y: 28, duration: 0.9, ease: EASE.easeOut, stagger: 0.08, scrollTrigger: { trigger: role, start: 'top 85%', once: true } },
-            ));
+            aboutRoles.forEach((role) => gsap.from(roleParts(role), { autoAlpha: 0, y: 28, duration: 0.9, ease: EASE.easeOut, stagger: 0.08, scrollTrigger: { trigger: role, start: 'top 85%', once: true } }));
         }
     }
 
