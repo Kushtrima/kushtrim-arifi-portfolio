@@ -1215,7 +1215,7 @@ body:has(.about-intro) {
 .about-intro-text p {
     margin: 0 0 1.4em 0;
     font-family: var(--font-primary);
-    font-size: 24px;
+    font-size: var(--text-paragraph);
     line-height: 1.6;
     color: var(--color-grey-99);
 }
@@ -1247,9 +1247,5 @@ body:has(.about-intro) {
 
     .about-intro-text {
         margin-top: 40px;
-    }
-
-    .about-intro-text p {
-        font-size: 18px;
     }
 }
