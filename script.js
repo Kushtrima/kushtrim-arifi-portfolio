@@ -1048,6 +1048,25 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // About page, Experience: the scroll itself lights the roles. A role rises the last few pixels into place and
+    // brightens as it comes up the screen, holds while it is the one being read, and dims back (staying in place) as
+    // it leaves at the top, so the page always has one role lit and the rest quiet. Scrolling back plays it in
+    // reverse; without motion every role simply stays lit
+    const aboutRoles = gsap.utils.toArray('.cv-section--narrow .cv-entry');
+    if (aboutRoles.length && hasMotion && !reducedMotion) {
+        const quiet = 0.25;
+        aboutRoles.forEach((role) => {
+            gsap.fromTo(role, { autoAlpha: quiet, y: 24 }, {
+                autoAlpha: 1, y: 0, ease: 'power2.out',
+                scrollTrigger: { trigger: role, start: 'top 88%', end: 'top 58%', scrub: 0.8, invalidateOnRefresh: true },
+            });
+            gsap.to(role, {
+                autoAlpha: quiet, ease: 'power1.in', immediateRender: false,
+                scrollTrigger: { trigger: role, start: 'bottom 55%', end: 'bottom 20%', scrub: 0.8, invalidateOnRefresh: true },
+            });
+        });
+    }
+
     // About page: title, statement and columns fade up on load (the CV page shares this)
     if (hasMotion && document.body.classList.contains('about-main')) {
         const fadeUp = (element, delay) => gsap.to(element, { opacity: 1, x: 0, y: 0, duration: 0.8, ease: EASE.easeOut, delay });
