@@ -1069,8 +1069,13 @@
     display: none;
 }
 
-.cv-nav-button {
+.cv-nav-pair {
     grid-column: 2;
+    display: flex;
+    gap: 28px;
+}
+
+.cv-nav-button {
     width: 40px;
     padding: 8px 0;
     border: 0;
@@ -1078,15 +1083,6 @@
     color: var(--color-grey-88);
     cursor: pointer;
     transition: color 0.3s ease, opacity 0.3s ease;
-}
-
-.cv-nav-button:first-child {
-    justify-self: start;
-}
-
-.cv-nav-button + .cv-nav-button {
-    grid-column: 2;
-    margin-left: 64px;
 }
 
 .cv-nav-button svg {
@@ -1110,8 +1106,7 @@
         grid-template-columns: minmax(0, 1fr);
     }
 
-    .cv-nav-button,
-    .cv-nav-button + .cv-nav-button {
+    .cv-nav-pair {
         grid-column: 1;
     }
 }
