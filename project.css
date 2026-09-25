@@ -216,7 +216,8 @@
 }
 
 /* HBS Website First Image - Full Width */
-.project-image-section .hbs-website-first-image {
+.project-image-section .hbs-website-first-image,
+.project-image-section .pilatushof-first-image {
     width: 100%;
     margin-bottom: 40px;
     /* Reduced from 80px to match Monun/others standard spacing */
@@ -885,6 +886,7 @@
    lose their margins) */
 .project-image-section.project-image-section--navigator > .cityhotel-first-image,
 .project-image-section.project-image-section--navigator > .hbs-website-first-image,
+.project-image-section.project-image-section--navigator > .pilatushof-first-image,
 .project-image-section.project-image-section--navigator > .jetonikeramika-first-image,
 .project-image-section.project-image-section--navigator > .ennur-first-image,
 .project-image-section.project-image-section--navigator > .doratec-first-image,
@@ -900,6 +902,7 @@
 @media (max-width: 768px) {
     .project-image-section.project-image-section--navigator > .cityhotel-first-image,
     .project-image-section.project-image-section--navigator > .hbs-website-first-image,
+    .project-image-section.project-image-section--navigator > .pilatushof-first-image,
     .project-image-section.project-image-section--navigator > .jetonikeramika-first-image,
     .project-image-section.project-image-section--navigator > .ennur-first-image,
     .project-image-section.project-image-section--navigator > .doratec-first-image,
@@ -916,6 +919,7 @@
 @media (max-width: 600px) {
     .project-image-section.project-image-section--navigator > .cityhotel-first-image,
     .project-image-section.project-image-section--navigator > .hbs-website-first-image,
+    .project-image-section.project-image-section--navigator > .pilatushof-first-image,
     .project-image-section.project-image-section--navigator > .jetonikeramika-first-image,
     .project-image-section.project-image-section--navigator > .ennur-first-image,
     .project-image-section.project-image-section--navigator > .doratec-first-image,
@@ -1074,7 +1078,8 @@
 }
 
 /* HBS Website Image Scroll Reveal Effect - Same as others */
-.project-image-section .hbs-website-image-reveal {
+.project-image-section .hbs-website-image-reveal,
+.project-image-section .pilatushof-image-reveal {
     position: relative;
     overflow: hidden;
     will-change: transform, opacity;
@@ -1085,12 +1090,14 @@
     /* Grey to avoid white bleed */
 }
 
-.project-image-section .hbs-website-image-reveal:last-child {
+.project-image-section .hbs-website-image-reveal:last-child,
+.project-image-section .pilatushof-image-reveal:last-child {
     margin-bottom: 0;
 }
 
 /* Subtle transparency gradient at top of image as it scrolls */
-.project-image-section .hbs-website-image-reveal::before {
+.project-image-section .hbs-website-image-reveal::before,
+.project-image-section .pilatushof-image-reveal::before {
     content: '';
     position: absolute;
     top: 0;
@@ -1104,7 +1111,8 @@
     border-radius: 8px 8px 0 0;
 }
 
-.project-image-section .hbs-website-image-reveal img {
+.project-image-section .hbs-website-image-reveal img,
+.project-image-section .pilatushof-image-reveal img {
     display: block;
     width: 100%;
     height: auto;
