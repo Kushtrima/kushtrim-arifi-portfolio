@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <title>Prenaj Immobilien — Property Platform | Kushtrim Arifi</title>
+    <meta name="description"
+        content="Case study: a property platform for Prenaj Immobilien, a Swiss new-build specialist, with five filters, a canton map and an admin the team runs itself.">
+    <meta name="keywords"
+        content="Prenaj Immobilien, Real Estate Website, Immobilien Website, Property Platform, Real Estate Admin System, Next.js, Supabase, Switzerland">
+    <meta name="author" content="Kushtrim Arifi">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://kushtrimarifi.com/work/prenaj.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Prenaj Immobilien — Property Platform | Kushtrim Arifi">
+    <meta property="og:description" content="Case study: a property platform for Prenaj Immobilien, a Swiss new-build specialist, with five filters, a canton map and an admin the team runs itself.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://kushtrimarifi.com/work/prenaj.html">
+    <meta property="og:image" content="https://kushtrimarifi.com/img/share/prenaj.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Prenaj Immobilien — Property platform, by Kushtrim Arifi">
+    <meta property="og:site_name" content="Kushtrim Arifi">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Prenaj Immobilien — Property Platform | Kushtrim Arifi">
+    <meta name="twitter:description" content="Case study: a property platform for Prenaj Immobilien, a Swiss new-build specialist, with five filters, a canton map and an admin the team runs itself.">
+    <meta name="twitter:image" content="https://kushtrimarifi.com/img/share/prenaj.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Analytics hosts looked up early; the tag itself loads after the page -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+    <link rel="stylesheet" href="/styles.css?v=20260925-4">
+    <link rel="stylesheet" href="/project.css?v=20260926-1">
+
+    <!-- Structured Data: CreativeWork -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "Prenaj Immobilien",
+      "headline": "Prenaj Immobilien \u2014 Property Platform",
+      "description": "Case study: a property platform for Prenaj Immobilien, a Swiss new-build specialist, with five filters, a canton map and an admin the team runs itself.",
+      "image": "https://kushtrimarifi.com/work/prenaj/prenaj-cover.jpg",
+      "url": "https://kushtrimarifi.com/work/prenaj.html",
+      "dateCreated": "2026",
+      "inLanguage": "en",
+      "about": "Real Estate",
+      "creator": {
+        "@type": "Person",
+        "@id": "https://kushtrimarifi.com/#person",
+        "name": "Kushtrim Arifi",
+        "url": "https://kushtrimarifi.com/",
+        "jobTitle": "Product Designer & Developer"
+      }
+    }
+    </script>
+    <!-- Structured Data: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://kushtrimarifi.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Work", "item": "https://kushtrimarifi.com/work.html" },
+        { "@type": "ListItem", "position": 3, "name": "Prenaj Immobilien", "item": "https://kushtrimarifi.com/work/prenaj.html" }
+      ]
+    }
+    </script>
+
+    <!-- Google tag (gtag.js): the page view is queued at once, the tag itself is fetched only after the page has loaded -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-YC4X711JLJ');
+        window.addEventListener('load', () => {
+            const tag = document.createElement('script');
+            tag.async = true;
+            tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-YC4X711JLJ';
+            document.head.appendChild(tag);
+        }, { once: true });
+    </script>
+</head>
+
+<body class="project-body">
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="/" class="logo-text">Kushtrim [a]</a>
+            </div>
+            <nav class="navigation">
+                <ul class="nav-list">
+                    <li><a href="/work.html" class="nav-link">Work</a></li>
+                    <li><a href="/about.html" class="nav-link">About</a></li>
+                </ul>
+
+                <!-- Overlay content (hidden by default) -->
+                <div class="nav-overlay">
+                    <div class="nav-header">
+                        <a href="/" class="nav-logo">Kushtrim [a]</a>
+                        <button class="nav-close">×</button>
+                    </div>
+
+                    <div class="nav-content">
+                        <ul class="nav-list-overlay">
+                            <li><a href="/work.html" class="nav-link-overlay">Work</a></li>
+                            <li><a href="/about.html" class="nav-link-overlay">About</a></li>
+                        </ul>
+
+                        <div class="nav-right">
+                            <div class="nav-social">
+                                <a href="https://www.linkedin.com/in/kushtrim-arifi-60313713b/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"></a>
+                            </div>
+                            <a href="mailto:info@kushtrimarifi.com" class="nav-email">info@kushtrimarifi.com</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="burger-menu">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="project-main">
+        <section class="project-hero">
+            <div class="container">
+                <div class="project-header-content">
+                    <div class="project-title-section project-title-section--inline">
+                        <div class="text-reveal-wrapper">
+                            <h1 class="project-title">Prenaj Immobilien</h1>
+                        </div>
+                        <div class="text-reveal-wrapper">
+                            <a href="https://www.prenaj-immo.ch/" target="_blank" rel="noopener noreferrer" class="project-website-link arrow-link"><span class="arrow-link-label">prenaj-immo.ch</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
+                        </div>
+                    </div>
+                    <div class="project-header-divider"></div>
+                </div>
+
+                <!-- The project in one row under the name -->
+                <dl class="project-facts">
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Industry</dt>
+                        <dd class="project-info-value">Real Estate</dd>
+                    </div>
+                    <div class="project-fact project-fact--service text-reveal-wrapper">
+                        <dt class="project-info-label">Service</dt>
+                        <dd class="project-info-value"><span class="fact-item">Research</span>&nbsp;· <span class="fact-item">Product Design</span>&nbsp;·<br><span class="fact-item">Full-Stack Development</span>&nbsp;·<br><span class="fact-item">Admin System</span></dd>
+                    </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Agency</dt>
+                        <dd class="project-info-value">Monun AG</dd>
+                    </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Location</dt>
+                        <dd class="project-info-value">Switzerland</dd>
+                    </div>
+                    <div class="project-fact project-fact--stack text-reveal-wrapper">
+                        <dt class="project-info-label">Stack</dt>
+                        <dd class="project-info-value"><span class="fact-item">Figma</span>&nbsp;· <span class="fact-item">Next.js</span>&nbsp;· <span class="fact-item">React</span>&nbsp;· <span class="fact-item">TypeScript</span>&nbsp;· <span class="fact-item">Tailwind CSS</span>&nbsp;· <span class="fact-item">GSAP</span>&nbsp;· <span class="fact-item">Supabase</span>&nbsp;· <span class="fact-item">Vercel</span></dd>
+                    </div>
+                </dl>
+
+                <!-- Case study, one part after another: a heading and its text. On a wide screen script.js lists every part's
+                     name on the left, held in view as the texts pass: dark grey, and light for the part being read; on a
+                     phone (or without script.js) each heading sits with its text. A new part is one more .case-step -->
+                <div class="case-study">
+                    <div class="case-study-steps">
+                        <section class="case-step" aria-labelledby="case-company">
+                            <h2 class="case-step-title" data-reveal id="case-company">Company</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>New-build specialists across ten cantons</h3>
+                                <p data-reveal>Prenaj Immobilien GmbH is a Swiss real estate company run by its owner,
+                                    Bettina Prenaj. It specialises in new-build projects and accompanies them from the
+                                    first idea through marketing, letting, handover and long-term management, with
+                                    offices in Baden, Rorschach and Zug and properties in ten cantons. In a little over
+                                    four years it has sold or let more than a hundred properties, and it has more than
+                                    ten new projects lined up for 2026 and 2027. The project came through Monun AG in
+                                    2026.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-problem">
+                            <h2 class="case-step-title" data-reveal id="case-problem">The problem</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>A brochure for a business that sells inventory</h3>
+                                <p data-reveal>The old website was built on Wix. It looked the way a template looks, and
+                                    behind it there was nothing: no database, no filters, no structured information
+                                    about the properties. A listing was a page someone had assembled by hand, often with
+                                    key facts missing, and changing anything meant management wrestling with a page
+                                    builder that had never been designed for a property portfolio.</p>
+                                <p data-reveal>For a company whose product is a changing inventory of apartments and
+                                    houses, that was the wrong kind of website. Visitors could not search. Buyers could
+                                    not compare. The team could not keep up.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-research">
+                            <h2 class="case-step-title" data-reveal id="case-research">Research</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Better references than the ones I was given</h3>
+                                <p data-reveal>I began by asking the client for two things: the colours they preferred,
+                                    and websites from other companies they admired. The references arrived, and on
+                                    closer inspection most of them were poorly made. Following them would have
+                                    reproduced their problems.</p>
+                                <p data-reveal>So the research went wider. I reviewed fifteen further real estate
+                                    websites, mostly Swiss, looking at how they present a property, how quickly a
+                                    visitor can narrow a search, and how much a page asks of someone comparing several
+                                    homes at once. The decisions that came out of it were about restraint. A smoother,
+                                    calmer visual style than the market default. Every fact a buyer needs, on the card
+                                    and again on the detail page, so nothing has to be requested. And a constant check
+                                    on cognitive load, so that finding and choosing a property stays fast: few filters,
+                                    facts shown as icons and numbers rather than sentences, status made visible at a
+                                    glance, one menu and one action per view.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-design">
+                            <h2 class="case-step-title" data-reveal id="case-design">Design</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Stone, sand and a hairline typeface</h3>
+                                <p data-reveal>The interface was designed in Figma, screen by screen, by hand. The
+                                    palette stays inside the colours of the buildings themselves: a warm cream ground,
+                                    greige panels, and a deep taupe for the menu and the hero overlay. Faint vertical
+                                    grid lines remain visible on the page like the guides on an architect's plan.</p>
+                                <p data-reveal>Headlines are set in CS Antire, a hairline display face used very large
+                                    and very thin, against Arial for everything read at length. The contrast between the
+                                    two carries the whole tone: the property is the expensive thing, the type stays out
+                                    of its way.</p>
+                                <p data-reveal>The full-screen menu is the site's only navigation, six words in large
+                                    capitals on taupe with a plus beside the active one. The hero pairs the headline
+                                    Räume für heute. Werte für morgen. with a small live card, a current property with
+                                    image, rooms, location and status, pulled from the database rather than placed by
+                                    hand. Buttons follow the cursor slightly on hover, service cards stack and reveal on
+                                    scroll, and the property carousel moves at the same unhurried pace, all of it driven
+                                    by GSAP and kept slow enough to feel like the palette.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-finding-a-property">
+                            <h2 class="case-step-title" data-reveal id="case-finding-a-property">Finding a property</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Five filters, one map, and nothing to learn</h3>
+                                <p data-reveal>The listing page is where the research shows. Five filters and no more:
+                                    status, location, property type, price and rooms. Each card carries the price, the
+                                    type, the title, postcode and canton, rooms and living area, and for houses the
+                                    build year. Status is part of the design rather than a footnote: a Reserviert stamp
+                                    runs diagonally across a reserved property, Verkauft marks a sold one, and Preis auf
+                                    Anfrage is handled as a state of its own, not as a missing number.</p>
+                                <p data-reveal>The map does the same job from another direction. All twenty-six cantons
+                                    are drawn, markers sit only on the ones with properties, and clicking a canton
+                                    filters the listings to it. Because the filter lives in the URL, a filtered view can
+                                    be linked and shared.</p>
+                                <p data-reveal>The detail page gives a buyer everything in one place: a ten-image
+                                    gallery with fullscreen and thumbnails, the facts in a scannable panel, a reference
+                                    number, a viewing request button, the office phone number, and the agent's own card
+                                    with photo, email and mobile. Twelve features, from balcony to pool, are listed as
+                                    facts rather than buried in the description. Als PDF speichern builds an exposé from
+                                    the listing on the server, so a buyer can keep a property to read later or hand to a
+                                    partner.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-admin">
+                            <h2 class="case-step-title" data-reveal id="case-admin">The admin</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>A form that knows what a property is</h3>
+                                <p data-reveal>The team manages everything from an admin panel inside the same
+                                    application, designed in the same cream palette and outlined fields as the site, so
+                                    it reads as part of the brand rather than a tool bolted onto it.</p>
+                                <p data-reveal>The listing form starts with the question the business asks first: is
+                                    this a whole project or a single object? A project, a new-build with several
+                                    apartments, gets its own fields for the number of apartments, floors, build year,
+                                    plot area, heating and last renovation. A single object gets the fields a buyer
+                                    compares: type, rooms, living area, features. Either way the form asks for the
+                                    service, Vermarktung, Vermietung or Verwaltung, and that one choice decides where
+                                    the listing appears on the public site.</p>
+                                <p data-reveal>The rest of the form is built around how the company actually works. The
+                                    price is entered in francs and can be switched off for the website; the site then
+                                    shows Preis auf Anfrage while the amount stays stored, ready for when the client
+                                    wants it public. The address can be left empty until it is known, but postcode, town
+                                    and canton are required, because the canton is what places the listing on the map.
+                                    Twelve feature checkboxes, from balcony and garage to lift and pool, feed the facts
+                                    on the property page. Photos upload in a batch, the first one becomes the cover, and
+                                    a listing without a photo shows a placeholder rather than a broken page.</p>
+                                <p data-reveal>Visibility is three controls with the consequences written under them. A
+                                    status of Entwurf keeps a listing hidden; Aktiv, Reserviert, Verkauft and Vermietet
+                                    make it public and put the matching stamp on its card. Hervorgehoben places it in
+                                    the homepage slider, at most three at a time, newest first, which is where the
+                                    hero's live property card comes from. Abgeschlossen retires it to the completed page
+                                    and removes it from everywhere else. Every field carries a line of plain German
+                                    saying what it is for, so a new employee can publish a property without being shown
+                                    how.</p>
+                                <p data-reveal>The Objekte overview lists all listings with thumbnail, reference number,
+                                    location, type, service, price and status, filters them by service or completion,
+                                    and searches by title, town, postcode or reference. From there a listing is edited,
+                                    duplicated or deleted in one click.</p>
+                                <p data-reveal>There are two roles. Nobody can sign up; the owner creates every employee
+                                    account herself, sets a first password and hands it over in person. Everyone can
+                                    see, add and edit listings. Only the owner can add or remove accounts, and only the
+                                    owner can delete any listing; an employee can delete only what they created. When an
+                                    employee leaves and their account is removed, their listings pass to the owner
+                                    rather than disappearing, and the owner cannot delete her own account, so there is
+                                    always one person who can get in. All of this is enforced by the database itself,
+                                    not only by the screens: an employee who found a way around the interface would
+                                    still be refused.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-development">
+                            <h2 class="case-step-title" data-reveal id="case-development">Development</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>One codebase, one data path, no redeploys</h3>
+                                <p data-reveal>The site is one Next.js application in TypeScript, with the public
+                                    website and the admin panel in the same project, styled with Tailwind on a single
+                                    shared set of colours and sizes. Supabase provides the database, authentication and
+                                    photo storage; Vercel hosts it.</p>
+                                <p data-reveal>Four tables hold the data: properties, property images, admins and
+                                    contact messages. Visitors never touch them directly. They read a public view
+                                    containing only published listings, and row-level security blocks everything else.
+                                    Every page is rendered on the server and every read goes through a single data
+                                    module, so there is exactly one place where the site talks to the database.</p>
+                                <p data-reveal>Saving a listing in the admin refreshes the public site and the sitemap
+                                    immediately. No rebuild, no redeploy: the team presses save and the property is
+                                    live. The PDF exposé is generated on the server from the same listing data, so it
+                                    can never disagree with the page. The contact form stores each message in the
+                                    database and forwards it by email to the office.</p>
+                                <p data-reveal>Some of the work is invisible on purpose. The login gives the same error
+                                    whether the email or the password is wrong, so nobody can learn which accounts
+                                    exist. Secret keys stay on the server and cannot reach the browser. Every database
+                                    change is a migration file, and a single command runs the type check, the lint and
+                                    the tests. If the database keys are ever missing, the site falls back to sample
+                                    listings and the admin refuses to save, rather than failing in front of a
+                                    visitor.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-outcome">
+                            <h2 class="case-step-title" data-reveal id="case-outcome">Outcome</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>From a page someone assembled to a platform the team runs</h3>
+                                <p data-reveal>Prenaj went from a Wix brochure to a property platform. Twenty-two
+                                    properties are in the system, twenty of them live with complete facts, searchable by
+                                    five filters and by canton, each with a gallery, a PDF exposé and a direct line to
+                                    the agent. The team adds, edits and retires listings themselves, in minutes, and
+                                    every change is on the site the moment it is saved. And the rules of the business,
+                                    who may publish, who may delete, what happens when someone leaves, are written into
+                                    the system rather than left to habit.</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Images in a narrower column; on a wide screen script.js adds a navigator on the right: every image small,
+                     with a frame showing which part is on screen -->
+                <div class="project-image-section project-image-section--navigator">
+                    <!-- Previous and next project beside the images: they arrive with the first image, stay level with the middle
+                         of the screen while the images pass, and leave with the last one -->
+                    <div class="project-pager-rail">
+                        <nav class="project-pager" aria-label="More projects">
+                            <a class="project-pager-link project-pager-link--previous" href="/work/baren.html" rel="prev" aria-label="Previous project: Bären Baugruppe AG"><span>Previous</span><span class="visually-hidden">: Bären Baugruppe AG</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 1 1 5l4.5 4"/></svg></span></a>
+                            <a class="project-pager-link project-pager-link--next" href="/work/cityhotel.html" rel="next" aria-label="Next project: Cityhotel"><span>Next</span><span class="visually-hidden">: Cityhotel</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M.5 1 5 5 .5 9"/></svg></span></a>
+                        </nav>
+                    </div>
+
+                    <!-- First image -->
+                    <div class="project-main-image prenaj-image-reveal prenaj-first-image">
+                        <picture>
+                            <source srcset="/work/prenaj/prenaj-01.avif" type="image/avif">
+                            <source srcset="/work/prenaj/prenaj-01.webp" type="image/webp">
+                            <img src="/work/prenaj/prenaj-01.jpg" width="1461" height="930" alt="The home page: Räume für heute. Werte für morgen. over new-build apartment houses under a dark overlay, with the live card of a reserved property in the corner" loading="lazy" data-thumb="/work/prenaj/thumbs/prenaj-01.webp">
+                        </picture>
+                    </div>
+
+                    <!-- Gallery: the smaller images, one under another -->
+                    <div class="project-gallery-layout">
+                        <div class="project-gallery-images">
+                            <div class="project-main-image prenaj-image-reveal">
+                                <picture>
+                                    <source srcset="/work/prenaj/prenaj-02.avif" type="image/avif">
+                                    <source srcset="/work/prenaj/prenaj-02.webp" type="image/webp">
+                                    <img src="/work/prenaj/prenaj-02.jpg" width="1480" height="931" alt="Unsere Büros in der Schweiz: Baden, Rorschach and Zug beside a map of all twenty-six cantons, with markers on the ones that have properties" loading="lazy" data-thumb="/work/prenaj/thumbs/prenaj-02.webp">
+                                </picture>
+                            </div>
+                            <div class="project-main-image prenaj-image-reveal">
+                                <picture>
+                                    <source srcset="/work/prenaj/prenaj-03.avif" type="image/avif">
+                                    <source srcset="/work/prenaj/prenaj-03.webp" type="image/webp">
+                                    <img src="/work/prenaj/prenaj-03.jpg" width="1470" height="933" alt="Service cards on taupe, each title in the hairline capitals: Neu-/Umbau Renovationen, Off-Market, Stockwerkbegründung and Bauherrenvertretung" loading="lazy" data-thumb="/work/prenaj/thumbs/prenaj-03.webp">
+                                </picture>
+                            </div>
+                            <div class="project-main-image prenaj-image-reveal">
+                                <picture>
+                                    <source srcset="/work/prenaj/prenaj-04.avif" type="image/avif">
+                                    <source srcset="/work/prenaj/prenaj-04.webp" type="image/webp">
+                                    <img src="/work/prenaj/prenaj-04.jpg" width="1470" height="933" alt="Ihr Verkauf persönlich und transparent, beside cards that stack on scroll: Stark präsentiert, Gezielt vermarktet and Klar informiert" loading="lazy" data-thumb="/work/prenaj/thumbs/prenaj-04.webp">
+                                </picture>
+                            </div>
+                            <div class="project-main-image prenaj-image-reveal">
+                                <picture>
+                                    <source srcset="/work/prenaj/prenaj-05.avif" type="image/avif">
+                                    <source srcset="/work/prenaj/prenaj-05.webp" type="image/webp">
+                                    <img src="/work/prenaj/prenaj-05.jpg" width="1456" height="919" alt="The full-screen menu: six words in large capitals on taupe, with a plus beside the active Vermietung" loading="lazy" data-thumb="/work/prenaj/thumbs/prenaj-05.webp">
+                                </picture>
+                            </div>
+                            <div class="project-main-image prenaj-image-reveal">
+                                <picture>
+                                    <source srcset="/work/prenaj/prenaj-06.avif" type="image/avif">
+                                    <source srcset="/work/prenaj/prenaj-06.webp" type="image/webp">
+                                    <img src="/work/prenaj/prenaj-06.jpg" width="1494" height="949" alt="The Vermarktung page: its name in the hairline display face on greige, above the introduction and a round arrow button" loading="lazy" data-thumb="/work/prenaj/thumbs/prenaj-06.webp">
+                                </picture>
+                            </div>
+                            <div class="project-main-image prenaj-image-reveal">
+                                <picture>
+                                    <source srcset="/work/prenaj/prenaj-07.avif" type="image/avif">
+                                    <source srcset="/work/prenaj/prenaj-07.webp" type="image/webp">
+                                    <img src="/work/prenaj/prenaj-07.jpg" width="1495" height="937" alt="Immobilien kaufen: five filters above property cards with price, type, title, place, rooms and living area, one stamped Reserviert and one marked Verkauft" loading="lazy" data-thumb="/work/prenaj/thumbs/prenaj-07.webp">
+                                </picture>
+                            </div>
+                            <div class="project-main-image prenaj-image-reveal">
+                                <picture>
+                                    <source srcset="/work/prenaj/prenaj-08.avif" type="image/avif">
+                                    <source srcset="/work/prenaj/prenaj-08.webp" type="image/webp">
+                                    <img src="/work/prenaj/prenaj-08.jpg" width="1498" height="955" alt="A property page: the gallery with thumbnails, the facts panel with the contact button, phone number, reference and Als PDF speichern, and the agent&#x27;s card" loading="lazy" data-thumb="/work/prenaj/thumbs/prenaj-08.webp">
+                                </picture>
+                            </div>
+                            <div class="project-main-image prenaj-image-reveal">
+                                <picture>
+                                    <source srcset="/work/prenaj/prenaj-09.avif" type="image/avif">
+                                    <source srcset="/work/prenaj/prenaj-09.webp" type="image/webp">
+                                    <img src="/work/prenaj/prenaj-09.jpg" width="1480" height="946" alt="The admin login: Anmelden, with e-mail and password in outlined fields" loading="lazy" data-thumb="/work/prenaj/thumbs/prenaj-09.webp">
+                                </picture>
+                            </div>
+                            <div class="project-main-image prenaj-image-reveal">
+                                <picture>
+                                    <source srcset="/work/prenaj/prenaj-10.avif" type="image/avif">
+                                    <source srcset="/work/prenaj/prenaj-10.webp" type="image/webp">
+                                    <img src="/work/prenaj/prenaj-10.jpg" width="1500" height="956" alt="The listing form: Projekt or Einzelobjekt, the service Vermarktung, Vermietung or Verwaltung, and the project&#x27;s fields from apartments to last renovation" loading="lazy" data-thumb="/work/prenaj/thumbs/prenaj-10.webp">
+                                </picture>
+                            </div>
+                            <div class="project-main-image prenaj-image-reveal">
+                                <picture>
+                                    <source srcset="/work/prenaj/prenaj-11.avif" type="image/avif">
+                                    <source srcset="/work/prenaj/prenaj-11.webp" type="image/webp">
+                                    <img src="/work/prenaj/prenaj-11.jpg" width="1470" height="943" alt="Further down the form: address, postcode, town and canton, twelve feature checkboxes, and the visibility controls with a line of German under each" loading="lazy" data-thumb="/work/prenaj/thumbs/prenaj-11.webp">
+                                </picture>
+                            </div>
+                            <div class="project-main-image prenaj-image-reveal">
+                                <picture>
+                                    <source srcset="/work/prenaj/prenaj-12.avif" type="image/avif">
+                                    <source srcset="/work/prenaj/prenaj-12.webp" type="image/webp">
+                                    <img src="/work/prenaj/prenaj-12.jpg" width="1464" height="932" alt="Einstellungen: the owner&#x27;s account and password, the list of team accounts with their roles, and a new account set up by the owner" loading="lazy" data-thumb="/work/prenaj/thumbs/prenaj-12.webp">
+                                </picture>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modern Footer Section -->
+    <footer class="modern-footer">
+        <!-- Big name sign-off: three small columns (menu, social, contact), the year and back to top, then the name huge across
+             the full width, sitting on the bottom edge of the page with its lower fifth cut off -->
+        <div class="container">
+            <div class="footer-columns">
+                <a href="/" class="footer-logo" aria-label="Kushtrim Arifi, home">[a]</a>
+                <nav class="footer-column" aria-label="Footer">
+                    <p class="footer-label">Menu</p>
+                    <a href="/work.html">Work</a>
+                    <a href="/about.html">About</a>
+                </nav>
+                <div class="footer-column">
+                    <p class="footer-label">Social</p>
+                    <a href="https://www.linkedin.com/in/kushtrim-arifi-60313713b/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://github.com/Kushtrima" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </div>
+                <div class="footer-column footer-column--contact">
+                    <p class="footer-label">Contact</p>
+                    <a href="mailto:info@kushtrimarifi.com">info@kushtrimarifi.com</a>
+                    <a href="tel:+38349210999">+383 49 210 999</a>
+                </div>
+            </div>
+
+            <div class="footer-bar">
+                <p class="footer-copyright">© <span class="footer-year">2026</span> Kushtrim Arifi</p>
+                <button class="back-to-top arrow-link arrow-link--up" type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top"><span class="arrow-link-label">Top</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3"/><path d="M3.5 7.5 8 3l4.5 4.5"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3"/><path d="M3.5 7.5 8 3l4.5 4.5"/></svg></span></button>
+            </div>
+
+            <p class="footer-name" aria-hidden="true">Kushtrim Arifi</p>
+        </div>
+    </footer>
+
+    <script src="/vendor/gsap/gsap.min.js" defer></script>
+    <script src="/vendor/gsap/ScrollTrigger.min.js" defer></script>
+    <script src="/vendor/gsap/CustomEase.min.js" defer></script>
+    <script src="/script.js?v=20260926-1" defer></script>
+</body>
+
+</html>

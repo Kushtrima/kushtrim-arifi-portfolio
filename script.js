@@ -1001,7 +1001,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const knownProjects = [
                     'monun', 'doratec', 'spitex', 'jetonikeramika',
                     'baren', 'riesen', 'ennur', 'wmk', 'hbs',
-                    'hbs-website', 'cityhotel', 'pilatushof'
+                    'hbs-website', 'cityhotel', 'pilatushof', 'prenaj'
                 ];
                 if (knownProjects.includes(projectName)) {
                     window.location.href = '/work/' + projectName + '.html';
@@ -1635,6 +1635,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Apply the reveal effect to all project images
-    ['monun', 'doratec', 'spitex', 'jetonikeramika', 'ennur', 'hbs', 'wmk', 'riesen', 'baren', 'hbs-website', 'cityhotel', 'pilatushof']
+    ['monun', 'doratec', 'spitex', 'jetonikeramika', 'ennur', 'hbs', 'wmk', 'riesen', 'baren', 'hbs-website', 'cityhotel', 'pilatushof', 'prenaj']
         .forEach((project) => setupScrollLinkedReveal(`.${project}-image-reveal`));
 });
