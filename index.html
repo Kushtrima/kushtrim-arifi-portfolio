@@ -62,7 +62,7 @@
             if (!introSeen) document.documentElement.classList.add('intro-on');
         }
     </script>
-    <link rel="stylesheet" href="styles.css?v=20260922-3">
+    <link rel="stylesheet" href="styles.css?v=20260925-2">
 
     <!-- Structured Data: Person + ProfilePage -->
     <script type="application/ld+json">
@@ -378,38 +378,59 @@
                 <div class="work-line"></div>
             </div>
             <div class="work-content">
-                <div class="work-grid" id="featured-projects">
-                    <a href="work/cityhotel.html" class="work-item work-link" data-reveal aria-label="View Cityhotel project details">
-                        <div class="work-image">
-                            <picture>
-                                <source srcset="work/cityhotel/city-cover.avif" type="image/avif">
-                                <source srcset="work/cityhotel/city-cover.webp" type="image/webp">
-                                <img src="work/cityhotel/city-cover.jpg" alt="Cityhotel — the website for a four-star hotel and its restaurant in Näfels" loading="lazy">
-                            </picture>
-                        </div>
-                        <div class="work-info">
-                            <h3 class="work-name">CITYHOTEL</h3>
-                            <p class="work-description">Designed to capture the essence of minimal luxury, the Cityhotel
-                                website offers a seamless booking experience wrapped in an elegant visual identity.</p>
-                            <span class="work-year">©2026</span>
-                        </div>
-                    </a>
-
+                <!-- Three websites and one brand identity in a loose row: tall, wide, tall, tall, each at its own height
+                     (styles.css); under each: the company, what was made, where -->
+                <div class="work-grid work-grid--staggered" id="featured-projects">
                     <a href="work/hbs-website.html" class="work-item work-link" data-reveal aria-label="View HBS project details">
                         <div class="work-image">
                             <picture>
-                                <source srcset="work/hbs-website/hbswebsite-cover.avif" type="image/avif">
-                                <source srcset="work/hbs-website/hbswebsite-cover.webp" type="image/webp">
-                                <img src="work/hbs-website/hbswebsite-cover.jpg" alt="HBS Swiss AG — the first website for a Swiss construction company" loading="lazy">
+                                <source srcset="work/hbs-website/hbs-home.avif" type="image/avif">
+                                <source srcset="work/hbs-website/hbs-home.webp" type="image/webp">
+                                <img src="work/hbs-website/hbs-home.jpg" alt="HBS Swiss AG — tower cranes above a building under construction" loading="lazy">
                             </picture>
                         </div>
-                        <div class="work-info">
-                            <h3 class="work-name">HBS</h3>
-                            <p class="work-description">My role was exclusively on UX design and front-end development,
-                                translating business requirements into a clear, functional, and visually refined digital
-                                experience.</p>
-                            <span class="work-year">©2026</span>
+                        <h3 class="work-name">HBS</h3>
+                        <p class="work-service">Website</p>
+                        <p class="work-location">Switzerland</p>
+                    </a>
+
+                    <a href="work/cityhotel.html" class="work-item work-link" data-reveal aria-label="View Cityhotel project details">
+                        <div class="work-image">
+                            <picture>
+                                <source srcset="work/cityhotel/city-home.avif" type="image/avif">
+                                <source srcset="work/cityhotel/city-home.webp" type="image/webp">
+                                <img src="work/cityhotel/city-home.jpg" alt="Cityhotel — a server folding a napkin while setting the tables in the hotel's restaurant" loading="lazy">
+                            </picture>
                         </div>
+                        <h3 class="work-name">Cityhotel</h3>
+                        <p class="work-service">Website</p>
+                        <p class="work-location">Näfels, Switzerland</p>
+                    </a>
+
+                    <a href="work/wmk.html" class="work-item work-link" data-reveal aria-label="View WMK project details">
+                        <div class="work-image">
+                            <picture>
+                                <source srcset="work/wmk/wmk-home.avif" type="image/avif">
+                                <source srcset="work/wmk/wmk-home.webp" type="image/webp">
+                                <img src="work/wmk/wmk-home.jpg" alt="WMK — three students with notebooks walking past a building with flags" loading="lazy">
+                            </picture>
+                        </div>
+                        <h3 class="work-name">WMK</h3>
+                        <p class="work-service">Branding</p>
+                        <p class="work-location">Zurich, Switzerland</p>
+                    </a>
+
+                    <a href="work/jetonikeramika.html" class="work-item work-link" data-reveal aria-label="View Jetonikeramika project details">
+                        <div class="work-image">
+                            <picture>
+                                <source srcset="work/jetonikeramika/jetoni-home.avif" type="image/avif">
+                                <source srcset="work/jetonikeramika/jetoni-home.webp" type="image/webp">
+                                <img src="work/jetonikeramika/jetoni-home.jpg" alt="Jetonikeramika — light stone-look tiles around a swimming pool, with green garden loungers" loading="lazy">
+                            </picture>
+                        </div>
+                        <h3 class="work-name">Jetonikeramika</h3>
+                        <p class="work-service">Website</p>
+                        <p class="work-location">Kosovo</p>
                     </a>
                 </div>
             </div>

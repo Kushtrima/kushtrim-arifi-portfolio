@@ -1053,6 +1053,7 @@ body:has(.hero) .header:has(.navigation.active) {
     margin-bottom: calc(clamp(72px, 10vh, 110px) + clamp(40px, 6vw, 80px));
 }
 
+
 .experience-content {
     max-width: 1200px;
     margin: 0 auto;
@@ -1982,8 +1983,8 @@ body:has(.hero) .header:has(.navigation.active) {
 
 .logo-gallery {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 60px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px 10px;
     margin-top: 0;
 }
 
@@ -2061,11 +2062,21 @@ body:has(.hero) .header:has(.navigation.active) {
     display: none;
 }
 
+/* Work page: four projects to a row in portrait frames, captioned like the home page's "my Work" (name, service,
+   location); three to a row on tablets, two on phones. 10px between the cards; between the rows enough room (40px,
+   32px on phones) that each caption reads as part of the image above it, not the one below */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 60px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px 10px;
     margin-top: 80px;
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .gallery-grid,
+    .logo-gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 .gallery-item {
@@ -2140,9 +2151,9 @@ body:has(.hero) .header:has(.navigation.active) {
     position: relative;
     width: 100%;
     height: 0;
-    padding-bottom: 100%;
+    padding-bottom: 133.333%;
     overflow: hidden;
-    margin-bottom: 25px;
+    margin-bottom: 12px;
 }
 
 /* Hover Overlay */
@@ -2202,22 +2213,14 @@ body:has(.hero) .header:has(.navigation.active) {
     transform: none;
 }
 
-.project-number {
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-family: var(--font-primary);
-    font-size: var(--text-paragraph);
-    font-weight: 400;
-    color: var(--color-primary);
-    z-index: var(--z-content);
-    background: var(--color-secondary);
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0;
+/* A portrait frame keeps three quarters of a square cover's width: the brand covers keep their right side (the name
+   sits top right); Spitex's photo is cut a quarter of the way in, so the carer, the woman and the blanket stay whole */
+.gallery-item:is([data-project="hbs"], [data-project="wmk"], [data-project="riesen"], [data-project="baren"]) .gallery-image img {
+    object-position: 100% 50%;
+}
+
+.gallery-item[data-project="spitex"] .gallery-image img {
+    object-position: 25% 50%;
 }
 
 .gallery-info {
@@ -2232,17 +2235,6 @@ body:has(.hero) .header:has(.navigation.active) {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin: 0 0 5px 0;
-    line-height: 1.2;
-}
-
-.project-category {
-    font-family: var(--font-primary);
-    font-size: var(--text-paragraph);
-    font-weight: 300;
-    color: var(--color-primary) !important;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 0;
     line-height: 1.2;
 }
 
@@ -2382,35 +2374,23 @@ body:has(.hero) .header:has(.navigation.active) {
 
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        gap: 32px 10px;
         margin-top: 60px;
     }
 
     .logo-gallery {
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        gap: 32px 10px;
     }
 
     .gallery-image {
         height: 0;
-        padding-bottom: 100%;
-        margin-bottom: 20px;
+        padding-bottom: 133.333%;
+        margin-bottom: 10px;
     }
 
     .project-title {
         font-size: var(--text-paragraph);
-    }
-
-    .project-category {
-        font-size: var(--text-paragraph);
-    }
-
-    .project-number {
-        font-size: var(--text-paragraph);
-        top: 0;
-        left: 0;
-        width: 28px;
-        height: 28px;
     }
 }
 
@@ -2470,6 +2450,119 @@ body:has(.hero) .header:has(.navigation.active) {
 .work-section {
     padding-top: clamp(150px, 16vw, 210px);
     padding-bottom: clamp(120px, 11.5vw, 150px);
+}
+
+/* Home "my Work": four projects in a loose row after the owner's reference (2026-09-25): three tall 3:4 images and a
+   wide 4:3 one second. The three tall ones are 20.7% of the row wide, the wide one 32.1%, with equal gaps between them.
+   Each hangs at its own height, measured on the row's width (as percentage margins of flex items are): the first 13.4%
+   down, the wide one at the top, the third starting where the wide image ends (24.1%), the last 6.7% down, so the row
+   scales as one piece. Each image is its own photo, cropped from the centre. Up to 768px they stack, left and
+   right in turn */
+.work-grid--staggered {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0;
+}
+
+.work-grid--staggered .work-item {
+    flex: none;
+    width: 20.7%;
+}
+
+.work-grid--staggered .work-item:nth-child(1) {
+    margin-top: 13.4%;
+}
+
+.work-grid--staggered .work-item:nth-child(2) {
+    width: 32.1%;
+}
+
+.work-grid--staggered .work-item:nth-child(3) {
+    margin-top: 24.1%;
+}
+
+.work-grid--staggered .work-item:nth-child(4) {
+    margin-top: 6.7%;
+}
+
+.work-grid--staggered .work-image {
+    height: auto;
+    padding-bottom: 0;
+    aspect-ratio: 3 / 4;
+    margin-bottom: 12px;
+}
+
+.work-grid--staggered .work-item:nth-child(2) .work-image {
+    aspect-ratio: 4 / 3;
+}
+
+.work-grid--staggered .work-name,
+.gallery-info .work-name {
+    white-space: normal;
+    text-transform: none;
+    line-height: 1.4;
+}
+
+/* Under the name, in the quieter grey: what the company is (Work page), what was made, then where (home "my Work" and
+   the Work page) */
+.work-grid--staggered .work-service,
+.work-grid--staggered .work-location,
+.gallery-info .work-industry,
+.gallery-info .work-service,
+.gallery-info .work-location {
+    margin: 0;
+    font-size: var(--text-paragraph);
+    line-height: 1.4;
+    color: var(--color-grey-99);
+}
+
+@media (max-width: 768px) {
+    .work-grid--staggered {
+        flex-direction: column;
+    }
+
+    .work-grid--staggered .work-item:nth-child(1) {
+        width: 46%;
+        margin: 0;
+    }
+
+    .work-grid--staggered .work-item:nth-child(2) {
+        width: 70%;
+        margin: clamp(48px, 14vw, 80px) 0 0 auto;
+    }
+
+    .work-grid--staggered .work-item:nth-child(3) {
+        width: 42%;
+        margin: clamp(48px, 14vw, 80px) 0 0;
+    }
+
+    .work-grid--staggered .work-item:nth-child(4) {
+        width: 48%;
+        margin: clamp(48px, 14vw, 80px) 0 0 auto;
+    }
+
+    .work-grid--staggered .work-image {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .work-grid--staggered .work-item:nth-child(1) {
+        width: 62%;
+    }
+
+    .work-grid--staggered .work-item:nth-child(2) {
+        width: 88%;
+    }
+
+    .work-grid--staggered .work-item:nth-child(3) {
+        width: 56%;
+    }
+
+    .work-grid--staggered .work-item:nth-child(4) {
+        width: 64%;
+    }
 }
 
 /* Footer: a big name sign-off. Three small columns (menu, social, contact), the year and back to top, then "Kushtrim Arifi"
