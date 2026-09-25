@@ -659,7 +659,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 // the whole hero
                 const scroll = { trigger: hero, start: 'top top', end: 'bottom top', scrub: true };
                 ScrollTrigger.create({ trigger: hero, start: 'top top', end: '+=33%', scrub: true, animation, onRefresh: buildDots });
-                gsap.to(photos, { yPercent: 12, ease: 'none', scrollTrigger: { ...scroll } });
+                // The drift is a CSS variable in the photo's own translate, so going back to the wide layout (which
+                // centres the photo with its own translate) finds nothing of the script's left on it
+                gsap.fromTo(photos, { '--drift': '0%' }, { '--drift': '12%', ease: 'none', scrollTrigger: { ...scroll } });
             }
             return () => {
                 burst.progress = 0;

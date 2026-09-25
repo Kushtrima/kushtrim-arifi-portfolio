@@ -576,6 +576,24 @@ html.intro-on .header .logo-text {
     color: var(--color-primary);
 }
 
+/* The scroll pin (script.js, name beside the photo) writes the hero's and its .pin-spacer's size in pixels and updates
+   them only about 0.1s after a resize ends; until then the page background showed beside or below the hero, or the hero
+   ran past the window. These follow the window live instead, with the same values the pin sets once it catches up: the
+   hero one screen tall (at least 620px), the spacer that plus the 15% of a screen the hero holds still for */
+.pin-spacer:has(> .hero) {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: calc(max(100svh, 620px) + 15svh) !important;
+    padding-bottom: 15svh !important;
+}
+
+.pin-spacer > .hero {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100svh !important;
+    max-height: none !important;
+}
+
 /* On the home page the header inverts against what is behind it, so it stays readable over the white About section */
 body:has(.hero) .header {
     mix-blend-mode: difference;
@@ -778,7 +796,9 @@ body:has(.hero) .header:has(.navigation.active) {
         /* Never higher than the header, on a very short screen */
         top: max(96px, calc(var(--stack-top) + var(--pic) * 0.164 - 60px));
         width: var(--pic);
-        translate: -50% 0;
+        /* The scroll drift (script.js) moves the photo through --drift, so the script never takes over this translate
+           (when it did, a window going from stacked back to wide kept the stacked value and the photo dropped) */
+        translate: -50% var(--drift, 0%);
     }
 
     /* Stacked, the name already crosses the body where it rests, so the cut-out would hide it: the name stays in front */
