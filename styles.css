@@ -726,9 +726,10 @@ body:has(.hero) .header:has(.navigation.active) {
     bottom: auto;
 }
 
-/* At the foot on the navigation's edge, 30px above the captions' usual bottom margin */
+/* At the foot, ending on the end of "Arifi" (the word starts 0.24 of the photo inside the photo's right edge and is 1.935em
+   of Times wide), so the two captions line up with the two ends of the name; 30px above the captions' usual bottom margin */
 .hero-caption--right {
-    right: 0;
+    right: calc(100% - var(--cx) - var(--photo) * 0.24 - var(--big) * 1.935);
     bottom: calc(clamp(24px, 4vh, 40px) + 30px);
     text-align: right;
 }
@@ -823,8 +824,9 @@ body:has(.hero) .header:has(.navigation.active) {
         bottom: calc(var(--cap-bottom) + 2.5em);
     }
 
-    /* Under the job title's two lines */
+    /* Under the job title's two lines, on the page's edge */
     .hero-caption--right {
+        right: 0;
         top: auto;
         bottom: var(--cap-bottom);
     }
