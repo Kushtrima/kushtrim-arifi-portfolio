@@ -2514,8 +2514,9 @@ body:has(.hero) .header:has(.navigation.active) {
     line-height: 1.4;
 }
 
-/* Under the name, in the quieter grey: what the company is (Work page), what was made, then where (home "my Work" and
-   the Work page) */
+/* Under the name, in the quieter grey: what the company does, what was made, then where (home "my Work" and the Work
+   page) */
+.work-grid--staggered .work-industry,
 .work-grid--staggered .work-service,
 .work-grid--staggered .work-location,
 .gallery-info .work-industry,
