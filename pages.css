@@ -395,9 +395,10 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 60px;
-    /* Exactly as wide as the container it sits in, so its edges are the page's edges */
+    /* As wide as the container allows (a fixed 1200px spilled 40px past its right edge) */
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0;
+    padding: 0 20px;
 }
 
 .column {

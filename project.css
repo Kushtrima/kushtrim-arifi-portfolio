@@ -443,7 +443,13 @@
         right: 0;
         left: 0;
         /* The page's side margins, inside the full-width space */
-        padding: 0 var(--container-padding);
+        padding: 0 20px;
+    }
+
+    @media (max-width: 480px) {
+        .case-study.is-slider .case-step {
+            padding: 0 15px;
+        }
     }
 
     .case-study-bar::-webkit-scrollbar {
@@ -817,7 +823,7 @@
         display: flex;
         gap: 8px;
         width: max-content;
-        padding: 0 var(--container-padding);
+        padding: 0 16px;
     }
 
     .image-strip-thumb {
