@@ -40,9 +40,10 @@
     --z-content: 10;
     --z-background: -2;
 
-    /* Spacing */
-    --container-max-width: 1200px;
-    --container-padding: 20px;
+    /* Spacing: the page's side margin, the same on every page and at every window size (like the Mardal site): 16px on a
+       phone, 4% of the window in between, 40px from a 1000px window up. No cap on the width, so the content always runs
+       from margin to margin; text blocks that need a shorter line set their own max-width */
+    --container-padding: clamp(1rem, 4vw, 2.5rem);
 
     /* Transitions */
     --transition-smooth: 0.8s cubic-bezier(0.01, 0.01, 0.5, 1);
@@ -154,7 +155,6 @@ body {
 }
 
 .container {
-    max-width: var(--container-max-width);
     margin: 0 auto;
     padding: 0 var(--container-padding);
 }
@@ -1054,11 +1054,6 @@ body:has(.hero) .header:has(.navigation.active) {
 }
 
 
-.experience-content {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
 /* As wide as its two columns and centred; each job shares the columns (subgrid), so all the years line up */
 .experience-list {
     position: relative;
@@ -1908,10 +1903,6 @@ body:has(.hero) .header:has(.navigation.active) {
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: 0 15px;
-    }
-
     .nav-list {
         gap: 15px;
     }
@@ -1940,9 +1931,10 @@ body:has(.hero) .header:has(.navigation.active) {
         margin-top: -90px;
     }
 
+    /* 36px, a little smaller below a 346px window so "EXPERIENCE" (8.4em wide) stays inside the page margins */
     .experience-title h2 {
         --title-tracking: 2px;
-        font-size: 36px;
+        font-size: min(36px, 10.4vw);
         font-weight: 600;
     }
 
@@ -2239,9 +2231,8 @@ body:has(.hero) .header:has(.navigation.active) {
 }
 
 .work-page-container {
-    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 var(--container-padding);
     width: 100%;
 }
 
@@ -2423,10 +2414,6 @@ body:has(.hero) .header:has(.navigation.active) {
 /* Additional mobile override for experience title */
 /* Extra Small Mobile (320px and below) */
 @media (max-width: 320px) {
-    .container {
-        padding: 0 10px;
-    }
-
     .experience-title {
         font-size: 28px;
     }
@@ -2647,7 +2634,7 @@ body:has(.hero) .header:has(.navigation.active) {
 .footer-name {
     margin: clamp(20px, 3vh, 40px) 0 -0.19em;
     font-family: var(--font-display);
-    font-size: calc(min(1160px, 100vw - 40px) / 5.64);
+    font-size: calc((100vw - 2 * var(--container-padding)) / 5.64);
     font-size: calc(100cqw / 5.64);
     font-weight: 400;
     line-height: 0.8;
