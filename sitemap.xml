@@ -141,15 +141,6 @@
       <image:loc>https://kushtrimarifi.com/work/monun/monun1.jpg</image:loc>
     </image:image>
   </url>
-  <url>
-    <loc>https://kushtrimarifi.com/work/pilatushof.html</loc>
-    <lastmod>2026-09-25</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://kushtrimarifi.com/work/pilatushof/pilatushof-01.jpg</image:loc>
-    </image:image>
-  </url>
 
   <url>
     <loc>https://kushtrimarifi.com/work/hbs.html</loc>
