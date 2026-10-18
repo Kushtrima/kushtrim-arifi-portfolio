@@ -1036,10 +1036,10 @@
 }
 
 .cv-section--narrow .cv-entry-list li {
-    margin-bottom: 14px;
-    padding-left: 0;
+    margin-bottom: 10px;
+    padding-left: 18px;
     font-size: 17px;
-    line-height: 1.6;
+    line-height: 1.3;
     color: var(--color-grey-99);
 }
 
@@ -1047,8 +1047,14 @@
     margin-bottom: 0;
 }
 
+/* A small round bullet hanging in the indent, so the lines of each point line up with each other; centred on the
+   first line's lowercase letters, in the text's own grey */
 .cv-section--narrow .cv-entry-list li::before {
-    content: none;
+    top: calc(0.74em - 2.5px);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: currentColor;
 }
 
 .cv-section--narrow .cv-entry-list strong {
@@ -1512,6 +1518,35 @@ body:has(.about-intro) {
 .columns-grid--pair .column-list strong {
     font-weight: 400;
     color: var(--color-primary);
+}
+
+/* Each degree is its own entry, read top to bottom like a role in Experience: the year in grey, the degree in the
+   light text colour, the school in grey beneath it, and a clear gap before the next degree */
+.column-list--degrees li {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5;
+    margin: 0 0 36px 0;
+}
+
+.column-list--degrees li:last-child {
+    margin-bottom: 0;
+}
+
+.degree-year {
+    margin-bottom: 6px;
+    color: var(--color-grey-88);
+}
+
+.degree-name {
+    color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+    .column-list--degrees li {
+        line-height: 1.5;
+        margin-bottom: 28px;
+    }
 }
 
 @media (max-width: 768px) {

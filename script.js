@@ -1063,7 +1063,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const list = aboutRoles[0].parentElement;
         const stage = section.querySelector('.cv-stage') || list;
         const nav = section.querySelector('.cv-nav');
-        const clearance = window.matchMedia('(max-width: 768px)').matches ? 40 : 80;
+        const phone = window.matchMedia('(max-width: 768px)').matches;
+        const clearance = phone ? 40 : 80;
         if (nav) nav.hidden = false;
         const tallest = () => Math.max(...aboutRoles.map((role) => role.offsetHeight));
         const fits = () => {
@@ -1074,14 +1075,19 @@ document.addEventListener('DOMContentLoaded', function () {
         // where even the roles and their arrows are too tall for the screen, the tighter set usually brings them in
         if (!fits()) section.classList.add('is-tight');
         if (fits()) {
+            // on a desktop the title holds with the roles, the two together in the middle of the screen rather than
+            // just under the header (never higher than the clearance); on the phone, or where the title would not fit
+            // as well, only the roles hold, at the clearance
+            const held = !phone && stage.parentElement.offsetHeight + 2 * clearance <= window.innerHeight ? stage.parentElement : stage;
+            const holdAt = () => (phone ? clearance : Math.max(clearance, (window.innerHeight - held.offsetHeight) / 2));
             const count = aboutRoles.length;
             const arrive = () => Math.min(180, window.innerWidth * 0.12);
             gsap.set(aboutRoles.slice(1), { autoAlpha: 0 });
             let onTurn = () => {};
             const turns = gsap.timeline({
                 scrollTrigger: {
-                    trigger: stage,
-                    start: `top ${clearance}px`,
+                    trigger: held,
+                    start: () => `top ${holdAt()}px`,
                     end: () => `+=${(count - 1) * window.innerHeight}`,
                     pin: true,
                     scrub: 1.6,
