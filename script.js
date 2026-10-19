@@ -396,9 +396,10 @@ document.addEventListener('DOMContentLoaded', function () {
     allLinks.forEach(link => {
         const href = link.getAttribute('href');
 
-        // Skip external links, new tab links, hash links, and special protocols
+        // Skip external links, new tab links, downloads, hash links, and special protocols
         if (!href ||
             link.getAttribute('target') === '_blank' ||
+            link.hasAttribute('download') ||
             href.startsWith('http://') ||
             href.startsWith('https://') ||
             href.startsWith('#') ||

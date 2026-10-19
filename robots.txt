@@ -1,8 +1,9 @@
 User-agent: *
 Allow: /
 
-# Disallow direct indexing of the resume PDF so it doesn't outrank the homepage
+# Disallow direct indexing of the CV PDFs so they don't outrank the homepage
 Disallow: /work/resume/
+Disallow: /Kushtrim_Arifi_CV.pdf
 
 # Disallow CorelDRAW source files if any are uploaded by accident
 Disallow: /*.cdr$

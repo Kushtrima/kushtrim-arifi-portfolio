@@ -557,7 +557,7 @@ html.intro-on .header .logo-text {
 
 /* Hero: a square portrait on a dark grey field with the name on one line through it: "Kushtrim" runs over the photo's
    left edge and "Arifi" over its right edge, both at eye level beside the face; the job title sits small under the
-   start of the name and "Creating since 2012" at the foot, on the navigation's edge. Every position comes from the
+   start of the name and "Creating since 2015" at the foot, on the navigation's edge. Every position comes from the
    photo's size (--photo) and centre (--cx, --cy), so the overlaps hold at every width; the photo sits right of the
    middle by half the difference between the two names' inked widths (0.916em: "Kushtrim" 3.74em, "Arifi" 1.90em plus
    the gap's side bearings, measured in the browser), so the whole line is centred. script.js opens the photo from its
@@ -711,7 +711,7 @@ body:has(.hero) .header:has(.navigation.active) {
     pointer-events: none;
 }
 
-/* The job title bottom left and "Creating since 2012" bottom right, at one small size */
+/* The job title bottom left and "Creating since 2015" bottom right, at one small size */
 .hero-caption {
     position: absolute;
     bottom: clamp(24px, 4vh, 40px);
@@ -760,7 +760,7 @@ body:has(.hero) .header:has(.navigation.active) {
 }
 
 /* Phones and portrait tablets: "Kushtrim" across the top with its feet on the photo, "Arifi" at the right standing on
-   the photo's bottom edge, then the job title and "Creating since 2012" one under the other. Sizes in vw keep the arrangement the same at
+   the photo's bottom edge, then the job title and "Creating since 2015" one under the other. Sizes in vw keep the arrangement the same at
    every width; the hero fills the screen, as it does on a wide one */
 @media (max-width: 699px), (max-width: 1023px) and (orientation: portrait) {
     .hero {
@@ -773,7 +773,7 @@ body:has(.hero) .header:has(.navigation.active) {
         --group: calc(var(--pic) * 1.4286);
         --cap-line: clamp(16px, 4.6vw, 24px);
         --cap-bottom: calc(84px + env(safe-area-inset-bottom));
-        /* The captions' block: the job title's two lines, the gap, and "Creating since 2012". Measured from the old
+        /* The captions' block: the job title's two lines, the gap, and "Creating since 2015". Measured from the old
            24px foot, so raising the captions doesn't drag the name and the photo up with them */
         --cap-space: calc(5 * var(--cap-line) + 24px + env(safe-area-inset-bottom));
         /* The name and the photo sit in the middle of what is left between the header and the captions */
