@@ -983,6 +983,72 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Work page filter: "+ FILTER" opens the categories in a row beside it and the "+" turns into a "×", which closes
+    // them again and brings every project back. A category keeps its own projects and hides the rest, a group left with
+    // none goes with its title, and a category with nothing in it yet shows "Coming soon". With motion the shown parts
+    // fade out, swap, and the cards come back up 20px, 40ms apart
+    const workFilter = document.querySelector('.work-filter');
+    if (workFilter) {
+        const filterToggle = workFilter.querySelector('.work-filter-toggle');
+        const filterOptions = [...workFilter.querySelectorAll('.work-filter-option')];
+        const filterEmpty = document.querySelector('.work-filter-empty');
+        const filterCards = [...document.querySelectorAll('.gallery-item[data-category]')];
+        const filterGroups = [
+            [document.querySelector('.work-gallery .gallery-title'), document.querySelector('.work-gallery .gallery-grid')],
+            [document.querySelector('.logo-section')],
+        ].map((parts) => ({ parts, cards: filterCards.filter((card) => parts.some((part) => part.contains(card))) }));
+        const filterTitles = [document.querySelector('.work-gallery .gallery-title'), document.querySelector('.logo-section .logo-title')];
+        const shown = (element) => !element.closest('.is-filtered-out');
+        let currentFilter = 'all';
+        let filterRun = null;
+
+        const setFilter = (name) => {
+            if (name === currentFilter) return;
+            currentFilter = name;
+            filterOptions.forEach((option) => {
+                const on = option.dataset.filter === name;
+                option.classList.toggle('is-active', on);
+                option.setAttribute('aria-pressed', String(on));
+            });
+            const keeps = (card) => name === 'all' || card.dataset.category === name;
+            const swap = () => {
+                filterCards.forEach((card) => card.classList.toggle('is-filtered-out', !keeps(card)));
+                filterGroups.forEach((group) => {
+                    const empty = !group.cards.some(keeps);
+                    group.parts.forEach((part) => part.classList.toggle('is-filtered-out', empty));
+                });
+                filterEmpty.classList.toggle('is-filtered-out', filterCards.some(keeps));
+                if (window.ScrollTrigger) ScrollTrigger.refresh();
+            };
+            if (!hasMotion || reducedMotion) {
+                swap();
+                return;
+            }
+            if (filterRun) filterRun.kill();
+            const leaving = [...filterGroups.flatMap((group) => group.parts), filterEmpty].filter(shown);
+            filterRun = gsap.to(leaving, {
+                autoAlpha: 0,
+                duration: 0.25,
+                ease: EASE.ease,
+                onComplete: () => {
+                    swap();
+                    gsap.set([...filterGroups.flatMap((group) => group.parts), filterEmpty], { autoAlpha: 1 });
+                    filterRun = gsap.timeline()
+                        .fromTo([...filterTitles, filterEmpty].filter(shown), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4, ease: EASE.ease }, 0)
+                        .fromTo(filterCards.filter(shown), { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: EASE.reveal, stagger: 0.04 }, 0.05);
+                },
+            });
+        };
+
+        filterToggle.addEventListener('click', () => {
+            const open = filterToggle.getAttribute('aria-expanded') !== 'true';
+            filterToggle.setAttribute('aria-expanded', String(open));
+            workFilter.classList.toggle('is-open', open);
+            if (!open) setFilter('all');
+        });
+        filterOptions.forEach((option) => option.addEventListener('click', () => setFilter(option.dataset.filter)));
+    }
+
     // Gallery item click functionality - Direct navigation
     const galleryItems = document.querySelectorAll('.gallery-item');
 

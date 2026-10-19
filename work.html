@@ -42,7 +42,7 @@
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
 
-    <link rel="stylesheet" href="styles.css?v=20260926-1">
+    <link rel="stylesheet" href="styles.css?v=20261019-1">
 
     <!-- Structured Data: CollectionPage + ItemList -->
     <script type="application/ld+json">
@@ -167,6 +167,23 @@
 
                 <!-- Work Gallery Section -->
                 <div class="work-gallery">
+                    <!-- Filter: "+ FILTER" opens the categories in a row beside it; the "×" closes them and shows every
+                         project again (script.js) -->
+                    <div class="work-filter">
+                        <button class="work-filter-toggle" type="button" aria-expanded="false" aria-controls="work-filter-options">
+                            <span class="work-filter-icon" aria-hidden="true"><span></span><span></span></span>
+                            <span>FILTER</span>
+                        </button>
+                        <ul class="work-filter-options" id="work-filter-options" role="list">
+                            <li><button class="work-filter-option is-active" type="button" data-filter="all" aria-pressed="true">All</button></li>
+                            <li><button class="work-filter-option" type="button" data-filter="websites" aria-pressed="false">Websites</button></li>
+                            <li><button class="work-filter-option" type="button" data-filter="software" aria-pressed="false">Software</button></li>
+                            <li><button class="work-filter-option" type="button" data-filter="ecommerce" aria-pressed="false">E-commerce</button></li>
+                            <li><button class="work-filter-option" type="button" data-filter="branding" aria-pressed="false">Branding</button></li>
+                        </ul>
+                    </div>
+                    <p class="work-filter-empty is-filtered-out" role="status">Coming soon</p>
+
                     <div class="gallery-title">
                         <div class="text-reveal-wrapper">
                             <h2>Websites & Web Apps</h2>
@@ -177,7 +194,7 @@
                     </div>
 
                     <div class="gallery-grid">
-                        <div class="gallery-item" data-project="prenaj">
+                        <div class="gallery-item" data-project="prenaj" data-category="websites">
                             <a href="work/prenaj.html" style="text-decoration: none; color: inherit;">
                                 <div class="gallery-image">
                                     <picture>
@@ -194,7 +211,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="gallery-item" data-project="cityhotel">
+                        <div class="gallery-item" data-project="cityhotel" data-category="websites">
                             <a href="work/cityhotel.html" style="text-decoration: none; color: inherit;">
                                 <div class="gallery-image">
                                     <picture>
@@ -212,7 +229,7 @@
                             </a>
                         </div>
 
-                        <div class="gallery-item" data-project="jetonikeramika">
+                        <div class="gallery-item" data-project="jetonikeramika" data-category="websites">
                             <a href="work/jetonikeramika.html" style="text-decoration: none; color: inherit;">
                                 <div class="gallery-image">
                                     <picture>
@@ -230,7 +247,7 @@
                             </a>
                         </div>
 
-                        <div class="gallery-item" data-project="ennur">
+                        <div class="gallery-item" data-project="ennur" data-category="software">
                             <a href="work/ennur.html" style="text-decoration: none; color: inherit;">
                                 <div class="gallery-image">
                                     <picture>
@@ -248,7 +265,7 @@
                             </a>
                         </div>
 
-                        <div class="gallery-item" data-project="doratec">
+                        <div class="gallery-item" data-project="doratec" data-category="websites">
                             <a href="work/doratec.html" style="text-decoration: none; color: inherit;">
                                 <div class="gallery-image">
                                     <picture>
@@ -266,7 +283,7 @@
                             </a>
                         </div>
 
-                        <div class="gallery-item" data-project="spitex">
+                        <div class="gallery-item" data-project="spitex" data-category="websites">
                             <a href="work/spitex.html" style="text-decoration: none; color: inherit;">
                                 <div class="gallery-image">
                                     <picture>
@@ -284,7 +301,7 @@
                             </a>
                         </div>
 
-                        <div class="gallery-item" data-project="monun">
+                        <div class="gallery-item" data-project="monun" data-category="websites">
                             <a href="work/monun.html" style="text-decoration: none; color: inherit;">
                                 <div class="gallery-image">
                                     <picture>
@@ -302,7 +319,7 @@
                             </a>
                         </div>
 
-                        <div class="gallery-item" data-project="hbs-website">
+                        <div class="gallery-item" data-project="hbs-website" data-category="websites">
                             <a href="work/hbs-website.html" style="text-decoration: none; color: inherit;">
                                 <div class="gallery-image">
                                     <picture>
@@ -332,7 +349,7 @@
                 </div>
 
                 <div class="logo-gallery">
-                    <div class="gallery-item" data-project="hbs">
+                    <div class="gallery-item" data-project="hbs" data-category="branding">
                         <a href="work/hbs.html" style="text-decoration: none; color: inherit;">
                             <div class="gallery-image">
                                 <picture>
@@ -350,7 +367,7 @@
                         </a>
                     </div>
 
-                    <div class="gallery-item" data-project="wmk">
+                    <div class="gallery-item" data-project="wmk" data-category="branding">
                         <a href="work/wmk.html" style="text-decoration: none; color: inherit;">
                             <div class="gallery-image">
                                 <picture>
@@ -368,7 +385,7 @@
                         </a>
                     </div>
 
-                    <div class="gallery-item" data-project="riesen">
+                    <div class="gallery-item" data-project="riesen" data-category="branding">
                         <a href="work/riesen.html" style="text-decoration: none; color: inherit;">
                             <div class="gallery-image">
                                 <picture>
@@ -386,7 +403,7 @@
                         </a>
                     </div>
 
-                    <div class="gallery-item" data-project="baren">
+                    <div class="gallery-item" data-project="baren" data-category="branding">
                         <a href="work/baren.html" style="text-decoration: none; color: inherit;">
                             <div class="gallery-image">
                                 <picture>
@@ -445,7 +462,7 @@
     <script src="/vendor/gsap/gsap.min.js" defer></script>
     <script src="/vendor/gsap/ScrollTrigger.min.js" defer></script>
     <script src="/vendor/gsap/CustomEase.min.js" defer></script>
-    <script src="script.js?v=20261018-1" defer></script>
+    <script src="script.js?v=20261019-1" defer></script>
 </body>
 
 </html>

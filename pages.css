@@ -1370,8 +1370,14 @@ body:has(.about-intro) {
     color: var(--color-grey-99);
 }
 
-.about-intro-text p:last-child {
+.about-intro-text p:last-of-type {
     margin-bottom: 0;
+}
+
+/* "View CV" under the last paragraph: the site's arrow link, centred, in the off-white */
+.about-cv {
+    margin-top: 48px;
+    color: var(--color-primary);
 }
 
 /* The name and a carrying phrase in each paragraph in the off-white; same font and size as the grey around them */

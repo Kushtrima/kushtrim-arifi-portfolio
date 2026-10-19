@@ -2044,13 +2044,14 @@ body:has(.hero) .header:has(.navigation.active) {
     }
 }
 
-/* Work Page Section */
+/* Work Page Section. Its content starts at the top (with every project it is taller than the screen anyway), so a
+   filter that leaves only a few projects doesn't move the content down to the middle of the screen */
 .work-page-section {
     padding: 120px 0;
     background-color: var(--color-secondary);
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 
 /* Work Gallery Section - Photoworks Style */
@@ -2075,6 +2076,163 @@ body:has(.hero) .header:has(.navigation.active) {
 
 .gallery-line {
     display: none;
+}
+
+/* Work page filter: "+ FILTER" in small capitals with the header's orange "+" (two thin lines, turned 45° into a "×"
+   while open). The categories open in a row beside it, each coming in from the left 50ms after the one before; grey
+   until hovered, the one in use orange like the page you're on in the header. On phones the row drops under the toggle */
+.work-filter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 48px;
+    min-height: 32px;
+    margin-bottom: 72px;
+}
+
+.work-filter button {
+    padding: 4px 0;
+    border: 0;
+    background: none;
+    font-family: var(--font-primary);
+    line-height: 1.2;
+    cursor: pointer;
+    overflow: visible;
+}
+
+.work-filter button:hover {
+    transform: none;
+}
+
+.work-filter button.ripple::before {
+    content: none;
+}
+
+.work-filter button:focus-visible {
+    outline: 1px solid var(--color-primary);
+    outline-offset: 4px;
+}
+
+.work-filter-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    color: var(--color-primary);
+}
+
+.work-filter-icon {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    color: var(--color-orange);
+    transition: rotate 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.work-filter-icon span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 14px;
+    height: 1.5px;
+    background-color: currentColor;
+    translate: -50% -50%;
+}
+
+.work-filter-icon span + span {
+    rotate: 90deg;
+}
+
+.work-filter.is-open .work-filter-icon {
+    rotate: 45deg;
+}
+
+.work-filter-options {
+    display: none;
+    flex-wrap: wrap;
+    gap: 8px 32px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.work-filter.is-open .work-filter-options {
+    display: flex;
+}
+
+.work-filter.is-open .work-filter-options li {
+    animation: work-filter-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.work-filter.is-open .work-filter-options li:nth-child(2) { animation-delay: 50ms; }
+.work-filter.is-open .work-filter-options li:nth-child(3) { animation-delay: 100ms; }
+.work-filter.is-open .work-filter-options li:nth-child(4) { animation-delay: 150ms; }
+.work-filter.is-open .work-filter-options li:nth-child(5) { animation-delay: 200ms; }
+
+@keyframes work-filter-in {
+    from {
+        opacity: 0;
+        translate: -12px 0;
+    }
+}
+
+.work-filter-option {
+    font-size: 16px;
+    color: var(--color-grey-88);
+}
+
+.work-filter-option:hover,
+.work-filter-option:focus-visible,
+.work-filter-option.is-active {
+    color: var(--color-orange);
+}
+
+/* What a category with no projects yet shows; tall enough that the page keeps its length and the filter stays put */
+.work-filter-empty {
+    min-height: 50vh;
+    margin: 0;
+    font-family: var(--font-primary);
+    font-size: var(--text-paragraph);
+    color: var(--color-grey-88);
+}
+
+.is-filtered-out {
+    display: none !important;
+}
+
+/* With the websites filtered out the first section is only the title and the filter, so it gives up its full-screen
+   height and bottom padding and the branding follows at the usual distance */
+.work-page-section:has(.gallery-grid.is-filtered-out) {
+    min-height: 0;
+    padding-bottom: 0;
+}
+
+.work-page-section:has(.gallery-grid.is-filtered-out) + .logo-section {
+    padding-top: 0;
+}
+
+@media (max-width: 768px) {
+    .work-filter {
+        margin-bottom: 48px;
+    }
+
+    .work-filter-options {
+        flex-basis: 100%;
+        gap: 8px 24px;
+    }
+}
+
+/* Phones: the five categories in one line from edge to edge, a size down */
+@media (max-width: 480px) {
+    .work-filter-options {
+        justify-content: space-between;
+        column-gap: 12px;
+    }
+
+    .work-filter-option {
+        font-size: 14px;
+    }
 }
 
 /* Work page: four projects to a row in portrait frames, captioned like the home page's "my Work" (name, service,
