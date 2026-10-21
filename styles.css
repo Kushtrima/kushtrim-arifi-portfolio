@@ -604,6 +604,11 @@ body:has(.hero) .header:has(.navigation.active) {
     mix-blend-mode: normal;
 }
 
+/* Scrolled down, the header's parts are hidden (the compact bar takes over): no blend left to do (script.js) */
+body:has(.hero) .header.is-empty {
+    mix-blend-mode: normal;
+}
+
 .hero-stage {
     height: 100%;
 }

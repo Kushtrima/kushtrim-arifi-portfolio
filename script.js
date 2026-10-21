@@ -41,8 +41,21 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         // An image that finishes loading after the scroll triggers were measured moves everything below it:
-        // measure again shortly after (the IntersectionObservers this replaced noticed that by themselves)
-        const remeasure = gsap.delayedCall(0.15, () => ScrollTrigger.refresh()).pause();
+        // measure again shortly after (the IntersectionObservers this replaced noticed that by themselves). Never in the
+        // middle of a scroll: on a phone the images arrive while the visitor is already swiping, and measuring every
+        // scroll effect again mid-swipe is a visible stutter, so then it waits until the scroll stops
+        const remeasureAtRest = () => {
+            ScrollTrigger.removeEventListener('scrollEnd', remeasureAtRest);
+            ScrollTrigger.refresh();
+        };
+        const remeasure = gsap.delayedCall(0.15, () => {
+            if (!ScrollTrigger.isScrolling()) {
+                ScrollTrigger.refresh();
+                return;
+            }
+            ScrollTrigger.removeEventListener('scrollEnd', remeasureAtRest);
+            ScrollTrigger.addEventListener('scrollEnd', remeasureAtRest);
+        }).pause();
         document.querySelectorAll('img').forEach((img) => {
             if (!img.complete) img.addEventListener('load', () => remeasure.restart(true), { once: true });
         });
@@ -174,6 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // inside it. Scrolling back reverses it. An open menu closes when the page crosses the top (a phone opens it down
         // at the top and sideways in the middle); on the home page the bar waits for the intro to land the logo
         let compact = null;
+        let emptyCall = null;
         // Level with the logo's edge on the other side (measured without the logo's own drift, which may be mid-way)
         const dockedLeft = () => window.innerWidth - (logoPart ? Math.max(12, logoPart.getBoundingClientRect().left - Number(gsap.getProperty(logoPart, 'x'))) : 16);
         const setCompact = (state, instant = false) => {
@@ -184,6 +198,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const phone = phoneHeader.matches;
             const move = (target, vars) => (instant ? gsap.set(target, vars) : gsap.to(target, { ...vars, overwrite: 'auto' }));
             bar.classList.toggle('is-docked', phone && !state);
+            // The home header blends with the page behind it (styles.css). Once its parts have faded out there is
+            // nothing left to blend, but the blend alone still costs a phone work on every frame of the scroll: it goes
+            // off until the header comes back
+            emptyCall?.kill();
+            if (!state) siteHeader.classList.remove('is-empty');
+            else if (instant) siteHeader.classList.add('is-empty');
+            else emptyCall = gsap.delayedCall(0.6, () => siteHeader.classList.add('is-empty'));
             if (state) {
                 if (logoPart) move(logoPart, { x: 40, autoAlpha: 0, duration: 0.6, ease: 'power2.inOut' });
                 move(rightParts.filter(Boolean), { x: -40, autoAlpha: 0, duration: 0.6, ease: 'power2.inOut' });
@@ -828,8 +849,14 @@ document.addEventListener('DOMContentLoaded', function () {
             };
             fitListWidth();
             if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitListWidth);
+            // Only a new width can change the list's width. A phone's address bar folding away as the scroll starts (and
+            // coming back on the way up) changes just the height, and measuring every scroll effect again right then
+            // made the page stutter
             let fitCall = null;
+            let fitWidth = window.innerWidth;
             window.addEventListener('resize', () => {
+                if (window.innerWidth === fitWidth) return;
+                fitWidth = window.innerWidth;
                 fitCall?.kill();
                 fitCall = gsap.delayedCall(0.2, () => {
                     fitListWidth();

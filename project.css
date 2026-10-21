@@ -409,9 +409,9 @@
         padding: 30px 20px max(46px, calc(24px + env(safe-area-inset-bottom)));
         overflow-x: auto;
         scrollbar-width: none;
+        /* No blur of the page behind it: the bar almost covers it anyway, and blurring what moves under a fixed bar
+           costs a phone work on every frame of the scroll */
         background-color: rgba(var(--color-secondary-rgb), 0.94);
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
         border-top: 1px solid rgba(var(--color-primary-rgb), 0.12);
         opacity: 0;
         visibility: hidden;
@@ -797,9 +797,9 @@
         /* Tall enough to sit clear of a phone's home indicator at the bottom edge */
         padding: 22px 0 max(42px, calc(20px + env(safe-area-inset-bottom)));
         overflow: hidden;
+        /* No blur of the page behind it: the bar almost covers it anyway, and blurring what moves under a fixed bar
+           costs a phone work on every frame of the scroll */
         background-color: rgba(var(--color-secondary-rgb), 0.94);
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
         border-top: 1px solid rgba(var(--color-primary-rgb), 0.12);
         opacity: 0;
         visibility: hidden;
