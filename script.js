@@ -1095,7 +1095,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const knownProjects = [
                     'monun', 'doratec', 'spitex', 'jetonikeramika',
                     'baren', 'riesen', 'ennur', 'wmk', 'hbs',
-                    'hbs-website', 'cityhotel', 'pilatushof', 'prenaj'
+                    'hbs-website', 'cityhotel', 'pilatushof', 'prenaj', 'mardal'
                 ];
                 if (knownProjects.includes(projectName)) {
                     window.location.href = '/work/' + projectName + '.html';
@@ -1564,21 +1564,25 @@ document.addEventListener('DOMContentLoaded', function () {
         const frame = document.createElement('div');
         frame.className = 'image-navigator-frame';
         frame.setAttribute('aria-hidden', 'true');
+        // A row of images side by side (a project's phone screens) is one place in the column: one button, holding their
+        // thumbnails side by side
         const thumbs = shots.map((shot, index) => {
-            const image = shot.querySelector('img');
+            const images = [...shot.querySelectorAll('img')];
             const button = document.createElement('button');
             button.type = 'button';
-            button.className = 'image-navigator-thumb';
-            button.setAttribute('aria-label', `Image ${index + 1}: ${image.alt}`);
-            const thumb = document.createElement('img');
-            thumb.src = image.dataset.thumb || image.getAttribute('src');
-            thumb.alt = '';
-            if (image.getAttribute('width')) {
-                thumb.width = Number(image.getAttribute('width'));
-                thumb.height = Number(image.getAttribute('height'));
-            }
-            thumb.decoding = 'async';
-            button.appendChild(thumb);
+            button.className = images.length > 1 ? 'image-navigator-thumb image-navigator-thumb--row' : 'image-navigator-thumb';
+            button.setAttribute('aria-label', `Image ${index + 1}: ${images.map((image) => image.alt).join(' / ')}`);
+            images.forEach((image) => {
+                const thumb = document.createElement('img');
+                thumb.src = image.dataset.thumb || image.getAttribute('src');
+                thumb.alt = '';
+                if (image.getAttribute('width')) {
+                    thumb.width = Number(image.getAttribute('width'));
+                    thumb.height = Number(image.getAttribute('height'));
+                }
+                thumb.decoding = 'async';
+                button.appendChild(thumb);
+            });
             button.addEventListener('click', () => glideTo(Math.max(0, Math.round(layoutTop(shot) - window.innerHeight * 0.1))));
             strip.appendChild(button);
             return button;
@@ -1598,16 +1602,18 @@ document.addEventListener('DOMContentLoaded', function () {
         stripFrame.className = 'image-strip-frame';
         stripFrame.setAttribute('aria-hidden', 'true');
         const stripThumbs = shots.map((shot, index) => {
-            const image = shot.querySelector('img');
+            const images = [...shot.querySelectorAll('img')];
             const button = document.createElement('button');
             button.type = 'button';
-            button.className = 'image-strip-thumb';
-            button.setAttribute('aria-label', `Image ${index + 1}: ${image.alt}`);
-            const thumb = document.createElement('img');
-            thumb.src = image.dataset.thumb || image.getAttribute('src');
-            thumb.alt = '';
-            thumb.decoding = 'async';
-            button.appendChild(thumb);
+            button.className = images.length > 1 ? 'image-strip-thumb image-strip-thumb--row' : 'image-strip-thumb';
+            button.setAttribute('aria-label', `Image ${index + 1}: ${images.map((image) => image.alt).join(' / ')}`);
+            images.forEach((image) => {
+                const thumb = document.createElement('img');
+                thumb.src = image.dataset.thumb || image.getAttribute('src');
+                thumb.alt = '';
+                thumb.decoding = 'async';
+                button.appendChild(thumb);
+            });
             button.addEventListener('click', () => glideTo(Math.max(0, Math.round(layoutTop(shot) - 72))));
             stripTrack.appendChild(button);
             return button;
@@ -1735,6 +1741,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Apply the reveal effect to all project images
-    ['monun', 'doratec', 'spitex', 'jetonikeramika', 'ennur', 'hbs', 'wmk', 'riesen', 'baren', 'hbs-website', 'cityhotel', 'pilatushof', 'prenaj']
+    ['monun', 'doratec', 'spitex', 'jetonikeramika', 'ennur', 'hbs', 'wmk', 'riesen', 'baren', 'hbs-website', 'cityhotel', 'pilatushof', 'prenaj', 'mardal']
         .forEach((project) => setupScrollLinkedReveal(`.${project}-image-reveal`));
 });

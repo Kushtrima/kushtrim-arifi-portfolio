@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <title>Mardal · Agency Website | Kushtrim Arifi</title>
+    <meta name="description"
+        content="Case study: a website for Mardal, a Kosovo studio for design, software and AI, built on a visible grid, with a services list that turns as you scroll.">
+    <meta name="keywords"
+        content="Mardal, Agency Website, Creative Studio Website, Web Design Kosovo, UX/UI Design, Next.js, React, GSAP">
+    <meta name="author" content="Kushtrim Arifi">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://kushtrimarifi.com/work/mardal.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Mardal · Agency Website | Kushtrim Arifi">
+    <meta property="og:description" content="Case study: a website for Mardal, a Kosovo studio for design, software and AI, built on a visible grid, with a services list that turns as you scroll.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://kushtrimarifi.com/work/mardal.html">
+    <meta property="og:image" content="https://kushtrimarifi.com/img/share/mardal.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Mardal agency website, by Kushtrim Arifi">
+    <meta property="og:site_name" content="Kushtrim Arifi">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mardal · Agency Website | Kushtrim Arifi">
+    <meta name="twitter:description" content="Case study: a website for Mardal, a Kosovo studio for design, software and AI, built on a visible grid, with a services list that turns as you scroll.">
+    <meta name="twitter:image" content="https://kushtrimarifi.com/img/share/mardal.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Analytics hosts looked up early; the tag itself loads after the page -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+    <link rel="stylesheet" href="/styles.css?v=20261021-2">
+    <link rel="stylesheet" href="/project.css?v=20261021-2">
+
+    <!-- Structured Data: CreativeWork -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "Mardal",
+      "headline": "Mardal \u00b7 Agency Website",
+      "description": "Case study: a website for Mardal, a Kosovo studio for design, software and AI, built on a visible grid, with a services list that turns as you scroll.",
+      "image": "https://kushtrimarifi.com/work/mardal/mardal-cover.jpg",
+      "url": "https://kushtrimarifi.com/work/mardal.html",
+      "dateCreated": "2026",
+      "inLanguage": "en",
+      "about": "Creative & Technology Studio",
+      "creator": {
+        "@type": "Person",
+        "@id": "https://kushtrimarifi.com/#person",
+        "name": "Kushtrim Arifi",
+        "url": "https://kushtrimarifi.com/",
+        "jobTitle": "Senior Product Designer & Developer"
+      }
+    }
+    </script>
+    <!-- Structured Data: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://kushtrimarifi.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Work", "item": "https://kushtrimarifi.com/work.html" },
+        { "@type": "ListItem", "position": 3, "name": "Mardal", "item": "https://kushtrimarifi.com/work/mardal.html" }
+      ]
+    }
+    </script>
+
+    <!-- Google tag (gtag.js): the page view is queued at once, the tag itself is fetched only after the page has loaded -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-YC4X711JLJ');
+        window.addEventListener('load', () => {
+            const tag = document.createElement('script');
+            tag.async = true;
+            tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-YC4X711JLJ';
+            document.head.appendChild(tag);
+        }, { once: true });
+    </script>
+</head>
+
+<body class="project-body">
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="/" class="logo-text">Kushtrim [a]</a>
+            </div>
+            <nav class="navigation">
+                <ul class="nav-list">
+                    <li><a href="/work.html" class="nav-link">Work</a></li>
+                    <li><a href="/about.html" class="nav-link">About</a></li>
+                </ul>
+
+                <!-- Overlay content (hidden by default) -->
+                <div class="nav-overlay">
+                    <div class="nav-header">
+                        <a href="/" class="nav-logo">Kushtrim [a]</a>
+                        <button class="nav-close">×</button>
+                    </div>
+
+                    <div class="nav-content">
+                        <ul class="nav-list-overlay">
+                            <li><a href="/work.html" class="nav-link-overlay">Work</a></li>
+                            <li><a href="/about.html" class="nav-link-overlay">About</a></li>
+                        </ul>
+
+                        <div class="nav-right">
+                            <div class="nav-social">
+                                <a href="https://www.linkedin.com/in/kushtrim-arifi-60313713b/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"></a>
+                            </div>
+                            <a href="mailto:info@kushtrimarifi.com" class="nav-email">info@kushtrimarifi.com</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="burger-menu">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="project-main">
+        <section class="project-hero">
+            <div class="container">
+                <div class="project-header-content">
+                    <div class="project-title-section project-title-section--inline">
+                        <div class="text-reveal-wrapper">
+                            <h1 class="project-title">Mardal</h1>
+                        </div>
+                        <div class="text-reveal-wrapper">
+                            <a href="https://mardal.co/" target="_blank" rel="noopener noreferrer" class="project-website-link arrow-link"><span class="arrow-link-label">mardal.co</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 12.8 12.8 3.2"/><path d="M6.2 3.2h6.6v6.6"/></svg></span></a>
+                        </div>
+                    </div>
+                    <div class="project-header-divider"></div>
+                </div>
+
+                <!-- The project in one row under the name -->
+                <dl class="project-facts">
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Industry</dt>
+                        <dd class="project-info-value">Creative &amp; Technology Studio</dd>
+                    </div>
+                    <div class="project-fact project-fact--service text-reveal-wrapper">
+                        <dt class="project-info-label">Service</dt>
+                        <dd class="project-info-value"><span class="fact-item">Research</span>&nbsp;· <span class="fact-item">UX/UI Design</span>&nbsp;·<br><span class="fact-item">Development</span></dd>
+                    </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Agency</dt>
+                        <dd class="project-info-value">Direct client</dd>
+                    </div>
+                    <div class="project-fact text-reveal-wrapper">
+                        <dt class="project-info-label">Location</dt>
+                        <dd class="project-info-value">Kosovo</dd>
+                    </div>
+                    <div class="project-fact project-fact--stack text-reveal-wrapper">
+                        <dt class="project-info-label">Stack</dt>
+                        <dd class="project-info-value"><span class="fact-item">Figma</span>&nbsp;· <span class="fact-item">Next.js</span>&nbsp;· <span class="fact-item">React</span>&nbsp;· <span class="fact-item">GSAP</span>&nbsp;· <span class="fact-item">Vercel</span></dd>
+                    </div>
+                </dl>
+
+                <!-- Case study, one part after another: a heading and its text. On a wide screen script.js lists every part's
+                     name on the left, held in view as the texts pass: dark grey, and light for the part being read; on a
+                     phone (or without script.js) each heading sits with its text. A new part is one more .case-step -->
+                <div class="case-study">
+                    <div class="case-study-steps">
+                        <section class="case-step" aria-labelledby="case-company">
+                            <h2 class="case-step-title" data-reveal id="case-company">Company</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Design, software and AI, from Kosovo</h3>
+                                <p data-reveal>Mardal is a studio in Kosovo that designs and builds for companies in Switzerland,
+                                    Germany and Kosovo. It works in three disciplines, Creative, Development and AI +
+                                    Automation, with nineteen services between them, from branding and print to custom
+                                    software, CRM and AI assistants. Most of its work is in development and AI.
+                                    Alongside client projects it builds products of its own, and its team brings
+                                    together engineers, designers, AI researchers and psychologists.</p>
+                                <p data-reveal>Mardal is the new name of a studio whose story began in 2008. I had worked on
+                                    projects with Mardal before, and this one came to me directly in 2026, while the
+                                    studio’s own team was fully booked with client work. The brief set out what Mardal
+                                    does, how it works and what it offers. The structure, the interface and the build
+                                    were mine; the logo and identity were part of the same commission and have a page
+                                    of their own.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-problem">
+                            <h2 class="case-step-title" data-reveal id="case-problem">The problem</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Nineteen services, for clients who need one</h3>
+                                <p data-reveal>Mardal had no website. The old one had been taken offline, and the studio was
+                                    working under a new name with nothing online to show. For a studio, that is a
+                                    serious gap. In a study of more than a thousand buyers of professional services,
+                                    more than eight in ten visited a firm’s website before deciding to hire it.
+                                    Without one, Mardal was invisible at the exact moment a client went looking.</p>
+                                <p data-reveal>The harder problem was the offer itself. Mardal works across three disciplines and
+                                    nineteen services, from branding and print to custom software, CRM and AI
+                                    assistants. But clients do not arrive looking for nineteen things. They arrive
+                                    with one problem (a new brand, an internal tool, an AI assistant for customer
+                                    service) and look for someone who has solved that problem before. Research on how
+                                    buyers choose firms shows the same pattern: they look for specialists, and they
+                                    treat generalists as interchangeable. A studio that lists everything it does risks
+                                    looking like a studio that is expert in nothing.</p>
+                                <p data-reveal>And visitors decide quickly. In a study at Carleton University, people judged how
+                                    a web page looked within fifty milliseconds, and the judgement held when they
+                                    looked for longer. In a Stanford study, nearly half of the people asked to assess
+                                    websites judged their credibility partly by how they looked. A visitor decides
+                                    whether Mardal looks capable before reading a word.</p>
+                                <p data-reveal>So the site had one job: show a wide offer in a way that lets every visitor find
+                                    their one service quickly, and see enough depth there to trust that Mardal does it
+                                    well.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-research">
+                            <h2 class="case-step-title" data-reveal id="case-research">Research</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Thirty award winners, read the way a client would</h3>
+                                <p data-reveal>I started with about thirty agency and studio websites, most of them winners on
+                                    Awwwards, because that is where this kind of site is pushed furthest. I took them
+                                    apart component by component: how the navigation opens and closes, how services
+                                    are listed, how case studies are introduced, how much text sits on a screen, how
+                                    motion is used, and how quickly a first-time visitor understands what the company
+                                    does and where to go next.</p>
+                                <p data-reveal>The best of them shared a few habits. A visible structure, usually a grid the
+                                    content keeps returning to. Type set large and left alone. Motion that answers the
+                                    visitor (a scroll, a hover, a click) rather than performing for them. The weaker
+                                    ones, awards or not, traded meaning for spectacle: a loading screen before any
+                                    content, navigation hidden behind a gesture, scrolling that takes control away
+                                    from the reader, headlines that sound impressive and say nothing.</p>
+                                <p data-reveal>An award site is judged by designers. Mardal’s would be judged by a company
+                                    deciding whether to get in touch. That became the rule for the project: keep the
+                                    craft, never at the cost of clarity.</p>
+                                <p data-reveal>Three principles followed from it. Start as the user: someone arriving cold should
+                                    know from the first screen what Mardal is, what it does and where it is based.
+                                    Push the craft further only where it carries meaning: grid, type and motion are
+                                    allowed to be expressive when they help someone read. And keep cognitive load low:
+                                    every section has one job and shows what that job is the moment it appears. In
+                                    practice that meant a strict information hierarchy, progressive disclosure (detail
+                                    for the service in focus, not for all nineteen at once) and the next step always
+                                    within reach.</p>
+                                <p data-reveal>Before designing anything, I blocked the sections out in Figma to see the site as
+                                    a sequence rather than as separate screens. It took several versions before the
+                                    structure held.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-design">
+                            <h2 class="case-step-title" data-reveal id="case-design">Design</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>An exposed grid, one accent and a neo-grotesque</h3>
+                                <p data-reveal>The layout is built on a four-column grid, and the grid is not hidden. Its column
+                                    lines are drawn as hairline rules that run the full height of every page, so the
+                                    structure that normally lives only in the design file becomes part of the visual
+                                    language. Every element aligns to a column edge: headlines, body copy, lists and
+                                    image crops. On a white ground with generous negative space, the exposed grid
+                                    gives the whitespace edges and rhythm, and the emptiness reads as composition
+                                    rather than missing content. Headlines are free to start on an inner column and
+                                    break back to the outer edge, which creates asymmetry and tension without ever
+                                    breaking alignment.</p>
+                                <p data-reveal>The palette is reduced to black, white and a single saturated red-orange accent,
+                                    applied as a functional signal rather than decoration: the active state, the open
+                                    menu, the selected service, the terminal full stop of a headline. On the Clients
+                                    page the grid rules themselves switch to the accent, with markers at the column
+                                    intersections.</p>
+                                <p data-reveal>The plus is a custom glyph: four detached strokes around an open centre, closer to
+                                    a printer’s registration mark than to a mathematical sign. It is the one icon in
+                                    the system and does four jobs: menu trigger, discipline marker, list bullet and
+                                    active-state indicator.</p>
+                                <p data-reveal>Typography is a single neo-grotesque, Helvetica, on a high-contrast type scale:
+                                    display sizes for headlines, a standard text size for reading, and very little in
+                                    between. Hierarchy comes from scale and whitespace rather than from weight or
+                                    colour, which keeps the system strict and leaves the grid and the accent to carry
+                                    the brand.</p>
+                                <p data-reveal>The home page hero is art-directed in monochrome: a motion-blurred photograph of a
+                                    woman and a man in traditional Albanian dress, a solid accent square placed
+                                    between them, and HOUSE OF CREATIVITY &amp; TECHNOLOGY set in capitals along the
+                                    lower edge. The photograph places the studio in Kosovo; the square and the type
+                                    place it in the present.</p>
+                                <p data-reveal>Below the hero, each section has a single purpose and a single focal point. Human
+                                    Creativity and Artificial Intelligence sit on separate columns, joined by the
+                                    plus. Selected work uses large image tiles with a three-line caption: client,
+                                    project type, location. Our expertise sets the three disciplines at display size
+                                    and reveals the services of the one in focus alongside them. Case study pages open
+                                    on an image-led hero before any copy.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-interaction">
+                            <h2 class="case-step-title" data-reveal id="case-interaction">Interaction</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>A persistent menu and a scroll-driven services index</h3>
+                                <p data-reveal>The header is reduced to two elements on a transparent layer: the logo on the left
+                                    and a persistent menu trigger on the right, fixed for the full length of every
+                                    page. On scroll, the logo collapses from the full lockup to the symbol alone,
+                                    freeing the top of the viewport for content. The menu opens inline, to the left of
+                                    the trigger, rather than as a full-screen overlay: four links (Services, Clients,
+                                    About, Contact), with the trigger switching to the accent to mark the open state.
+                                    It closes on scroll or on a second click, so navigation is available on demand and
+                                    never obscures the content.</p>
+                                <p data-reveal>The services page holds the densest content on the site: twenty-two entries, the
+                                    three disciplines and their nineteen services. A grid would have presented them as
+                                    a wall of equal-weight items. Instead they run as a single scroll-driven list on a
+                                    curved path, closer to a wheel picker than to a menu. The entry at the centre of
+                                    the viewport is the active state, set in the accent with the plus beside it;
+                                    entries above and below recede along the curve and fade out through gradient masks
+                                    at the top and bottom edges. A sticky detail panel on the right updates with the
+                                    active entry: a short description, the service’s deliverables (six to nine each)
+                                    and two calls to action, Write to us and Book a meeting. The full range stays
+                                    visible as context while only one service is in focus: progressive disclosure
+                                    applied to an entire service catalogue.</p>
+                                <p data-reveal>Motion follows the same principle: it supports reading rather than competing with
+                                    it. Text enters through a blur-to-focus reveal instead of a slide, and scrolling
+                                    is smoothed with eased interpolation, so long pages read as one continuous
+                                    surface.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-mobile">
+                            <h2 class="case-step-title" data-reveal id="case-mobile">Mobile</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>The same experience, not a smaller version of it</h3>
+                                <p data-reveal>The common approach to mobile is to strip the desktop site down: switch off the
+                                    motion, flatten the layout and replace the signature interactions with plain
+                                    lists. For Mardal, mobile was designed as the same experience translated to a
+                                    smaller viewport and to touch, not as a reduced version of it. A visitor who first
+                                    meets Mardal on a phone should meet the same studio as one who arrives on a
+                                    laptop.</p>
+                                <p data-reveal>The visual system carries over intact. The exposed grid scales to the narrower
+                                    viewport and keeps its hairline rules, so the page holds the same structure,
+                                    alignment and negative space. The type scale is recalibrated rather than replaced:
+                                    headlines stay at display size relative to the screen, and hierarchy still comes
+                                    from scale and whitespace. The accent and the plus keep the same roles they have
+                                    on desktop.</p>
+                                <p data-reveal>The interaction model carries over too. The menu trigger stays fixed in the same
+                                    position, so navigation behaves the same way on every device. The services index
+                                    keeps its scroll-driven behaviour under touch, bringing one service and its
+                                    details into focus at a time. The blur reveals and the smoothed scrolling run on
+                                    mobile as well, so the pace and feel of the site do not change with the screen.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-development">
+                            <h2 class="case-step-title" data-reveal id="case-development">Development</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Next.js, GSAP and the case for a CMS</h3>
+                                <p data-reveal>The site is a Next.js application built in React. GSAP handles all motion: the
+                                    blur reveals, the smooth scrolling and the scroll-linked services index, which is
+                                    the most involved piece of front-end engineering on the site, keeping the curved
+                                    list, the active state and the detail panel in sync with the scroll position.</p>
+                                <p data-reveal>Pages are pre-rendered and served as complete HTML, each with its own title, meta
+                                    description, canonical URL and Open Graph image, so crawlers index the same
+                                    content a visitor sees. Photography is delivered as WebP at fixed widths, every
+                                    image has descriptive alt text, and a skip link gives keyboard and screen-reader
+                                    users direct access to the main content.</p>
+                                <p data-reveal>Mardal did not want a CMS. I recommended one, primarily for the blog. An agency
+                                    site goes stale first in the sections that signal activity: case studies, news,
+                                    writing. Without a CMS, every post requires a developer and a deployment, and a
+                                    team fully booked with client work will not route an article through a developer.
+                                    A CMS would let the team write, schedule and publish independently, and a growing
+                                    archive of articles builds organic search visibility and gives a studio working in
+                                    AI a place to demonstrate its thinking. The blog launched with three posts.</p>
+                            </div>
+                        </section>
+                        <section class="case-step" aria-labelledby="case-outcome">
+                            <h2 class="case-step-title" data-reveal id="case-outcome">Outcome</h2>
+                            <div class="case-step-text">
+                                <h3 class="case-step-subtitle" data-reveal>Nineteen services, one at a time</h3>
+                                <p data-reveal>Mardal went from no website at all to one that presents its three disciplines and
+                                    nineteen services, five case studies, its own products and a blog under its new
+                                    name. A visitor who arrives with one problem finds the service that solves it in a
+                                    single scroll, and sees it on its own, with its description and its deliverables,
+                                    instead of lost in a list. Every service ends in a way to get in touch.</p>
+                                <p data-reveal>When I presented the first prototype, Mardal was happy with it. The changes they
+                                    asked for were about content (how much text, how many images), not about structure
+                                    or interaction. The UX came through its first review unchanged.</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Images in a narrower column; on a wide screen script.js adds a navigator on the right: every image small,
+                     with a frame showing which part is on screen -->
+                <div class="project-image-section project-image-section--navigator">
+                    <!-- Previous and next project beside the images: they arrive with the first image, stay level with the middle
+                         of the screen while the images pass, and leave with the last one -->
+                    <div class="project-pager-rail">
+                        <nav class="project-pager" aria-label="More projects">
+                            <a class="project-pager-link project-pager-link--previous" href="/work/baren.html" rel="prev" aria-label="Previous project: Bären Baugruppe AG"><span>Previous</span><span class="visually-hidden">: Bären Baugruppe AG</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 1 1 5l4.5 4"/></svg></span></a>
+                            <a class="project-pager-link project-pager-link--next" href="/work/prenaj.html" rel="next" aria-label="Next project: Prenaj Immobilien"><span>Next</span><span class="visually-hidden">: Prenaj Immobilien</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M.5 1 5 5 .5 9"/></svg></span></a>
+                        </nav>
+                    </div>
+
+                    <!-- First image -->
+                    <div class="project-main-image mardal-image-reveal mardal-first-image">
+                        <picture>
+                            <source srcset="/work/mardal/mardal-01.avif" type="image/avif">
+                            <source srcset="/work/mardal/mardal-01.webp" type="image/webp">
+                            <img src="/work/mardal/mardal-01.jpg" width="1495" height="943" alt="The home page: a woman and a man in traditional Albanian dress walking past in black and white, a single orange square between them and HOUSE OF CREATIVITY &amp; TECHNOLOGY across the bottom" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-01.webp">
+                        </picture>
+                    </div>
+
+                    <!-- Gallery: the smaller images, one under another -->
+                    <div class="project-gallery-layout">
+                        <div class="project-gallery-images">
+                            <div class="project-main-image mardal-image-reveal">
+                                <picture>
+                                    <source srcset="/work/mardal/mardal-02.avif" type="image/avif">
+                                    <source srcset="/work/mardal/mardal-02.webp" type="image/webp">
+                                    <img src="/work/mardal/mardal-02.jpg" width="1500" height="943" alt="Human Creativity and Artificial Intelligence on different columns of the grid, joined by the orange plus, with one sentence beneath on what the two do together" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-02.webp">
+                                </picture>
+                            </div>
+                            <div class="project-main-image mardal-image-reveal">
+                                <picture>
+                                    <source srcset="/work/mardal/mardal-03.avif" type="image/avif">
+                                    <source srcset="/work/mardal/mardal-03.webp" type="image/webp">
+                                    <img src="/work/mardal/mardal-03.jpg" width="1483" height="935" alt="Our expertise: Creative, Development and AI + Automation, each beside a plus, with Development in orange and its services listed on the right" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-03.webp">
+                                </picture>
+                            </div>
+                            <div class="project-main-image mardal-image-reveal">
+                                <picture>
+                                    <source srcset="/work/mardal/mardal-04.avif" type="image/avif">
+                                    <source srcset="/work/mardal/mardal-04.webp" type="image/webp">
+                                    <img src="/work/mardal/mardal-04.jpg" width="1458" height="926" alt="The footer: the menu and contact details on the grid&#x27;s columns, the mardal wordmark set large across them, and Privacy, Terms, Cookies and Back to top along the bottom" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-04.webp">
+                                </picture>
+                            </div>
+                            <div class="project-main-image mardal-image-reveal">
+                                <picture>
+                                    <source srcset="/work/mardal/mardal-05.avif" type="image/avif">
+                                    <source srcset="/work/mardal/mardal-05.webp" type="image/webp">
+                                    <img src="/work/mardal/mardal-05.jpg" width="1488" height="939" alt="The Services page: its headline, Mardal, a house of design, engineering &amp; AI solution, set large across orange grid lines marked with small pluses" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-05.webp">
+                                </picture>
+                            </div>
+                            <div class="project-main-image mardal-image-reveal">
+                                <picture>
+                                    <source srcset="/work/mardal/mardal-06.avif" type="image/avif">
+                                    <source srcset="/work/mardal/mardal-06.webp" type="image/webp">
+                                    <img src="/work/mardal/mardal-06.jpg" width="1495" height="943" alt="The services list curving like a wheel, Social Media Design in focus in orange with the plus beside it, and on the right its description, deliverables, Write to us and Book a meeting" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-06.webp">
+                                </picture>
+                            </div>
+                            <div class="project-main-image mardal-image-reveal">
+                                <picture>
+                                    <source srcset="/work/mardal/mardal-07.avif" type="image/avif">
+                                    <source srcset="/work/mardal/mardal-07.webp" type="image/webp">
+                                    <img src="/work/mardal/mardal-07.jpg" width="1498" height="943" alt="The Clients page: FILTERS beside an orange plus, above the case studies shown as large images, one of them Jetonikeramika" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-07.webp">
+                                </picture>
+                            </div>
+                            <div class="project-main-image mardal-image-reveal">
+                                <picture>
+                                    <source srcset="/work/mardal/mardal-08.avif" type="image/avif">
+                                    <source srcset="/work/mardal/mardal-08.webp" type="image/webp">
+                                    <img src="/work/mardal/mardal-08.jpg" width="1490" height="939" alt="The Jetonikeramika case study opens on a full-screen photograph of a tiled shop interior, with Ceramics &amp; Tiles and the name set large over it" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-08.webp">
+                                </picture>
+                            </div>
+                            <div class="project-main-image mardal-image-reveal">
+                                <picture>
+                                    <source srcset="/work/mardal/mardal-09.avif" type="image/avif">
+                                    <source srcset="/work/mardal/mardal-09.webp" type="image/webp">
+                                    <img src="/work/mardal/mardal-09.jpg" width="1474" height="932" alt="The case study&#x27;s introduction on the grid: a paragraph on Jetonikeramika, then Industry, Services, Location and Stack, and a link to the live website" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-09.webp">
+                                </picture>
+                            </div>
+                            <div class="project-main-image mardal-image-reveal">
+                                <picture>
+                                    <source srcset="/work/mardal/mardal-10.avif" type="image/avif">
+                                    <source srcset="/work/mardal/mardal-10.webp" type="image/webp">
+                                    <img src="/work/mardal/mardal-10.jpg" width="1495" height="943" alt="The case study&#x27;s images: screens of the Jetonikeramika website in the middle columns, Previous and Next on the left, and on the right a column of thumbnails with a frame on the one in view" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-10.webp">
+                                </picture>
+                            </div>
+                            <div class="project-main-image mardal-image-reveal">
+                                <picture>
+                                    <source srcset="/work/mardal/mardal-11.avif" type="image/avif">
+                                    <source srcset="/work/mardal/mardal-11.webp" type="image/webp">
+                                    <img src="/work/mardal/mardal-11.jpg" width="1492" height="943" alt="The About page on pink: Small by choice beside the text on the team, its first lines fading out at the top" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-11.webp">
+                                </picture>
+                            </div>
+                            <div class="project-main-image mardal-image-reveal">
+                                <picture>
+                                    <source srcset="/work/mardal/mardal-12.avif" type="image/avif">
+                                    <source srcset="/work/mardal/mardal-12.webp" type="image/webp">
+                                    <img src="/work/mardal/mardal-12.jpg" width="1495" height="943" alt="The About page on yellow: photographs of offices placed across the grid&#x27;s columns" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-12.webp">
+                                </picture>
+                            </div>
+                            <!-- The site on a phone: two screens to a row -->
+                            <div class="project-main-image project-gallery-row">
+                                <div class="mardal-image-reveal">
+                                    <picture>
+                                        <source srcset="/work/mardal/mardal-mobile-01.avif" type="image/avif">
+                                        <source srcset="/work/mardal/mardal-mobile-01.webp" type="image/webp">
+                                        <img src="/work/mardal/mardal-mobile-01.jpg" width="731" height="1275" alt="The home page on a phone: HOUSE OF CREATIVITY &amp; TECHNOLOGY above the photograph of the woman and the man in traditional Albanian dress, with the orange square between them" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-mobile-01.webp">
+                                    </picture>
+                                </div>
+                                <div class="mardal-image-reveal">
+                                    <picture>
+                                        <source srcset="/work/mardal/mardal-mobile-02.avif" type="image/avif">
+                                        <source srcset="/work/mardal/mardal-mobile-02.webp" type="image/webp">
+                                        <img src="/work/mardal/mardal-mobile-02.jpg" width="731" height="1275" alt="Human Creativity and Artificial Intelligence on a phone, joined by the orange plus, above the cookie notice on orange with Accept all, Necessary only and Settings" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-mobile-02.webp">
+                                    </picture>
+                                </div>
+                            </div>
+                            <div class="project-main-image project-gallery-row">
+                                <div class="mardal-image-reveal">
+                                    <picture>
+                                        <source srcset="/work/mardal/mardal-mobile-03.avif" type="image/avif">
+                                        <source srcset="/work/mardal/mardal-mobile-03.webp" type="image/webp">
+                                        <img src="/work/mardal/mardal-mobile-03.jpg" width="734" height="1270" alt="Our expertise on a phone: Creative in orange with its services listed beneath, then Development and AI + Automation" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-mobile-03.webp">
+                                    </picture>
+                                </div>
+                                <div class="mardal-image-reveal">
+                                    <picture>
+                                        <source srcset="/work/mardal/mardal-mobile-04.avif" type="image/avif">
+                                        <source srcset="/work/mardal/mardal-mobile-04.webp" type="image/webp">
+                                        <img src="/work/mardal/mardal-mobile-04.jpg" width="734" height="1270" alt="The menu on a phone: Services, Clients, About and Contact set large, each with the orange plus, and Start a project, the email and the address at the foot" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-mobile-04.webp">
+                                    </picture>
+                                </div>
+                            </div>
+                            <div class="project-main-image project-gallery-row">
+                                <div class="mardal-image-reveal">
+                                    <picture>
+                                        <source srcset="/work/mardal/mardal-mobile-05.avif" type="image/avif">
+                                        <source srcset="/work/mardal/mardal-mobile-05.webp" type="image/webp">
+                                        <img src="/work/mardal/mardal-mobile-05.jpg" width="734" height="1270" alt="The Services page on a phone: Mardal, a house of design, engineering &amp; AI solution, set across orange grid lines marked with pluses" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-mobile-05.webp">
+                                    </picture>
+                                </div>
+                                <div class="mardal-image-reveal">
+                                    <picture>
+                                        <source srcset="/work/mardal/mardal-mobile-06.avif" type="image/avif">
+                                        <source srcset="/work/mardal/mardal-mobile-06.webp" type="image/webp">
+                                        <img src="/work/mardal/mardal-mobile-06.jpg" width="734" height="1270" alt="The services list on a phone, CRM Solutions in focus in orange, with its description, deliverables, Write to us and Book a meeting beneath" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-mobile-06.webp">
+                                    </picture>
+                                </div>
+                            </div>
+                            <div class="project-main-image project-gallery-row">
+                                <div class="mardal-image-reveal">
+                                    <picture>
+                                        <source srcset="/work/mardal/mardal-mobile-07.avif" type="image/avif">
+                                        <source srcset="/work/mardal/mardal-mobile-07.webp" type="image/webp">
+                                        <img src="/work/mardal/mardal-mobile-07.jpg" width="734" height="1270" alt="The Clients page on a phone: FILTERS above the case studies, En-Nur and Jetonikeramika side by side and Spitex Schwab AG across the width" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-mobile-07.webp">
+                                    </picture>
+                                </div>
+                                <div class="mardal-image-reveal">
+                                    <picture>
+                                        <source srcset="/work/mardal/mardal-mobile-08.avif" type="image/avif">
+                                        <source srcset="/work/mardal/mardal-mobile-08.webp" type="image/webp">
+                                        <img src="/work/mardal/mardal-mobile-08.jpg" width="734" height="1270" alt="The About page on a phone, on yellow: Built Over Time and the studio&#x27;s story since 2008, above a photograph of an office" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-mobile-08.webp">
+                                    </picture>
+                                </div>
+                            </div>
+                            <div class="project-main-image project-gallery-row">
+                                <div class="mardal-image-reveal">
+                                    <picture>
+                                        <source srcset="/work/mardal/mardal-mobile-09.avif" type="image/avif">
+                                        <source srcset="/work/mardal/mardal-mobile-09.webp" type="image/webp">
+                                        <img src="/work/mardal/mardal-mobile-09.jpg" width="734" height="1270" alt="The About page on a phone, on pink: Small by choice and the text on how the team works" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-mobile-09.webp">
+                                    </picture>
+                                </div>
+                                <div class="mardal-image-reveal">
+                                    <picture>
+                                        <source srcset="/work/mardal/mardal-mobile-10.avif" type="image/avif">
+                                        <source srcset="/work/mardal/mardal-mobile-10.webp" type="image/webp">
+                                        <img src="/work/mardal/mardal-mobile-10.jpg" width="734" height="1270" alt="The footer on a phone, on orange: Our clients, the menu and the contact details in two columns, above the mardal wordmark" loading="lazy" data-thumb="/work/mardal/thumbs/mardal-mobile-10.webp">
+                                    </picture>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modern Footer Section -->
+    <footer class="modern-footer">
+        <!-- Big name sign-off: three small columns (menu, social, contact), the year and back to top, then the name huge across
+             the full width, sitting on the bottom edge of the page with its lower fifth cut off -->
+        <div class="container">
+            <div class="footer-columns">
+                <a href="/" class="footer-logo" aria-label="Kushtrim Arifi, home">[a]</a>
+                <nav class="footer-column" aria-label="Footer">
+                    <p class="footer-label">Menu</p>
+                    <a href="/work.html">Work</a>
+                    <a href="/about.html">About</a>
+                    <a href="/Kushtrim_Arifi_CV.pdf" download>Download CV<span class="visually-hidden"> (PDF)</span></a>
+                </nav>
+                <div class="footer-column">
+                    <p class="footer-label">Social</p>
+                    <a href="https://www.linkedin.com/in/kushtrim-arifi-60313713b/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://github.com/Kushtrima" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </div>
+                <div class="footer-column footer-column--contact">
+                    <p class="footer-label">Contact</p>
+                    <a href="mailto:info@kushtrimarifi.com">info@kushtrimarifi.com</a>
+                    <a href="tel:+38349210999">+383 49 210 999</a>
+                </div>
+            </div>
+
+            <div class="footer-bar">
+                <p class="footer-copyright">© <span class="footer-year">2026</span> Kushtrim Arifi</p>
+                <button class="back-to-top arrow-link arrow-link--up" type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top"><span class="arrow-link-label">Top</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3"/><path d="M3.5 7.5 8 3l4.5 4.5"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3"/><path d="M3.5 7.5 8 3l4.5 4.5"/></svg></span></button>
+            </div>
+
+            <p class="footer-name" aria-hidden="true">Kushtrim Arifi</p>
+        </div>
+    </footer>
+
+    <script src="/vendor/gsap/gsap.min.js" defer></script>
+    <script src="/vendor/gsap/ScrollTrigger.min.js" defer></script>
+    <script src="/vendor/gsap/CustomEase.min.js" defer></script>
+    <script src="/script.js?v=20261021-2" defer></script>
+</body>
+
+</html>
