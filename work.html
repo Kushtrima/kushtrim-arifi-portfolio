@@ -42,7 +42,7 @@
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
 
-    <link rel="stylesheet" href="styles.css?v=20261021-2">
+    <link rel="stylesheet" href="styles.css?v=20261022-1">
 
     <!-- Structured Data: CollectionPage + ItemList -->
     <script type="application/ld+json">
@@ -185,15 +185,7 @@
                     </div>
                     <p class="work-filter-empty is-filtered-out" role="status">Coming soon</p>
 
-                    <div class="gallery-title">
-                        <div class="text-reveal-wrapper">
-                            <h2>Websites & Web Apps</h2>
-                        </div>
-                        <div class="text-reveal-wrapper">
-                            <div class="gallery-line"></div>
-                        </div>
-                    </div>
-
+                    <!-- Every project in one grid, the websites first, then the branding; the filter shows one kind at a time -->
                     <div class="gallery-grid">
                         <div class="gallery-item" data-project="mardal" data-category="websites">
                             <a href="work/mardal.html" style="text-decoration: none; color: inherit;">
@@ -354,89 +346,78 @@
                                 </div>
                             </a>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Logo Section -->
-        <section class="logo-section">
-            <div class="container">
-                <div class="logo-title">
-                    <h2>Logo & Branding</h2>
-                </div>
+                        <div class="gallery-item" data-project="hbs" data-category="branding">
+                            <a href="work/hbs.html" style="text-decoration: none; color: inherit;">
+                                <div class="gallery-image">
+                                    <picture>
+                                        <source srcset="work/hbs/hbs-cover.avif" type="image/avif">
+                                        <source srcset="work/hbs/hbs-cover.webp" type="image/webp">
+                                        <img src="work/hbs/hbs-cover.jpg" alt="HBS Swiss AG — a new brand identity for a construction company" loading="lazy">
+                                    </picture>
+                                </div>
+                                <div class="gallery-info">
+                                    <h3 class="work-name">HBS</h3>
+                                    <p class="work-industry">Construction</p>
+                                    <p class="work-service">Branding</p>
+                                    <p class="work-location">Switzerland</p>
+                                </div>
+                            </a>
+                        </div>
 
-                <div class="logo-gallery">
-                    <div class="gallery-item" data-project="hbs" data-category="branding">
-                        <a href="work/hbs.html" style="text-decoration: none; color: inherit;">
-                            <div class="gallery-image">
-                                <picture>
-                                    <source srcset="work/hbs/hbs-cover.avif" type="image/avif">
-                                    <source srcset="work/hbs/hbs-cover.webp" type="image/webp">
-                                    <img src="work/hbs/hbs-cover.jpg" alt="HBS Swiss AG — a new brand identity for a construction company" loading="lazy">
-                                </picture>
-                            </div>
-                            <div class="gallery-info">
-                                <h3 class="work-name">HBS</h3>
-                                <p class="work-industry">Construction</p>
-                                <p class="work-service">Branding</p>
-                                <p class="work-location">Switzerland</p>
-                            </div>
-                        </a>
-                    </div>
+                        <div class="gallery-item" data-project="wmk" data-category="branding">
+                            <a href="work/wmk.html" style="text-decoration: none; color: inherit;">
+                                <div class="gallery-image">
+                                    <picture>
+                                        <source srcset="work/wmk/wmk-cover.avif" type="image/avif">
+                                        <source srcset="work/wmk/wmk-cover.webp" type="image/webp">
+                                        <img src="work/wmk/wmk-cover.jpg" alt="WMK — the brand identity for a marketing academy in Zurich" loading="lazy">
+                                    </picture>
+                                </div>
+                                <div class="gallery-info">
+                                    <h3 class="work-name">WMK</h3>
+                                    <p class="work-industry">Education</p>
+                                    <p class="work-service">Branding</p>
+                                    <p class="work-location">Zurich, Switzerland</p>
+                                </div>
+                            </a>
+                        </div>
 
-                    <div class="gallery-item" data-project="wmk" data-category="branding">
-                        <a href="work/wmk.html" style="text-decoration: none; color: inherit;">
-                            <div class="gallery-image">
-                                <picture>
-                                    <source srcset="work/wmk/wmk-cover.avif" type="image/avif">
-                                    <source srcset="work/wmk/wmk-cover.webp" type="image/webp">
-                                    <img src="work/wmk/wmk-cover.jpg" alt="WMK — the brand identity for a marketing academy in Zurich" loading="lazy">
-                                </picture>
-                            </div>
-                            <div class="gallery-info">
-                                <h3 class="work-name">WMK</h3>
-                                <p class="work-industry">Education</p>
-                                <p class="work-service">Branding</p>
-                                <p class="work-location">Zurich, Switzerland</p>
-                            </div>
-                        </a>
-                    </div>
+                        <div class="gallery-item" data-project="riesen" data-category="branding">
+                            <a href="work/riesen.html" style="text-decoration: none; color: inherit;">
+                                <div class="gallery-image">
+                                    <picture>
+                                        <source srcset="work/riesen/riesen-cover.avif" type="image/avif">
+                                        <source srcset="work/riesen/riesen-cover.webp" type="image/webp">
+                                        <img src="work/riesen/riesen-cover.jpg" alt="Riesen Holzbau — a company van with the new logo in front of a timber gable under scaffolding" loading="lazy">
+                                    </picture>
+                                </div>
+                                <div class="gallery-info">
+                                    <h3 class="work-name">Riesen Holzbau</h3>
+                                    <p class="work-industry">Timber Construction</p>
+                                    <p class="work-service">Branding</p>
+                                    <p class="work-location">Switzerland</p>
+                                </div>
+                            </a>
+                        </div>
 
-                    <div class="gallery-item" data-project="riesen" data-category="branding">
-                        <a href="work/riesen.html" style="text-decoration: none; color: inherit;">
-                            <div class="gallery-image">
-                                <picture>
-                                    <source srcset="work/riesen/riesen-cover.avif" type="image/avif">
-                                    <source srcset="work/riesen/riesen-cover.webp" type="image/webp">
-                                    <img src="work/riesen/riesen-cover.jpg" alt="Riesen Holzbau — a company van with the new logo in front of a timber gable under scaffolding" loading="lazy">
-                                </picture>
-                            </div>
-                            <div class="gallery-info">
-                                <h3 class="work-name">Riesen Holzbau</h3>
-                                <p class="work-industry">Timber Construction</p>
-                                <p class="work-service">Branding</p>
-                                <p class="work-location">Switzerland</p>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="gallery-item" data-project="baren" data-category="branding">
-                        <a href="work/baren.html" style="text-decoration: none; color: inherit;">
-                            <div class="gallery-image">
-                                <picture>
-                                    <source srcset="work/baren/baren-cover.avif" type="image/avif">
-                                    <source srcset="work/baren/baren-cover.webp" type="image/webp">
-                                    <img src="work/baren/baren-cover.jpg" alt="Bären Baugruppe AG — a worker in a hard hat with the new logo reading plans, a company van with the bear behind him" loading="lazy">
-                                </picture>
-                            </div>
-                            <div class="gallery-info">
-                                <h3 class="work-name">Bären Baugruppe&nbsp;AG</h3>
-                                <p class="work-industry">Construction &amp; Roofing</p>
-                                <p class="work-service">Branding</p>
-                                <p class="work-location">Switzerland</p>
-                            </div>
-                        </a>
+                        <div class="gallery-item" data-project="baren" data-category="branding">
+                            <a href="work/baren.html" style="text-decoration: none; color: inherit;">
+                                <div class="gallery-image">
+                                    <picture>
+                                        <source srcset="work/baren/baren-cover.avif" type="image/avif">
+                                        <source srcset="work/baren/baren-cover.webp" type="image/webp">
+                                        <img src="work/baren/baren-cover.jpg" alt="Bären Baugruppe AG — a worker in a hard hat with the new logo reading plans, a company van with the bear behind him" loading="lazy">
+                                    </picture>
+                                </div>
+                                <div class="gallery-info">
+                                    <h3 class="work-name">Bären Baugruppe&nbsp;AG</h3>
+                                    <p class="work-industry">Construction &amp; Roofing</p>
+                                    <p class="work-service">Branding</p>
+                                    <p class="work-location">Switzerland</p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -481,7 +462,7 @@
     <script src="/vendor/gsap/gsap.min.js" defer></script>
     <script src="/vendor/gsap/ScrollTrigger.min.js" defer></script>
     <script src="/vendor/gsap/CustomEase.min.js" defer></script>
-    <script src="script.js?v=20261021-2" defer></script>
+    <script src="script.js?v=20261022-1" defer></script>
 </body>
 
 </html>

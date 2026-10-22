@@ -1985,34 +1985,6 @@ body:has(.hero) .header.is-empty {
     margin-top: 60px;
 }
 
-/* Logo Section */
-.logo-section {
-    padding: 50px 0;
-    background-color: var(--color-secondary);
-}
-
-.logo-title h2 {
-    font-family: var(--font-display);
-    font-size: 36px;
-    font-weight: 400;
-    color: var(--color-primary);
-    margin: 0 0 40px 0;
-    letter-spacing: 1px;
-    text-transform: none;
-}
-
-.logo-gallery {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px 10px;
-    margin-top: 0;
-}
-
-.logo-gallery .gallery-item {
-    opacity: 1;
-    transform: translateY(0);
-}
-
 /* Project Gallery Section */
 .project-gallery-section {
     margin-top: 80px;
@@ -2063,24 +2035,6 @@ body:has(.hero) .header.is-empty {
 .work-gallery {
     margin-top: 100px;
     width: 100%;
-}
-
-.gallery-title {
-    margin-bottom: 40px;
-}
-
-.gallery-title h2 {
-    font-family: var(--font-display);
-    font-size: 36px;
-    font-weight: 400;
-    color: var(--color-primary);
-    margin: 0 0 15px 0;
-    letter-spacing: 1px;
-    text-transform: none;
-}
-
-.gallery-line {
-    display: none;
 }
 
 /* Work page filter: "+ FILTER" in small capitals with the header's orange "+" (two thin lines, turned 45° into a "×"
@@ -2206,15 +2160,11 @@ body:has(.hero) .header.is-empty {
     display: none !important;
 }
 
-/* With the websites filtered out the first section is only the title and the filter, so it gives up its full-screen
-   height and bottom padding and the branding follows at the usual distance */
+/* A category with nothing in it yet leaves the section only the title, the filter and "Coming soon" (tall enough
+   itself), so it gives up its full-screen height and bottom padding */
 .work-page-section:has(.gallery-grid.is-filtered-out) {
     min-height: 0;
     padding-bottom: 0;
-}
-
-.work-page-section:has(.gallery-grid.is-filtered-out) + .logo-section {
-    padding-top: 0;
 }
 
 @media (max-width: 768px) {
@@ -2251,8 +2201,7 @@ body:has(.hero) .header.is-empty {
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-    .gallery-grid,
-    .logo-gallery {
+    .gallery-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -2545,20 +2494,10 @@ body:has(.hero) .header.is-empty {
         margin-top: 60px;
     }
 
-    .gallery-title h2 {
-        font-size: 28px;
-        margin-bottom: 12px;
-    }
-
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 32px 10px;
         margin-top: 60px;
-    }
-
-    .logo-gallery {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 32px 10px;
     }
 
     .gallery-image {
