@@ -837,8 +837,8 @@ body:has(.hero) .header.is-empty {
     }
 }
 
-/* About section: "ABOUT" big in the display serif at the top left, like the other section titles; under it the two
-   paragraphs in the plain font as two justified columns across the full width, and "My story" at the bottom right */
+/* About section: "ABOUT" big in the display serif at the top left, like the other section titles; under it the three
+   paragraphs in the plain font as three justified columns across the full width, and "My story" at the bottom right */
 .about-section {
     padding: 120px 0;
     min-height: 100vh;
@@ -877,9 +877,18 @@ body:has(.hero) .header.is-empty {
 
 .about-text-parts {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: clamp(32px, 5vw, 80px);
     margin-bottom: clamp(48px, 6vw, 80px);
+}
+
+/* Below 1200px three columns get too narrow to read: the paragraphs stack, kept to a comfortable line length */
+@media (min-width: 769px) and (max-width: 1199px) {
+    .about-text-parts {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 1.5em;
+        max-width: 36em;
+    }
 }
 
 .about-paragraph {

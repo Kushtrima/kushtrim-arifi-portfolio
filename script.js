@@ -515,9 +515,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Soft and straight: nothing moves up or down, the letters only grow and fade in place. The "a" grows in while the
         // last letters leave, so the brackets close straight onto "[a]"; a short pause on it, then the glide. The steps are
-        // written at their original pace and the whole timeline plays INTRO_SPEED times faster (about 3.6s in all); the
+        // written at their original pace and the whole timeline plays INTRO_SPEED times faster (about 2.3s in all); the
         // hero's entrance waits the same shortened time
-        const INTRO_SPEED = 1.3;
+        const INTRO_SPEED = 2;
         introLength = 3.4 / INTRO_SPEED;
         gsap.timeline({
             onComplete: () => {
