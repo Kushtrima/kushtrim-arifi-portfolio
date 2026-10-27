@@ -555,19 +555,16 @@ html.intro-on .header .logo-text {
     }
 }
 
-/* Hero: a square portrait on a dark grey field with the name on one line through it: "Kushtrim" runs over the photo's
-   left edge and "Arifi" over its right edge, both at eye level beside the face; the job title sits small under the
-   start of the name and "Creating since 2015" at the foot, on the navigation's edge. Every position comes from the
-   photo's size (--photo) and centre (--cx, --cy), so the overlaps hold at every width; the photo sits right of the
-   middle by half the difference between the two names' inked widths (0.916em: "Kushtrim" 3.74em, "Arifi" 1.90em plus
-   the gap's side bearings, measured in the browser), so the whole line is centred. script.js opens the photo from its
-   centre, raises the words in reading order, and on scroll pulls the name apart while the photo drifts slower than
-   the page. */
+/* Hero, "Cover" (owner's pick, 2026-10-27): the name runs edge to edge across the top like a magazine title, the square
+   portrait stands under it, and a second photo layer cut out along the person puts the head in front of the letters. Along
+   the foot: the job title left, Republic of Kosova in the middle, Creating Since 2015 right, all at one small size. The
+   frame is a size container, so the name is sized from the frame's own width (cqw) and fills it exactly, with or without
+   a scrollbar. script.js opens the photo from its centre and raises the name, then the small lines, out of their masks. */
 .hero {
-    --photo: min(30vw, 50vh);
-    --big: min(12vw, 19vh);
-    --cx: calc(50% + var(--big) * 0.916);
-    --cy: calc(50% + 3vh);
+    --cap: clamp(16px, 1.45vw, 22px);
+    /* Where the name starts, and the photo with it: 16% down the screen (owner: "move little down", 2026-10-27) */
+    --top: clamp(120px, 16svh, 176px);
+    --foot: clamp(32px, 5vh, 56px);
     position: relative;
     height: 100vh;
     height: 100svh;
@@ -575,24 +572,6 @@ html.intro-on .header .logo-text {
     overflow: hidden;
     background-color: var(--color-secondary);
     color: var(--color-primary);
-}
-
-/* The scroll pin (script.js, name beside the photo) writes the hero's and its .pin-spacer's size in pixels and updates
-   them only about 0.1s after a resize ends; until then the page background showed beside or below the hero, or the hero
-   ran past the window. These follow the window live instead, with the same values the pin sets once it catches up: the
-   hero one screen tall (at least 620px), the spacer that plus the 15% of a screen the hero holds still for */
-.pin-spacer:has(> .hero) {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: calc(max(100svh, 620px) + 15svh) !important;
-    padding-bottom: 15svh !important;
-}
-
-.pin-spacer > .hero {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: 100svh !important;
-    max-height: none !important;
 }
 
 /* On the home page the header inverts against what is behind it, so it stays readable over the white About section */
@@ -613,60 +592,62 @@ body:has(.hero) .header.is-empty {
     height: 100%;
 }
 
-/* The container's content box: left 0 and right 0 are the logo's and the navigation's edges */
+/* The container's content box: left 0 and right 0 are the logo's and the navigation's edges. The values that use cqw
+   live here and are read by the children, so the units resolve against this frame */
 .hero-frame {
     position: relative;
     height: 100%;
+    container-type: inline-size;
+    /* "Kushtrim Arifi" is 5.64em wide at -0.02em tracking and ", MSc" about 2.6 small lines: together the frame's width */
+    --big: calc((100cqw - var(--cap) * 2.6) / 5.64);
+    /* As wide as 38% of the frame, but never down into the captions at the foot */
+    --photo: min(38cqw, calc(max(100svh, 620px) - var(--top) - var(--big) * 0.12 - var(--cap) * 2.4 - var(--foot) - 40px));
+    --photo-top: calc(var(--top) + var(--big) * 0.12);
 }
 
-.hero-title-section {
+.hero-name {
+    position: absolute;
+    left: 0;
+    top: var(--top);
+    z-index: 1;
     margin: 0;
-    /* The name is the page's h1. Its own size is only a basis for the em values below (the words set their own size in
-       .hero-word), so it is held at what a heading inherited before, and the spacing stays exactly as drawn */
-    font-size: 1.5em;
     font-family: var(--font-display);
+    font-size: var(--big);
     font-weight: 400;
-    line-height: 0.9;
-    letter-spacing: -0.015em;
+    line-height: 0.8;
+    letter-spacing: -0.02em;
     white-space: nowrap;
+    color: var(--color-primary);
 }
 
-/* Masks the words rise out of; the padding keeps descenders inside */
+/* The mask the name rises out of; the padding keeps the ascenders inside it without moving the line */
 .hero-mask {
     display: block;
     overflow: hidden;
-    padding-bottom: 0.14em;
-    margin-bottom: -0.14em;
-}
-
-.hero-word {
-    position: absolute;
-    z-index: 1;
-    font-size: var(--big);
+    padding: 0.14em 0 0.08em;
+    margin: -0.14em 0 -0.08em;
 }
 
 .hero-mask > span {
     display: block;
 }
-/* Ends 0.24 of the photo inside its left edge, just clear of the face, its line centred at 42% of the photo's height */
-.hero-word--first {
-    right: calc(100% - var(--cx) + var(--photo) * 0.24);
-    top: calc(var(--cy) - var(--photo) * 0.08 - var(--big) * 0.45);
-}
 
-/* On the same line as "Kushtrim", starting 0.26 of the photo inside its right edge, just clear of the face */
-.hero-word--last {
-    left: calc(var(--cx) + var(--photo) * 0.24);
-    top: calc(var(--cy) - var(--photo) * 0.08 - var(--big) * 0.45);
+/* Small, at the top right of "Arifi", like the degree after a name on a title page */
+.hero-msc {
+    margin-left: 0.15em;
+    font-size: var(--cap);
+    line-height: 1.2;
+    letter-spacing: 0;
+    vertical-align: top;
 }
 
 .hero-image-section {
     position: absolute;
-    left: var(--cx);
-    top: var(--cy);
+    left: 50%;
+    top: var(--photo-top);
     width: var(--photo);
     aspect-ratio: 1;
-    translate: -50% -50%;
+    translate: -50% 0;
     margin: 0;
     overflow: hidden;
     background-color: var(--color-secondary);
@@ -692,7 +673,7 @@ body:has(.hero) .header.is-empty {
 }
 
 /* The person alone, above the name: a second photo layer masked to the silhouette macOS Vision found
-   (img/kaimage-mask.png), sized like the photo's cover crop, so the name disappears where it slides behind the head */
+   (img/kaimage-mask.png), sized like the photo's cover crop, so the head stands in front of the letters */
 .hero-cutout {
     z-index: 2;
     -webkit-mask-image: url('img/kaimage-mask.png');
@@ -706,36 +687,25 @@ body:has(.hero) .header.is-empty {
     pointer-events: none;
 }
 
-/* The name as particles on scroll (script.js draws them): over the words, under the cut-out person */
-.hero-particles {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-
-/* The job title bottom left and "Creating since 2015" bottom right, at one small size */
+/* The foot row: the job title left, Republic of Kosova in the middle, Creating Since 2015 right, on one baseline */
 .hero-caption {
     position: absolute;
-    bottom: clamp(24px, 4vh, 40px);
-    font-size: clamp(18px, 1.6vw, 26px);
+    bottom: var(--foot);
+    font-size: var(--cap);
 }
 
-/* Under the start of "Kushtrim": on its first letter (the name ends 0.24 of the photo inside the photo's left edge and
-   is 3.76em of Times wide) and 78px below its baseline (0.7875em below the top of its line) */
-.hero-caption--left {
-    left: calc(var(--cx) - var(--photo) * 0.24 - var(--big) * 3.76);
-    top: calc(var(--cy) - var(--photo) * 0.08 + var(--big) * 0.3375 + 78px);
-    bottom: auto;
+.hero-caption--title {
+    left: 0;
 }
 
-/* At the foot, ending on the end of "Arifi" (the word starts 0.24 of the photo inside the photo's right edge and is 1.935em
-   of Times wide), so the two captions line up with the two ends of the name; 30px above the captions' usual bottom margin */
-.hero-caption--right {
-    right: calc(100% - var(--cx) - var(--photo) * 0.24 - var(--big) * 1.935);
-    bottom: calc(clamp(24px, 4vh, 40px) + 30px);
+.hero-caption--place {
+    left: 50%;
+    translate: -50% 0;
+    text-align: center;
+}
+
+.hero-caption--since {
+    right: 0;
     text-align: right;
 }
 
@@ -764,76 +734,51 @@ body:has(.hero) .header.is-empty {
     transform: translateY(100%);
 }
 
-/* Phones and portrait tablets: "Kushtrim" across the top with its feet on the photo, "Arifi" at the right standing on
-   the photo's bottom edge, then the job title and "Creating since 2015" one under the other. Sizes in vw keep the arrangement the same at
-   every width; the hero fills the screen, as it does on a wide one */
+/* Phones and portrait tablets: the name on two lines ("Kushtrim" / "Arifi, MSc") across the full width, the photo
+   centred under it, the job title and Republic of Kosova at the foot on the left and Creating Since 2015 on the right.
+   One line would leave the name small, and the head in front of two-line letters would cover half of "Arifi", so here
+   the photo sits under the name and the cut-out is not used */
 @media (max-width: 699px), (max-width: 1023px) and (orientation: portrait) {
     .hero {
-        --cx: 50%;
-        /* The middle group scales off the photo: the name is 0.181 of it, "Kushtrim" starts 0.076 down plus 210px,
-           the photo 0.164 down less 60px, "Arifi" 0.986 down, and the whole group is 1.43 photos tall. The width cap keeps
-           "Kushtrim" inside the screen; the height cap lets the group grow on a tall phone */
-        --pic: min(66vw, 34svh);
-        --photo: var(--pic);
-        --group: calc(var(--pic) * 1.4286);
-        --cap-line: clamp(16px, 4.6vw, 24px);
-        --cap-bottom: calc(84px + env(safe-area-inset-bottom));
-        /* The captions' block: the job title's two lines, the gap, and "Creating since 2015". Measured from the old
-           24px foot, so raising the captions doesn't drag the name and the photo up with them */
-        --cap-space: calc(5 * var(--cap-line) + 24px + env(safe-area-inset-bottom));
-        /* The name and the photo sit in the middle of what is left between the header and the captions */
-        --stack-top: max(96px, calc(96px + (100svh - 96px - var(--cap-space) - var(--group)) / 2));
-        height: 100vh;
-        height: 100svh;
-        min-height: calc(96px + var(--group) + 5 * var(--cap-line) + 32px);
+        --cap: clamp(16px, 4.2vw, 22px);
+        --top: 96px;
+        --foot: calc(40px + env(safe-area-inset-bottom));
+        /* Tall enough for the photo at its smallest (56% of the frame, at most 220px): the name's two lines (1.6 x 1/3.64
+           of the frame), the photo, the two 28px gaps, the title, the gap under it and the foot row. A short phone
+           (Safari's toolbars showing) scrolls a little to the foot row instead of shrinking the face */
+        min-height: max(560px, calc(var(--top) + 56px + (100vw - 2 * var(--container-padding)) * 1.6 / 3.64 + min((100vw - 2 * var(--container-padding)) * 0.56, 220px) + var(--cap) * 7.2 + var(--foot)));
     }
 
-    .hero-word {
-        font-size: calc(var(--pic) * 0.181);
+    .hero-frame {
+        /* "Kushtrim" is 3.62em wide: the first line fills the frame */
+        --big: calc(100cqw / 3.64);
+        /* Under the name's two lines, leaving room below it for the title, a gap as tall as the title and the foot row
+           (7.2 lines), and never under 56% of the frame or 220px (the hero's min-height grows to make room) */
+        --photo-top: calc(var(--top) + var(--big) * 1.6 + 28px);
+        --photo: min(86cqw, max(min(56cqw, 220px), calc(max(100svh, 560px) - var(--photo-top) - var(--foot) - var(--cap) * 7.2 - 28px)));
     }
 
-    .hero-word--first {
-        right: auto;
-        left: 60px;
-        /* 210px below where it rests, but never closer than 8px above "Arifi" (a word's box is 0.188 of the photo tall) */
-        top: min(calc(var(--stack-top) + var(--pic) * 0.076 + 210px), calc(var(--stack-top) + var(--pic) * 0.798 - 8px));
+    .hero-name {
+        right: 0;
+        white-space: normal;
     }
 
-    .hero-image-section {
-        /* Never higher than the header, on a very short screen */
-        top: max(96px, calc(var(--stack-top) + var(--pic) * 0.164 - 60px));
-        width: var(--pic);
-        /* The scroll drift (script.js) moves the photo through --drift, so the script never takes over this translate
-           (when it did, a window going from stacked back to wide kept the stacked value and the photo dropped) */
-        translate: -50% var(--drift, 0%);
-    }
-
-    /* Stacked, the name already crosses the body where it rests, so the cut-out would hide it: the name stays in front */
     .hero-cutout {
         display: none;
     }
 
-    .hero-word--last {
-        left: auto;
-        right: 60px;
-        top: calc(var(--stack-top) + var(--pic) * 0.986);
+    /* Right under the photo, like its caption, well apart from Republic of Kosova and Creating Since 2015 (owner: "move up
+       this text in mobile ... its to close", then "move more up in mobile device only", 2026-10-27). On a short phone the
+       photo already leaves only this much room; on a tall one the spare room goes between the title and the foot row */
+    .hero-caption--title {
+        top: calc(var(--photo-top) + var(--photo) + 28px);
+        bottom: auto;
     }
 
-    .hero-caption {
-        font-size: var(--cap-line);
-    }
-
-    .hero-caption--left {
+    .hero-caption--place {
         left: 0;
-        top: auto;
-        bottom: calc(var(--cap-bottom) + 2.5em);
-    }
-
-    /* Under the job title's two lines, on the page's edge */
-    .hero-caption--right {
-        right: 0;
-        top: auto;
-        bottom: var(--cap-bottom);
+        translate: none;
+        text-align: left;
     }
 }
 

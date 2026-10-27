@@ -62,7 +62,7 @@
             if (!introSeen) document.documentElement.classList.add('intro-on');
         }
     </script>
-    <link rel="stylesheet" href="styles.css?v=20261026-1">
+    <link rel="stylesheet" href="styles.css?v=20261027">
 
     <!-- Structured Data: Person + ProfilePage -->
     <script type="application/ld+json">
@@ -194,11 +194,11 @@
 
 <body>
     <!--
-    THESIS: The name around the person. A square portrait on a dark grey field with the name huge on one line through it, "Kushtrim" over its left edge and "Arifi" over its right edge beside the face; the job title small under the start of the name, "Creating since 2015" small at the foot. Refuses the big photo beside a text block.
-    OWN-WORLD: #212121 field, #f2ede3 Times New Roman: the name huge, the two captions at one small size; the site's grayscale studio portrait vignetted into the field.
-    STORY: A hiring visitor meets the face and the name first, reads Senior Product Designer | Behavioral Design & UX Research and Creating since 2015 at the foot, then scrolls: the hero holds still while the name starts to burst into particles, and About me follows with the dots still in the air.
-    FIRST VIEWPORT: Square photo just right of centre so the line is centred; "Kushtrim" over its left edge and "Arifi" over its right edge, one line at eye level; "Senior Product Designer | Behavioral Design & UX Research" under the "K" of "Kushtrim", "Creating since 2015" at the foot on the navigation's edge.
-    FORM: name around the portrait, from the owner's reference image and follow-up notes; a section inside the established world, so no concept seed.
+    THESIS: The cover. The name runs edge to edge across the top like a magazine title and the portrait stands under it with the head in front of the letters. Refuses the small labelled photo.
+    OWN-WORLD: #212121 field, #f2ede3 Times New Roman: the name huge, everything else at one small size; the site's grayscale studio portrait vignetted into the field, cut out along the person (img/kaimage-mask.png).
+    STORY: A hiring visitor reads the name first, sees the face in front of it, then the job title, Republic of Kosova and Creating Since 2015 along the foot, and scrolls on to About me.
+    FIRST VIEWPORT: "Kushtrim Arifi" one line across the full width under the header with ", MSc" small at its top right; the square photo centred under it, its top 0.12 of the name's size below the name's top, so the head covers the lower part of the letters; at the foot the job title left, Republic of Kosova centred, Creating Since 2015 right. Phones: the name on two lines across the width, the photo under it, the captions at the foot.
+    FORM: option 1 "Cover" of three rendered options (owner's pick, 2026-10-27); a section inside the established world, so no concept seed.
     FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
     -->
     <!-- Intro on every load of the home page: brackets, the name written between them, back to "[a]", which moves to the header's logo as the ground opens (script.js) -->
@@ -256,15 +256,6 @@
     <main id="main-content" class="hero">
         <div class="hero-stage container">
             <div class="hero-frame">
-                <div class="hero-caption hero-caption--left">
-                    <div class="hero-small-mask"><p class="hero-caption-text">Senior Product Designer |<br>Behavioral Design &amp; UX Research</p></div>
-                </div>
-
-                <h1 class="hero-title-section" aria-label="Kushtrim Arifi">
-                    <span class="hero-mask hero-word hero-word--first hero-drift-left"><span>Kushtrim</span></span>
-                    <span class="hero-mask hero-word hero-word--last hero-drift-right"><span>Arifi</span></span>
-                </h1>
-
                 <figure class="hero-image-section">
                     <picture>
                         <source srcset="img/kaimage.avif" type="image/avif">
@@ -273,7 +264,11 @@
                     </picture>
                 </figure>
 
-                <!-- The person cut out of the photo, above the name, so the name can pass behind the head as the page scrolls -->
+                <h1 class="hero-name">
+                    <span class="hero-mask"><span>Kushtrim Arifi<span class="hero-msc">, MSc</span></span></span>
+                </h1>
+
+                <!-- The person cut out of the photo, above the name, so the head stands in front of the letters like a magazine cover -->
                 <figure class="hero-image-section hero-cutout" aria-hidden="true">
                     <picture>
                         <source srcset="img/kaimage.avif" type="image/avif">
@@ -282,12 +277,21 @@
                     </picture>
                 </figure>
 
-                <div class="hero-caption hero-caption--right">
-                    <div class="hero-small-mask"><p class="hero-caption-text">Creating<br>since 2015</p></div>
+                <div class="hero-caption hero-caption--title">
+                    <div class="hero-small-mask"><p class="hero-caption-text">Senior Product Designer |</p></div>
+                    <div class="hero-small-mask"><p class="hero-caption-text">Behavioral Design &amp; UX Research</p></div>
+                </div>
+
+                <div class="hero-caption hero-caption--place">
+                    <div class="hero-small-mask"><p class="hero-caption-text">Republic of Kosova</p></div>
+                </div>
+
+                <div class="hero-caption hero-caption--since">
+                    <div class="hero-small-mask"><p class="hero-caption-text">Creating</p></div>
+                    <div class="hero-small-mask"><p class="hero-caption-text">Since 2015</p></div>
                 </div>
             </div>
         </div>
-        <canvas class="hero-particles" aria-hidden="true"></canvas>
     </main>
 
     <section class="about-section">
@@ -524,7 +528,7 @@
     <script src="/vendor/gsap/ScrollTrigger.min.js" defer></script>
     <script src="/vendor/gsap/CustomEase.min.js" defer></script>
     <script src="/vendor/gsap/ScrollSmoother.min.js" defer></script>
-    <script src="script.js?v=20261026-1" defer></script>
+    <script src="script.js?v=20261027" defer></script>
 </body>
 
 </html>

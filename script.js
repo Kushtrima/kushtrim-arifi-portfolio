@@ -543,153 +543,17 @@ document.addEventListener('DOMContentLoaded', function () {
             .to(introLogo, { opacity: 0, duration: 0.45, ease: 'power1.inOut' }, 4.2);
     }
 
-    // Text into particles on scroll (the hero's name). The letters are drawn on a scratch canvas and every few pixels of
-    // ink become a dot with its own outward path and start; dots grow with the type
-    const sampleDots = (ink, [x0, y0, x1, y1], ratio, size, centreX, centreY) => {
-        const dots = [];
-        if (x1 <= x0 || y1 <= y0) return dots;
-        const regionWidth = x1 - x0;
-        const pixels = ink.getImageData(x0, y0, regionWidth, y1 - y0).data;
-        const step = Math.max(2, Math.round((size * ratio) / 55));
-        for (let y = 0; y < y1 - y0; y += step) {
-            for (let x = 0; x < regionWidth; x += step) {
-                if (pixels[(y * regionWidth + x) * 4 + 3] < 128) continue;
-                const dotX = (x0 + x) / ratio;
-                const dotY = (y0 + y) / ratio;
-                const angle = Math.atan2(dotY - centreY, dotX - centreX) + (Math.random() - 0.5) * 1.4;
-                const reach = size * (0.8 + Math.random() * 2.4);
-                dots.push({
-                    x: dotX,
-                    y: dotY,
-                    dx: Math.cos(angle) * reach,
-                    dy: Math.sin(angle) * reach - size * 0.6 * Math.random(),
-                    delay: Math.random() * 0.4,
-                    size: step / ratio,
-                });
-            }
-        }
-        return dots;
-    };
-
-    // Each dot starts in its letter and flies out along its own path, leaving a little later than the last, and fades
-    // as it goes. The letters hand over to the dots over the first 8% of the burst: the words fade out as the dots fade
-    // in, so the text dissolves into dots instead of switching to them
-    const paintDots = (canvas, ratio, dots, progress, words) => {
-        const ink = canvas.getContext('2d');
-        ink.setTransform(1, 0, 0, 1, 0, 0);
-        ink.clearRect(0, 0, canvas.width, canvas.height);
-        const handover = Math.min(1, progress / 0.08);
-        gsap.set(words, handover > 0 ? { opacity: 1 - handover } : { clearProps: 'opacity' });
-        if (handover <= 0) return;
-        ink.setTransform(ratio, 0, 0, ratio, 0, 0);
-        ink.fillStyle = cssVar('--color-primary');
-        for (const dot of dots) {
-            const travel = Math.min(1, Math.max(0, (progress - dot.delay) / (1 - dot.delay)));
-            if (travel >= 1) continue;
-            const eased = 1 - (1 - travel) ** 3;
-            ink.globalAlpha = (1 - travel) * handover;
-            ink.fillRect(dot.x + dot.dx * eased, dot.y + dot.dy * eased, dot.size, dot.size);
-        }
-        ink.globalAlpha = 1;
-    };
-
-    // Hero: the photo opens from its centre while it settles from a slight zoom, the big words rise out of their
-    // masks in reading order, then the small print. On scroll the hero holds still (when the name sits beside the photo)
-    // while the name bursts into particles that pass behind the cut-out person.
+    // Hero: the photo and the cut-out person above the name open from their centre as one while they settle from a
+    // slight zoom, the name rises out of its mask, then the small lines along the foot, in reading order
     const hero = document.querySelector('.hero');
     if (hero && hasMotion) {
         const heroOut = CustomEase.create('hero-out', '0.16,1,0.3,1');
-        // The photo and the cut-out person above the name move as one
-        const photos = hero.querySelectorAll('.hero-image-section');
 
         gsap.timeline({ defaults: { ease: heroOut }, delay: introLength })
-            .fromTo(photos, { clipPath: 'inset(50% 50% 50% 50%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3 }, 0.1)
-            .fromTo('.hero-portrait', { scale: 1.2 }, { scale: 1, duration: 2.2 }, 0.1)
-            .fromTo(hero.querySelectorAll('.hero-word--first > span'), { y: 0, yPercent: 100 }, { yPercent: 0, duration: 1.1 }, 0.55)
-            .fromTo(hero.querySelectorAll('.hero-word--last > span'), { y: 0, yPercent: 100 }, { yPercent: 0, duration: 1.1 }, 0.69)
-            .fromTo(hero.querySelectorAll('.hero-small-mask > *'), { y: 0, yPercent: 100 }, { yPercent: 0, duration: 0.9, stagger: 0.08 }, 1.25);
-
-        // The name breaks into particles on scroll: its letters are sampled into dots on the .hero-particles canvas,
-        // which fly outward and fade as the scroll goes on and gather back into the name on the way up. The real words
-        // fade into the dots as the burst starts; the cut-out person stays above the canvas, so dots pass behind the head
-        const particleCanvas = hero.querySelector('.hero-particles');
-        const nameWords = hero.querySelectorAll('.hero-title-section .hero-mask');
-        const nameLines = [...hero.querySelectorAll('.hero-title-section .hero-mask > span')];
-        const burst = { progress: 0 };
-        let dots = [];
-
-        const drawDots = () => {
-            if (particleCanvas) paintDots(particleCanvas, particleCanvas.width / (hero.offsetWidth || 1), dots, burst.progress, nameWords);
-        };
-
-        // Draws each word at its resting place (layout offsets, which ignore the transforms) on a scratch canvas and
-        // keeps one dot for every few pixels of ink
-        const buildDots = () => {
-            if (!particleCanvas) return;
-            const ratio = Math.min(window.devicePixelRatio || 1, 2);
-            particleCanvas.width = Math.round(hero.offsetWidth * ratio);
-            particleCanvas.height = Math.round(hero.offsetHeight * ratio);
-            const scratch = document.createElement('canvas');
-            scratch.width = particleCanvas.width;
-            scratch.height = particleCanvas.height;
-            const ink = scratch.getContext('2d', { willReadFrequently: true });
-            dots = [];
-            nameLines.forEach((line) => {
-                const mask = line.parentElement;
-                const frame = mask.offsetParent;
-                const style = getComputedStyle(line);
-                const size = parseFloat(style.fontSize);
-                const left = frame.offsetLeft + mask.offsetLeft;
-                const top = frame.offsetTop + mask.offsetTop;
-                ink.setTransform(ratio, 0, 0, ratio, 0, 0);
-                ink.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
-                ink.letterSpacing = style.letterSpacing;
-                ink.fillStyle = '#fff';
-                const metrics = ink.measureText(line.textContent);
-                const lineHeight = parseFloat(style.lineHeight) || size * 0.9;
-                const baseline = top + (lineHeight - metrics.fontBoundingBoxAscent - metrics.fontBoundingBoxDescent) / 2 + metrics.fontBoundingBoxAscent;
-                ink.fillText(line.textContent, left, baseline);
-
-                const region = [
-                    Math.max(0, Math.floor((left - size * 0.2) * ratio)),
-                    Math.max(0, Math.floor((top - size * 0.2) * ratio)),
-                    Math.min(scratch.width, Math.ceil((left + mask.offsetWidth + size * 0.2) * ratio)),
-                    Math.min(scratch.height, Math.ceil((top + size * 1.2) * ratio)),
-                ];
-                dots = dots.concat(sampleDots(ink, region, ratio, size, left + mask.offsetWidth / 2, top + size * 0.45));
-            });
-            drawDots();
-        };
-
-        gsap.matchMedia().add({
-            stacked: '(max-width: 699px), (max-width: 1023px) and (orientation: portrait)',
-            wide: '(min-width: 700px)',
-            reduceMotion: '(prefers-reduced-motion: reduce)',
-        }, ({ conditions }) => {
-            if (conditions.reduceMotion || !particleCanvas) return undefined;
-            // Only 15% of the way: the page moves on with the name starting to break up and the dots still in the air
-            const animation = gsap.to(burst, { progress: 0.15, ease: 'none', onUpdate: drawDots });
-            if (!conditions.stacked) {
-                // Name beside the photo: the hero holds still for 15% of a screen's scrolling while the name bursts that
-                // far (the pace of a full burst over a whole screen), then the page moves on. It is pinned after the triggers above it were made, so they are re-sorted
-                // to measure with the pin's extra scroll
-                ScrollTrigger.create({ trigger: hero, start: 'top top', end: '+=15%', pin: true, scrub: 1, animation, refreshPriority: 1, onRefresh: buildDots });
-                ScrollTrigger.sort();
-            } else {
-                // Stacked: the name starts breaking up with the first touch of the scroll, over a third of a screen, so the
-                // dots are already in the air while the hero is still on screen; the photo drifts slower than the page for
-                // the whole hero
-                const scroll = { trigger: hero, start: 'top top', end: 'bottom top', scrub: true };
-                ScrollTrigger.create({ trigger: hero, start: 'top top', end: '+=33%', scrub: true, animation, onRefresh: buildDots });
-                // The drift is a CSS variable in the photo's own translate, so going back to the wide layout (which
-                // centres the photo with its own translate) finds nothing of the script's left on it
-                gsap.fromTo(photos, { '--drift': '0%' }, { '--drift': '12%', ease: 'none', scrollTrigger: { ...scroll } });
-            }
-            return () => {
-                burst.progress = 0;
-                drawDots();
-            };
-        });
+            .fromTo(hero.querySelectorAll('.hero-image-section'), { clipPath: 'inset(50% 50% 50% 50%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3 }, 0.1)
+            .fromTo(hero.querySelectorAll('.hero-portrait'), { scale: 1.2 }, { scale: 1, duration: 2.2 }, 0.1)
+            .fromTo(hero.querySelectorAll('.hero-mask > span'), { y: 0, yPercent: 100 }, { yPercent: 0, duration: 1.1 }, 0.45)
+            .fromTo(hero.querySelectorAll('.hero-small-mask > *'), { y: 0, yPercent: 100 }, { yPercent: 0, duration: 0.9, stagger: 0.08 }, 1.05);
     }
 
     // Scroll reveal: parts marked data-reveal fade up with the scroll itself. Over a short stretch as a part comes into
