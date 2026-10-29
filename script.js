@@ -65,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // GSAP didn't load: show everything that would otherwise wait for an animation
     function showWithoutMotion() {
-        document.documentElement.classList.remove('intro-on');
         document.body.style.cursor = 'auto';
         document.querySelectorAll('.hero-mask > span, .hero-small-mask > *, .hero-portrait, .about-text, .experience-title h2, .work-gallery .gallery-item, .about-title, .about-text-large, .four-column-section, .column')
             .forEach((element) => {
@@ -185,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // (the burger is gone, styles.css): at the top the logo stays on the left and the bar waits on the right as just
         // its "+", level with the logo; below the top the logo drifts out and the bar glides to the middle, "[a]" opening
         // inside it. Scrolling back reverses it. An open menu closes when the page crosses the top (a phone opens it down
-        // at the top and sideways in the middle); on the home page the bar waits for the intro to land the logo
+        // at the top and sideways in the middle)
         let compact = null;
         let emptyCall = null;
         // Level with the logo's edge on the other side (measured without the logo's own drift, which may be mid-way)
@@ -235,29 +234,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 move(headerParts, { x: 0, autoAlpha: 1, duration: 0.7, ease: 'power3.out', delay: instant ? 0 : 0.15 });
             }
         };
-        let headerReady = !(document.documentElement.classList.contains('intro-on') && document.querySelector('.intro'));
         ScrollTrigger.create({
             start: 80,
             end: 'max',
-            onEnter: () => { if (headerReady) setCompact(true); },
-            onLeaveBack: () => { if (headerReady) setCompact(false); },
+            onEnter: () => setCompact(true),
+            onLeaveBack: () => setCompact(false),
         });
-        const fitHeaderToScreen = () => {
-            if (!headerReady) return;
-            setCompact(window.scrollY >= 80, true);
-        };
-        if (headerReady) {
-            fitHeaderToScreen();
-        } else {
-            window.addEventListener('introend', () => {
-                headerReady = true;
-                setCompact(window.scrollY >= 80);
-            }, { once: true });
-        }
+        const fitHeaderToScreen = () => setCompact(window.scrollY >= 80, true);
+        fitHeaderToScreen();
         phoneHeader.addEventListener('change', fitHeaderToScreen);
         // A docked bar is placed in pixels from the left edge, so it follows the window's width
         window.addEventListener('resize', () => {
-            if (headerReady && compact === false && phoneHeader.matches) gsap.set(bar, { left: dockedLeft() });
+            if (compact === false && phoneHeader.matches) gsap.set(bar, { left: dockedLeft() });
         });
 
         toggle.addEventListener('click', () => setOpen(!open));
@@ -467,89 +455,13 @@ document.addEventListener('DOMContentLoaded', function () {
             .fromTo(aboutInk, { color: light.ink }, { color: dark.ink, ease: 'none', duration: 0.2 }, 0.4);
     }
 
-    // Intro once per visit (index.html decides): empty brackets appear, the name writes itself out between them (the
-    // brackets moving apart as it grows), unwrites again, an "a" takes its place, and "[a]" moves to its place in the
-    // header's logo while the dark ground opens from the middle; the header's logo fades in around it
-    const introCover = document.documentElement.classList.contains('intro-on') ? document.querySelector('.intro') : null;
-    const introHeaderLogo = document.querySelector('.header .logo-text');
-    let introLength = 0;
-    if (introCover && introHeaderLogo && hasMotion) {
-        const introLogo = introCover.querySelector('.intro-logo');
-        const brackets = [...introCover.querySelectorAll('.intro-bracket')];
-        const nameBox = introCover.querySelector('.intro-name');
-        const letterA = introCover.querySelector('.intro-a');
-
-        // One clipped box per letter, so each can grow from nothing to its own width
-        const name = nameBox.textContent;
-        nameBox.textContent = '';
-        const letters = [...name].map((character) => {
-            const letter = document.createElement('span');
-            letter.className = 'intro-letter';
-            letter.textContent = character === ' ' ? ' ' : character;
-            nameBox.append(letter);
-            return letter;
-        });
-        letterA.classList.add('intro-letter');
-        const widths = new Map([...letters, letterA].map((letter) => [letter, letter.getBoundingClientRect().width]));
-        gsap.set([...letters, letterA], { width: 0, opacity: 0 });
-
-        // Where "[a]" sits inside the header's "Kushtrim [a]", and how much smaller the header's type is
-        let landing = { x: 0, y: 0, scale: 1 };
-        const measureLanding = () => {
-            const text = introHeaderLogo.firstChild;
-            const range = document.createRange();
-            range.setStart(text, text.textContent.indexOf('['));
-            range.setEnd(text, text.textContent.trimEnd().length);
-            const to = range.getBoundingClientRect();
-            const from = introLogo.getBoundingClientRect();
-            landing = {
-                x: to.left - from.left,
-                y: to.top + to.height / 2 - (from.top + from.height / 2),
-                scale: parseFloat(getComputedStyle(introHeaderLogo).fontSize) / parseFloat(getComputedStyle(introLogo).fontSize),
-            };
-        };
-        const introOpen = CustomEase.create('intro-open', '0.76,0,0.24,1');
-        const channels = (name) => cssVar(name).match(/[0-9a-f]{2}/gi).map((hex) => parseInt(hex, 16));
-        const [light, dark] = [channels('--color-primary'), channels('--color-secondary')];
-        const landedColour = `rgb(${light.map((value, i) => Math.abs(value - dark[i])).join(', ')})`;
-
-        // Soft and straight: nothing moves up or down, the letters only grow and fade in place. The "a" grows in while the
-        // last letters leave, so the brackets close straight onto "[a]"; a short pause on it, then the glide. The steps are
-        // written at their original pace and the whole timeline plays INTRO_SPEED times faster (about 2.3s in all); the
-        // hero's entrance waits the same shortened time
-        const INTRO_SPEED = 2;
-        introLength = 3.4 / INTRO_SPEED;
-        gsap.timeline({
-            onComplete: () => {
-                document.documentElement.classList.remove('intro-on');
-                gsap.set(introHeaderLogo, { clearProps: 'opacity,transition,visibility' });
-                window.dispatchEvent(new Event('introend'));
-            },
-        })
-            .timeScale(INTRO_SPEED)
-            .set([introCover, introHeaderLogo], { animation: 'none' })
-            .set(introLogo, { visibility: 'visible', transformOrigin: '0% 50%' })
-            .fromTo(brackets, { opacity: 0 }, { opacity: 1, duration: 0.7, ease: 'power3.out' }, 0.15)
-            .to(letters, { width: (i, letter) => widths.get(letter), opacity: 1, duration: 0.45, ease: 'power3.out', stagger: 0.06 }, 0.55)
-            .to([...letters].reverse(), { width: 0, opacity: 0, duration: 0.35, ease: 'power2.inOut', stagger: 0.035 }, 2.3)
-            .to(letterA, { width: widths.get(letterA), opacity: 1, duration: 0.5, ease: 'power2.inOut' }, 2.7)
-            .add(measureLanding, 3.34)
-            // Ends in the colour the header shows its logo in over the hero: its difference blend against the dark ground
-            .to(introLogo, { x: () => landing.x, y: () => landing.y, scale: () => landing.scale, color: landedColour, duration: 1.2, ease: 'power3.inOut' }, 3.35)
-            .to(introCover.querySelector('.intro-half--top'), { yPercent: -100, duration: 1.2, ease: introOpen }, 3.45)
-            .to(introCover.querySelector('.intro-half--bottom'), { yPercent: 100, duration: 1.2, ease: introOpen }, 3.45)
-            .set(introHeaderLogo, { visibility: 'visible', opacity: 0, transition: 'none' }, 4.2)
-            .to(introHeaderLogo, { opacity: 1, duration: 0.45, ease: 'power1.inOut' }, 4.2)
-            .to(introLogo, { opacity: 0, duration: 0.45, ease: 'power1.inOut' }, 4.2);
-    }
-
     // Hero: the photo and the cut-out person above the name open from their centre as one while they settle from a
     // slight zoom, the name rises out of its mask, then the small lines along the foot, in reading order
     const hero = document.querySelector('.hero');
     if (hero && hasMotion) {
         const heroOut = CustomEase.create('hero-out', '0.16,1,0.3,1');
 
-        gsap.timeline({ defaults: { ease: heroOut }, delay: introLength })
+        gsap.timeline({ defaults: { ease: heroOut } })
             .fromTo(hero.querySelectorAll('.hero-image-section'), { clipPath: 'inset(50% 50% 50% 50%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3 }, 0.1)
             .fromTo(hero.querySelectorAll('.hero-portrait'), { scale: 1.2 }, { scale: 1, duration: 2.2 }, 0.1)
             .fromTo(hero.querySelectorAll('.hero-mask > span'), { y: 0, yPercent: 100 }, { yPercent: 0, duration: 1.1 }, 0.45)
