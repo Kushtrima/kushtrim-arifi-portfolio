@@ -97,30 +97,24 @@
 
                 <div class="work-page-description">
                     <div class="text-reveal-wrapper">
-                        <p>This is other work of mine that is not shown on the main website: social media, printing
-                            materials and branding. The page is private, so only people with the link can see it.</p>
+                        <p>This is other work of mine that is not shown on the main website: social media and printing
+                            materials. The page is private, so only people with the link can see it.</p>
                     </div>
                 </div>
 
                 <!-- Work Gallery Section -->
                 <div class="work-gallery">
-                    <!-- Filter: "+ FILTER" opens the categories in a row beside it; the "×" closes them and shows every
-                         project again (script.js) -->
-                    <div class="work-filter">
-                        <button class="work-filter-toggle" type="button" aria-expanded="false" aria-controls="work-filter-options">
-                            <span class="work-filter-icon" aria-hidden="true"><span></span><span></span></span>
-                            <span>FILTER</span>
-                        </button>
+                    <!-- Filter: on this page the categories are always in view, without "+ FILTER" (script.js) -->
+                    <div class="work-filter work-filter--exposed">
                         <ul class="work-filter-options" id="work-filter-options" role="list">
                             <li><button class="work-filter-option is-active" type="button" data-filter="all" aria-pressed="true">All</button></li>
                             <li><button class="work-filter-option" type="button" data-filter="social-media" aria-pressed="false">Social Media</button></li>
                             <li><button class="work-filter-option" type="button" data-filter="printing-materials" aria-pressed="false">Printing materials</button></li>
-                            <li><button class="work-filter-option" type="button" data-filter="branding" aria-pressed="false">Branding</button></li>
                         </ul>
                     </div>
                     <p class="work-filter-empty is-filtered-out" role="status">Coming soon</p>
 
-                    <!-- Every project in one grid (data-category "social-media", "printing-materials" or "branding"); the filter shows one
+                    <!-- Every project in one grid (data-category "social-media" or "printing-materials"); the filter shows one
                          kind at a time, and a kind with nothing in it yet shows "Coming soon" -->
                     <div class="gallery-grid">
                         <div class="gallery-item" data-project="glare-social" data-category="social-media">
@@ -219,14 +213,68 @@
                                     <picture>
                                         <source srcset="work/cityhotel-brochure/cityhotel-brochure-cover.avif" type="image/avif">
                                         <source srcset="work/cityhotel-brochure/cityhotel-brochure-cover.webp" type="image/webp">
-                                        <img src="work/cityhotel-brochure/cityhotel-brochure-cover.jpg" alt="Cityhotel — the closed brochure, its cover showing the hotel building" loading="lazy">
+                                        <img src="work/cityhotel-brochure/cityhotel-brochure-cover.jpg" alt="Cityhotel — the closed catalogue, its cover showing the hotel building" loading="lazy">
                                     </picture>
                                 </div>
                                 <div class="gallery-info">
                                     <h3 class="work-name">Cityhotel</h3>
                                     <p class="work-industry">Hotel &amp; Restaurant</p>
-                                    <p class="work-service">Brochure</p>
+                                    <p class="work-service">Catalogue</p>
                                     <p class="work-location">Näfels, Switzerland</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="gallery-item" data-project="albfix-catalogue" data-category="printing-materials">
+                            <a href="work/albfix-catalogue.html" style="text-decoration: none; color: inherit;">
+                                <div class="gallery-image">
+                                    <picture>
+                                        <source srcset="work/albfix-catalogue/albfix-catalogue-cover.avif" type="image/avif">
+                                        <source srcset="work/albfix-catalogue/albfix-catalogue-cover.webp" type="image/webp">
+                                        <img src="work/albfix-catalogue/albfix-catalogue-cover.jpg" alt="Albfix — the closed catalogue, its green cover with the Albfix logo" loading="lazy">
+                                    </picture>
+                                </div>
+                                <div class="gallery-info">
+                                    <h3 class="work-name">Albfix</h3>
+                                    <p class="work-industry">Scaffolding</p>
+                                    <p class="work-service">Catalogue</p>
+                                    <p class="work-location">Fushë Kosovë, Kosovo</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="gallery-item" data-project="business-leaders-brochures" data-category="printing-materials">
+                            <a href="work/business-leaders-brochures.html" style="text-decoration: none; color: inherit;">
+                                <div class="gallery-image">
+                                    <picture>
+                                        <source srcset="work/business-leaders-brochures/business-leaders-brochures-cover.avif" type="image/avif">
+                                        <source srcset="work/business-leaders-brochures/business-leaders-brochures-cover.webp" type="image/webp">
+                                        <img src="work/business-leaders-brochures/business-leaders-brochures-cover.jpg" alt="Business Leaders Group AG — the three closed brochures in a stack, the blue one in front" loading="lazy">
+                                    </picture>
+                                </div>
+                                <div class="gallery-info">
+                                    <h3 class="work-name">Business Leaders Group AG</h3>
+                                    <p class="work-industry">Digital Marketing</p>
+                                    <p class="work-service">Brochures</p>
+                                    <p class="work-location">Switzerland</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="gallery-item" data-project="swiss-windows-catalogue" data-category="printing-materials">
+                            <a href="work/swiss-windows-catalogue.html" style="text-decoration: none; color: inherit;">
+                                <div class="gallery-image">
+                                    <picture>
+                                        <source srcset="work/swiss-windows-catalogue/swiss-windows-catalogue-cover.avif" type="image/avif">
+                                        <source srcset="work/swiss-windows-catalogue/swiss-windows-catalogue-cover.webp" type="image/webp">
+                                        <img src="work/swiss-windows-catalogue/swiss-windows-catalogue-cover.jpg" alt="Swiss Windows — the closed catalogue, its dark cover with a drawing of the factory" loading="lazy">
+                                    </picture>
+                                </div>
+                                <div class="gallery-info">
+                                    <h3 class="work-name">Swiss Windows</h3>
+                                    <p class="work-industry">Windows &amp; Doors</p>
+                                    <p class="work-service">Catalogue</p>
+                                    <p class="work-location">Prizren, Kosovo</p>
                                 </div>
                             </a>
                         </div>

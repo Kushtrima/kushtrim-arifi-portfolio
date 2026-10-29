@@ -1906,7 +1906,8 @@ body:has(.hero) .header.is-empty {
 
 /* Work page filter: "+ FILTER" in small capitals with the header's orange "+" (two thin lines, turned 45° into a "×"
    while open). The categories open in a row beside it, each coming in from the left 50ms after the one before; grey
-   until hovered, the one in use orange like the page you're on in the header. On phones the row drops under the toggle */
+   until hovered, the one in use orange like the page you're on in the header. On phones the row drops under the toggle.
+   /private has no toggle: its categories (work-filter--exposed) are always in view */
 .work-filter {
     display: flex;
     flex-wrap: wrap;
@@ -1983,7 +1984,8 @@ body:has(.hero) .header.is-empty {
     list-style: none;
 }
 
-.work-filter.is-open .work-filter-options {
+.work-filter.is-open .work-filter-options,
+.work-filter--exposed .work-filter-options {
     display: flex;
 }
 

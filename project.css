@@ -2349,11 +2349,16 @@
     }
 }
 
-/* The brochure (work/cityhotel-brochure.html), turned like a real one by brochure.js with the page-flip library. It is
-   as large as the screen allows, up to three quarters of the screen's height, which leaves room for the header and the
-   arrows. Closed, it moves so the cover (or the back) sits in the middle, and a soft shadow lies under the pages */
+/* The catalogues (work/cityhotel-brochure.html, work/albfix-catalogue.html), turned like real ones by brochure.js with
+   the page-flip library. Each is as large as the screen allows, up to three quarters of the screen's height, which
+   leaves room for the header and the arrows. Closed, it moves so the cover (or the back) sits in the middle, and a soft
+   shadow lies under the pages */
+.brochure {
+    --page-ratio: 1.4142; /* a page's height over its width: A4 upright, unless the page sets its own */
+}
+
 .brochure-stage {
-    width: min(100%, calc(75svh * 1.4142));
+    width: min(100%, calc(75svh * 2 / var(--page-ratio)));
     margin: 0 auto;
 }
 
@@ -2431,7 +2436,7 @@
 /* With scripts, until the book is built, only the cover shows, where the closed book will be */
 .js .brochure:not(.is-static) .brochure-book:not(.stf__parent) {
     position: relative;
-    aspect-ratio: 1.4142;
+    aspect-ratio: 2 / var(--page-ratio);
 }
 
 .js .brochure:not(.is-static) .brochure-book:not(.stf__parent) .brochure-page {
@@ -2501,6 +2506,11 @@
 .arrow-link--right:hover .arrow-link-icon--next,
 .arrow-link--right:focus-visible .arrow-link-icon--next {
     transform: translateX(0);
+}
+
+/* Several brochures on one page (work/business-leaders-brochures.html), well apart */
+.brochure-set + .brochure-set {
+    margin-top: clamp(120px, 14vw, 200px);
 }
 
 @media (prefers-reduced-motion: reduce) {

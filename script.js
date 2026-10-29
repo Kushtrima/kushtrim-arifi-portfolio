@@ -790,7 +790,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Work page filter: "+ FILTER" opens the categories in a row beside it and the "+" turns into a "×", which closes
     // them again and brings every project back. A category keeps its own projects and hides the rest, and a category
     // with nothing in it yet shows "Coming soon" instead of the grid. With motion the shown part fades out, they swap,
-    // and the cards come back up 20px, 40ms apart
+    // and the cards come back up 20px, 40ms apart. /private has no "+ FILTER": its categories are always in view
     const workFilter = document.querySelector('.work-filter');
     if (workFilter) {
         const filterToggle = workFilter.querySelector('.work-filter-toggle');
@@ -837,7 +837,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         };
 
-        filterToggle.addEventListener('click', () => {
+        filterToggle?.addEventListener('click', () => {
             const open = filterToggle.getAttribute('aria-expanded') !== 'true';
             filterToggle.setAttribute('aria-expanded', String(open));
             workFilter.classList.toggle('is-open', open);
