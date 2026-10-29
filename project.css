@@ -938,7 +938,8 @@
 .project-image-section.project-image-section--navigator > .glare-social-first-image,
 .project-image-section.project-image-section--navigator > .bsr-social-first-image,
 .project-image-section.project-image-section--navigator > .monun-campaign-first-image,
-.project-image-section.project-image-section--navigator > .stplaner-social-first-image {
+.project-image-section.project-image-section--navigator > .stplaner-social-first-image,
+.project-image-section.project-image-section--navigator > .swiss-windows-social-first-image {
     margin-bottom: 80px;
 }
 
@@ -961,7 +962,8 @@
 .project-image-section.project-image-section--navigator > .glare-social-first-image,
 .project-image-section.project-image-section--navigator > .bsr-social-first-image,
 .project-image-section.project-image-section--navigator > .monun-campaign-first-image,
-.project-image-section.project-image-section--navigator > .stplaner-social-first-image {
+.project-image-section.project-image-section--navigator > .stplaner-social-first-image,
+.project-image-section.project-image-section--navigator > .swiss-windows-social-first-image {
         margin-bottom: 70px !important;
     }
 }
@@ -985,7 +987,8 @@
 .project-image-section.project-image-section--navigator > .glare-social-first-image,
 .project-image-section.project-image-section--navigator > .bsr-social-first-image,
 .project-image-section.project-image-section--navigator > .monun-campaign-first-image,
-.project-image-section.project-image-section--navigator > .stplaner-social-first-image {
+.project-image-section.project-image-section--navigator > .stplaner-social-first-image,
+.project-image-section.project-image-section--navigator > .swiss-windows-social-first-image {
         margin-bottom: 30px !important;
     }
 }
@@ -1329,12 +1332,13 @@
     background-color: var(--color-grey-8a);
 }
 
-/* The private projects' images (Glaré's brand; the Glaré, BSR, Monun and ST Planer social media posts) - Same as others */
+/* The private projects' images (Glaré's brand; the Glaré, BSR, Monun, ST Planer and Swiss Windows social media posts) - Same as others */
 .project-image-section .glare-image-reveal,
 .project-image-section .glare-social-image-reveal,
 .project-image-section .bsr-social-image-reveal,
 .project-image-section .monun-campaign-image-reveal,
-.project-image-section .stplaner-social-image-reveal {
+.project-image-section .stplaner-social-image-reveal,
+.project-image-section .swiss-windows-social-image-reveal {
     position: relative;
     overflow: hidden;
     will-change: transform, opacity;
@@ -1349,7 +1353,8 @@
 .project-image-section .glare-social-image-reveal:last-child,
 .project-image-section .bsr-social-image-reveal:last-child,
 .project-image-section .monun-campaign-image-reveal:last-child,
-.project-image-section .stplaner-social-image-reveal:last-child {
+.project-image-section .stplaner-social-image-reveal:last-child,
+.project-image-section .swiss-windows-social-image-reveal:last-child {
     margin-bottom: 0;
 }
 
@@ -1358,7 +1363,8 @@
 .project-image-section .glare-social-image-reveal::before,
 .project-image-section .bsr-social-image-reveal::before,
 .project-image-section .monun-campaign-image-reveal::before,
-.project-image-section .stplaner-social-image-reveal::before {
+.project-image-section .stplaner-social-image-reveal::before,
+.project-image-section .swiss-windows-social-image-reveal::before {
     content: '';
     position: absolute;
     top: 0;
@@ -1376,7 +1382,8 @@
 .project-image-section .glare-social-image-reveal img,
 .project-image-section .bsr-social-image-reveal img,
 .project-image-section .monun-campaign-image-reveal img,
-.project-image-section .stplaner-social-image-reveal img {
+.project-image-section .stplaner-social-image-reveal img,
+.project-image-section .swiss-windows-social-image-reveal img {
     display: block;
     width: 100%;
     height: auto;
@@ -2339,5 +2346,166 @@
     .project-pagination-next,
     .project-pagination-all {
         justify-self: start;
+    }
+}
+
+/* The brochure (work/cityhotel-brochure.html), turned like a real one by brochure.js with the page-flip library. It is
+   as large as the screen allows, up to three quarters of the screen's height, which leaves room for the header and the
+   arrows. Closed, it moves so the cover (or the back) sits in the middle, and a soft shadow lies under the pages */
+.brochure-stage {
+    width: min(100%, calc(75svh * 1.4142));
+    margin: 0 auto;
+}
+
+.brochure-shift {
+    position: relative;
+    transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.js .brochure:not(.is-static) .brochure-shift.is-cover {
+    transform: translateX(-25%);
+}
+
+.js .brochure:not(.is-static) .brochure-shift.is-back {
+    transform: translateX(25%);
+}
+
+.js .brochure:not(.is-static) .brochure-shift::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 34px 60px -24px rgba(var(--color-black-rgb), 0.75), 0 10px 24px rgba(var(--color-black-rgb), 0.35);
+    transition: left 0.9s cubic-bezier(0.65, 0, 0.35, 1), right 0.9s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.js .brochure:not(.is-static) .brochure-shift.is-cover::before {
+    left: 50%;
+}
+
+.js .brochure:not(.is-static) .brochure-shift.is-back::before {
+    right: 50%;
+}
+
+/* A page: the brochure's paper colour until its picture arrives, and, in the built book, the shade of the fold along
+   its inner edge */
+.brochure-page {
+    overflow: hidden;
+    background: #faf1e1;
+}
+
+.brochure-page img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.brochure-page.stf__item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.brochure-page--left.stf__item::after {
+    background: linear-gradient(to left, rgba(var(--color-black-rgb), 0.14), rgba(var(--color-black-rgb), 0) 6%);
+}
+
+.brochure-page--right.stf__item::after {
+    background: linear-gradient(to right, rgba(var(--color-black-rgb), 0.14), rgba(var(--color-black-rgb), 0) 6%);
+}
+
+/* Without scripts (or without the library) the pages stand one under another */
+.brochure-page:not(.stf__item) {
+    position: relative;
+    max-width: 620px;
+    margin: 0 auto 30px;
+}
+
+/* With scripts, until the book is built, only the cover shows, where the closed book will be */
+.js .brochure:not(.is-static) .brochure-book:not(.stf__parent) {
+    position: relative;
+    aspect-ratio: 1.4142;
+}
+
+.js .brochure:not(.is-static) .brochure-book:not(.stf__parent) .brochure-page {
+    display: none;
+}
+
+.js .brochure:not(.is-static) .brochure-book:not(.stf__parent) .brochure-page:first-child {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    max-width: none;
+    margin: 0;
+}
+
+/* Previous · the pages open · Next, under the book, once it is built */
+.brochure-controls {
+    display: none;
+}
+
+.brochure.is-ready .brochure-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(16px, 4vw, 48px);
+    margin-top: 44px;
+}
+
+.brochure-count {
+    min-width: 6.5em;
+    margin: 0;
+    font-family: var(--font-primary);
+    font-size: 16px;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-grey-8a);
+    text-align: center;
+}
+
+.brochure-controls .arrow-link:disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* ← and →: the arrow leaves on its own side and the next one comes in from the other */
+.arrow-link--left .arrow-link-icon--next {
+    transform: translateX(110%);
+}
+
+.arrow-link--left:hover .arrow-link-icon,
+.arrow-link--left:focus-visible .arrow-link-icon {
+    transform: translateX(-110%);
+}
+
+.arrow-link--right .arrow-link-icon--next {
+    transform: translateX(-110%);
+}
+
+.arrow-link--right:hover .arrow-link-icon,
+.arrow-link--right:focus-visible .arrow-link-icon {
+    transform: translateX(110%);
+}
+
+.arrow-link--left:hover .arrow-link-icon--next,
+.arrow-link--left:focus-visible .arrow-link-icon--next,
+.arrow-link--right:hover .arrow-link-icon--next,
+.arrow-link--right:focus-visible .arrow-link-icon--next {
+    transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .brochure-shift,
+    .js .brochure-shift::before {
+        transition: none;
     }
 }

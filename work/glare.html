@@ -11,8 +11,7 @@
     <meta name="keywords"
         content="Glaré, Restaurant Branding, Logo Design, Brand Identity, Cityhotel, Näfels, Glarus, Switzerland">
     <meta name="author" content="Kushtrim Arifi">
-    <!-- Private project, listed only on /private: kept out of search results and linked from no public page -->
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="https://kushtrimarifi.com/work/glare.html">
 
     <!-- Open Graph -->
@@ -45,6 +44,41 @@
 
     <link rel="stylesheet" href="/styles.css?v=20261027">
     <link rel="stylesheet" href="/project.css?v=20261021-2">
+
+    <!-- Structured Data: CreativeWork -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "Glaré",
+      "headline": "Glaré \u00b7 Restaurant Brand Identity",
+      "description": "Case study: a brand identity for Glaré, the restaurant of Cityhotel in Näfels, built on a single-line wordmark and colours taken from the building.",
+      "image": "https://kushtrimarifi.com/work/glare/glare-cover.jpg",
+      "url": "https://kushtrimarifi.com/work/glare.html",
+      "dateCreated": "2026",
+      "inLanguage": "en",
+      "about": "Restaurant Brand",
+      "creator": {
+        "@type": "Person",
+        "@id": "https://kushtrimarifi.com/#person",
+        "name": "Kushtrim Arifi",
+        "url": "https://kushtrimarifi.com/",
+        "jobTitle": "Senior Product Designer | Behavioral Design & UX Research"
+      }
+    }
+    </script>
+    <!-- Structured Data: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://kushtrimarifi.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Work", "item": "https://kushtrimarifi.com/work.html" },
+        { "@type": "ListItem", "position": 3, "name": "Glaré", "item": "https://kushtrimarifi.com/work/glare.html" }
+      ]
+    }
+    </script>
 
     <!-- Google tag (gtag.js): the page view is queued at once, the tag itself is fetched only after the page has loaded -->
     <script>
@@ -218,6 +252,15 @@
                 <!-- Images in a narrower column; on a wide screen script.js adds a navigator on the right: every image small,
                      with a frame showing which part is on screen -->
                 <div class="project-image-section project-image-section--navigator">
+                    <!-- Previous and next project beside the images: they arrive with the first image, stay level with the middle
+                         of the screen while the images pass, and leave with the last one -->
+                    <div class="project-pager-rail">
+                        <nav class="project-pager" aria-label="More projects">
+                            <a class="project-pager-link project-pager-link--previous" href="/work/hbs.html" rel="prev" aria-label="Previous project: HBS — Brand"><span>Previous</span><span class="visually-hidden">: HBS — Brand</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 1 1 5l4.5 4"/></svg></span></a>
+                            <a class="project-pager-link project-pager-link--next" href="/work/wmk.html" rel="next" aria-label="Next project: WMK"><span>Next</span><span class="visually-hidden">: WMK</span><span class="project-pager-arrow" aria-hidden="true"><svg class="project-pager-head" viewBox="0 0 6 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M.5 1 5 5 .5 9"/></svg></span></a>
+                        </nav>
+                    </div>
+
                     <!-- First image -->
                     <div class="project-main-image glare-image-reveal glare-first-image">
                         <picture>
