@@ -2209,13 +2209,18 @@ body:has(.hero) .header.is-empty {
 
 /* A portrait frame keeps three quarters of a square cover's width: the brand covers keep their right side (the name
    sits top right; Riesen's photo keeps its van); Spitex's photo is cut a quarter of the way in, so the carer, the woman
-   and the blanket stay whole. Bären's photo stays centred, so the logo on the hard hat and on the van both show */
+   and the blanket stay whole. Bären's photo stays centred, so the logo on the hard hat and on the van both show; Glaré's
+   photo keeps its left side, where the hotel's sign is, and so does BSR's, where the crane carries its name */
 .gallery-item:is([data-project="hbs"], [data-project="wmk"], [data-project="riesen"]) .gallery-image img {
     object-position: 100% 50%;
 }
 
 .gallery-item[data-project="spitex"] .gallery-image img {
     object-position: 25% 50%;
+}
+
+.gallery-item:is([data-project="glare"], [data-project="bsr-social"]) .gallery-image img {
+    object-position: 0% 50%;
 }
 
 .gallery-info {

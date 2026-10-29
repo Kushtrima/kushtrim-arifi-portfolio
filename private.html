@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <title>Work | Kushtrim Arifi</title>
+    <meta name="description" content="Other work by Kushtrim Arifi: social media, printing materials and branding.">
+    <meta name="author" content="Kushtrim Arifi">
+    <!-- Private page: linked from nowhere and kept out of search results; it opens only from its address,
+         kushtrimarifi.com/private -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- Analytics hosts looked up early; the tag itself loads after the page -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+    <link rel="stylesheet" href="styles.css?v=20261027">
+
+    <!-- Google tag (gtag.js): the page view is queued at once, the tag itself is fetched only after the page has loaded -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-YC4X711JLJ');
+        window.addEventListener('load', () => {
+            const tag = document.createElement('script');
+            tag.async = true;
+            tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-YC4X711JLJ';
+            document.head.appendChild(tag);
+        }, { once: true });
+    </script>
+</head>
+
+<body class="dark-mode">
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="/" class="logo-text">Kushtrim [a]</a>
+            </div>
+            <nav class="navigation">
+                <ul class="nav-list">
+                    <li><a href="work.html" class="nav-link">Work</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                </ul>
+
+                <!-- Overlay content (hidden by default) -->
+                <div class="nav-overlay">
+                    <div class="nav-header">
+                        <a href="/" class="nav-logo">Kushtrim [a]</a>
+                        <button class="nav-close">×</button>
+                    </div>
+
+                    <div class="nav-content">
+                        <ul class="nav-list-overlay">
+                            <li><a href="work.html" class="nav-link-overlay">Work</a></li>
+                            <li><a href="about.html" class="nav-link-overlay">About</a></li>
+                        </ul>
+
+                        <div class="nav-right">
+                            <div class="nav-social">
+                                <a href="https://www.linkedin.com/in/kushtrim-arifi-msc-60313713b/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"></a>
+                            </div>
+                            <a href="mailto:info@kushtrimarifi.com" class="nav-email">info@kushtrimarifi.com</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="burger-menu">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Private Work Page Section: the Work page's layout and filter for work not shown on the main site -->
+        <section class="work-page-section">
+            <div class="work-page-container">
+                <div class="work-page-title">
+                    <div class="text-reveal-wrapper">
+                        <h1>Work</h1>
+                    </div>
+                    <div class="text-reveal-wrapper">
+                        <div class="work-page-line"></div>
+                    </div>
+                </div>
+
+                <div class="work-page-description">
+                    <div class="text-reveal-wrapper">
+                        <p>This is other work of mine that is not shown on the main website: social media, printing
+                            materials and branding. The page is private, so only people with the link can see it.</p>
+                    </div>
+                </div>
+
+                <!-- Work Gallery Section -->
+                <div class="work-gallery">
+                    <!-- Filter: "+ FILTER" opens the categories in a row beside it; the "×" closes them and shows every
+                         project again (script.js) -->
+                    <div class="work-filter">
+                        <button class="work-filter-toggle" type="button" aria-expanded="false" aria-controls="work-filter-options">
+                            <span class="work-filter-icon" aria-hidden="true"><span></span><span></span></span>
+                            <span>FILTER</span>
+                        </button>
+                        <ul class="work-filter-options" id="work-filter-options" role="list">
+                            <li><button class="work-filter-option is-active" type="button" data-filter="all" aria-pressed="true">All</button></li>
+                            <li><button class="work-filter-option" type="button" data-filter="social-media" aria-pressed="false">Social Media</button></li>
+                            <li><button class="work-filter-option" type="button" data-filter="printing-materials" aria-pressed="false">Printing materials</button></li>
+                            <li><button class="work-filter-option" type="button" data-filter="branding" aria-pressed="false">Branding</button></li>
+                        </ul>
+                    </div>
+                    <p class="work-filter-empty is-filtered-out" role="status">Coming soon</p>
+
+                    <!-- Every project in one grid (data-category "social-media", "printing-materials" or "branding"); the filter shows one
+                         kind at a time, and a kind with nothing in it yet shows "Coming soon" -->
+                    <div class="gallery-grid">
+                        <div class="gallery-item" data-project="glare-social" data-category="social-media">
+                            <a href="work/glare-social.html" style="text-decoration: none; color: inherit;">
+                                <div class="gallery-image">
+                                    <picture>
+                                        <source srcset="work/glare-social/glare-social-cover.avif" type="image/avif">
+                                        <source srcset="work/glare-social/glare-social-cover.webp" type="image/webp">
+                                        <img src="work/glare-social/glare-social-cover.jpg" alt="Glaré — the chef plating a dish in the kitchen" loading="lazy">
+                                    </picture>
+                                </div>
+                                <div class="gallery-info">
+                                    <h3 class="work-name">Glaré</h3>
+                                    <p class="work-industry">Restaurant</p>
+                                    <p class="work-service">Social Media</p>
+                                    <p class="work-location">Näfels, Switzerland</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="gallery-item" data-project="bsr-social" data-category="social-media">
+                            <a href="work/bsr-social.html" style="text-decoration: none; color: inherit;">
+                                <div class="gallery-image">
+                                    <picture>
+                                        <source srcset="work/bsr-social/bsr-social-cover.avif" type="image/avif">
+                                        <source srcset="work/bsr-social/bsr-social-cover.webp" type="image/webp">
+                                        <img src="work/bsr-social/bsr-social-cover.jpg" alt="BSR — a tower crane with the BSR Bau sign over a building in scaffolding" loading="lazy">
+                                    </picture>
+                                </div>
+                                <div class="gallery-info">
+                                    <h3 class="work-name">BSR</h3>
+                                    <p class="work-industry">Construction</p>
+                                    <p class="work-service">Social Media</p>
+                                    <p class="work-location">Switzerland</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="gallery-item" data-project="monun-campaign" data-category="social-media">
+                            <a href="work/monun-campaign.html" style="text-decoration: none; color: inherit;">
+                                <div class="gallery-image">
+                                    <picture>
+                                        <source srcset="work/monun-campaign/monun-campaign-cover.avif" type="image/avif">
+                                        <source srcset="work/monun-campaign/monun-campaign-cover.webp" type="image/webp">
+                                        <img src="work/monun-campaign/monun-campaign-cover.jpg" alt="MONUN AG — a woman working at a laptop in a bright office" loading="lazy">
+                                    </picture>
+                                </div>
+                                <div class="gallery-info">
+                                    <h3 class="work-name">MONUN AG</h3>
+                                    <p class="work-industry">Marketing Agency</p>
+                                    <p class="work-service">Social Media</p>
+                                    <p class="work-location">Switzerland</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="gallery-item" data-project="stplaner-social" data-category="social-media">
+                            <a href="work/stplaner-social.html" style="text-decoration: none; color: inherit;">
+                                <div class="gallery-image">
+                                    <picture>
+                                        <source srcset="work/stplaner-social/stplaner-social-cover.avif" type="image/avif">
+                                        <source srcset="work/stplaner-social/stplaner-social-cover.webp" type="image/webp">
+                                        <img src="work/stplaner-social/stplaner-social-cover.jpg" alt="ST Planer — a rendering of a white apartment building on a green hill" loading="lazy">
+                                    </picture>
+                                </div>
+                                <div class="gallery-info">
+                                    <h3 class="work-name">ST Planer</h3>
+                                    <p class="work-industry">Building Services</p>
+                                    <p class="work-service">Social Media</p>
+                                    <p class="work-location">Amriswil, Switzerland</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="gallery-item" data-project="glare" data-category="branding">
+                            <a href="work/glare.html" style="text-decoration: none; color: inherit;">
+                                <div class="gallery-image">
+                                    <picture>
+                                        <source srcset="work/glare/glare-cover.avif" type="image/avif">
+                                        <source srcset="work/glare/glare-cover.webp" type="image/webp">
+                                        <img src="work/glare/glare-cover.jpg" alt="Glaré — the Cityhotel building in Näfels, home of the restaurant" loading="lazy">
+                                    </picture>
+                                </div>
+                                <div class="gallery-info">
+                                    <h3 class="work-name">Glaré</h3>
+                                    <p class="work-industry">Restaurant</p>
+                                    <p class="work-service">Branding</p>
+                                    <p class="work-location">Näfels, Switzerland</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modern Footer Section -->
+    <footer class="modern-footer">
+        <!-- Big name sign-off: three small columns (menu, social, contact), the year and back to top, then the name huge across
+             the full width, sitting on the bottom edge of the page with its lower fifth cut off -->
+        <div class="container">
+            <div class="footer-columns">
+                <a href="/" class="footer-logo" aria-label="Kushtrim Arifi, home">[a]</a>
+                <nav class="footer-column" aria-label="Footer">
+                    <p class="footer-label">Menu</p>
+                    <a href="work.html">Work</a>
+                    <a href="about.html">About</a>
+                    <a href="/Kushtrim_Arifi_CV.pdf" download>Download CV<span class="visually-hidden"> (PDF)</span></a>
+                </nav>
+                <div class="footer-column">
+                    <p class="footer-label">Social</p>
+                    <a href="https://www.linkedin.com/in/kushtrim-arifi-msc-60313713b/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://github.com/Kushtrima" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </div>
+                <div class="footer-column footer-column--contact">
+                    <p class="footer-label">Contact</p>
+                    <a href="mailto:info@kushtrimarifi.com">info@kushtrimarifi.com</a>
+                    <a href="tel:+38349210999">+383 49 210 999</a>
+                </div>
+            </div>
+
+            <div class="footer-bar">
+                <p class="footer-copyright">© <span class="footer-year">2026</span> Kushtrim Arifi</p>
+                <button class="back-to-top arrow-link arrow-link--up" type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top"><span class="arrow-link-label">Top</span><span class="arrow-link-arrow" aria-hidden="true"><svg class="arrow-link-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3"/><path d="M3.5 7.5 8 3l4.5 4.5"/></svg><svg class="arrow-link-icon arrow-link-icon--next" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3"/><path d="M3.5 7.5 8 3l4.5 4.5"/></svg></span></button>
+            </div>
+
+            <p class="footer-name" aria-hidden="true">Kushtrim Arifi</p>
+        </div>
+    </footer>
+
+    <script src="/vendor/gsap/gsap.min.js" defer></script>
+    <script src="/vendor/gsap/ScrollTrigger.min.js" defer></script>
+    <script src="/vendor/gsap/CustomEase.min.js" defer></script>
+    <script src="script.js?v=20261027" defer></script>
+</body>
+
+</html>
