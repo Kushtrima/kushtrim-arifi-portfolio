@@ -32,13 +32,7 @@
       <image:loc>https://kushtrimarifi.com/work/ennur/en-cover.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://kushtrimarifi.com/work/doratec/dora-cover.jpg</image:loc>
-    </image:image>
-    <image:image>
       <image:loc>https://kushtrimarifi.com/work/spitex/spitex-cover.jpg</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://kushtrimarifi.com/work/monun/monun-cover.jpg</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://kushtrimarifi.com/work/hbs/hbs-cover.jpg</image:loc>
@@ -123,32 +117,12 @@
   </url>
 
   <url>
-    <loc>https://kushtrimarifi.com/work/doratec.html</loc>
-    <lastmod>2026-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://kushtrimarifi.com/work/doratec/dora1.jpg</image:loc>
-    </image:image>
-  </url>
-
-  <url>
     <loc>https://kushtrimarifi.com/work/spitex.html</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://kushtrimarifi.com/work/spitex/spitex1.jpg</image:loc>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://kushtrimarifi.com/work/monun.html</loc>
-    <lastmod>2026-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://kushtrimarifi.com/work/monun/monun1.jpg</image:loc>
     </image:image>
   </url>
 
