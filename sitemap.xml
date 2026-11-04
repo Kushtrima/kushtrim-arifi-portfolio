@@ -23,13 +23,7 @@
       <image:loc>https://kushtrimarifi.com/work/cityhotel/city-cover.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://kushtrimarifi.com/work/hbs-website/hbswebsite-cover.jpg</image:loc>
-    </image:image>
-    <image:image>
       <image:loc>https://kushtrimarifi.com/work/jetonikeramika/jetoni-cover.jpg</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://kushtrimarifi.com/work/ennur/en-cover.jpg</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://kushtrimarifi.com/work/spitex/spitex-cover.jpg</image:loc>
@@ -77,16 +71,6 @@
   </url>
 
   <url>
-    <loc>https://kushtrimarifi.com/work/hbs-website.html</loc>
-    <lastmod>2026-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://kushtrimarifi.com/work/hbs-website/hbs-01.jpg</image:loc>
-    </image:image>
-  </url>
-
-  <url>
     <loc>https://kushtrimarifi.com/work/prenaj.html</loc>
     <lastmod>2026-09-26</lastmod>
     <changefreq>yearly</changefreq>
@@ -103,16 +87,6 @@
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://kushtrimarifi.com/work/jetonikeramika/jetoni1.jpg</image:loc>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://kushtrimarifi.com/work/ennur.html</loc>
-    <lastmod>2026-09-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://kushtrimarifi.com/work/ennur/en1.jpg</image:loc>
     </image:image>
   </url>
 
